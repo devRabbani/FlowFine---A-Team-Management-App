@@ -12,7 +12,7 @@ class MyDocument extends Document {
           />
           <meta
             name="google-site-verification"
-            content="76C2hWhD9MhyJAHhDRqU-1zoKf3sK3pSFZxhqnXmRo4"
+            content="SJzIYsafSkXDHmaqlsz1nOJnhKo_7JsG5bbHuOBXTHk"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
