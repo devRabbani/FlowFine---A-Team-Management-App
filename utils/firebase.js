@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   serverTimestamp,
   setDoc,
 } from 'firebase/firestore'
@@ -76,5 +77,13 @@ export const addTeamToUser = async (uid, teamcode, teamName, timestamp) => {
       teamName,
       timestamp,
     })
+  }
+}
+export const getMembers = async (uid, teamcode) => {
+  const colRef = collection(db, `teams/${teamcode}/members`)
+  const colSnap = await getDocs(colRef)
+
+  if (!colSnap.empty) {
+    return colSnap.docs.map((item) => ({ ...item.data(), uid: item.id }))
   }
 }

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaAt, FaSignOutAlt } from 'react-icons/fa'
 import useLogout from '../../hooks/useLogout'
+import ImageBlur from '../imageBlur'
 import styles from './profileMenu.module.css'
 
 export default function ProfileMenu({ user, setIsProfileMenu }) {
@@ -29,13 +30,7 @@ export default function ProfileMenu({ user, setIsProfileMenu }) {
       <div className={styles.menu}>
         <div className={styles.imgDiv}>
           <div className={styles.img}>
-            <Image
-              src={user?.photoURL}
-              alt="User Avatar"
-              layout="responsive"
-              width="200px"
-              height="200px"
-            />
+            <ImageBlur src={user?.photoURL} />
           </div>
 
           {user?.displayName}

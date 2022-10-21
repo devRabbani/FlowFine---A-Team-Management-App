@@ -1,0 +1,27 @@
+.card {
+  background-color: var(--color-green-3);
+  padding: 20px;
+  border-radius: 7px;
+}
+
+.card h1 {
+  font-weight: 500;
+}
+
+.code {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--color-grey-2);
+}
+
+.codeDiv {
+  display: flex;
+  margin-top: 5px;
+  gap: 10px;
+  align-items: center;
+}
+
+.codeDiv svg {
+  font-size: 1.3rem;
+  color: #265a55;
+}

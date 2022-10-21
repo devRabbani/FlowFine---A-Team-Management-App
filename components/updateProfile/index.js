@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 import styles from './updateProfile.module.css'
 
 export default function UpdateProfile({ setIsUpdate, displayName, photoURL }) {
@@ -59,7 +60,12 @@ export default function UpdateProfile({ setIsUpdate, displayName, photoURL }) {
         <button onClick={() => setIsUpdate(false)} className={styles.btn}>
           Cancel
         </button>
-        <button className={styles.btn}>Confirm Update</button>
+        <button
+          onClick={() => toast.error('Update function not supported currently')}
+          className={styles.btn}
+        >
+          Confirm Update
+        </button>
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
+import ImageBlur from '../components/imageBlur'
 import UpdateProfile from '../components/updateProfile'
 import { useAuth } from '../context/AuthContext'
 import useProfile from '../hooks/useProfile'
@@ -28,13 +29,7 @@ export default function Profile() {
       ) : (
         <>
           <div className={styles.img}>
-            <Image
-              src={photoURL}
-              alt="User Avatar"
-              layout="responsive"
-              width="200px"
-              height="200px"
-            />
+            <ImageBlur src={photoURL} />
           </div>
           <p className={styles.name}>Hey @{displayName}</p>
           <button onClick={() => setIsUpdate(true)} className={styles.btn}>

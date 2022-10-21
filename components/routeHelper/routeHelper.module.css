@@ -1,0 +1,11 @@
+.body {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.body a {
+  color: rgb(18, 18, 180);
+  font-weight: 500;
+  text-transform: uppercase;
+}
