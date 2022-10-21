@@ -1,0 +1,7 @@
+.footer {
+  margin-top: auto;
+  padding: 10px 7px 7px;
+  text-align: center;
+  border-top: 1px solid var(--color-green-2);
+  color: var(--color-green-2);
+}

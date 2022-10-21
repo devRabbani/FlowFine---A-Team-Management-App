@@ -1,3 +1,15 @@
+:root {
+  --color-orange-1: #f49d37;
+  --color-black-1: #140f2d;
+  --color-blue-1: #7f95d1;
+  --color-green-1: #a3c4bc;
+  --color-green-2: #3c6e71;
+  --color-green-3: #7c9e96;
+  --color-green-4: #89afa5;
+  --color-grey-1: #b7b6c2;
+  --color-grey-2: #d1d5de;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,6 +18,9 @@
 
 body {
   font-family: 'Finlandica', sans-serif;
+  background-color: var(--color-green-1);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -16,5 +31,32 @@ a {
 .wrapper {
   max-width: 1400px;
   width: 90%;
-  margin: 0 auto;
+  margin-inline: auto;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-color: none;
+  border-radius: 7px;
+}
+
+.header2 {
+  text-align: center;
+  font-size: 1.4rem;
+}
+.header2::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100px;
+  background-color: var(--color-black-1);
+  margin: 5px auto 20px;
 }

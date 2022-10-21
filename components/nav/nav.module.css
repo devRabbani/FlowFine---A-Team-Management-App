@@ -1,0 +1,48 @@
+.navWrapper {
+  border-bottom: 1px solid var(--color-green-2);
+}
+.nav {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.nav button {
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: rgb(165, 19, 19);
+  font-weight: 600;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.avatar svg {
+  position: absolute;
+  display: none;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.434);
+  height: 50px;
+  padding: 10px;
+  width: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+}
+
+.avatar:global(.active) svg {
+  display: block;
+}

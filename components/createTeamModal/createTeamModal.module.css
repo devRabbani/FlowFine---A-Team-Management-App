@@ -1,0 +1,62 @@
+.createTeam button {
+  background-color: var(--color-black-1);
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 7px;
+  transition: all 0.3s ease-in-out;
+}
+
+.createTeam button:active {
+  background-color: rgb(63, 64, 64);
+}
+
+.createTeam button:disabled {
+  opacity: 0.4;
+}
+
+.createTeam input {
+  padding: 10px 11px;
+  font-size: 1.3rem;
+  background-color: transparent;
+  /* border: 2px solid var(--color-black-1);
+  border: 2px solid #b5fbea; */
+  border: 2px solid #3d604a;
+  margin: 1px 0;
+  color: var(--color-black-1);
+}
+
+.createTeam input::placeholder {
+  color: #3d604a;
+}
+
+.createTeam input:focus {
+  margin: 0;
+  padding: 10px;
+  border: 3px solid #2b403b;
+}
+
+.createTeam {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.createTeam input {
+  padding: 10px 11px;
+  font-size: 1.3rem;
+  border: 2px solid #3d604a;
+}
+
+.createTeam p {
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.createTeam p::after {
+  content: '';
+  width: 100px;
+  height: 2px;
+  background-color: var(--color-green-2);
+  display: block;
+  margin: 5px auto 20px;
+}
