@@ -5,16 +5,10 @@ import toast from 'react-hot-toast'
 import CreateTeamBtn from '../components/createTeamBtn'
 import CreateTeamModal from '../components/createTeamModal'
 import JoinCard from '../components/joinCard'
-import Layout from '../components/layout'
 import Modal from '../components/modal'
-import Nav from '../components/nav'
 import TeamList from '../components/teamList'
 import { useAuth } from '../context/AuthContext'
-import useCreateTeam from '../hooks/useCreateTeam'
-import useGetTeams from '../hooks/useGetTeams'
-import useJoinTeam from '../hooks/useJoinTeam'
 import styles from '../styles/Home.module.css'
-import { createTeam } from '../utils/firebase'
 
 export default function Home() {
   const [isModal, setIsModal] = useState(false)

@@ -42,15 +42,8 @@ export const getTeam = async (teamcode) => {
 
   if (docSnap.exists()) {
     return {
-      teamName: docSnap.data()?.teamName,
+      ...docSnap.data(),
       teamCode: docSnap.id,
-      timestamp: docSnap.data().timestamp,
-    }
-  } else {
-    return {
-      teamName: null,
-      teamCode: null,
-      timestamp: null,
     }
   }
 }
@@ -79,7 +72,7 @@ export const addTeamToUser = async (uid, teamcode, teamName, timestamp) => {
     })
   }
 }
-export const getMembers = async (uid, teamcode) => {
+export const getMembers = async (teamcode) => {
   const colRef = collection(db, `teams/${teamcode}/members`)
   const colSnap = await getDocs(colRef)
 

@@ -4,7 +4,7 @@ import RouteHelper from '../../components/routeHelper'
 import TeamHeader from '../../components/teamHeader'
 import TeamTaskList from '../../components/teamTaskList'
 import { useAuth } from '../../context/AuthContext'
-import useTaskList from '../../hooks/useTaskList'
+import useLiveData from '../../hooks/useLiveData'
 import { checkUser, getMembers } from '../../utils/firebase'
 
 export default function TeamPage() {
@@ -12,7 +12,9 @@ export default function TeamPage() {
   const { id, name } = router.query
   const { user } = useAuth()
   const [members, setMembers] = useState([])
-  const { data, isLoading } = useTaskList(id)
+  const []
+  // const { data, isLoading } = useTaskList(id)
+  const { data, isLoading } = useLiveData(`teams/${id}/tasks`, true)
 
   useEffect(() => {
     const handleData = async () => {
@@ -31,9 +33,21 @@ export default function TeamPage() {
       }
     }
     handleData()
-  }, [])
+  }, [user?.uid, id])
+
+
   useEffect(() => {
-    console.count('Useeffect run')
+    const handleData = async () => {
+      try {
+        const res = await getTeam(teamCode)
+        if (res) {
+        } else {
+          throw new Error('SOmething went wrong try to reload the page')
+        }
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
   }, [])
 
   return (

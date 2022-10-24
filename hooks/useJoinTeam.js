@@ -9,8 +9,9 @@ export default function useJoinTeam() {
     setIsJoining(true)
     const id = toast.loading(<b>Joining please wait..</b>)
     try {
-      const { timestamp, teamName } = await getTeam(teamCode)
-      if (timestamp) {
+      const teamInfo = await getTeam(teamCode)
+      if (teamInfo) {
+        const { timestamp, teamName } = teamInfo
         const isNew = await addUserToTeam(teamCode, uid, displayName, photoURL)
         if (isNew) {
           await addTeamToUser(uid, teamCode, teamName, timestamp)

@@ -3,7 +3,6 @@ import { useState } from 'react'
 import ImageBlur from '../components/imageBlur'
 import UpdateProfile from '../components/updateProfile'
 import { useAuth } from '../context/AuthContext'
-import useProfile from '../hooks/useProfile'
 import styles from '../styles/Profile.module.css'
 
 export default function Profile() {
