@@ -7,7 +7,6 @@ export default function PrivateRoute({ children }) {
   const { user, authReady } = useAuth()
   const router = useRouter()
 
-  console.log(user, !user, authReady, !user && authReady)
   useEffect(() => {
     if (!user && authReady) {
       router.push('/login')
