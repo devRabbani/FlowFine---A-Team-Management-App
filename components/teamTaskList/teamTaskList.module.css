@@ -1,0 +1,70 @@
+.body {
+  /* padding: 20px; */
+  margin-top: 30px;
+  background-color: var(--color-green-3);
+  border-radius: 7px;
+}
+.content {
+  padding: 20px;
+}
+.topBar {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  display: flex;
+  overflow-x: scroll;
+  border-bottom: 2px solid var(--color-green-4);
+}
+
+.topBar button {
+  padding: 10px;
+  width: 100%;
+  white-space: nowrap;
+  border-radius: 0;
+  font-size: 1.4rem;
+  margin: 0 1px;
+  background-color: rgb(182, 206, 201);
+}
+
+.topBar button.active {
+  background-color: var(--color-green-3);
+  font-weight: 500;
+  color: rgb(30, 30, 106);
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.memberLists {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 10px 0 20px;
+}
+.memberCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: aliceblue;
+  width: 100%;
+  padding: 6px 6px 6px 10px;
+  border-radius: 7px;
+}
+
+.memberCard .img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.memberName {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
+
+.loading {
+  margin: 40px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(75, 113, 90);
+}

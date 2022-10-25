@@ -1,0 +1,60 @@
+.menuWrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.menu {
+  background-color: aliceblue;
+  padding: 8px 18px 30px;
+  width: fit-content;
+  position: fixed;
+  top: 72px;
+  right: 14px;
+  border-radius: 9px;
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imgDiv {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  padding: 10px 0;
+  border-bottom: 1px solid grey;
+  margin-bottom: 15px;
+  color: black;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.btn,
+.btnLogout {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.2rem;
+  padding: 8px 0 8px 7px;
+  background-color: transparent;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  width: fit-content;
+}
+
+.btnLogout {
+  color: red;
+}
+
+.btn:active,
+.btnLogout:active {
+  gap: 10px;
+  font-weight: 600;
+}

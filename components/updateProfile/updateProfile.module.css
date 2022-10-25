@@ -1,0 +1,63 @@
+.img {
+  width: min(400px, 60%);
+  border-radius: 9px;
+  overflow: hidden;
+}
+.inputFile {
+  display: none;
+}
+.inputName {
+  padding: 11px 11px;
+  width: 300px;
+  font-size: 1.4rem;
+  margin: 1px 0;
+  border: 2px solid var(--color-green-2);
+  background-color: transparent;
+}
+.inputName::placeholder {
+  color: #64867e;
+}
+
+.inputName:focus {
+  margin: 0;
+  padding: 11px 10px;
+  border: 3px solid white;
+}
+
+.btn {
+  background-color: var(--color-black-1);
+  color: white;
+  padding: 11px 5px;
+  font-size: 1.23rem;
+  margin-top: 7px;
+}
+
+.btnDiv {
+  display: flex;
+  gap: 10px;
+  width: 300px;
+}
+
+.btnDiv .btn:nth-child(1) {
+  width: 40%;
+  background-color: rgb(175, 21, 21);
+}
+.btnDiv .btn:nth-child(2) {
+  width: 60%;
+}
+
+.changePic {
+  background-color: rgb(31, 100, 112);
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 6px 15px;
+  border-radius: 50vw;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.changePic:active {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
+  background-color: #64867e;
+}
