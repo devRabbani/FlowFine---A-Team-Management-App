@@ -4,24 +4,17 @@ import useLiveData from '../../hooks/useLiveData'
 import styles from './teamList.module.css'
 
 export default function TeamList({ uid }) {
-  const { data, isLoading } = useLiveData(`users/${uid}/teams`, true)
+  const { data, isLoading } = useLiveData(`users/${uid}/teams`, true, true)
 
   return (
     <div className={styles.body}>
-      {console.count('Teamlist')}
       <h3 className="header2">Recent Teams</h3>
       <div className={styles.teamWrapper}>
         {isLoading ? (
           <p className={styles.loading}>Getting Teamlist..</p>
         ) : data.length ? (
           data.map((item) => (
-            <Link
-              href={{
-                pathname: `/team/${item?.id}`,
-                query: { name: item?.teamName },
-              }}
-              key={item?.id}
-            >
+            <Link href={`/team/${item?.id}`} key={item?.id}>
               <a className={styles.card}>
                 <p className={styles.name}>{item?.teamName}</p>
                 <p className={styles.code}>{item?.id}</p>

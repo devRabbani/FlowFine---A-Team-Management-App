@@ -15,9 +15,8 @@ export default function useLiveData(ref, col) {
             snapshot.docs.map((item) => ({ ...item.data(), id: item.id }))
           )
         } else {
-          setData(snapshot.data())
+          setData({ ...snapshot.data(), id: snapshot.id })
         }
-
         setIsLoading(false)
       }
     )

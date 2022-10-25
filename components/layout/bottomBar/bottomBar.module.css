@@ -1,0 +1,33 @@
+.bar {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 5px;
+  box-shadow: -12px 0 25px rgba(0, 0, 0, 0.23);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: flex-end;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4px;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.nav:nth-child(3),
+.nav:nth-child(2) {
+  gap: 0;
+}
+
+.nav:nth-child(3) svg {
+  font-size: 1.5rem;
+}
+
+.nav:nth-child(2) svg {
+  font-size: 1.4rem;
+}

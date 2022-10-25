@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import RouteHelper from '../../components/routeHelper'
-import styles from '../../styles/Create.module.css'
+import RouteHelper from '../../../components/routeHelper'
+import styles from '../../../styles/Create.module.css'
 
 export default function Create() {
   const router = useRouter()

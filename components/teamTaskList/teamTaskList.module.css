@@ -8,15 +8,20 @@
   padding: 20px;
 }
 .topBar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  display: flex;
+  overflow-x: scroll;
   border-bottom: 2px solid var(--color-green-4);
 }
 
 .topBar button {
   padding: 10px;
+  width: 100%;
+  white-space: nowrap;
   border-radius: 0;
   font-size: 1.4rem;
+  margin: 0 1px;
   background-color: rgb(182, 206, 201);
 }
 
