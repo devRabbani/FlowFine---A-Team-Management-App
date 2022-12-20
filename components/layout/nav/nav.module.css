@@ -1,7 +1,8 @@
 .navWrapper {
-  border-bottom: 2px solid var(--color-green-2);
-  background-color: #e1e4e4;
-  background-color: var(--color-grey-2);
+  border-bottom: 2px solid var(--color-green-3);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-green-6);
 }
 .nav {
   padding: 10px 0;
@@ -11,7 +12,7 @@
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: 600;
 }
 

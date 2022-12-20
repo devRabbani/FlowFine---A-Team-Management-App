@@ -21,11 +21,10 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 .name {
-  font-size: 2rem;
+  font-size: 3.2rem;
 }
 .code {
-  font-size: 1.4rem;
-  color: #baebeb;
+  font-size: 2.24rem;
   color: #dfffff;
 }
 .date {
