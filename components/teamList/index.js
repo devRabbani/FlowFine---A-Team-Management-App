@@ -1,10 +1,9 @@
 import moment from 'moment/moment'
 import Link from 'next/link'
-import useLiveData from '../../hooks/useLiveData'
 import styles from './teamList.module.css'
 
 export default function TeamList({ uid }) {
-  const { data, isLoading } = useLiveData(`users/${uid}/teams`, true, true)
+  const { data, isLoading } = {}
 
   return (
     <div className={styles.body}>
@@ -12,8 +11,8 @@ export default function TeamList({ uid }) {
       <div className={styles.teamWrapper}>
         {isLoading ? (
           <p className={styles.loading}>Getting Teamlist..</p>
-        ) : data.length ? (
-          data.map((item) => (
+        ) : data?.length ? (
+          data?.map((item) => (
             <Link href={`/team/${item?.id}`} key={item?.id}>
               <a className={styles.card}>
                 <p className={styles.name}>{item?.teamName}</p>

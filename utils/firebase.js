@@ -6,23 +6,10 @@ import {
   getDocs,
   serverTimestamp,
   setDoc,
+  writeBatch,
 } from 'firebase/firestore'
 import ShortUniqueId from 'short-unique-id'
 import { db } from '../lib/firebase'
-
-export const createUser = async (uid, displayName, photoURL) => {
-  const docRef = doc(db, `users/${uid}`)
-  const docSnap = await getDoc(docRef)
-  if (!docSnap.exists()) {
-    console.log('Createing new user')
-    await setDoc(docRef, {
-      displayName,
-      photoURL,
-      uid,
-      timestamp: serverTimestamp(),
-    })
-  }
-}
 
 export const createTeam = async (teamName, uid) => {
   const shortId = new ShortUniqueId({ length: 10 })
@@ -79,4 +66,27 @@ export const getMembers = async (teamcode) => {
   if (!colSnap.empty) {
     return colSnap.docs.map((item) => ({ ...item.data(), uid: item.id }))
   }
+}
+
+// Check Username
+export const checkUsernameExist = async (value) => {
+  const snapshot = await getDoc(doc(db, 'usernames', value))
+  return snapshot.exists()
+}
+
+// Create user
+export const createUser = async (uid, displayName, photoURL, username) => {
+  const batch = writeBatch(db)
+
+  const userRef = doc(db, `users/${uid}`)
+  const usernameRef = doc(db, `usernames/${username}`)
+  batch.set(userRef, {
+    displayName,
+    uid,
+    photoURL,
+    username,
+    timestamp: serverTimestamp(),
+  })
+  batch.set(usernameRef, {})
+  await batch.commit()
 }

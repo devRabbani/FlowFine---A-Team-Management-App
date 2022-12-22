@@ -8,10 +8,11 @@ import AuthContextProvider from '../context/AuthContext'
 import Layout from '../components/layout'
 import nProgress from 'nprogress'
 import { useEffect } from 'react'
+import UserContextProvider from '../context/UserContext'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const publicRoutes = ['/login']
+  const publicRoutes = ['/welcome']
 
   // Loading Animation
   nProgress.configure({ showSpinner: false })
@@ -36,15 +37,17 @@ function MyApp({ Component, pageProps }) {
         <title>FlowFine - Perfect Ways to Manage Team</title>
       </Head>
       <AuthContextProvider>
-        {publicRoutes.includes(router.pathname) ? (
-          <Component {...pageProps} />
-        ) : (
-          <PrivateRoute>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </PrivateRoute>
-        )}
+        <UserContextProvider>
+          {publicRoutes.includes(router.pathname) ? (
+            <Component {...pageProps} />
+          ) : (
+            <PrivateRoute>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </PrivateRoute>
+          )}
+        </UserContextProvider>
       </AuthContextProvider>
       <Toaster />
     </>

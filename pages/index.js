@@ -20,15 +20,6 @@ export default function Home() {
   return (
     <>
       <div className={styles.body}>
-        {isCreate && (
-          <JoinCard
-            setIsModal={setIsModal}
-            uid={uid}
-            photoURL={photoURL}
-            displayName={displayName}
-          />
-        )}
-
         <TeamList uid={uid} />
       </div>
       {isModal && (
@@ -41,7 +32,6 @@ export default function Home() {
           />
         </Modal>
       )}
-      <CreateTeamBtn setIsCreate={setIsCreate} isCreate={isCreate} />
     </>
   )
 }

@@ -1,0 +1,18 @@
+.btn {
+  padding: 0.4em 0.5em;
+  width: 12rem;
+  border-radius: 0.7rem;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+}
+.btn:global(.primary) {
+  background-color: #506989;
+  color: white;
+}
+
+.btn:global(.grey) {
+  background-color: #7fa49b;
+  color: rgb(25, 86, 95);
+}

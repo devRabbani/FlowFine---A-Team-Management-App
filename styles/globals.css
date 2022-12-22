@@ -38,9 +38,6 @@ body,
 #__next {
   height: 100%;
 }
-main {
-  overflow: auto;
-}
 /*
   Typographic tweaks!
   4. Add accessible line-height
@@ -59,6 +56,7 @@ body {
   text-rendering: optimizeSpeed;
   background-color: var(--color-green-1);
   font-family: 'Finlandica', sans-serif;
+  color: #2f4858;
 }
 
 html:focus-within {
@@ -103,6 +101,7 @@ h1 {
 }
 h2 {
   font-size: 2.4rem;
+  font-weight: 600;
 }
 h3 {
   font-size: 2.24rem;
@@ -112,6 +111,9 @@ h4,
 p {
   font-size: 1.6rem;
 }
+strong {
+  font-weight: bold;
+}
 
 main {
   min-height: 100%;
@@ -119,6 +121,7 @@ main {
   max-width: 900px;
   margin-inline: auto;
   padding-block: 2rem;
+  overflow: auto;
   /* padding-right: 0.6rem; */
   /* overflow: inherit; */
 }
@@ -147,7 +150,7 @@ main {
 }
 
 button {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   background-color: transparent;
   border: none;
   outline: none;
@@ -155,7 +158,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -166,5 +171,5 @@ input {
   outline: none;
   border: none;
   background-color: none;
-  border-radius: 0.7rem;
+  font-size: 1.9rem;
 }

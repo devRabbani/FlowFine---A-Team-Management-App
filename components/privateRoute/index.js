@@ -9,9 +9,13 @@ export default function PrivateRoute({ children }) {
 
   useEffect(() => {
     if (!user && authReady) {
-      router.push('/login')
+      router.push('/welcome')
     }
-  }, [user, router, authReady])
+  }, [user?.uid, router, authReady])
 
-  return authReady && user ? children : <FullLoading />
+  if (!authReady || !user) {
+    return <FullLoading />
+  }
+
+  return children
 }
