@@ -19,18 +19,14 @@ export default function useLogin() {
       const res = await signInWithPopup(auth, new GoogleAuthProvider())
       if (res) {
         toast.success(<b>Welcome {res.user.displayName}</b>, { id })
-        const { displayName, photoURL, uid } = res.user
-        await createUser(uid, displayName, photoURL)
         dispatch({ type: 'LOGIN', payload: res.user })
         setIsLoading(false)
-        router.push('/')
       } else {
         throw new Error('Something went wrong please try again!')
       }
     } catch (error) {
       console.log(error.message)
       toast.error(<b>{error.message}</b>, { id })
-
       setIsLoading(false)
     }
   }

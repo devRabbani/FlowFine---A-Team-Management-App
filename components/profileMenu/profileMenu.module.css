@@ -10,30 +10,34 @@
 .menu {
   background-color: aliceblue;
   padding: 8px 18px 30px;
-  width: fit-content;
+  width: auto;
   position: fixed;
-  top: 72px;
-  right: 14px;
-  border-radius: 9px;
-  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+  top: 7rem;
+  right: 0.5rem;
+  left: 0.5rem;
+  border-radius: 0.4rem 0.4rem 0.7rem 0.7rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .imgDiv {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 1rem;
   font-size: 1.4rem;
-  text-transform: capitalize;
-  padding: 10px 0;
+  padding: 0.8em 0;
   border-bottom: 1px solid grey;
-  margin-bottom: 15px;
+  margin-bottom: 1em;
   color: black;
 }
 .img {
-  width: 40px;
-  height: 40px;
+  aspect-ratio: 1/1;
+  width: 15%;
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
+}
+.img img {
+  object-fit: cover;
 }
 
 .btn,
@@ -41,7 +45,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   padding: 8px 0 8px 7px;
   background-color: transparent;
   font-weight: 500;
@@ -57,4 +61,19 @@
 .btnLogout:active {
   gap: 10px;
   font-weight: 600;
+}
+
+.displayName {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+}
+.userName {
+  font-size: 1.7rem;
+  margin-top: -0.2rem;
+  color: var(--color-green-2);
+}
+
+.nameDiv {
+  display: flex;
+  flex-direction: column;
 }

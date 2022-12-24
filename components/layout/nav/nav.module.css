@@ -1,52 +1,19 @@
 .navWrapper {
-  border-bottom: 2px solid var(--color-green-2);
-  background-color: #e1e4e4;
-  background-color: var(--color-grey-2);
+  border-bottom: 2px solid var(--color-green-3);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-green-6);
 }
 .nav {
-  padding: 10px 0;
+  height: 6.48rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: 600;
-}
-
-.nav button {
-  background-color: transparent;
-  font-size: 1.2rem;
-  color: rgb(165, 19, 19);
-  font-weight: 600;
-}
-
-.avatar {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-}
-
-.avatar svg {
-  position: absolute;
-  display: none;
-  z-index: 9;
-  background-color: rgba(0, 0, 0, 0.434);
-  height: 50px;
-  padding: 10px;
-  width: 50px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 2rem;
-}
-
-.avatar:global(.active) svg {
-  display: block;
 }
 
 .backBtn {
@@ -55,4 +22,13 @@
   align-items: center;
   font-weight: 600;
   margin-left: -11px;
+}
+
+.menu {
+  font-size: 3.5rem;
+}
+.close {
+  font-size: 4.2rem;
+  margin-right: -0.6rem;
+  margin-left: 1rem;
 }

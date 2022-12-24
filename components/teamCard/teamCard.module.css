@@ -1,0 +1,52 @@
+.teamCard,
+.teamCardSearch {
+  background-color: var(--color-green-4);
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:active {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.name {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+.code {
+  font-size: 2.24rem;
+  color: #f4f7f7;
+  margin: 0.5rem 0 0.3rem;
+}
+.date {
+  color: #45645b;
+}
+
+.teamCardSearch .name {
+  font-size: 2.6rem;
+}
+
+.teamCardSearch .code {
+  font-size: 2rem;
+  color: #f4f7f7;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.teamCardSearch button {
+  color: #115b8f;
+  color: #1647be;
+}
+.teamCardSearch button:disabled {
+  color: rgb(121, 151, 126);
+}
+
+.teamCardSearch button:global(.cancel) {
+  color: #be165c;
+}
+.openLink {
+  font-size: 1.9rem;
+  color: #1647be;
+}

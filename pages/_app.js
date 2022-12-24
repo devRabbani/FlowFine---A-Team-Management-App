@@ -3,15 +3,19 @@ import '../styles/globals.css'
 import '../styles/nprogress.css'
 import { Toaster } from 'react-hot-toast'
 import Head from 'next/head'
+import { Finlandica } from '@next/font/google'
 import PrivateRoute from '../components/privateRoute'
 import AuthContextProvider from '../context/AuthContext'
 import Layout from '../components/layout'
 import nProgress from 'nprogress'
 import { useEffect } from 'react'
+import UserContextProvider from '../context/UserContext'
+
+const finlandica = Finlandica({ subsets: ['latin'] })
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const publicRoutes = ['/login']
+  const publicRoutes = ['/welcome']
 
   // Loading Animation
   nProgress.configure({ showSpinner: false })
@@ -35,18 +39,22 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>FlowFine - Perfect Ways to Manage Team</title>
       </Head>
-      <AuthContextProvider>
-        {publicRoutes.includes(router.pathname) ? (
-          <Component {...pageProps} />
-        ) : (
-          <PrivateRoute>
-            <Layout>
+      <main className={finlandica.className}>
+        <AuthContextProvider>
+          <UserContextProvider>
+            {publicRoutes.includes(router.pathname) ? (
               <Component {...pageProps} />
-            </Layout>
-          </PrivateRoute>
-        )}
-      </AuthContextProvider>
-      <Toaster />
+            ) : (
+              <PrivateRoute>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </PrivateRoute>
+            )}
+          </UserContextProvider>
+        </AuthContextProvider>
+        <Toaster />
+      </main>
     </>
   )
 }

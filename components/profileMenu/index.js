@@ -2,13 +2,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaAt, FaSignOutAlt } from 'react-icons/fa'
+import { useUser } from '../../context/UserContext'
 import useLogout from '../../hooks/useLogout'
-import ImageBlur from '../imageBlur'
-import styles from './profileMenu.module.css'
+import s from './profileMenu.module.css'
 
 export default function ProfileMenu({ user, setIsProfileMenu }) {
   const { logout } = useLogout()
   const router = useRouter()
+  const { username, displayName, photoURL } = useUser()
 
   const handleClick = () => {
     setIsProfileMenu(false)
@@ -20,27 +21,29 @@ export default function ProfileMenu({ user, setIsProfileMenu }) {
   }
 
   const handleClose = (e) => {
-    if (e.target.classList.contains(styles.menuWrapper)) {
+    if (e.target.classList.contains(s.menuWrapper)) {
       setIsProfileMenu(false)
     }
   }
 
   return (
-    <div onClick={handleClose} className={styles.menuWrapper}>
-      <div className={styles.menu}>
-        <div className={styles.imgDiv}>
-          <div className={styles.img}>
-            <ImageBlur src={user?.photoURL} />
+    <div onClick={handleClose} className={s.menuWrapper}>
+      <div className={s.menu}>
+        <div className={s.imgDiv}>
+          <div className={s.img}>
+            <Image src={photoURL} alt={displayName} fill sizes="33vw" />
           </div>
-
-          {user?.displayName}
+          <div className={s.nameDiv}>
+            <p className={s.displayName}>{displayName || 'Display Name'}</p>
+            <p className={s.userName}>@{username || 'username'}</p>
+          </div>
         </div>
 
-        <button onClick={handleClick} className={styles.btn}>
+        <button onClick={handleClick} className={s.btn}>
           <FaAt /> View Profile
         </button>
 
-        <button onClick={handleLogout} className={styles.btnLogout}>
+        <button onClick={handleLogout} className={s.btnLogout}>
           <FaSignOutAlt /> Logout
         </button>
       </div>
