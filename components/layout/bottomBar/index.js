@@ -9,25 +9,19 @@ export default function BottomBar({ teamCode }) {
         <FaUserTie />
         Members
       </span>
-      <Link href={'/team/' + teamCode + '/create'}>
-        <a className={s.nav}>
-          <FaPlus />
-          Create
-        </a>
+      <Link href={'/team/' + teamCode + '/create'} className={s.nav}>
+
+        <FaPlus />Create
       </Link>
 
-      <Link href={'/team/' + teamCode + '/groups'}>
-        <a className={s.nav}>
-          <FaUsers />
-          Groups
-        </a>
+      <Link href={'/team/' + teamCode + '/groups'} className={s.nav}>
+
+        <FaUsers />Groups
       </Link>
-      <Link href={'/team/' + teamCode + '/archive'}>
-        <a className={s.nav}>
-          <FaTrashAlt />
-          Archive
-        </a>
+      <Link href={'/team/' + teamCode + '/archive'} className={s.nav}>
+
+        <FaTrashAlt />Archive
       </Link>
     </div>
-  )
+  );
 }

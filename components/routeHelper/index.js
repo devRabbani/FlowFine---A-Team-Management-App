@@ -7,15 +7,13 @@ export default function RouteHelper({ type, teamcode, task }) {
       case 'team':
         return <span>{teamcode}</span>
       case 'create':
-        return (
-          <>
-            <Link href={'/team/' + teamcode}>
-              <a>{teamcode}</a>
-            </Link>
-            &gt;
-            <span>Create</span>
-          </>
-        )
+        return <>
+          <Link href={'/team/' + teamcode}>
+            {teamcode}
+          </Link>
+          &gt;
+          <span>Create</span>
+        </>;
       default:
         break
     }
@@ -24,10 +22,10 @@ export default function RouteHelper({ type, teamcode, task }) {
   return (
     <div className={styles.body}>
       <Link href="/">
-        <a>Home</a>
+        Home
       </Link>
       &gt;
       {renderLinks()}
     </div>
-  )
+  );
 }

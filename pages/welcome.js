@@ -6,7 +6,7 @@ import UsernamePage from '../components/usernamePage'
 import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
 import useLogin from '../hooks/useLogin'
-import styles from '../styles/Welcome.module.css'
+import s from '../styles/Welcome.module.css'
 
 export default function Welcome() {
   const { user } = useAuth()
@@ -14,35 +14,41 @@ export default function Welcome() {
 
   const router = useRouter()
 
-  // useEffect(() => {
-  //   if (!isLoading && user) {
-  //     router.push('/')
-  //   }
-  // }, [user, isLoading])
   const { username, loading } = useUser()
-  console.log(username, loading)
+
+  useEffect(() => {
+    if (!isLoading && user && username && !loading) {
+      router.push('/')
+    }
+  }, [user, isLoading, username, loading])
 
   if (user && !username && !loading) {
     return <UsernamePage user={user} />
   }
 
   return (
-    <div className={`${styles.login} wrapper`}>
-      <div className={styles.card}>
-        <h1>Welcome to FlowFine</h1>
-        <p>
-          This is just temporary layout wait for our full version to release
-        </p>
-        {user && username ? (
-          <Link href="/">
-            <a>Go to Dashboard</a>
-          </Link>
-        ) : (
-          <button disabled={isLoading || loading} onClick={signin}>
-            {isLoading ? 'Signing In Please wait' : 'Try Out with Google'}
-          </button>
-        )}
-      </div>
+    <div className={s.welcomePage}>
+      <section className={s.heroSection}>
+        <div className={`${s.card} wrapper`}>
+          <h1>Welcome to FlowFine</h1>
+          <p>
+            This is just temporary layout wait for our full version to release
+          </p>
+          {user && username ? (
+            <Link className={s.heroBtn} href="/">
+              Go to Dashboard
+            </Link>
+          ) : (
+            <button
+              className={s.heroBtn}
+              disabled={isLoading || loading}
+              onClick={signin}
+            >
+              {isLoading ? 'Signing In Please wait' : 'Get Started With Google'}
+            </button>
+          )}
+        </div>
+      </section>
     </div>
   )
 }

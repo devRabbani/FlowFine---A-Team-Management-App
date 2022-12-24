@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
       <Nav isBack={isBack} />
-      <main className="wrapper">{children}</main>
+      <div className="wrapper">{children}</div>
       {isTeam ? <BottomBar teamCode={teamCode} /> : <Footer />}
     </div>
   )

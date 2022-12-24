@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.1.0",
     "firebase": "^9.12.1",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.4",

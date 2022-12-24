@@ -1,0 +1,18 @@
+.modalWrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #a3c4bcd4;
+  backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  z-index: 10000;
+}
+.cross {
+  font-size: 5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

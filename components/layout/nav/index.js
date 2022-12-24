@@ -8,12 +8,14 @@ import {
   FaTimes,
   FaUserFriends,
 } from 'react-icons/fa'
+import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri'
+
 import { useAuth } from '../../../context/AuthContext'
 import useLogout from '../../../hooks/useLogout'
 import ProfileMenu from '../../profileMenu'
-import styles from './nav.module.css'
-import ImageBlur from '../../imageBlur'
+import s from './nav.module.css'
 import { useRouter } from 'next/router'
+import placeholder from '../../../public/placeholder.png'
 
 export default function Nav({ isBack }) {
   const { user } = useAuth()
@@ -23,27 +25,25 @@ export default function Nav({ isBack }) {
   const handleClick = () => setIsProfileMenu((prev) => !prev)
   console.count('Nav')
   return (
-    <nav className={styles.navWrapper}>
-      <div className={`${styles.nav} wrapper`}>
+    <nav className={s.navWrapper}>
+      <div className={`${s.nav} wrapper`}>
         {isBack ? (
-          <div onClick={() => router.back()} className={styles.backBtn}>
+          <div onClick={() => router.back()} className={s.backBtn}>
             <FaCaretLeft />
             Back
           </div>
         ) : (
-          <Link href="/">
-            <a className={styles.logo}>FlowFine</a>
+          <Link href="/" className={s.logo}>
+            FlowFine
           </Link>
         )}
-
-        <div
-          onClick={handleClick}
-          className={`${styles.avatar} ${isProfileMenu ? 'active' : ''}`}
-        >
-          <ImageBlur src={user?.photoURL} priority />
-
-          <FaTimes />
-        </div>
+        <span onClick={handleClick}>
+          {isProfileMenu ? (
+            <RiCloseFill className={s.close} />
+          ) : (
+            <RiMenu3Fill className={s.menu} />
+          )}
+        </span>
       </div>
       {isProfileMenu && (
         <ProfileMenu user={user} setIsProfileMenu={setIsProfileMenu} />
