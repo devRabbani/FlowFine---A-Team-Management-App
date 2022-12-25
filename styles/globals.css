@@ -38,9 +38,6 @@ body,
 #__next {
   height: 100%;
 }
-main {
-  overflow: auto;
-}
 /*
   Typographic tweaks!
   4. Add accessible line-height
@@ -58,7 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
   background-color: var(--color-green-1);
-  font-family: 'Finlandica', sans-serif;
+  color: #2f4858;
 }
 
 html:focus-within {
@@ -98,11 +95,12 @@ h6 {
 
 /* Default font size for REM */
 h1 {
-  font-size: 3.2rem;
+  font-size: 3.45rem;
   font-weight: 600;
 }
 h2 {
   font-size: 2.4rem;
+  font-weight: 600;
 }
 h3 {
   font-size: 2.24rem;
@@ -110,7 +108,10 @@ h3 {
 
 h4,
 p {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+}
+strong {
+  font-weight: bold;
 }
 
 main {
@@ -118,13 +119,15 @@ main {
   height: 100%;
   max-width: 900px;
   margin-inline: auto;
-  padding-block: 2rem;
+  /* padding-block: 2rem; */
+  overflow: auto;
   /* padding-right: 0.6rem; */
   /* overflow: inherit; */
 }
 
 ::-webkit-scrollbar {
   height: 0;
+  width: 0;
 }
 
 .header2 {
@@ -147,7 +150,7 @@ main {
 }
 
 button {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   background-color: transparent;
   border: none;
   outline: none;
@@ -155,7 +158,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -166,5 +171,5 @@ input {
   outline: none;
   border: none;
   background-color: none;
-  border-radius: 0.7rem;
+  font-size: 1.9rem;
 }

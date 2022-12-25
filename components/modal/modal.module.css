@@ -1,28 +1,18 @@
 .modalWrapper {
-  position: fixed;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.537);
-  backdrop-filter: blur(3px);
-  left: 0;
+  background-color: #a3c4bcd4;
+  backdrop-filter: blur(4px);
+  position: fixed;
   top: 0;
+  left: 0;
   display: grid;
   place-items: center;
+  z-index: 10000;
 }
-
-.modal {
-  background-color: white;
-  width: fit-content;
-  padding: 20px 30px 30px;
-  border-radius: 7px;
-  position: relative;
-  box-shadow: 12px 13px 20px rgba(0, 0, 0, 0.23);
-}
-
 .cross {
-  font-size: 2rem;
+  font-size: 5rem;
   position: absolute;
-  top: 7px;
-  right: 7px;
-  color: rgb(82, 82, 82);
+  top: 1rem;
+  right: 1rem;
 }

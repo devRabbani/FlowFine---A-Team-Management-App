@@ -1,0 +1,48 @@
+.searchTeamsWrapper {
+  padding-top: 2.5rem;
+  padding-bottom: 3.5rem;
+  border-top: 0.2rem dashed var(--color-green-7);
+  margin-top: 2.5rem;
+}
+
+.searchBox {
+  position: relative;
+  padding: 0.6em 0.7em 0.6em 4.1em;
+  border-radius: 0.7rem;
+  width: 100%;
+  border: 1px solid transparent;
+  background-color: var(--color-green-6);
+}
+
+.searchBox input {
+  font-size: 2.3rem;
+  width: 100%;
+  background-color: inherit;
+}
+.searchBox:focus-within {
+  border-color: #2f4858;
+}
+
+.searchBox svg {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.8rem;
+  font-size: 2.7rem;
+}
+
+.teamWrapper {
+  display: grid;
+  padding: 0.6rem 0 3.5rem;
+  gap: 2.5rem;
+  background-color: var(--color-green-3);
+  padding: 2.5rem 2rem;
+  border-radius: 0.7rem;
+  margin-top: 2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #45645b;
+  margin: 20px 0;
+}

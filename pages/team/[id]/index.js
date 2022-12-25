@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../../context/AuthContext'
 import RouteHelper from '../../../components/routeHelper'
-import useLiveData from '../../../hooks/useLiveData'
 import TeamHeader from '../../../components/teamHeader'
 import TeamTaskList from '../../../components/teamTaskList'
 import { getMembers, getTeam } from '../../../utils/firebase'
@@ -17,7 +16,7 @@ export default function TeamPage() {
   const [teamLoading, setTeamLoading] = useState(true)
 
   // const { data, isLoading } = useTaskList(id)
-  const { data: tasks, isLoading } = useLiveData(`teams/${id}/tasks`, true)
+  const { data: tasks, isLoading } = {}
   // const { data: teamData, isLoading: teamIsLoading } = useLiveData(
   //   `teams/${id}`
   // )

@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import ImageBlur from '../components/imageBlur'
 import UpdateProfile from '../components/updateProfile'
 import { useAuth } from '../context/AuthContext'
 import styles from '../styles/Profile.module.css'
@@ -27,9 +26,7 @@ export default function Profile() {
         />
       ) : (
         <>
-          <div className={styles.img}>
-            <ImageBlur src={photoURL} />
-          </div>
+          <div className={styles.img}>{/* <ImageBlur src={photoURL} /> */}</div>
           <p className={styles.name}>Hey @{displayName}</p>
           <button onClick={() => setIsUpdate(true)} className={styles.btn}>
             Update Your Profile

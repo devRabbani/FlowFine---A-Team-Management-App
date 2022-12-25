@@ -14,13 +14,6 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="SJzIYsafSkXDHmaqlsz1nOJnhKo_7JsG5bbHuOBXTHk"
           />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Finlandica:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-          />
-
           <link rel="apple-touch-icon" href="/logo192.png" />
           {/* <link rel="manifest" href="/manifest.json" /> */}
           <link rel="icon" href="/favicon.ico" />

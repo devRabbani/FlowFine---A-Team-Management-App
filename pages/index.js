@@ -1,13 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import CreateTeamBtn from '../components/createTeamBtn'
-import CreateTeamModal from '../components/createTeamModal'
-import JoinCard from '../components/joinCard'
-import Modal from '../components/modal'
+import SearchTeams from '../components/searchTeams'
 import TeamList from '../components/teamList'
 import { useAuth } from '../context/AuthContext'
+import { useUser } from '../context/UserContext'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -16,32 +13,12 @@ export default function Home() {
 
   const { user } = useAuth()
   const { uid, displayName, photoURL } = user
+  const { loading } = useUser()
 
   return (
-    <>
-      <div className={styles.body}>
-        {isCreate && (
-          <JoinCard
-            setIsModal={setIsModal}
-            uid={uid}
-            photoURL={photoURL}
-            displayName={displayName}
-          />
-        )}
-
-        <TeamList uid={uid} />
-      </div>
-      {isModal && (
-        <Modal setIsModal={setIsModal}>
-          <CreateTeamModal
-            setIsModal={setIsModal}
-            uid={uid}
-            photoURL={photoURL}
-            displayName={displayName}
-          />
-        </Modal>
-      )}
-      <CreateTeamBtn setIsCreate={setIsCreate} isCreate={isCreate} />
-    </>
+    <div className={styles.body}>
+      <TeamList uid={uid} />
+      <SearchTeams uid={uid} />
+    </div>
   )
 }
