@@ -49,7 +49,7 @@ export default function TeamCard({
         <p className={s.name}>{teamname}</p>
         <p className={s.code}>{teamcode}</p>
         {joined ? (
-          <Link className={s.openLink} href={'/team' + teamcode}>
+          <Link className={s.openLink} href={'/team/' + teamcode}>
             view
           </Link>
         ) : (
@@ -71,7 +71,7 @@ export default function TeamCard({
     )
   }
   return (
-    <Link className={s.teamCard} href={'/team' + teamcode}>
+    <Link className={s.teamCard} href={'/team/' + teamcode}>
       <p className={s.name}>{teamname}</p>
       <p className={s.code}>{teamcode}</p>
       <p className={s.date}>
