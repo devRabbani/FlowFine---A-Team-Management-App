@@ -11,16 +11,16 @@ export default function TeamPage() {
   const router = useRouter()
   const { id } = router.query
   const { data, loading } = useDataDoc('teams/' + id)
-  console.log(data, loading)
+  const { name, updated, owner } = data
+
+  if (loading) {
+    return <p>Loading</p>
+  }
+
   return (
     <>
-      {/* <TeamHeader name={teamData?.teamName} code={id} isLoading={teamLoading} /> */}
-      {/* <TeamTaskList
-        teamCode={id}
-        subgroup={teamData?.subgroup}
-        tasks={tasks}
-        isLoading={isLoading}
-      /> */}
+      <TeamHeader name={name} code={id} updated={updated} />
+      <TeamTaskList teamCode={id} subgroup={[]} tasks={[]} isLoading={false} />
     </>
   )
 }

@@ -1,28 +1,30 @@
 .card {
   background-color: var(--color-green-3);
-  padding: 20px;
-  border-radius: 7px;
-  min-height: 109px;
+  padding: 1.5rem 1rem 1.5rem 1.5rem;
+  border-radius: 0.7rem;
+  margin-top: 2rem;
 }
 
 .card h1 {
   font-weight: 500;
+  font-size: 3.5rem;
+  line-height: 1.12;
+  text-transform: capitalize;
 }
 
 .code {
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-  color: var(--color-grey-2);
+  font-size: 2.3rem;
+  color: var(--color-white-1);
 }
 
 .codeDiv {
   display: flex;
-  margin-top: 5px;
-  gap: 10px;
+  margin: 0.7rem 0 0.3rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .codeDiv svg {
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: #265a55;
 }

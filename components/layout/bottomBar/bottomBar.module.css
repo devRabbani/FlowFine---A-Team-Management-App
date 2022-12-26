@@ -5,7 +5,7 @@
   bottom: 0;
   width: 100%;
   padding-inline: 0.5rem;
-  border-top: 2px solid var(--color-green-3);
+  border-top: 1px solid var(--color-green-3);
   display: flex;
   justify-content: space-around;
   /* display: grid;
@@ -49,7 +49,7 @@
   content: '';
   height: 0.23rem;
   position: absolute;
-  top: -0.15rem;
+  top: -0.17rem;
   width: 4rem;
   border-radius: 50vw;
   background-color: black;
