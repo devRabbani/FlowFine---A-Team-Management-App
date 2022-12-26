@@ -8,13 +8,14 @@ export default function Layout({ children }) {
   const router = useRouter()
   const teamCode = router.query?.id
   const backPath = ['/team/[id]', '/team/[id]/create']
-  const isBack = backPath.includes(router.pathname)
-  const isTeam = router.pathname === '/team/[id]'
+  // const isBack = backPath.includes(router.pathname)
+  const isBack = router.pathname !== '/'
+  const isTeam = router.pathname === '/'
   return (
     <div className={styles.layout}>
       <Nav isBack={isBack} />
       <div className="wrapper">{children}</div>
-      {isTeam ? <BottomBar teamCode={teamCode} /> : <Footer />}
+      {router.pathname !== '/' ? <BottomBar teamCode={teamCode} /> : <Footer />}
     </div>
   )
 }

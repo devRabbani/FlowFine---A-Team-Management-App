@@ -17,11 +17,11 @@
 }
 
 .backBtn {
-  font-size: 1.8rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   font-weight: 600;
-  margin-left: -11px;
+  margin-left: -0.5rem;
 }
 
 .menu {
