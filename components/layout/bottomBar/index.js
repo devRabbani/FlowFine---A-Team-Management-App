@@ -23,45 +23,64 @@ export default function BottomBar({ teamCode }) {
       icon: <RiHome3Line />,
       active: <RiHome3Fill />,
       name: 'Home',
-      href: '',
+      path: undefined,
+      href: '/team/' + teamCode,
     },
     {
       icon: <RiUser6Line />,
       active: <RiUser6Fill />,
       name: 'Members',
-      href: '/members',
+      path: 'members',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'members' },
+      },
     },
     {
       icon: <RiAddCircleLine />,
       active: <RiAddCircleFill />,
       name: 'Create',
-      href: '/create',
+      path: 'create',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'create' },
+      },
     },
     {
       icon: <RiGroupLine />,
       active: <RiGroupFill />,
       name: 'Groups',
-      href: '/groups',
+      path: 'groups',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'groups' },
+      },
     },
     {
       icon: <RiArchiveLine />,
       active: <RiArchiveFill />,
       name: 'Archive',
-      href: '/archive',
+      path: 'archive',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'archive' },
+      },
     },
   ]
 
-  const { asPath } = useRouter()
-
+  const {
+    query: { menu },
+  } = useRouter()
+  console.log(menu)
   return (
     <div className={s.bar}>
       {navItems.map((item, i) => {
-        const href = '/team/' + teamCode + item.href
-        const active = asPath === href
+        // const href = '/team/' + teamCode + item.href
+        const active = menu === item.path
         return (
           <Link
             key={i}
-            href={href}
+            href={item.href}
             className={`${s.nav} ${active ? 'active' : ''}`}
             replace={true}
           >
