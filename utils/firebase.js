@@ -83,7 +83,7 @@ export const createUser = async (uid, displayName, photoURL, username) => {
     username,
     timestamp: serverTimestamp(),
   })
-  batch.set(usernameRef, {})
+  batch.set(usernameRef, { uid })
   await batch.commit()
 }
 
@@ -159,4 +159,23 @@ export const giveTeamJoinRequest = async (isRequesting, teamcode, uid) => {
   await updateDoc(docRef, {
     invitation: isRequesting ? arrayUnion(uid) : arrayRemove(uid),
   })
+}
+
+// Get List of groups and members
+export const getUsers = async (uids) => {
+  let q = query(collection(db, 'usernames'))
+  const chunks = getChunks(uids)
+
+  for (const chunk of chunks) {
+    q = query(q, where('uid', 'in', chunk))
+  }
+
+  const snapshot = await getDocs(q)
+
+  if (!snapshot.empty) {
+    return snapshot.docs.map((item) => ({
+      value: item.data().uid,
+      label: '@' + item.id,
+    }))
+  }
 }

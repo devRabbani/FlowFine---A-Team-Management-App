@@ -15,8 +15,8 @@ export default function TeamPage() {
   const router = useRouter()
   const { id, menu } = router.query
   const { data, loading } = useDataDoc('teams/' + id)
-  const { name, updated, owner } = data
-
+  const { name, updated, owner, members, groups } = data
+  console.log(data)
   if (loading) {
     return <p>Loading</p>
   }
@@ -28,7 +28,7 @@ export default function TeamPage() {
       case 'members':
         return <MembersPage />
       case 'create':
-        return <CreatePage />
+        return <CreatePage members={members} groups={groups} />
       case 'groups':
         return <GroupsPage />
       case 'archive':
