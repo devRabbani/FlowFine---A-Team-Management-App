@@ -28,7 +28,7 @@ export default function TeamPage() {
       case 'members':
         return <MembersPage />
       case 'create':
-        return <CreatePage members={members} groups={groups} />
+        return <CreatePage members={members} groups={groups} teamcode={id} />
       case 'groups':
         return <GroupsPage />
       case 'archive':

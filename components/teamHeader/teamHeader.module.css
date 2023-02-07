@@ -31,7 +31,7 @@
 
 .codeDiv {
   display: flex;
-  margin: 0.7rem 0 0.3rem;
+  margin-block: 0.5rem 0.1rem;
   gap: 1.5rem;
   align-items: center;
 }

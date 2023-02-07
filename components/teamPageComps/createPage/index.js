@@ -8,9 +8,10 @@ import {
 } from '../../../lib/reactSelect'
 import { getUsers } from '../../../utils/firebase'
 import Button from '../../button'
+import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
 
-export default function CreatePage({ members, groups }) {
+export default function CreatePage({ members, groups, teamcode }) {
   const [isLoading, setIsLoading] = useState(true)
   const [membersOptions, setMembersOptions] = useState([])
   // const [data, setData] = useState({
@@ -25,8 +26,7 @@ export default function CreatePage({ members, groups }) {
   const [deadline, setDeadline] = useState('')
   const [assignedGroups, setAssignedGroups] = useState([])
   const [assignedMembers, setAssignedMembers] = useState([])
-  // Ref
-  const inputRef = useRef()
+  const [files, setFiles] = useState([])
 
   const groupOptions = useMemo(
     () =>
@@ -39,7 +39,7 @@ export default function CreatePage({ members, groups }) {
 
   // Custom Functions
   //load options
-  const loadGroupOptions = async () => {
+  const loadMemberOptions = async () => {
     setIsLoading(true)
     try {
       const res = await getUsers(members)
@@ -71,14 +71,9 @@ export default function CreatePage({ members, groups }) {
     }
   }
 
-  const handleFileClick = (e) => {
-    e.preventDefault()
-    inputRef.current.click()
-  }
-
   // SIde Effects
   useEffect(() => {
-    loadGroupOptions()
+    loadMemberOptions()
   }, [])
 
   console.log(
@@ -106,10 +101,7 @@ export default function CreatePage({ members, groups }) {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <input ref={inputRef} type="file" />
-      <Button onClick={handleFileClick} type="primary">
-        Attach file
-      </Button>
+      <AttachFiles teamcode={teamcode} setFiles={setFiles} files={files} />
       <div className={s.twoDiv}>
         <div className={s.formDiv}>
           <label>Priority :</label>
@@ -139,7 +131,7 @@ export default function CreatePage({ members, groups }) {
             styles={customStylesMulti}
             options={groupOptions}
             theme={customTheme}
-            placeholder="Default Group All"
+            placeholder="Default Group: All"
             onChange={(value) => handleChange(value, 'group')}
             isMulti
             isSearchable
