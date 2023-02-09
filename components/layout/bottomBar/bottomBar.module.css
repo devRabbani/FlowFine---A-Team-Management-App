@@ -1,6 +1,5 @@
 .bar {
-  background-color: var(--color-white-1);
-  background-color: var(--color-green-6);
+  background-color: var(--color-input);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -43,7 +42,7 @@
 } */
 
 .nav:global(.active) {
-  color: black;
+  color: var(--color-secondary-dark);
 }
 
 .nav:global(.active)::after {
@@ -53,5 +52,5 @@
   top: -0.17rem;
   width: 4rem;
   border-radius: 50vw;
-  background-color: black;
+  background-color: var(--color-secondary-dark);
 }

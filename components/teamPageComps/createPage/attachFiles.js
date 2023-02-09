@@ -66,11 +66,12 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
       attachment
     )
     promises.push(uploadTask)
+    setProgress(0)
     uploadTask.on(
       'state_changed',
       (snapshot) => {
         const p = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        setProgress((prev) => ({ ...prev, [attachment.name]: p }))
+        setProgress(p)
       },
       (error) => {
         // Handle unsuccessful uploads
@@ -103,8 +104,7 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
     }
   }
 
-  console.log(files, progress, uploaded)
-
+  console.log(progress, isLoading)
   return (
     <div className={s.attachFileBody}>
       <input
@@ -124,17 +124,12 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
           ))}
         </div>
       ) : null} */}
-      {Object.keys(progress).map((filename) => (
-        <>
-          <p className={s.fileName}>{filename}</p>
-          <div className={s.progressBar}>
-            <div
-              style={{ width: progress[filename] + '%' }}
-              className={s.progress}
-            />
-          </div>
-        </>
-      ))}
+      {progress ? (
+        <div className={s.progressBar}>
+          <div style={{ width: progress + '%' }} className={s.progress} />
+        </div>
+      ) : null}
+
       {/* {currentFile ? (
         <>
           <p className={s.fileName}>{currentFile}</p>
@@ -146,7 +141,7 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
 
       <div className={s.btnDiv}>
         <Button disabled={isLoading} onClick={handleFileClick} type="primary">
-          Attach file
+          Attach files
         </Button>
       </div>
     </div>

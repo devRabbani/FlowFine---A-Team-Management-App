@@ -11,15 +11,16 @@
 }
 
 .createTeam input {
-  padding: 0.34em 0.7em;
+  padding: 0.45em 0.8em;
   border-radius: 0.7rem;
   font-size: 2rem;
   width: 100%;
   margin-bottom: 0.3rem;
   border: 2px solid transparent;
+  background-color: var(--color-white);
 }
 .createTeam input:focus {
-  border-color: #2f4858;
+  border-color: var(--color-green-border);
 }
 
 .createTeam label {

@@ -24,12 +24,14 @@ export default function TeamList({ uid }) {
   console.log(teamsList, isLoading)
   return (
     <div className={styles.body}>
-      <h3 className="header2">My Teams</h3>
-      <div className={styles.teamWrapper}>
+      <div className={styles.headerDiv}>
+        <h3 className="header2">My Teams</h3>
         <div onClick={() => setIsModal(true)} className={styles.createTeam}>
           <RiAddCircleFill />
-          Create New Team
+          Create Team
         </div>
+      </div>
+      <div className={styles.teamWrapper}>
         {isLoading ? (
           <p className={styles.loading}>Getting Teamlist..</p>
         ) : teamsList?.length ? (

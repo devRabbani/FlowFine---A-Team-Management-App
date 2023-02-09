@@ -8,8 +8,7 @@
 }
 
 .menu {
-  background-color: aliceblue;
-  background-color: var(--color-green-6);
+  background-color: var(--color-input);
   padding: 8px 18px 30px;
   width: auto;
   position: fixed;

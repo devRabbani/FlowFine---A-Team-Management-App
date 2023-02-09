@@ -43,7 +43,6 @@ export default function SearchTeams({ uid }) {
     handleSearch(searchTerm)
   }, [searchTerm])
 
-  console.log(isLoading, teamsList)
   return (
     <div className={s.searchTeamsWrapper}>
       <div className={s.searchBox}>
@@ -56,23 +55,28 @@ export default function SearchTeams({ uid }) {
         {isLoading ? <RiLoaderFill /> : <RiSearch2Line />}
       </div>
       {searchTerm.length >= 3 ? (
-        <div className={s.teamWrapper}>
-          {isLoading ? (
-            <p className={s.loading}>Getting Teamlist..</p>
-          ) : teamsList?.length ? (
-            teamsList?.map((item) => (
-              <TeamCard
-                key={item?.teamcode}
-                teamcode={item?.teamcode}
-                isSearch={true}
-                teamname={item?.name}
-                joined={item?.members?.includes(uid)}
-                request={item?.invitation?.includes(uid)}
-              />
-            ))
-          ) : (
-            <p className={s.loading}>No Team Found</p>
-          )}
+        <div className={s.searchResultsWrapper}>
+          <div className={s.headerDiv}>
+            <h3 className="header2">Results for : {searchTerm}</h3>
+          </div>
+          <div className={s.teamWrapper}>
+            {isLoading ? (
+              <p className={s.loading}>Getting Teamlist..</p>
+            ) : teamsList?.length ? (
+              teamsList?.map((item) => (
+                <TeamCard
+                  key={item?.teamcode}
+                  teamcode={item?.teamcode}
+                  isSearch={true}
+                  teamname={item?.name}
+                  joined={item?.members?.includes(uid)}
+                  request={item?.invitation?.includes(uid)}
+                />
+              ))
+            ) : (
+              <p className={s.loading}>No Team Found</p>
+            )}
+          </div>
         </div>
       ) : null}
     </div>

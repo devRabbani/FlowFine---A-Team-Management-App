@@ -30,15 +30,15 @@
   padding: 1rem;
   border-radius: 0.4rem;
   outline: none;
-  background-color: var(--color-green-6);
-  border: 2px solid var(--color-white-1);
+  background-color: var(--color-input);
+  border: 2px solid var(--color-white-light);
 }
 
 .createForm input:active,
 .createForm textarea:active,
 .createForm input:focus,
 .createForm textarea:focus {
-  border-color: var(--color-green-7);
+  border-color: var(--color-green-border);
 }
 
 .stateOption {

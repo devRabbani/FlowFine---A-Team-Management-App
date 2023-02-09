@@ -1,15 +1,15 @@
 .cardWrapper {
-  background-color: var(--color-green-1);
+  background-color: var(--color-primary);
   width: 105%;
   margin-left: -2.5%;
   padding-top: 2rem;
   padding-bottom: 1.5rem;
   position: sticky;
-  top: 6rem;
+  top: 5.78rem;
 }
 
 .card {
-  background-color: var(--color-green-3);
+  background-color: var(--color-secondary);
   padding: 1.5rem 1rem 1.5rem 1.5rem;
   border-radius: 0.7rem;
   /* margin-top: 2rem; */
@@ -26,7 +26,7 @@
 
 .code {
   font-size: 2.3rem;
-  color: var(--color-white-1);
+  color: var(--color-white);
 }
 
 .codeDiv {
