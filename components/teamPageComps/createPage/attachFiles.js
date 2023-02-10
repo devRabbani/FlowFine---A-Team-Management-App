@@ -9,13 +9,13 @@ import {
 } from 'firebase/storage'
 import Button from '../../button'
 import s from './attachFiles.module.css'
-import { RiDeleteBin5Line } from 'react-icons/ri'
+import { RiDeleteBin5Line, RiCloseLine } from 'react-icons/ri'
 
-export default function AttachFiles({ teamcode, setFiles, files }) {
-  const [isLoading, setIsLoading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [uploaded, setUploaded] = useState([])
-
+export default function AttachFiles({
+  isLoading,
+  setAttachments,
+  attachments,
+}) {
   // Ref
   const inputRef = useRef()
 
@@ -27,84 +27,46 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
 
   // Handling Files
   const handleFileChange = async (e) => {
-    try {
-      const attachments = e.target.files
+    console.log('Target', e.target.files)
+    let added = [...attachments]
+    const files = e.target.files
 
+    const maxsize = 15 * 1000 * 1000 //15MB
+    // If files exist
+    if (files?.length) {
       // If no of files is more than 8
-      if (attachments?.length > 8) {
+      if (added?.length > 8) {
         toast.error(<b>Max limit 8 items reach! </b>)
         return
       }
 
-      const maxsize = 15 * 1000 * 1000 //15MB
-      // If files exist
-      if (attachments?.length) {
-        let promises = []
-        setIsLoading(true)
-        for (const attachment of attachments) {
-          if (attachment.size < maxsize) {
-            handleUpload(attachment, promises)
+      for (const file of files) {
+        if (added.findIndex((item) => item.name === file.name) === -1) {
+          if (file.size < maxsize) {
+            added.push(file)
           } else {
-            toast.error(<b>Max size limit per file is 20mb!</b>)
+            toast.error(<b>Max size limit per file is 15mb!</b>)
           }
         }
-        await Promise.all(promises)
-        setIsLoading(false)
       }
-    } catch (error) {
-      console.log(error.message)
-      setProgress(0)
-      setIsLoading(false)
     }
-  }
-
-  // Handle Upload
-  const handleUpload = async (attachment, promises) => {
-    const filename = Date.now() + '-' + attachment.name
-    const uploadTask = uploadBytesResumable(
-      ref(storage, `${teamcode}/${filename}`),
-      attachment
-    )
-    promises.push(uploadTask)
-    setProgress(0)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const p = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        setProgress(p)
-      },
-      (error) => {
-        // Handle unsuccessful uploads
-        console.log(error)
-      },
-      async () => {
-        const url = await getDownloadURL(uploadTask.snapshot.ref)
-        setUploaded((prev) => [
-          ...prev,
-          { name: attachment.name, fileRef: uploadTask.snapshot.ref, url },
-        ])
-        setProgress((prev) => {
-          const newProg = Object.keys(prev)
-            .filter((name) => name !== attachment.name)
-            .reduce((acc, name) => ({ [name]: prev[name] }), {})
-          return newProg
-        })
-      }
-    )
+    setAttachments(added)
+    e.target.value = null
   }
 
   // Handle Delete
-  const handleDelete = async (e, fileRef, i) => {
+  const handleDelete = async (e, i) => {
     e.preventDefault()
-    try {
-      await deleteObject(fileRef)
-      setFiles((prev) => prev.splice(i, 1))
-    } catch (error) {
-      console.log(error.message)
+    if (isLoading) {
+      return
     }
-  }
+    let added = [...attachments]
+    added.splice(i, 1)
 
-  console.log(progress, isLoading)
+    setAttachments(added)
+    console.log(added, attachments)
+  }
+  console.log(inputRef.current?.files)
   return (
     <div className={s.attachFileBody}>
       <input
@@ -114,36 +76,20 @@ export default function AttachFiles({ teamcode, setFiles, files }) {
         onChange={handleFileChange}
         multiple
       />
-      {/* {files?.length ? (
+      {attachments?.length ? (
         <div className={s.attachmentsDiv}>
-          {files.map((item, i) => (
-            <div key={i} onClick>
-              {item.name}{' '}
-              <RiDeleteBin5Line onClick={(e) => handleDelete(e, item.ref, i)} />
+          {attachments.map((item, i) => (
+            <div key={i} className={s.attachment}>
+              <RiCloseLine onClick={(e) => handleDelete(e, i)} />
+              <p>{item.name}</p>
             </div>
           ))}
         </div>
-      ) : null} */}
-      {progress ? (
-        <div className={s.progressBar}>
-          <div style={{ width: progress + '%' }} className={s.progress} />
-        </div>
       ) : null}
 
-      {/* {currentFile ? (
-        <>
-          <p className={s.fileName}>{currentFile}</p>
-          <div className={s.progressBar}>
-            <div style={{ width: progress + '%' }} className={s.progress} />
-          </div>
-        </>
-      ) : null} */}
-
-      <div className={s.btnDiv}>
-        <Button disabled={isLoading} onClick={handleFileClick} type="primary">
-          Attach files
-        </Button>
-      </div>
+      <Button disabled={isLoading} onClick={handleFileClick} type="primary">
+        Attach files
+      </Button>
     </div>
   )
 }

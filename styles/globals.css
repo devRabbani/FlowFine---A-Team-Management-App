@@ -1,9 +1,10 @@
 :root {
   --color-primary: #a3c4bc;
   --color-green-dark: #7c9e96;
-  --color-secondary: #294f5e;
+  /* --color-secondary: #294f5e; */
+  --color-secondary: #2e4861;
   --color-secondary-dark: #140f2d;
-  --color-accent-1: #cc7e76;
+  --color-accent-1: hsl(12, 46%, 53%);
   --color-blue: #4852a9;
   --color-red: #be165c;
   --color-green-1: #45645b;

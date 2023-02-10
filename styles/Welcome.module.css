@@ -15,7 +15,8 @@
   text-align: center;
 }
 .heroBtn {
-  background-color: var(--color-black-1);
+  background-color: var(--color-secondary-dark);
+  background-color: var(--color-accent-1);
   width: 30rem;
   padding: 0.45em 0;
   border-radius: 50vw;
