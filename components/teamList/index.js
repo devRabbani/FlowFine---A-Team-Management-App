@@ -21,7 +21,7 @@ export default function TeamList({ uid }) {
   const handleClose = () => {
     setIsModal(false)
   }
-  console.log(teamsList, isLoading)
+
   return (
     <div className={styles.body}>
       <div className={styles.headerDiv}>

@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { RiAddLine, RiLoaderLine, RiRefreshLine } from 'react-icons/ri'
 import Select from 'react-select'
 import {
   customStyles,
@@ -72,6 +74,30 @@ export default function CreatePage({ members, groups, teamcode }) {
     }
   }
 
+  // Task SUbmit
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (title.trim().length < 6) {
+      toast.error(<b>Please enter valid Title!</b>)
+      return
+    }
+    if (attachments.length > 8) {
+      toast.error(<b>Please remove some attachments, Max limit is 8!</b>)
+      return
+    }
+
+    const data = {
+      title,
+      description,
+      priority,
+      deadline,
+      assignedGroups,
+      assignedMembers,
+      status: 'idle',
+    }
+    console.log(data)
+  }
+
   // SIde Effects
   useEffect(() => {
     loadMemberOptions()
@@ -86,7 +112,7 @@ export default function CreatePage({ members, groups, teamcode }) {
     assignedMembers
   )
   return (
-    <form className={s.createForm}>
+    <form className={s.createForm} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter New Task Title"
@@ -125,6 +151,8 @@ export default function CreatePage({ members, groups, teamcode }) {
             placeholder="Enter Deadline"
             name="deadline"
             value={deadline}
+            required
+            min={new Date().toISOString().split('T')[0]}
             onChange={(e) => setDeadline(e.target.value)}
           />
         </div>
@@ -169,7 +197,17 @@ export default function CreatePage({ members, groups, teamcode }) {
           />
         </div>
       </div>
-      <Button type="primary">Submit</Button>
+      <Button disabled={createLoading} variant="primary" type="submit">
+        {createLoading ? (
+          <>
+            <RiLoaderLine /> Creating
+          </>
+        ) : (
+          <>
+            <RiAddLine /> Create
+          </>
+        )}
+      </Button>
     </form>
   )
 }

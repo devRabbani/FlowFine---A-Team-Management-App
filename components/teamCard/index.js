@@ -75,7 +75,7 @@ export default function TeamCard({
       <p className={s.name}>{teamname}</p>
       <p className={s.code}>{teamcode}</p>
       <p className={s.date}>
-        Last update : {moment.unix(updated.seconds).fromNow()}
+        Last update : {moment.unix(updated?.seconds).fromNow()}
       </p>
     </Link>
   )

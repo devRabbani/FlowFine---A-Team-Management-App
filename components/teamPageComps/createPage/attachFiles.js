@@ -9,7 +9,7 @@ import {
 } from 'firebase/storage'
 import Button from '../../button'
 import s from './attachFiles.module.css'
-import { RiDeleteBin5Line, RiCloseLine } from 'react-icons/ri'
+import { RiDeleteBin5Line, RiCloseLine, RiAttachment2 } from 'react-icons/ri'
 
 export default function AttachFiles({
   isLoading,
@@ -35,7 +35,7 @@ export default function AttachFiles({
     // If files exist
     if (files?.length) {
       // If no of files is more than 8
-      if (added?.length > 8) {
+      if (added?.length > 8 || files?.length > 8) {
         toast.error(<b>Max limit 8 items reach! </b>)
         return
       }
@@ -44,6 +44,7 @@ export default function AttachFiles({
         if (added.findIndex((item) => item.name === file.name) === -1) {
           if (file.size < maxsize) {
             added.push(file)
+            if (added.length >= 8) break
           } else {
             toast.error(<b>Max size limit per file is 15mb!</b>)
           }
@@ -87,8 +88,12 @@ export default function AttachFiles({
         </div>
       ) : null}
 
-      <Button disabled={isLoading} onClick={handleFileClick} type="primary">
-        Attach files
+      <Button
+        disabled={isLoading}
+        onClick={handleFileClick}
+        variant="primary md"
+      >
+        <RiAttachment2 /> Attach files
       </Button>
     </div>
   )

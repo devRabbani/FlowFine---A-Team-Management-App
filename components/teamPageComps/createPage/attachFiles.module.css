@@ -1,7 +1,7 @@
 .attachmentsDiv {
   display: grid;
-  gap: 1.6rem;
-  margin-block: 1rem 2rem;
+  gap: 1.2rem;
+  margin-block: 1rem 1.6rem;
 }
 
 .attachment {
@@ -10,6 +10,9 @@
   overflow-x: hidden;
   align-items: center;
   position: relative;
+  background-color: var(--color-input);
+  padding: 0.7rem;
+  border-radius: 0.4rem;
 }
 
 .attachment svg {
@@ -25,10 +28,11 @@
 
 .attachment::after {
   content: '';
-  background: linear-gradient(to left, #a3c4bc, #a3c4bc65);
+  background: linear-gradient(to left, #c9e3e2, #c9e3e257);
   display: block;
   position: absolute;
   height: 100%;
   right: 0;
   width: 3.4rem;
+  border-radius: 0.4rem;
 }

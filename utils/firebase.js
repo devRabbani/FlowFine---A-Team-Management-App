@@ -103,6 +103,7 @@ export const createTeam = async (teamName, uid) => {
     owner: [uid],
     editor: [],
     members: [uid],
+    teamcode: teamCode,
   })
 
   // Updating User Doc
