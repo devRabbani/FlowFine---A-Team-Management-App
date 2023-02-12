@@ -8,10 +8,15 @@ import {
   customTheme,
   priorityOptions,
 } from '../../../lib/reactSelect'
-import { getUsers } from '../../../utils/firebase'
+import {
+  createTask,
+  getUsers,
+  handleAttachments,
+} from '../../../utils/firebase'
 import Button from '../../button'
 import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
+import { useRouter } from 'next/navigation'
 
 export default function CreatePage({ members, groups, teamcode }) {
   const [isLoading, setIsLoading] = useState(true)
@@ -39,6 +44,8 @@ export default function CreatePage({ members, groups, teamcode }) {
       })),
     [groups]
   )
+
+  const router = useRouter()
 
   // Custom Functions
   //load options
@@ -75,32 +82,44 @@ export default function CreatePage({ members, groups, teamcode }) {
   }
 
   // Task SUbmit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (title.trim().length < 6) {
       toast.error(<b>Please enter valid Title!</b>)
       return
     }
-    if (attachments.length > 8) {
+    if (attachments?.length > 8) {
       toast.error(<b>Please remove some attachments, Max limit is 8!</b>)
       return
     }
-
-    const data = {
-      title,
-      description,
-      priority,
-      deadline,
-      assignedGroups,
-      assignedMembers,
-      status: 'idle',
+    const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
+    try {
+      setCreateLoading(true)
+      const attachmentsLists = await handleAttachments(attachments, teamcode)
+      const data = {
+        title,
+        description,
+        priority,
+        deadline,
+        assignedGroups,
+        assignedMembers,
+        status: 'idle',
+        attachments: attachmentsLists,
+      }
+      await createTask(data, teamcode)
+      setCreateLoading(false)
+      toast.success(<b>{title} created successfully</b>, { id: toastId })
+      router.push('/team/' + teamcode)
+    } catch (error) {
+      console.log(error.message)
+      setCreateLoading(false)
+      toast.error(<b>{error?.message}</b>, { id: toastId })
     }
-    console.log(data)
   }
 
   // SIde Effects
   useEffect(() => {
-    loadMemberOptions()
+    loadMemberOptions() // Load options of select members
   }, [])
 
   console.log(

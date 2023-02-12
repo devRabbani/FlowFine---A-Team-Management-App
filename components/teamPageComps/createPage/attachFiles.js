@@ -27,11 +27,11 @@ export default function AttachFiles({
 
   // Handling Files
   const handleFileChange = async (e) => {
-    console.log('Target', e.target.files)
     let added = [...attachments]
     const files = e.target.files
 
     const maxsize = 15 * 1000 * 1000 //15MB
+
     // If files exist
     if (files?.length) {
       // If no of files is more than 8
@@ -39,12 +39,14 @@ export default function AttachFiles({
         toast.error(<b>Max limit 8 items reach! </b>)
         return
       }
-
+      // Traversing over files
       for (const file of files) {
+        // To remove same file
         if (added.findIndex((item) => item.name === file.name) === -1) {
+          // If less than Max size
           if (file.size < maxsize) {
-            added.push(file)
-            if (added.length >= 8) break
+            added.push(file) // added
+            if (added.length >= 8) break // If max length
           } else {
             toast.error(<b>Max size limit per file is 15mb!</b>)
           }
@@ -52,7 +54,7 @@ export default function AttachFiles({
       }
     }
     setAttachments(added)
-    e.target.value = null
+    e.target.value = null // To clear file selection
   }
 
   // Handle Delete
@@ -62,12 +64,10 @@ export default function AttachFiles({
       return
     }
     let added = [...attachments]
-    added.splice(i, 1)
-
+    added.splice(i, 1) // Removing with index
     setAttachments(added)
-    console.log(added, attachments)
   }
-  console.log(inputRef.current?.files)
+
   return (
     <div className={s.attachFileBody}>
       <input
@@ -77,6 +77,7 @@ export default function AttachFiles({
         onChange={handleFileChange}
         multiple
       />
+
       {attachments?.length ? (
         <div className={s.attachmentsDiv}>
           {attachments.map((item, i) => (

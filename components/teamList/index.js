@@ -10,8 +10,8 @@ import TeamCard from '../teamCard'
 import styles from './teamList.module.css'
 
 export default function TeamList({ uid }) {
-  const { teams, loading } = useUser()
-  const { teamsList, isLoading } = useGetTeams(teams, loading)
+  const { teams } = useUser()
+  const { teamsList, isLoading } = useGetTeams(teams)
 
   // States
   const [isModal, setIsModal] = useState(false)

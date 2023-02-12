@@ -1,5 +1,6 @@
 import { async } from '@firebase/util'
 import {
+  addDoc,
   arrayRemove,
   arrayUnion,
   collection,
@@ -16,8 +17,9 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import ShortUniqueId from 'short-unique-id'
-import { db } from '../lib/firebase'
+import { db, storage } from '../lib/firebase'
 
 export const getTeam = async (teamcode) => {
   const docRef = doc(db, `teams/${teamcode}`)
@@ -179,4 +181,32 @@ export const getUsers = async (uids) => {
       label: '@' + item.id,
     }))
   }
+}
+
+// File uploads
+export const handleAttachments = async (attachments, teamcode) => {
+  let promises = []
+  for (const attachment of attachments) {
+    const filename = Date.now() + '-' + attachment.name
+    const fileRef = ref(storage, `${teamcode}/${filename}`)
+    const uploadTask = uploadBytes(fileRef, attachment).then(async () => {
+      const url = await getDownloadURL(fileRef)
+      return {
+        name: attachment.name,
+        filename,
+        url,
+      }
+    })
+    promises.push(uploadTask)
+  }
+  return await Promise.all(promises)
+}
+
+//  Create Task
+export const createTask = async (data, teamCode) => {
+  const colRef = collection(db, 'teams', teamCode, 'tasks')
+  await addDoc(colRef, {
+    ...data,
+    updatedAt: serverTimestamp(),
+  })
 }
