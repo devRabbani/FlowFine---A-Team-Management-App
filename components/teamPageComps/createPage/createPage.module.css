@@ -24,7 +24,7 @@
 .createForm input,
 .createForm textarea {
   font-size: 2rem;
-  padding: 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 0.4rem;
   outline: none;
   background-color: var(--color-input);

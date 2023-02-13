@@ -28,10 +28,10 @@ export default function Nav({ isBack }) {
     <nav className={s.navWrapper}>
       <div className={`${s.nav} wrapper`}>
         {isBack ? (
-          <div onClick={() => router.back()} className={s.backBtn}>
+          <Link href="/" className={s.backBtn}>
             <FaCaretLeft />
-            Back
-          </div>
+            Home
+          </Link>
         ) : (
           <Link href="/" className={s.logo}>
             FlowFine

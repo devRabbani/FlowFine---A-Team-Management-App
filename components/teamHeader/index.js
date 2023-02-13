@@ -25,10 +25,10 @@ export default function TeamHeader({ name, code, updated }) {
     <div className={styles.cardWrapper}>
       <div className={styles.card}>
         <h1>{name}</h1>
-        <div className={styles.codeDiv}>
+        {/* <div className={styles.codeDiv}>
           <p className={styles.code}>{code}</p>
           <FaShareAlt onClick={handleShare} />
-        </div>
+        </div> */}
         <p>Last updates {moment.unix(updated.seconds).fromNow()}</p>
       </div>
     </div>

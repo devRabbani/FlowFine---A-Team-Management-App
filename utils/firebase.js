@@ -203,10 +203,25 @@ export const handleAttachments = async (attachments, teamcode) => {
 }
 
 //  Create Task
-export const createTask = async (data, teamCode) => {
-  const colRef = collection(db, 'teams', teamCode, 'tasks')
-  await addDoc(colRef, {
-    ...data,
+export const createTask = async (taskData, taskInfoData, teamCode) => {
+  const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
+  const taskInfoRef = doc(
+    collection(db, 'teams', teamCode, 'tasks', taskRef.id, 'taskinfo')
+  )
+
+  const batch = writeBatch(db)
+
+  // Setting intial data
+  batch.set(taskRef, {
+    ...taskData,
     updatedAt: serverTimestamp(),
   })
+  // Setting addintional data
+  batch.set(taskInfoRef, taskInfoData)
+
+  await batch.commit()
+  // await addDoc(colRef, {
+  //   ...data,
+  //   updatedAt: serverTimestamp(),
+  // })
 }

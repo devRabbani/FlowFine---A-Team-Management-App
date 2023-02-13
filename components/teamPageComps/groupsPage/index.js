@@ -1,5 +1,5 @@
 import s from './groupsPage.module.css'
 
 export default function GroupsPage() {
-  return <h1>This is Group Page</h1>
+  return <h2 className="pageHeader">Groups</h2>
 }

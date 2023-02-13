@@ -8,7 +8,7 @@ import TasksList from './tasksList'
 import TasktopNav from './taskTopNav'
 import styles from './teamTaskList.module.css'
 
-export default function TeamTaskList({ teamCode, tasks, subGroup, isLoading }) {
+export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
   const [isList, setIsList] = useState(true)
 
   const groupOptions = [
@@ -45,7 +45,7 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, isLoading }) {
         />
       </div>
 
-      {isList ? <TasksList /> : <TasksKanban />}
+      {isList ? <TasksList tasks={tasks} loading={loading} /> : <TasksKanban />}
       {/* <div className={styles.body}>
         {/* <TaskListNav
           subnav={subnav}

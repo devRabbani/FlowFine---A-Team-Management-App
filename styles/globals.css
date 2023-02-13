@@ -149,6 +149,12 @@ main {
   color: var(--color-secondary-dark);
 }
 
+.pageHeader {
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.7rem;
+  border-bottom: 1px solid var(--color-green-1);
+}
+
 /* .header2 {
   text-align: center;
 }

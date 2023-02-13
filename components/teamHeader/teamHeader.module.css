@@ -6,6 +6,7 @@
   padding-bottom: 1.5rem;
   position: sticky;
   top: 5.78rem;
+  z-index: 99;
 }
 
 .card {
@@ -15,6 +16,7 @@
   /* margin-top: 2rem; */
   width: 95%;
   margin-inline: auto;
+  color: white;
 }
 
 .card h1 {

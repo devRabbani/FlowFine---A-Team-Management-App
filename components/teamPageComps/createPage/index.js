@@ -32,6 +32,7 @@ export default function CreatePage({ members, groups, teamcode }) {
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('normal')
   const [deadline, setDeadline] = useState('')
+  const [tags, setTags] = useState('')
   const [assignedGroups, setAssignedGroups] = useState([])
   const [assignedMembers, setAssignedMembers] = useState([])
   const [attachments, setAttachments] = useState([])
@@ -92,21 +93,30 @@ export default function CreatePage({ members, groups, teamcode }) {
       toast.error(<b>Please remove some attachments, Max limit is 8!</b>)
       return
     }
+
     const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
     try {
       setCreateLoading(true)
       const attachmentsLists = await handleAttachments(attachments, teamcode)
-      const data = {
+      const tagsList = tags
+        .split(',')
+        .map((tag) => tag.trim())
+        .filter((item) => item !== '')
+
+      const taskData = {
         title,
-        description,
         priority,
         deadline,
         assignedGroups,
-        assignedMembers,
         status: 'idle',
-        attachments: attachmentsLists,
       }
-      await createTask(data, teamcode)
+      const taskInfoData = {
+        description,
+        assignedMembers,
+        attachments: attachmentsLists,
+        tags: tagsList,
+      }
+      await createTask(taskData, taskInfoData, teamcode)
       setCreateLoading(false)
       toast.success(<b>{title} created successfully</b>, { id: toastId })
       router.push('/team/' + teamcode)
@@ -131,102 +141,118 @@ export default function CreatePage({ members, groups, teamcode }) {
     assignedMembers
   )
   return (
-    <form className={s.createForm} onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter New Task Title"
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        maxLength={120}
-      />
-      <textarea
-        rows="5"
-        placeholder="Enter Task Description"
-        name="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <AttachFiles
-        isLoading={createLoading}
-        setAttachments={setAttachments}
-        attachments={attachments}
-      />
-      <div className={s.twoDiv}>
-        <div className={s.formDiv}>
-          <label>Priority :</label>
-          <Select
-            styles={customStyles}
-            options={priorityOptions}
-            defaultValue={priorityOptions[1]}
-            theme={customTheme}
-            onChange={(e) => setPriority(e.value)}
-          />
-        </div>
-        <div className={s.formDiv}>
-          <label>Deadline :</label>
-          <input
-            type="date"
-            placeholder="Enter Deadline"
-            name="deadline"
-            value={deadline}
-            required
-            min={new Date().toISOString().split('T')[0]}
-            onChange={(e) => setDeadline(e.target.value)}
-          />
-        </div>
-        <div className={s.formDiv}>
-          <label>
-            Select Groups : <span className={s.optional}>(optional)</span>
-          </label>
-          <Select
-            styles={customStylesMulti}
-            options={groupOptions}
-            theme={customTheme}
-            placeholder="Default Group: All"
-            onChange={(value) => handleChange(value, 'group')}
-            isMulti
-            isSearchable
-            isLoading={false}
-            noOptionsMessage={() => (
-              <span className={s.stateOption}>No data found</span>
-            )}
-          />
-        </div>
+    <>
+      <h2 className="pageHeader">Create Task</h2>
+      <form className={s.createForm} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter New Task Title"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          maxLength={120}
+        />
+        <textarea
+          rows="5"
+          placeholder="Enter Task Description"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <AttachFiles
+          isLoading={createLoading}
+          setAttachments={setAttachments}
+          attachments={attachments}
+        />
+        <div className={s.twoDiv}>
+          <div className={s.formDiv}>
+            <label>Priority :</label>
+            <Select
+              styles={customStyles}
+              options={priorityOptions}
+              defaultValue={priorityOptions[1]}
+              theme={customTheme}
+              onChange={(e) => setPriority(e.value)}
+            />
+          </div>
+          <div className={s.formDiv}>
+            <label>Deadline :</label>
+            <input
+              type="date"
+              placeholder="Enter Deadline"
+              name="deadline"
+              value={deadline}
+              required
+              min={new Date().toISOString().split('T')[0]}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+          </div>
+          <div className={s.formDiv}>
+            <label>
+              Select Groups : <span className={s.optional}>(optional)</span>
+            </label>
+            <Select
+              styles={customStylesMulti}
+              options={groupOptions}
+              theme={customTheme}
+              placeholder="Default Group: All"
+              onChange={(value) => handleChange(value, 'group')}
+              isMulti
+              isSearchable
+              isLoading={false}
+              noOptionsMessage={() => (
+                <span className={s.stateOption}>No data found</span>
+              )}
+            />
+          </div>
 
-        <div className={s.formDiv}>
-          <label>
-            Assign members : <span className={s.optional}>(optional)</span>
-          </label>
-          <Select
-            styles={customStylesMulti}
-            options={membersOptions}
-            theme={customTheme}
-            placeholder="Choose members"
-            isMulti
-            isSearchable
-            isLoading={isLoading}
-            onChange={(value) => handleChange(value, 'member')}
-            loadingMessage={() => (
-              <span className={s.stateOption}>Getting members..</span>
-            )}
-            noOptionsMessage={() => (
-              <span className={s.stateOption}>No data found</span>
-            )}
-          />
+          <div className={s.formDiv}>
+            <label>
+              Assign members : <span className={s.optional}>(optional)</span>
+            </label>
+            <Select
+              styles={customStylesMulti}
+              options={membersOptions}
+              theme={customTheme}
+              placeholder="Choose members"
+              isMulti
+              isSearchable
+              isLoading={isLoading}
+              onChange={(value) => handleChange(value, 'member')}
+              loadingMessage={() => (
+                <span className={s.stateOption}>Getting members..</span>
+              )}
+              noOptionsMessage={() => (
+                <span className={s.stateOption}>No data found</span>
+              )}
+            />
+          </div>
+          <div className={s.formDiv}>
+            <label>
+              Tags : <span className={s.optional}>(optional)</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Eg: design, docs, html"
+              name="tags"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+              maxLength={180}
+            />
+          </div>
         </div>
-      </div>
-      <Button disabled={createLoading} variant="primary" type="submit">
-        {createLoading ? (
-          <>
-            <RiLoaderLine /> Creating
-          </>
-        ) : (
-          <>
-            <RiAddLine /> Create
-          </>
-        )}
-      </Button>
-    </form>
+        <Button disabled={createLoading} variant="primary" type="submit">
+          {createLoading ? (
+            <>
+              <RiLoaderLine /> Creating
+            </>
+          ) : (
+            <>
+              <RiAddLine /> Create
+            </>
+          )}
+        </Button>
+      </form>
+    </>
   )
 }

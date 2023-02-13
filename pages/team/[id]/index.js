@@ -10,11 +10,13 @@ import GroupsPage from '../../../components/teamPageComps/groupsPage'
 import ArchivePage from '../../../components/teamPageComps/archivePage'
 import TeamTaskList from '../../../components/teamPageComps/teamTaskList'
 import s from '../../../styles/Team.module.css'
+import useGetTasks from '../../../hooks/useGetTasks'
 
 export default function TeamPage() {
   const router = useRouter()
   const { id, menu } = router.query
   const { data, loading } = useDataDoc('teams/' + id)
+  const { tasks, loading: tasksLoading } = useGetTasks(id)
   const { name, updated, owner, members, groups } = data
   console.log(data)
   if (loading) {
@@ -38,8 +40,8 @@ export default function TeamPage() {
           <TeamTaskList
             teamCode={id}
             subgroup={[]}
-            tasks={[]}
-            isLoading={false}
+            tasks={tasks}
+            loading={tasksLoading}
           />
         )
     }
