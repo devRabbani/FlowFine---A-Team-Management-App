@@ -1,6 +1,7 @@
 .body {
   background-color: var(--color-green-dark);
   border-radius: 7px;
+  min-height: 45vh;
 }
 .content {
   padding: 20px;
@@ -65,4 +66,37 @@
   text-align: center;
   font-size: 1.5rem;
   color: rgb(75, 113, 90);
+}
+
+/* Task Top Bar */
+.taskTopBar {
+  display: flex;
+}
+
+.taskTopBar_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #9fdd9f;
+  cursor: pointer;
+}
+
+.taskTopBar_menu.active {
+  font-weight: 600;
+  padding-bottom: 0.9rem;
+  color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  border-width: 2px;
+}
+
+/* Select Group */
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-block: 1.6rem 2rem;
 }

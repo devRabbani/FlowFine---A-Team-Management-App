@@ -124,6 +124,9 @@ p {
 strong {
   font-weight: bold;
 }
+label {
+  font-size: 1.8rem;
+}
 
 main {
   min-height: 100%;

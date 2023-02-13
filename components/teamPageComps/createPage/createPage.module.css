@@ -13,10 +13,6 @@
   min-width: fit-content;
 }
 
-.formDiv label {
-  font-size: 1.8rem;
-}
-
 .twoDiv {
   display: flex;
   gap: 1.5rem 0.9rem;
