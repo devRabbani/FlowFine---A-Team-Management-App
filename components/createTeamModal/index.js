@@ -38,10 +38,10 @@ export default function CreateTeamModal({ handleClose, uid }) {
         placeholder="Enter Team Name"
       />
       <div className={s.btnDiv}>
-        <Button onClick={handleCreate} type="primary" disabled={isLoading}>
+        <Button onClick={handleCreate} variant="primary" disabled={isLoading}>
           {isLoading ? 'Creating' : 'Create'}
         </Button>
-        <Button onClick={handleClose} type="grey" disabled={isLoading}>
+        <Button onClick={handleClose} variant="grey" disabled={isLoading}>
           Close
         </Button>
       </div>

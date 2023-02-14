@@ -1,8 +1,22 @@
+.cardWrapper {
+  background-color: var(--color-primary);
+  width: 105%;
+  margin-left: -2.5%;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  position: sticky;
+  top: 5.78rem;
+  z-index: 99;
+}
+
 .card {
-  background-color: var(--color-green-3);
+  background-color: var(--color-secondary);
   padding: 1.5rem 1rem 1.5rem 1.5rem;
   border-radius: 0.7rem;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  width: 95%;
+  margin-inline: auto;
+  color: white;
 }
 
 .card h1 {
@@ -14,12 +28,12 @@
 
 .code {
   font-size: 2.3rem;
-  color: var(--color-white-1);
+  color: var(--color-white);
 }
 
 .codeDiv {
   display: flex;
-  margin: 0.7rem 0 0.3rem;
+  margin-block: 0.5rem 0.1rem;
   gap: 1.5rem;
   align-items: center;
 }

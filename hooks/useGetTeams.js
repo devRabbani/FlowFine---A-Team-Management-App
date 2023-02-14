@@ -2,34 +2,31 @@ import { onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { getTeamQuery } from '../utils/firebase'
 
-export default function useGetTeams(teams, loading) {
+export default function useGetTeams(teams) {
   const [teamsList, setTeamsList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!loading) {
+    let unsub
+    try {
       setIsLoading(true)
-      let unsub
-      try {
-        const q = getTeamQuery(teams)
-        unsub = onSnapshot(q, (snapshot) => {
-          console.log(snapshot, 'snapshot')
-          if (!snapshot.empty) {
-            setTeamsList(snapshot.docs.map((item) => item.data()))
-          } else {
-            setTeamsList([])
-          }
-          setIsLoading(false)
-        })
-      } catch (error) {
-        console.log(error.message)
-        setIsLoading(false)
-      }
-
-      console.count('Use GetTeams')
-      return () => unsub && unsub()
+      const q = getTeamQuery(teams)
+      unsub = onSnapshot(q, (snapshot) => {
+        if (!snapshot.empty) {
+          setTeamsList(snapshot.docs.map((item) => item.data()))
+        } else {
+          setTeamsList([])
+        }
+      })
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      setIsLoading(false)
     }
-  }, [loading, teams])
+
+    console.count('Use GetTeams')
+    return () => unsub && unsub()
+  }, [teams])
 
   return { teamsList, isLoading }
 }

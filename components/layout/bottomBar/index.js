@@ -12,6 +12,8 @@ import {
   RiGroupLine,
   RiHome3Fill,
   RiHome3Line,
+  RiTodoLine,
+  RiTodoFill,
   RiUser6Fill,
   RiUser6Line,
 } from 'react-icons/ri'
@@ -20,10 +22,10 @@ import s from './bottomBar.module.css'
 export default function BottomBar({ teamCode }) {
   const navItems = [
     {
-      icon: <RiHome3Line />,
-      active: <RiHome3Fill />,
-      name: 'Home',
-      path: undefined,
+      icon: <RiTodoLine />,
+      active: <RiTodoFill />,
+      name: 'Tasks',
+      path: '',
       href: '/team/' + teamCode,
     },
     {
@@ -69,7 +71,7 @@ export default function BottomBar({ teamCode }) {
   ]
 
   const {
-    query: { menu },
+    query: { menu = '' },
   } = useRouter()
   console.log(menu)
   return (
