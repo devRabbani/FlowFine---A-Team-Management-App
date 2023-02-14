@@ -73,13 +73,7 @@
   display: grid;
   gap: 2rem;
   margin-top: 2rem;
-}
-
-.taskCard {
-  background-color: var(--color-primary);
-  padding: 1rem;
-  border-radius: 0.7rem;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  padding-bottom: 2rem;
 }
 
 /* Task Kanban */
@@ -94,7 +88,7 @@
   align-items: center;
   gap: 0.6rem;
   font-size: 1.8rem;
-  padding: 1.4rem 1rem;
+  padding: 1.35rem 1rem;
   cursor: pointer;
   text-transform: capitalize;
   background-color: rgb(182, 206, 201);
@@ -114,8 +108,52 @@
   font-weight: 500;
   color: var(--color-secondary-dark);
   font-weight: 500;
-  /* border: 1px solid black;
-  border-bottom: none; */
+  border: 1px solid var(--color-green-2);
+  border-bottom: none;
+}
 
-  box-shadow: 0 2px 18px rgb(2 54 43 / 18%) inset;
+/* Task Card */
+.taskCard {
+  background-color: var(--color-primary);
+  padding: 0.7rem 1rem 1rem;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.taskCardTopBar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.low,
+.normal,
+.high {
+  font-size: 1.6rem;
+  background-color: hsl(208, 49%, 61%);
+  color: hsl(208, 79%, 21%);
+  width: 7rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.low {
+  background-color: #ceedce;
+}
+
+.high {
+  background-color: rgb(225, 143, 125);
+  color: rgb(182, 3, 3);
+}
+
+.title {
+  font-size: 2.1rem;
+  color: var(--color-secondary-dark);
+}
+
+.taskid {
+  margin-block: 1.5rem 0.4rem;
+  color: var(--color-green-1);
 }

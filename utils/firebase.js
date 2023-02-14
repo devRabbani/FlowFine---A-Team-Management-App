@@ -18,6 +18,7 @@ import {
   writeBatch,
 } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { customAlphabet } from 'nanoid'
 import ShortUniqueId from 'short-unique-id'
 import { db, storage } from '../lib/firebase'
 
@@ -91,7 +92,7 @@ export const createUser = async (uid, displayName, photoURL, username) => {
 
 // Create New Team
 export const createTeam = async (teamName, uid) => {
-  const shortId = new ShortUniqueId({ length: 16 })
+  const shortId = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 16)
   const teamCode = shortId()
   const docRef = doc(db, `teams/${teamCode}`)
   const userRef = doc(db, `users/${uid}`)
@@ -208,12 +209,15 @@ export const createTask = async (taskData, taskInfoData, teamCode) => {
   const taskInfoRef = doc(
     collection(db, 'teams', teamCode, 'tasks', taskRef.id, 'taskinfo')
   )
-
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const nanoid = customAlphabet(alphabet, 8)
   const batch = writeBatch(db)
 
   // Setting intial data
   batch.set(taskRef, {
     ...taskData,
+    taskid: nanoid(),
+    createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   })
   // Setting addintional data
