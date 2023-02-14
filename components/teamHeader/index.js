@@ -1,13 +1,14 @@
+import moment from 'moment/moment'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { FaCheck, FaShareAlt } from 'react-icons/fa'
 import { getTeam } from '../../utils/firebase'
 import styles from './teamHeader.module.css'
 
-export default function TeamHeader({ name, code, isLoading }) {
+export default function TeamHeader({ name, code, updated }) {
   const shareData = {
-    title: `FlowFine Join to ${name}`,
-    text: `Go to the app and paste this join code and join your team. TEAM CODE is ${code}`,
+    title: `FlowFine Join to ${name?.toUpperCase()}`,
+    text: `Go to the app , search ${name} and request to join.`,
     url: 'https://flowfine.vercel.app',
   }
 
@@ -21,18 +22,15 @@ export default function TeamHeader({ name, code, isLoading }) {
   }
 
   return (
-    <div className={styles.card}>
-      {isLoading ? (
-        <p>Getting Team Info...</p>
-      ) : (
-        <>
-          <h1>{name}</h1>
-          <div className={styles.codeDiv}>
-            <p className={styles.code}>{code}</p>
-            <FaShareAlt onClick={handleShare} />
-          </div>
-        </>
-      )}
+    <div className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <h1>{name}</h1>
+        {/* <div className={styles.codeDiv}>
+          <p className={styles.code}>{code}</p>
+          <FaShareAlt onClick={handleShare} />
+        </div> */}
+        <p>Last updates {moment.unix(updated.seconds).fromNow()}</p>
+      </div>
     </div>
   )
 }

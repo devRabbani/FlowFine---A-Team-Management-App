@@ -4,15 +4,19 @@
   border-radius: 0.7rem;
 }
 
+.btn:global(.md) {
+  width: 15rem;
+}
+
 .btn:disabled {
   opacity: 0.7;
 }
 .btn:global(.primary) {
-  background-color: #506989;
+  background-color: var(--color-secondary);
   color: white;
 }
 
 .btn:global(.grey) {
-  background-color: #7fa49b;
-  color: rgb(25, 86, 95);
+  background-color: var(--color-green-dark);
+  color: var(--color-green-2);
 }

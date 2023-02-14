@@ -9,7 +9,6 @@ export default function useDataDoc(loc) {
   useEffect(() => {
     setLoading(true)
     const unsub = onSnapshot(doc(db, loc), (snapshot) => {
-      console.count('Run snapshot')
       if (snapshot.exists()) {
         setData({ ...snapshot.data(), id: snapshot.id })
       } else {

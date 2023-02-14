@@ -104,14 +104,14 @@ export default function UsernamePage({ user }) {
           <Button
             disabled={!isValid || isFormLoading}
             onClick={handleSubmit}
-            type="primary"
+            variant="primary"
           >
             {isFormLoading ? 'Loading..' : 'Next'}
           </Button>
           <Button
             onClick={logout}
             disabled={isLoading || isFormLoading}
-            type="grey"
+            variant="grey"
           >
             Cancel
           </Button>

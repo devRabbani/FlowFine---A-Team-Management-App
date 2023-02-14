@@ -10,8 +10,8 @@ import TeamCard from '../teamCard'
 import styles from './teamList.module.css'
 
 export default function TeamList({ uid }) {
-  const { teams, loading } = useUser()
-  const { teamsList, isLoading } = useGetTeams(teams, loading)
+  const { teams } = useUser()
+  const { teamsList, isLoading } = useGetTeams(teams)
 
   // States
   const [isModal, setIsModal] = useState(false)
@@ -21,15 +21,17 @@ export default function TeamList({ uid }) {
   const handleClose = () => {
     setIsModal(false)
   }
-  console.log(teamsList, isLoading)
+
   return (
     <div className={styles.body}>
-      <h3 className="header2">My Teams</h3>
-      <div className={styles.teamWrapper}>
+      <div className={styles.headerDiv}>
+        <h3 className="header2">My Teams</h3>
         <div onClick={() => setIsModal(true)} className={styles.createTeam}>
           <RiAddCircleFill />
-          Create New Team
+          Create Team
         </div>
+      </div>
+      <div className={styles.teamWrapper}>
         {isLoading ? (
           <p className={styles.loading}>Getting Teamlist..</p>
         ) : teamsList?.length ? (

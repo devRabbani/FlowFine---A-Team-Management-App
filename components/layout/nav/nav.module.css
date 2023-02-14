@@ -1,11 +1,12 @@
 .navWrapper {
-  border-bottom: 2px solid var(--color-green-3);
+  /* border-bottom: 2px solid var(--color-green-3); */
   position: sticky;
   top: 0;
-  background-color: var(--color-green-6);
+  /* background-color: var(--color-green-6); */
+  background-color: var(--color-primary);
 }
 .nav {
-  height: 6.48rem;
+  height: 5.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
