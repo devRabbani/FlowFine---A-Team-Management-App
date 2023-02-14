@@ -1,10 +1,27 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import TaskCard from './taskCard'
 import s from './teamTaskList.module.css'
 
-export default function TasksKanban() {
+export default function TasksKanban({ tasks, loading }) {
   const [statusMenu, setStatusMenu] = useState('idle')
 
   const menuLists = ['idle', 'working', 'complete']
+
+  const tasksList = useMemo(() => {
+    console.count('use memo')
+    return tasks?.filter((item) => {
+      if (statusMenu === 'idle') {
+        return item?.status === 'idle'
+      } else if (statusMenu === 'working') {
+        return item?.status === 'working'
+      } else if (statusMenu === 'complete') {
+        return item?.status === 'complete'
+      }
+      return 0
+    })
+  }, [tasks, statusMenu])
+
+  console.log(tasksList)
 
   return (
     <>
@@ -21,7 +38,17 @@ export default function TasksKanban() {
           </div>
         ))}
       </div>
-      <div className={s.tasksKanbanBody}></div>
+      <div className={s.tasksKanbanBody}>
+        <div className={s.tasksListWrapper}>
+          {loading ? (
+            <p>Loading...</p>
+          ) : tasksList?.length > 0 ? (
+            tasksList.map((task) => <TaskCard task={task} key={task.id} />)
+          ) : (
+            <p>No Tasks Found</p>
+          )}
+        </div>
+      </div>
     </>
   )
 }

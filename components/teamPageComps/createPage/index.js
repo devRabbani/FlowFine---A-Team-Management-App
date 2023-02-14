@@ -3,8 +3,7 @@ import { toast } from 'react-hot-toast'
 import { RiAddLine, RiLoaderLine, RiRefreshLine } from 'react-icons/ri'
 import Select from 'react-select'
 import {
-  customStyles,
-  customStylesMulti,
+  commonStyles,
   customTheme,
   priorityOptions,
 } from '../../../lib/reactSelect'
@@ -168,7 +167,7 @@ export default function CreatePage({ members, groups, teamcode }) {
           <div className={s.formDiv}>
             <label>Priority :</label>
             <Select
-              styles={customStyles}
+              styles={commonStyles}
               options={priorityOptions}
               defaultValue={priorityOptions[1]}
               theme={customTheme}
@@ -192,7 +191,7 @@ export default function CreatePage({ members, groups, teamcode }) {
               Select Groups : <span className={s.optional}>(optional)</span>
             </label>
             <Select
-              styles={customStylesMulti}
+              styles={commonStyles}
               options={groupOptions}
               theme={customTheme}
               placeholder="Default Group: All"
@@ -211,7 +210,7 @@ export default function CreatePage({ members, groups, teamcode }) {
               Assign members : <span className={s.optional}>(optional)</span>
             </label>
             <Select
-              styles={customStylesMulti}
+              styles={commonStyles}
               options={membersOptions}
               theme={customTheme}
               placeholder="Choose members"

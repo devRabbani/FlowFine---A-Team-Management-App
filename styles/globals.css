@@ -158,6 +158,7 @@ main {
 /* .header2 {
   text-align: center;
 }
+
 .header2::after {
   content: '';
   display: block;
