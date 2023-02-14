@@ -1,13 +1,24 @@
 .body {
-  background-color: var(--color-green-3);
-  padding: 15px 20px;
+  background-color: var(--color-green-dark);
+  padding: 1.5rem;
   border-radius: 7px;
   margin-top: 20px;
 }
+
+.headerDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--color-green-1);
+}
+
 .teamWrapper {
   display: grid;
-  padding: 0.6rem 0 3.5rem;
-  gap: 2.5rem;
+  padding-bottom: 3rem;
+  gap: 2rem;
 }
 
 .loading {
@@ -20,18 +31,18 @@
 /* Create Team */
 
 .createTeam {
-  background-color: var(--color-green-4);
+  /* background-color: var(--color-green-4); */
   font-size: 1.9rem;
   display: flex;
-  /* flex-direction: column; */
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1.5rem;
+  /* padding: 1rem 1.5rem; */
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
-  color: #115b8f;
+  /* color: #115b8f; */
+  color: var(--color-secondary-dark);
   font-weight: 500;
+  width: fit-content;
 }
 .createTeam svg {
   font-size: 2.5rem;

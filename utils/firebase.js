@@ -1,5 +1,6 @@
 import { async } from '@firebase/util'
 import {
+  addDoc,
   arrayRemove,
   arrayUnion,
   collection,
@@ -16,8 +17,9 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import ShortUniqueId from 'short-unique-id'
-import { db } from '../lib/firebase'
+import { db, storage } from '../lib/firebase'
 
 export const getTeam = async (teamcode) => {
   const docRef = doc(db, `teams/${teamcode}`)
@@ -83,7 +85,7 @@ export const createUser = async (uid, displayName, photoURL, username) => {
     username,
     timestamp: serverTimestamp(),
   })
-  batch.set(usernameRef, {})
+  batch.set(usernameRef, { uid })
   await batch.commit()
 }
 
@@ -103,6 +105,7 @@ export const createTeam = async (teamName, uid) => {
     owner: [uid],
     editor: [],
     members: [uid],
+    teamcode: teamCode,
   })
 
   // Updating User Doc
@@ -159,4 +162,66 @@ export const giveTeamJoinRequest = async (isRequesting, teamcode, uid) => {
   await updateDoc(docRef, {
     invitation: isRequesting ? arrayUnion(uid) : arrayRemove(uid),
   })
+}
+
+// Get List of groups and members
+export const getUsers = async (uids) => {
+  let q = query(collection(db, 'usernames'))
+  const chunks = getChunks(uids)
+
+  for (const chunk of chunks) {
+    q = query(q, where('uid', 'in', chunk))
+  }
+
+  const snapshot = await getDocs(q)
+
+  if (!snapshot.empty) {
+    return snapshot.docs.map((item) => ({
+      value: item.data().uid,
+      label: '@' + item.id,
+    }))
+  }
+}
+
+// File uploads
+export const handleAttachments = async (attachments, teamcode) => {
+  let promises = []
+  for (const attachment of attachments) {
+    const filename = Date.now() + '-' + attachment.name
+    const fileRef = ref(storage, `${teamcode}/${filename}`)
+    const uploadTask = uploadBytes(fileRef, attachment).then(async () => {
+      const url = await getDownloadURL(fileRef)
+      return {
+        name: attachment.name,
+        filename,
+        url,
+      }
+    })
+    promises.push(uploadTask)
+  }
+  return await Promise.all(promises)
+}
+
+//  Create Task
+export const createTask = async (taskData, taskInfoData, teamCode) => {
+  const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
+  const taskInfoRef = doc(
+    collection(db, 'teams', teamCode, 'tasks', taskRef.id, 'taskinfo')
+  )
+
+  const batch = writeBatch(db)
+
+  // Setting intial data
+  batch.set(taskRef, {
+    ...taskData,
+    updatedAt: serverTimestamp(),
+  })
+  // Setting addintional data
+  batch.set(taskInfoRef, taskInfoData)
+
+  await batch.commit()
+  // await addDoc(colRef, {
+  //   ...data,
+  //   updatedAt: serverTimestamp(),
+  // })
 }

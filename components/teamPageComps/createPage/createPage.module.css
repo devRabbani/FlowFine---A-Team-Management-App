@@ -1,0 +1,56 @@
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex-grow: 1;
+  flex-basis: 33.33%;
+  min-width: fit-content;
+}
+
+.twoDiv {
+  display: flex;
+  gap: 1.5rem 0.9rem;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-top: 2rem;
+}
+
+.createForm input,
+.createForm textarea {
+  font-size: 2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.4rem;
+  outline: none;
+  background-color: var(--color-input);
+  border: 2px solid var(--color-white-light);
+}
+
+.createForm input[type='date'] {
+  padding: 0.5rem 1rem;
+  height: 100%;
+}
+
+.createForm input:active,
+.createForm textarea:active,
+.createForm input:focus,
+.createForm textarea:focus {
+  border-color: var(--color-green-border);
+}
+
+.stateOption {
+  font-size: 1.9rem;
+}
+
+.optional {
+  opacity: 0.5;
+}
+
+.createForm input[type='file'] {
+  display: none;
+}

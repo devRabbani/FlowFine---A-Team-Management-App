@@ -8,11 +8,11 @@
 }
 
 .menu {
-  background-color: aliceblue;
+  background-color: var(--color-input);
   padding: 8px 18px 30px;
   width: auto;
   position: fixed;
-  top: 7rem;
+  top: 6.4rem;
   right: 0.5rem;
   left: 0.5rem;
   border-radius: 0.4rem 0.4rem 0.7rem 0.7rem;

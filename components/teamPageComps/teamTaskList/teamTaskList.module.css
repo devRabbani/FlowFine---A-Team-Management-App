@@ -1,0 +1,164 @@
+.body {
+  background-color: var(--color-green-dark);
+  border-radius: 7px;
+  min-height: 45vh;
+}
+.content {
+  padding: 20px;
+}
+.topBar {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  display: flex;
+  overflow-x: scroll;
+  border-bottom: 2px solid var(--color-green-4);
+}
+
+.topBar button {
+  padding: 10px;
+  width: 100%;
+  white-space: nowrap;
+  border-radius: 0;
+  font-size: 1.4rem;
+  margin: 0 1px;
+  background-color: rgb(182, 206, 201);
+}
+
+.topBar button.active {
+  background-color: var(--color-green-3);
+  font-weight: 500;
+  color: rgb(30, 30, 106);
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.memberLists {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 10px 0 20px;
+}
+.memberCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: aliceblue;
+  width: 100%;
+  padding: 6px 6px 6px 10px;
+  border-radius: 7px;
+}
+
+.memberCard .img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.memberName {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
+
+.loading {
+  margin: 40px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(75, 113, 90);
+}
+
+/* Task Top Bar */
+.taskTopBar {
+  display: flex;
+}
+
+.taskTopBar_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #9fdd9f;
+  cursor: pointer;
+}
+
+.taskTopBar_menu.active {
+  font-weight: 600;
+  padding-bottom: 0.9rem;
+  color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  border-width: 2px;
+}
+
+/* Select Group */
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-block: 1.6rem 2rem;
+}
+
+/* Tasks List */
+.tasksKanbanBody,
+.tasksListBody {
+  background-color: var(--color-green-dark);
+  padding: 1.5rem;
+}
+
+.tasksListBody {
+  min-height: 45vh;
+  border-radius: 0.7rem;
+}
+
+.headerDiv {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--color-green-1);
+}
+
+.tasksListWrapper {
+  display: grid;
+  gap: 2rem;
+}
+
+.taskCard {
+  background-color: var(--color-primary);
+  padding: 1rem;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Task Kanban */
+.kanbanNav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.2rem;
+}
+.kanbanNav_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.8rem;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: rgb(182, 206, 201);
+}
+
+.tasksKanbanBody {
+  min-height: 40vh;
+  border-radius: 0 0 0.7rem 0.7rem;
+}
+
+.kanbanNav_menu.active {
+  background-color: var(--color-green-dark);
+  font-weight: 500;
+  color: var(--color-secondary-dark);
+  font-weight: 500;
+  /* border: 1px solid black;
+  border-bottom: none; */
+  box-shadow: 0 2px 18px rgb(2 54 43 / 18%) inset;
+}
