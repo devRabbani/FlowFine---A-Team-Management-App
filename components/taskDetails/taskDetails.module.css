@@ -1,0 +1,33 @@
+.viewDetailsBody {
+  background-color: var(--color-green-dark);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  /* box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.3); */
+  border-radius: 0.7rem 0.7rem 0 0;
+}
+
+.viewDetails {
+  height: 75vh;
+}
+
+.viewDetails_nav {
+  display: flex;
+  padding: 0.5rem;
+  background-color: var(--color-primary);
+}
+
+.viewDetails_nav_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.viewDetails_nav_menu.active {
+  background-color: rgb(94, 147, 140);
+  color: var(--color-secondary-dark);
+}

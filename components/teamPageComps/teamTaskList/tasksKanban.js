@@ -21,7 +21,7 @@ export default function TasksKanban({ tasks, loading }) {
     })
   }, [tasks, statusMenu])
 
-  console.log(tasksList)
+  console.count('Task Kanban')
 
   return (
     <>

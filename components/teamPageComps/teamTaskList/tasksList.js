@@ -11,6 +11,8 @@ import s from './teamTaskList.module.css'
 export default function TasksList({ tasks, loading }) {
   const [sort, setSort] = useState('updates')
 
+  console.count('Task List')
+
   return (
     <div className={s.tasksListBody}>
       <div className={s.headerDiv}>
@@ -39,7 +41,7 @@ export default function TasksList({ tasks, loading }) {
               } else if (sort === 'priority') {
                 return b.priority - a.priority
               } else {
-                return a.updatedAt.seconds - b.updatedAt.seconds
+                return b.updatedAt.seconds - a.updatedAt.seconds
               }
             })
             .map((task) => <TaskCard task={task} key={task.id} />)

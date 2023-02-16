@@ -28,6 +28,8 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
   // const changeTask = (value) => {
   //   setSubnav(value)
   // }
+
+  console.count('Task Main')
   return (
     <>
       <TasktopNav setIsList={setIsList} isList={isList} />
