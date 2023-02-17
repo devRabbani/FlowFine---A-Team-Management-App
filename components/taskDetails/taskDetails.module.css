@@ -113,3 +113,20 @@
 .attachments_file svg {
   flex-shrink: 0;
 }
+
+/* Details Bottom Bar */
+.detailsBottomBar {
+  display: flex;
+  background-color: #90ada6;
+  padding-block: 1rem;
+  gap: 1rem;
+}
+
+.detailsBottomBar button {
+  background-color: aquamarine;
+  padding: 1rem;
+}
+
+.detailsBottomBar > * {
+  flex-basis: 100%;
+}

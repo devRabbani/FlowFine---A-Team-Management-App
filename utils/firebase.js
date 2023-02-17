@@ -1,4 +1,3 @@
-import { async } from '@firebase/util'
 import {
   addDoc,
   arrayRemove,
@@ -19,7 +18,6 @@ import {
 } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { customAlphabet } from 'nanoid'
-import ShortUniqueId from 'short-unique-id'
 import { db, storage } from '../lib/firebase'
 
 export const getTeam = async (teamcode) => {

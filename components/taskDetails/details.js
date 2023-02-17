@@ -1,5 +1,7 @@
+import FileSaver from 'file-saver'
 import moment from 'moment'
 import { RiDownload2Line } from 'react-icons/ri'
+
 import s from './taskDetails.module.css'
 
 export default function Details({ shortInfo, fullInfo, loading }) {
@@ -39,18 +41,19 @@ export default function Details({ shortInfo, fullInfo, loading }) {
             <h3 className={s.header}>Attachments</h3>
             <div className={s.attachments}>
               {fullInfo.attachments.map((attachment, i) => (
-                <div className={s.attachments_file} key={i}>
+                <a
+                  href={attachment.url}
+                  className={s.attachments_file}
+                  key={i}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <RiDownload2Line /> {attachment.name}
-                </div>
+                </a>
               ))}
             </div>
           </div>
-        ) : (
-          <div>
-            <h3 className={s.header}>Attachments</h3>
-            <p className={s.description}>No Attachements</p>
-          </div>
-        )}
+        ) : null}
         {shortInfo?.assignedGroups?.length ? (
           <div>
             <h3 className={s.header}>Assigned Groups</h3>
@@ -71,8 +74,14 @@ export default function Details({ shortInfo, fullInfo, loading }) {
           </div>
         )}
       </div>
-      <div>
-        <button>Masrk As Complete</button>
+      <div className={s.detailsBottomBar}>
+        <button>Masrk As</button>
+        <select value={shortInfo.status}>
+          <option value="idle">Idle</option>
+          <option value="working">Working</option>
+          <option value="complete">Complete</option>
+          <option value="archive">Archive</option>
+        </select>
       </div>
     </>
   )
