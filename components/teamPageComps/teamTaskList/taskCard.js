@@ -28,7 +28,7 @@ export default function TaskCard({ task }) {
 
   return (
     <>
-      <div className={s.taskCard} key={task.id}>
+      <div onClick={handleTaskView} className={s.taskCard} key={task.id}>
         <div className={s.taskCardTopBar}>
           {renderPriority(task.priority)}
           <p>Updated {moment.unix(task?.updatedAt?.seconds).fromNow()}</p>
@@ -44,7 +44,6 @@ export default function TaskCard({ task }) {
           <p className={s.status}>{task?.status}</p>
           <p className={s.taskid}>ID-AGSTEHYX</p>
         </div>
-        <button onClick={handleTaskView}>ssggs</button>
       </div>
       {viewDetails ? (
         <TaskDetails

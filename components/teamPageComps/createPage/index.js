@@ -21,15 +21,9 @@ export default function CreatePage({ members, groups, teamcode }) {
   const [isLoading, setIsLoading] = useState(true)
   const [createLoading, setCreateLoading] = useState(false)
   const [membersOptions, setMembersOptions] = useState([])
-  // const [data, setData] = useState({
-  //   title: '',
-  //   description: '',
-  //   priority: 'normal',
-  //   deadline: '',
-  // })
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [priority, setPriority] = useState('normal')
+  const [priority, setPriority] = useState('1')
   const [deadline, setDeadline] = useState('')
   const [tags, setTags] = useState('')
   const [assignedGroups, setAssignedGroups] = useState([])

@@ -37,11 +37,11 @@ export default function TasksList({ tasks, loading }) {
           tasks
             .sort((a, b) => {
               if (sort === 'deadline') {
-                return new Date(a.deadline) - new Date(b.deadline)
+                return new Date(a?.deadline) - new Date(b?.deadline)
               } else if (sort === 'priority') {
-                return b.priority - a.priority
+                return b?.priority - a?.priority
               } else {
-                return b.updatedAt.seconds - a.updatedAt.seconds
+                return b?.updatedAt?.seconds - a?.updatedAt?.seconds
               }
             })
             .map((task) => <TaskCard task={task} key={task.id} />)

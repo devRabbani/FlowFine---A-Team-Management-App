@@ -206,26 +206,23 @@ export const handleAttachments = async (attachments, teamcode) => {
 //  Create Task
 export const createTask = async (taskData, taskInfoData, teamCode) => {
   const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
-  const taskInfoRef = doc(
-    collection(db, 'teams', teamCode, 'tasks', taskRef.id, 'taskinfo')
-  )
+  const taskInfoRef = doc(db, 'taskinfo', taskRef.id)
+
+  // Getting TASK ID 8 Digit
   const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const nanoid = customAlphabet(alphabet, 8)
+
+  // Creating Batch
   const batch = writeBatch(db)
 
   // Setting intial data
   batch.set(taskRef, {
     ...taskData,
     taskid: nanoid(),
-    createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   })
   // Setting addintional data
   batch.set(taskInfoRef, taskInfoData)
 
   await batch.commit()
-  // await addDoc(colRef, {
-  //   ...data,
-  //   updatedAt: serverTimestamp(),
-  // })
 }

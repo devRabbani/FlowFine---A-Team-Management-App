@@ -1,5 +1,5 @@
 .viewDetailsBody {
-  background-color: var(--color-green-dark);
+  background-color: var(--color-white);
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -10,9 +10,10 @@
   border-radius: 0.7rem 0.7rem 0 0;
 }
 
-.viewDetails {
+/* .viewDetails {
   height: 75vh;
-}
+  overflow: hidden;
+} */
 
 .viewDetails_nav {
   display: flex;
@@ -30,4 +31,85 @@
 .viewDetails_nav_menu.active {
   background-color: rgb(94, 147, 140);
   color: var(--color-secondary-dark);
+}
+
+.details,
+.comments {
+  height: 70vh;
+  padding-block: 2rem 5rem;
+  overflow-y: auto;
+}
+
+/* Details */
+.header {
+  color: var(--color-green-dark);
+  padding-bottom: 0.34rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.title {
+  font-size: 2.4rem;
+  line-height: 1.27;
+  font-weight: 500;
+}
+
+.priorityFlexDiv {
+  display: flex;
+  gap: 2rem;
+  color: #90ada6;
+}
+
+.priorityFlexDiv span {
+  padding: 0.35em 0.5em;
+  border-radius: 0.7rem;
+
+  /* margin-left: 0.3rem; */
+}
+
+.priorityFlexDiv span.date {
+  background-color: #c3e2db;
+  color: var(--color-secondary);
+}
+
+.description {
+  font-size: 1.85rem;
+}
+
+/* Attachments */
+.attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.attachments_file {
+  font-size: 1.6rem;
+  background-color: #c1e1e1;
+  padding: 0.3em 0.5em;
+  color: blue;
+  white-space: nowrap;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  border-radius: 0.4rem;
+  position: relative;
+}
+.attachments_file::after {
+  content: '';
+  height: 100%;
+  background: linear-gradient(to left, #c1e1e1, #c1e1e199);
+  width: 5rem;
+  position: absolute;
+  right: 0;
+}
+
+.attachments_file svg {
+  flex-shrink: 0;
 }

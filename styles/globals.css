@@ -201,3 +201,19 @@ select {
   font-size: 1.9rem;
   color: var(--color-secondary-dark);
 }
+
+/* Priority Colors */
+.Low {
+  background-color: rgb(199, 223, 219);
+  color: rgb(3, 106, 104);
+}
+
+.Normal {
+  background-color: rgb(194 194 236);
+  color: #0b0b9b;
+}
+
+.High {
+  background-color: #edcbc6;
+  color: #9b0606;
+}
