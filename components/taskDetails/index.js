@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { RiCloseLine, RiEditLine } from 'react-icons/ri'
 import useDataDoc from '../../hooks/useDataDoc'
 import Comments from './comments'
 import Details from './details'
@@ -18,7 +19,15 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
   return (
     <div className={s.viewDetailsBody}>
       <div className={`${s.viewDetails} wrapper`}>
-        <button onClick={() => setViewDetails(null)}>Close</button>
+        <div className={s.viewDetails_topBar}>
+          <button onClick={() => setViewDetails(null)}>
+            <RiEditLine /> Edit
+          </button>
+          <button onClick={() => setViewDetails(null)}>
+            <RiCloseLine /> Close
+          </button>
+        </div>
+
         <div className={s.viewDetails_nav}>
           <div
             className={`${s.viewDetails_nav_menu} ${

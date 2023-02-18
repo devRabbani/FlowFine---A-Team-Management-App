@@ -17,7 +17,7 @@
 
 .viewDetails_nav {
   display: flex;
-  padding: 0.5rem;
+  padding: 0.6rem;
   background-color: var(--color-primary);
 }
 
@@ -26,11 +26,19 @@
   flex-basis: 100%;
   text-align: center;
   padding: 0.5rem;
+  border-radius: 0.7rem;
 }
 
 .viewDetails_nav_menu.active {
-  background-color: rgb(94, 147, 140);
+  background-color: var(--color-white);
   color: var(--color-secondary-dark);
+}
+
+.viewDetails_topBar {
+  display: flex;
+  gap: 1.7rem;
+  padding: 1rem 1rem 1.5rem;
+  justify-content: right;
 }
 
 .details,
