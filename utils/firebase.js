@@ -18,6 +18,7 @@ import {
 } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { customAlphabet } from 'nanoid'
+import { toast } from 'react-hot-toast'
 import { db, storage } from '../lib/firebase'
 
 export const getTeam = async (teamcode) => {
@@ -138,6 +139,17 @@ export const getTeamQuery = (lists) => {
   return q
 }
 
+// get query for profiles
+export const getProfilesQuery = (usernames) => {
+  let q = query(collection(db, 'users'))
+  const chunks = getChunks(usernames)
+  for (const chunk of chunks) {
+    q = query(q, where('username', 'in', chunk))
+  }
+
+  return q
+}
+
 // Get Search Teams
 export const getSearchTeams = async (name) => {
   const q = query(
@@ -224,3 +236,39 @@ export const createTask = async (taskData, taskInfoData, teamCode) => {
 
   await batch.commit()
 }
+
+export const joinTask = async (username, taskId, setIsLoading) => {
+  let id
+  try {
+    setIsLoading(true)
+    id = toast.loading(<b>Joining Task Please Wait..</b>)
+    const docRef = doc(db, 'taskinfo', taskId)
+    await updateDoc(docRef, {
+      assignedMembers: arrayUnion(username),
+    })
+    toast.success(<b>Joined Successfully</b>, { id })
+  } catch (error) {
+    console.log(error)
+    toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    setIsLoading(false)
+  }
+}
+
+// export const markTaskStatus = async (username, taskId, setIsLoading) => {
+//   let id
+//   try {
+//     setIsLoading(true)
+//     id = toast.loading(<b>Changing Task Status...</b>)
+//     const docRef = doc(db, 'taskinfo', taskId)
+//     await updateDoc(docRef, {
+//       assignedMembers: arrayUnion(username),
+//     })
+//     toast.success(<b>Joined Successfully</b>, { id })
+//   } catch (error) {
+//     console.log(error)
+//     toast.error(<b>{error.message}</b>, { id })
+//   } finally {
+//     setIsLoading(false)
+//   }
+// }

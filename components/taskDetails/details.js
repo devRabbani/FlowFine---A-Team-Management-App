@@ -1,12 +1,19 @@
-import FileSaver from 'file-saver'
 import moment from 'moment'
-import { RiDownload2Line } from 'react-icons/ri'
-
+import Image from 'next/image'
+import { RiDownload2Line, RiLoader2Fill, RiTeamFill } from 'react-icons/ri'
+import DetailsBottomBar from './detailsBottomBar'
+import JoinButton from './joinButton'
 import s from './taskDetails.module.css'
 
-export default function Details({ shortInfo, fullInfo, loading }) {
+export default function Details({
+  shortInfo,
+  fullInfo,
+  loading,
+  profiles,
+  profilesLoading,
+}) {
+  // Priority list because it give 0 1 & 2
   const priorityList = ['Low', 'Noraml', 'High']
-  console.log(shortInfo)
 
   if (loading) {
     return <p>Loading please wait</p>
@@ -54,35 +61,65 @@ export default function Details({ shortInfo, fullInfo, loading }) {
             </div>
           </div>
         ) : null}
-        {shortInfo?.assignedGroups?.length ? (
-          <div>
-            <h3 className={s.header}>Assigned Groups</h3>
-            <p className={s.description}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            </p>
+
+        <div>
+          <h3 className={s.header}>Assigned Groups</h3>
+          <div className={s.groupsWrapper}>
+            {shortInfo?.assignedGroups?.length ? (
+              shortInfo.assignedGroups.map((group, i) => (
+                <div className={s.groupName} key={i}>
+                  {group}
+                </div>
+              ))
+            ) : (
+              <div className={s.groupName}>Common</div>
+            )}
           </div>
-        ) : null}
-        {fullInfo?.assignedMembers?.length ? (
-          <div>
-            <h3 className={s.header}>Assigned Members</h3>
-            <p className={s.description}>Assigned</p>
-          </div>
-        ) : (
-          <div>
-            <h3 className={s.header}>Assigned Members</h3>
-            <p className={s.description}>All Memebers Are assigned</p>
-          </div>
-        )}
+        </div>
+
+        <div>
+          <h3 className={s.header}>Assigned Members</h3>
+          {fullInfo?.assignedMembers?.length ? (
+            profilesLoading ? (
+              <p>Getting Members...</p>
+            ) : (
+              <>
+                <div className={s.profilesWrapper}>
+                  {profiles.map((profile, i) => (
+                    <div
+                      className={s.profilesWrapper_profile}
+                      key={profile?.uid || i}
+                    >
+                      <div className={s.img}>
+                        <Image
+                          src={profile?.photoURL}
+                          width={40}
+                          height={40}
+                          alt={`Profile of ${profile?.displayName}`}
+                        />
+                      </div>
+                      {profile?.displayName}
+                    </div>
+                  ))}
+                </div>
+                <JoinButton
+                  taskid={shortInfo?.id}
+                  members={fullInfo?.assignedMembers}
+                />
+              </>
+            )
+          ) : (
+            <>
+              <p className={s.noDetails}>No Members Assigned</p>
+              <JoinButton
+                taskid={shortInfo?.id}
+                members={fullInfo?.assignedMembers}
+              />
+            </>
+          )}
+        </div>
       </div>
-      <div className={s.detailsBottomBar}>
-        <button>Masrk As</button>
-        <select value={shortInfo.status}>
-          <option value="idle">Idle</option>
-          <option value="working">Working</option>
-          <option value="complete">Complete</option>
-          <option value="archive">Archive</option>
-        </select>
-      </div>
+      <DetailsBottomBar current={shortInfo?.status} />
     </>
   )
 }
