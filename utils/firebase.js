@@ -255,6 +255,25 @@ export const joinTask = async (username, taskId, setIsLoading) => {
   }
 }
 
+export const leaveTask = async (username, taskId, setIsLoading) => {
+  let id
+  try {
+    setIsLoading(true)
+    id = toast.loading(<b>Leaving Task Please Wait..</b>)
+    const docRef = doc(db, 'taskinfo', taskId)
+    await updateDoc(docRef, {
+      assignedMembers: arrayRemove(username),
+    })
+
+    toast.success(<b>Leaved Successfully</b>, { id })
+  } catch (error) {
+    console.log(error)
+    toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    setIsLoading(false)
+  }
+}
+
 // export const markTaskStatus = async (username, taskId, setIsLoading) => {
 //   let id
 //   try {

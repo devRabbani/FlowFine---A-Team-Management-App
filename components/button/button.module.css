@@ -8,6 +8,10 @@
   width: 15rem;
 }
 
+.btn.btn:global(.full) {
+  width: 100%;
+}
+
 .btn:disabled {
   opacity: 0.7;
 }

@@ -19,6 +19,7 @@
   display: flex;
   padding: 0.6rem;
   background-color: var(--color-primary);
+  margin-bottom: 1.5rem;
 }
 
 .viewDetails_nav_menu {
@@ -30,8 +31,8 @@
 }
 
 .viewDetails_nav_menu.active {
-  background-color: var(--color-white);
-  color: var(--color-secondary-dark);
+  color: white;
+  background-color: var(--color-green-1);
 }
 
 .viewDetails_topBar {
@@ -44,7 +45,7 @@
 .details,
 .comments {
   height: 70vh;
-  padding-block: 2rem 5rem;
+  padding-block: 0.5rem 5rem;
   overflow-y: auto;
 }
 
@@ -140,7 +141,7 @@
   align-items: center;
   font-size: 1.7rem;
   gap: 0.7rem;
-  background-color: #d4c8ea;
+  background-color: #c1e1e1;
   width: fit-content;
   padding: 0.5rem 0.8rem;
   border-radius: 0.7rem;

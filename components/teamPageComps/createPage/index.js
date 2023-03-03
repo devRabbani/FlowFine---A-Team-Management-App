@@ -234,7 +234,7 @@ export default function CreatePage({ members, groups, teamcode }) {
             />
           </div>
         </div>
-        <Button disabled={createLoading} variant="primary" type="submit">
+        <Button disabled={createLoading} variant="primary full" type="submit">
           {createLoading ? (
             <>
               <RiLoaderLine /> Creating
