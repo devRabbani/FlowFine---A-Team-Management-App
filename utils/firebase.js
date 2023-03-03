@@ -243,9 +243,17 @@ export const joinTask = async (username, taskId, setIsLoading) => {
     setIsLoading(true)
     id = toast.loading(<b>Joining Task Please Wait..</b>)
     const docRef = doc(db, 'taskinfo', taskId)
-    await updateDoc(docRef, {
+    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+    const batch = writeBatch(db)
+    batch.update(docRef, {
       assignedMembers: arrayUnion(username),
     })
+    batch.set(commentRef, {
+      type: 'info',
+      message: `Wow @${username} join this task`,
+      timestamp: serverTimestamp(),
+    })
+    await batch.commit()
     toast.success(<b>Joined Successfully</b>, { id })
   } catch (error) {
     console.log(error)
@@ -261,10 +269,17 @@ export const leaveTask = async (username, taskId, setIsLoading) => {
     setIsLoading(true)
     id = toast.loading(<b>Leaving Task Please Wait..</b>)
     const docRef = doc(db, 'taskinfo', taskId)
-    await updateDoc(docRef, {
+    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+    const batch = writeBatch(db)
+    batch.update(docRef, {
       assignedMembers: arrayRemove(username),
     })
-
+    batch.set(commentRef, {
+      type: 'info',
+      message: `@${username} leave this task`,
+      timestamp: serverTimestamp(),
+    })
+    await batch.commit()
     toast.success(<b>Leaved Successfully</b>, { id })
   } catch (error) {
     console.log(error)
@@ -274,20 +289,26 @@ export const leaveTask = async (username, taskId, setIsLoading) => {
   }
 }
 
-// export const markTaskStatus = async (username, taskId, setIsLoading) => {
-//   let id
-//   try {
-//     setIsLoading(true)
-//     id = toast.loading(<b>Changing Task Status...</b>)
-//     const docRef = doc(db, 'taskinfo', taskId)
-//     await updateDoc(docRef, {
-//       assignedMembers: arrayUnion(username),
-//     })
-//     toast.success(<b>Joined Successfully</b>, { id })
-//   } catch (error) {
-//     console.log(error)
-//     toast.error(<b>{error.message}</b>, { id })
-//   } finally {
-//     setIsLoading(false)
-//   }
-// }
+export const markTaskStatus = async (
+  username,
+  teamcode,
+  taskId,
+  setIsLoading
+) => {
+  let id
+  try {
+    setIsLoading(true)
+    id = toast.loading(<b>Changing Task Status...</b>)
+    const teamRef = doc(db, 'teams', teamcode)
+    const taskRef = doc(teamRef, 'tasks', taskId)
+
+    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+
+    toast.success(<b>Joined Successfully</b>, { id })
+  } catch (error) {
+    console.log(error)
+    toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    setIsLoading(false)
+  }
+}

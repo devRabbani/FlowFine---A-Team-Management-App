@@ -1,11 +1,15 @@
 .btn {
   padding: 0.4em 0.5em;
-  width: 12rem;
+  width: 6.316em; /* 120px */
   border-radius: 0.7rem;
 }
 
 .btn:global(.md) {
-  width: 15rem;
+  width: 7.9em;
+}
+
+.btn:global(.smallFont) {
+  font-size: 1.6rem;
 }
 
 .btn.btn:global(.full) {
@@ -25,6 +29,11 @@
   color: var(--color-green-2);
 }
 
-.btn.btn:global(.border) {
+.btn:global(.border) {
   border: 1px solid var(--color-secondary);
+}
+
+.btn:global(.border.red) {
+  border-color: var(--color-red);
+  color: var(--color-red);
 }

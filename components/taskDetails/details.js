@@ -1,21 +1,20 @@
 import moment from 'moment'
 import Image from 'next/image'
 import { RiDownload2Line, RiLoader2Fill, RiTeamFill } from 'react-icons/ri'
+import { useTaskDetails } from '../../context/TaskDetailsContext'
 import DetailsBottomBar from './detailsBottomBar'
 import JoinButton from './joinButton'
 import s from './taskDetails.module.css'
 
-export default function Details({
-  shortInfo,
-  fullInfo,
-  loading,
-  profiles,
-  profilesLoading,
-}) {
+export default function Details() {
+  // Getting Data
+  const { shortInfo, fullInfo, profiles, profilesLoading, fullInfoLoading } =
+    useTaskDetails()
+
   // Priority list because it give 0 1 & 2
   const priorityList = ['Low', 'Noraml', 'High']
 
-  if (loading) {
+  if (fullInfoLoading) {
     return <p>Loading please wait</p>
   }
 
@@ -102,24 +101,18 @@ export default function Details({
                     </div>
                   ))}
                 </div>
-                <JoinButton
-                  taskid={shortInfo?.id}
-                  members={fullInfo?.assignedMembers}
-                />
+                <JoinButton />
               </>
             )
           ) : (
             <>
               <p className={s.noDetails}>No Members Assigned</p>
-              <JoinButton
-                taskid={shortInfo?.id}
-                members={fullInfo?.assignedMembers}
-              />
+              <JoinButton />
             </>
           )}
         </div>
       </div>
-      <DetailsBottomBar current={shortInfo?.status} />
+      <DetailsBottomBar />
     </>
   )
 }

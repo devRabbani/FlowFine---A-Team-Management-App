@@ -104,6 +104,7 @@
   padding: 0.3em 0.5em;
   color: blue;
   white-space: nowrap;
+  overflow-x: hidden;
   display: flex;
   gap: 0.6rem;
   align-items: center;

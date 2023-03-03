@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import Select from 'react-select'
-import { customTheme, statusOptions } from '../../lib/reactSelect'
+import { useTaskDetails } from '../../context/TaskDetailsContext'
+import {
+  customTheme,
+  statusOptions,
+  statusSelectStyle,
+} from '../../lib/reactSelect'
 import Button from '../button'
 import s from './taskDetails.module.css'
 
-export default function DetailsBottomBar({ current }) {
+export default function DetailsBottomBar() {
+  const { shortInfo } = useTaskDetails()
+  const current = shortInfo?.status
   const [status, setStatus] = useState(current || '')
   const [isMarking, setIsMarking] = useState(false)
 
@@ -14,7 +21,7 @@ export default function DetailsBottomBar({ current }) {
         Mark As
       </Button>
       <Select
-        // styles={sortSelectStyle}
+        styles={statusSelectStyle}
         options={statusOptions}
         defaultValue={statusOptions.find((item) => item.value === current)}
         theme={customTheme}
