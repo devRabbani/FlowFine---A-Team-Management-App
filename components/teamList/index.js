@@ -12,7 +12,7 @@ import styles from './teamList.module.css'
 export default function TeamList({ uid }) {
   const { teams } = useUser()
   const { teamsList, isLoading } = useGetTeams(teams)
-
+  console.log(teamsList, isLoading, 'useGet Teams')
   // States
   const [isModal, setIsModal] = useState(false)
 
@@ -39,7 +39,7 @@ export default function TeamList({ uid }) {
             <TeamCard
               key={item?.teamcode}
               teamcode={item?.teamcode}
-              updated={item?.updated}
+              updatedAt={item?.updatedAt}
               teamname={item?.name}
             />
           ))

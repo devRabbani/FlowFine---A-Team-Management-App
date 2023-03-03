@@ -33,19 +33,19 @@ export const getTeam = async (teamcode) => {
   }
 }
 
-export const addUserToTeam = async (teamcode, uid, displayName, photoURL) => {
-  const docRef = doc(db, `teams/${teamcode}/members/${uid}`)
-  const docSnap = await getDoc(docRef)
-  if (!docSnap.exists()) {
-    await setDoc(docRef, {
-      displayName,
-      photoURL,
-    })
-    return true
-  }
-  // If Member already Exist
-  return false
-}
+// export const addUserToTeam = async (teamcode, uid, displayName, photoURL) => {
+//   const docRef = doc(db, `teams/${teamcode}/members/${uid}`)
+//   const docSnap = await getDoc(docRef)
+//   if (!docSnap.exists()) {
+//     await setDoc(docRef, {
+//       displayName,
+//       photoURL,
+//     })
+//     return true
+//   }
+//   // If Member already Exist
+//   return false
+// }
 
 export const addTeamToUser = async (uid, teamcode, teamName, timestamp) => {
   const docRef = doc(db, `users/${uid}/teams/${teamcode}`)
@@ -100,8 +100,8 @@ export const createTeam = async (teamName, uid) => {
   // Creating new Team Doc
   batch.set(docRef, {
     name: teamName.toLowerCase().trim(),
-    created: serverTimestamp(),
-    updated: serverTimestamp(),
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     owner: [uid],
     editor: [],
     members: [uid],
@@ -135,7 +135,7 @@ export const getTeamQuery = (lists) => {
   for (const chunk of chunks) {
     q = query(q, where('teamcode', 'in', chunk))
   }
-  q = query(q, orderBy('updated', 'desc'))
+  q = query(q, orderBy('updatedAt', 'desc'))
   return q
 }
 
@@ -214,9 +214,15 @@ export const handleAttachments = async (attachments, teamcode) => {
 }
 
 //  Create Task
-export const createTask = async (taskData, taskInfoData, teamCode) => {
+export const createTask = async (
+  taskData,
+  taskInfoData,
+  teamCode,
+  username
+) => {
   const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
   const taskInfoRef = doc(db, 'taskinfo', taskRef.id)
+  const commentRef = doc(collection(taskInfoRef, 'comments'))
 
   // Getting TASK ID 8 Digit
   const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -233,6 +239,12 @@ export const createTask = async (taskData, taskInfoData, teamCode) => {
   })
   // Setting addintional data
   batch.set(taskInfoRef, taskInfoData)
+  // Setting Comments Info Data
+  batch.set(commentRef, {
+    type: 'info',
+    message: `@${username} created the task`,
+    timestamp: serverTimestamp(),
+  })
 
   await batch.commit()
 }
@@ -291,9 +303,11 @@ export const leaveTask = async (username, taskId, setIsLoading) => {
 
 export const markTaskStatus = async (
   username,
+  status,
   teamcode,
   taskId,
-  setIsLoading
+  setIsLoading,
+  handleModal
 ) => {
   let id
   try {
@@ -301,12 +315,31 @@ export const markTaskStatus = async (
     id = toast.loading(<b>Changing Task Status...</b>)
     const teamRef = doc(db, 'teams', teamcode)
     const taskRef = doc(teamRef, 'tasks', taskId)
-
     const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
 
-    toast.success(<b>Joined Successfully</b>, { id })
+    const batch = writeBatch(db)
+
+    // Changing Status
+    batch.update(taskRef, {
+      status,
+      updatedAt: serverTimestamp(),
+    })
+    // Writing to Comments Info
+    batch.set(commentRef, {
+      type: 'info',
+      message: `@${username} just set the task status to : ${status}`,
+      timestamp: serverTimestamp(),
+    })
+    // Updating Team Last Updates
+    batch.update(teamRef, {
+      updatedAt: serverTimestamp(),
+    })
+    // Commiting Changes
+    await batch.commit()
+    handleModal()
+    toast.success(<b>Changed to {status} Successfully</b>, { id })
   } catch (error) {
-    console.log(error)
+    console.log('Changing Task Status Error :', error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
     setIsLoading(false)

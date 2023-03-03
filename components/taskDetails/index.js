@@ -41,6 +41,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
         fullInfoLoading={loading}
         profiles={profiles}
         profilesLoading={profilesLoading}
+        handleModal={handleModal}
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>

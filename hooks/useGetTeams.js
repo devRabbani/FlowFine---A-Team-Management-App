@@ -19,7 +19,7 @@ export default function useGetTeams(teams) {
         }
       })
     } catch (error) {
-      console.log(error.message)
+      console.log('Getting Teams Error :', error.message)
     } finally {
       setIsLoading(false)
     }
