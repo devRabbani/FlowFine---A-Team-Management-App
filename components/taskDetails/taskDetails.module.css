@@ -1,0 +1,252 @@
+.viewDetailsBody {
+  background-color: var(--color-white);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  /* box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.3); */
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+/* .viewDetails {
+  height: 75vh;
+  overflow: hidden;
+} */
+
+.viewDetails_nav {
+  display: flex;
+  padding: 0.6rem;
+  background-color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.viewDetails_nav_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.7rem;
+}
+
+.viewDetails_nav_menu.active {
+  color: white;
+  background-color: var(--color-green-1);
+}
+
+.viewDetails_topBar {
+  display: flex;
+  gap: 1.7rem;
+  padding: 1rem 1rem 1.5rem;
+  justify-content: right;
+}
+
+.details,
+.comments {
+  height: 70vh;
+  padding-block: 0.5rem 5rem;
+  overflow-y: auto;
+}
+
+.comments {
+  height: calc(
+    70vh + 6.18rem
+  ); /* Added because of the bottom bar height 61.8px*/
+}
+
+/* ===== DETAILS SECTION ===== */
+
+.header {
+  color: var(--color-green-dark);
+  padding-bottom: 0.34rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.title {
+  font-size: 2.4rem;
+  line-height: 1.27;
+  font-weight: 500;
+}
+
+.priorityFlexDiv {
+  display: flex;
+  gap: 2rem;
+  color: #90ada6;
+}
+
+.priorityFlexDiv span {
+  padding: 0.35em 0.5em;
+  border-radius: 0.7rem;
+
+  /* margin-left: 0.3rem; */
+}
+
+.priorityFlexDiv span.date {
+  background-color: #c3e2db;
+  color: var(--color-secondary);
+}
+
+.description {
+  font-size: 1.85rem;
+}
+
+/* Tags */
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -0.4rem;
+  gap: 0.7rem;
+}
+
+.tag {
+  font-size: 1.7rem;
+  padding: 0.2em 0.5em;
+  border-radius: 0.4em;
+  background-color: var(--color-grey);
+}
+
+/* Attachments */
+.attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.attachments_file {
+  font-size: 1.6rem;
+  background-color: #c1e1e1;
+  padding: 0.3em 0.5em;
+  color: blue;
+  white-space: nowrap;
+  overflow-x: hidden;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  border-radius: 0.4rem;
+  position: relative;
+}
+.attachments_file::after {
+  content: '';
+  height: 100%;
+  background: linear-gradient(to left, #c1e1e1, #c1e1e199);
+  width: 5rem;
+  position: absolute;
+  right: 0;
+}
+
+.attachments_file svg {
+  flex-shrink: 0;
+}
+
+/* Profiles */
+
+.groupsWrapper,
+.profilesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profilesWrapper {
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profilesWrapper_profile {
+  display: flex;
+  align-items: center;
+  font-size: 1.7rem;
+  gap: 0.7rem;
+  background-color: #c1e1e1;
+  width: fit-content;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.7rem;
+  text-transform: capitalize;
+}
+
+.profilesWrapper_profile .img {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.noDetails {
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.groupsWrapper {
+  gap: 0.7rem;
+}
+
+.groupName {
+  padding: 0.6rem 1rem;
+  font-size: 1.7rem;
+  border-radius: 0.7rem;
+  background-color: #dfd1b4;
+}
+
+/* Details Bottom Bar */
+.detailsBottomBar {
+  display: flex;
+  /* background-color: #90ada6; */
+  padding-block: 1rem;
+  gap: 1rem;
+}
+
+/* .detailsBottomBar button {
+  background-color: var(--color-secondary-dark);
+  color: white;
+  padding: 1rem;
+} */
+
+.detailsBottomBar > * {
+  flex-basis: 100%;
+}
+
+/* ===== COMMENTS SECTION ===== */
+.comments textarea {
+  width: 100%;
+  margin-bottom: 0.7rem;
+  font-size: 1.9rem;
+  border: none;
+  outline: none;
+  background-color: var(--color-input);
+  border-radius: 0.4rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--color-input);
+}
+
+.comments textarea:is(:active, :focus) {
+  border-color: var(--color-green-border);
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-block: 2rem;
+}
+
+.commentsList_card_username {
+  font-weight: 500;
+}
+
+.commentsList_card_time {
+  opacity: 0.6;
+}
+
+.commentsList_card_comment {
+  background-color: var(--color-primary);
+  background-color: #c1e1e1;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin-top: 0.2rem;
+}

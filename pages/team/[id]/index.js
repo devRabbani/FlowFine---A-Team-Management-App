@@ -17,7 +17,7 @@ export default function TeamPage() {
   const { id, menu } = router.query
   const { data, loading } = useDataDoc('teams/' + id)
   const { tasks, loading: tasksLoading } = useGetTasks(id)
-  const { name, updated, owner, members, groups } = data
+  const { name, updatedAt, owner, members, groups } = data
   console.log(data)
   if (loading) {
     return <p>Loading</p>
@@ -49,7 +49,7 @@ export default function TeamPage() {
 
   return (
     <>
-      <TeamHeader name={name} code={id} updated={updated} />
+      <TeamHeader name={name} code={id} updatedAt={updatedAt} />
       <div className={s.subPageBody}>{subPageRender(menu)}</div>
     </>
   )

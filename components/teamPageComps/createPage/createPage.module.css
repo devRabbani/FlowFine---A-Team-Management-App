@@ -28,7 +28,7 @@
   border-radius: 0.4rem;
   outline: none;
   background-color: var(--color-input);
-  border: 2px solid var(--color-white-light);
+  border: 2px solid var(--color-input);
 }
 
 .createForm input[type='date'] {

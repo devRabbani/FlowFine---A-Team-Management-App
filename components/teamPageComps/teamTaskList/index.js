@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import Select from 'react-select'
 import { customTheme, groupSelectStyle } from '../../../lib/reactSelect'
-import TaskListContent from './taskListContent'
-import TaskListNav from './taskListNav'
 import TasksKanban from './tasksKanban'
 import TasksList from './tasksList'
 import TasktopNav from './taskTopNav'
@@ -30,6 +28,8 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
   // const changeTask = (value) => {
   //   setSubnav(value)
   // }
+
+  console.count('Task Main')
   return (
     <>
       <TasktopNav setIsList={setIsList} isList={isList} />
@@ -45,17 +45,11 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
         />
       </div>
 
-      {isList ? <TasksList tasks={tasks} loading={loading} /> : <TasksKanban />}
-      {/* <div className={styles.body}>
-        {/* <TaskListNav
-          subnav={subnav}
-          subGroup={subGroup}
-          changeTask={changeTask}
-        />
-        <div className={styles.content}>
-          <TaskListContent data={tasks} isLoading={isLoading} />
-        </div>
-      </div> */}
+      {isList ? (
+        <TasksList tasks={tasks} loading={loading} />
+      ) : (
+        <TasksKanban tasks={tasks} loading={loading} />
+      )}
     </>
   )
 }
