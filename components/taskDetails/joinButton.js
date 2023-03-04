@@ -1,10 +1,5 @@
 import { useState } from 'react'
-import {
-  RiLoader2Fill,
-  RiLogoutBoxFill,
-  RiLogoutBoxLine,
-  RiTeamFill,
-} from 'react-icons/ri'
+import { RiLoader2Fill, RiLogoutBoxLine, RiTeamFill } from 'react-icons/ri'
 import { useTaskDetails } from '../../context/TaskDetailsContext'
 import { useUser } from '../../context/UserContext'
 import { joinTask, leaveTask } from '../../utils/firebase'
@@ -23,11 +18,16 @@ export default function JoinButton() {
   const taskid = shortInfo?.taskid
   const members = fullInfo?.assignedMembers
 
+  //  Callback Function
+  const handleLoading = (value) => {
+    setIsJoining(value)
+  }
+
   if (members?.includes(username)) {
     return (
       <Button
         onClick={() =>
-          leaveTask(username, taskDocId, taskid, teamCode, setIsJoining)
+          leaveTask(username, taskDocId, taskid, teamCode, handleLoading)
         }
         disabled={isJoining}
         variant="border red smallFont"
@@ -48,7 +48,7 @@ export default function JoinButton() {
   return (
     <Button
       onClick={() =>
-        joinTask(username, taskDocId, taskid, teamCode, setIsJoining)
+        joinTask(username, taskDocId, taskid, teamCode, handleLoading)
       }
       disabled={isJoining}
       variant="border smallFont"

@@ -4,14 +4,22 @@
   border-radius: 0.7rem;
 }
 
+/* Medium In SIze width */
 .btn:global(.md) {
   width: 7.9em;
 }
 
+/* Giving extra gap */
+.btn:global(.g2) {
+  gap: 0.8rem;
+}
+
+/* Small size scaling down */
 .btn:global(.smallFont) {
   font-size: 1.6rem;
 }
 
+/* Full Width btn */
 .btn.btn:global(.full) {
   width: 100%;
 }
@@ -19,6 +27,8 @@
 .btn:disabled {
   opacity: 0.7;
 }
+
+/* Different STyles Btn */
 .btn:global(.primary) {
   background-color: var(--color-secondary);
   color: white;
@@ -33,6 +43,7 @@
   border: 1px solid var(--color-secondary);
 }
 
+/* Only Color Different */
 .btn:global(.border.red) {
   border-color: var(--color-red);
   color: var(--color-red);

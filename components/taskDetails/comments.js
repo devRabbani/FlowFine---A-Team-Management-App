@@ -1,14 +1,67 @@
+import { useState } from 'react'
 import Button from '../button'
 import s from './taskDetails.module.css'
+import { RiMessage2Fill, RiMessage2Line } from 'react-icons/ri'
+import { useUser } from '../../context/UserContext'
+import { useTaskDetails } from '../../context/TaskDetailsContext'
+import { addComment } from '../../utils/firebase'
+import useGetComments from '../../hooks/useGetComments'
+import CommentsList from './commentsList'
 
 export default function Comments() {
+  // Local States
+  const [isCommenting, setIsCommenting] = useState(false)
+  const [comment, setComment] = useState('')
+
+  // Getting Username
+  const { username } = useUser()
+  //  Getting Task Details
+  const { teamCode, shortInfo } = useTaskDetails()
+  // Getting Comments
+  const { comments, commentsLoading } = useGetComments(shortInfo?.id)
+
+  //  Custom Function
+  const handleLoading = (value) => {
+    setIsCommenting(value)
+  }
+
+  const handleClearComment = () => {
+    setComment('')
+  }
+
   return (
     <div className={s.comments}>
       <textarea
         placeholder="Eg: I need this information for this task"
         rows="3"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
       />
-      <Button variant="primary">Comment</Button>
+      <Button
+        onClick={() =>
+          addComment(
+            username,
+            comment,
+            shortInfo?.id,
+            teamCode,
+            handleLoading,
+            handleClearComment
+          )
+        }
+        disabled={isCommenting || comment.length < 1}
+        variant="primary md g2"
+      >
+        {isCommenting ? (
+          <>
+            <RiMessage2Fill /> Adding
+          </>
+        ) : (
+          <>
+            <RiMessage2Line /> Comment
+          </>
+        )}
+      </Button>
+      <CommentsList loading={commentsLoading} comments={comments} />
     </div>
   )
 }

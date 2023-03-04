@@ -253,11 +253,11 @@ export const joinTask = async (
   taskDocId,
   taskid,
   teamCode,
-  setIsLoading
+  handleLoading
 ) => {
   let id
   try {
-    setIsLoading(true)
+    handleLoading(true)
     id = toast.loading(<b>Joining Task Please Wait..</b>)
     const docRef = doc(db, 'taskinfo', taskDocId)
     const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
@@ -276,7 +276,7 @@ export const joinTask = async (
     console.log(error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
-    setIsLoading(false)
+    handleLoading(false)
   }
 }
 
@@ -285,11 +285,11 @@ export const leaveTask = async (
   taskDocId,
   taskid,
   teamCode,
-  setIsLoading
+  handleLoading
 ) => {
   let id
   try {
-    setIsLoading(true)
+    handleLoading(true)
     id = toast.loading(<b>Leaving Task Please Wait..</b>)
     const docRef = doc(db, 'taskinfo', taskDocId)
     const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
@@ -308,7 +308,7 @@ export const leaveTask = async (
     console.log(error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
-    setIsLoading(false)
+    handleLoading(false)
   }
 }
 
@@ -318,12 +318,12 @@ export const markTaskStatus = async (
   teamcode,
   taskDocId,
   taskid,
-  setIsLoading,
+  handleLoading,
   handleModal
 ) => {
   let id
   try {
-    setIsLoading(true)
+    handleLoading(true)
     id = toast.loading(<b>Changing Task Status...</b>)
     const teamRef = doc(db, 'teams', teamcode)
     const taskRef = doc(teamRef, 'tasks', taskDocId)
@@ -353,6 +353,48 @@ export const markTaskStatus = async (
     console.log('Changing Task Status Error :', error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
-    setIsLoading(false)
+    handleLoading(false)
+  }
+}
+
+// Adding Comment
+export const addComment = async (
+  username,
+  comment,
+  taskDocId,
+  teamCode,
+  handleLoading,
+  handleClearComment
+) => {
+  try {
+    handleLoading(true)
+    const commentref = doc(collection(db, 'taskinfo', taskDocId, 'comments'))
+    const teamRef = doc(db, 'teams', teamCode)
+    const taskRef = doc(teamRef, 'tasks', taskDocId)
+
+    const batch = writeBatch(db)
+
+    // Adding Comment
+    batch.set(commentref, {
+      username,
+      comment,
+      timestamp: serverTimestamp(),
+    })
+    handleClearComment()
+    // Updating Task time
+    batch.update(taskRef, {
+      updatedAt: serverTimestamp(),
+    })
+    // Updating Team Time
+    batch.update(teamRef, {
+      updatedAt: serverTimestamp(),
+    })
+    // Commiting Changes
+    await batch.commit()
+  } catch (error) {
+    console.log('Adding Comment error :', error)
+    toast.error(<b>{error.message}</b>)
+  } finally {
+    handleLoading(false)
   }
 }

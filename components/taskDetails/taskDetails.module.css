@@ -214,7 +214,7 @@
 .comments textarea {
   width: 100%;
   margin-bottom: 0.7rem;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   border: none;
   outline: none;
   background-color: var(--color-input);
@@ -225,4 +225,28 @@
 
 .comments textarea:is(:active, :focus) {
   border-color: var(--color-green-border);
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-block: 2rem;
+}
+
+.commentsList_card_username {
+  font-weight: 500;
+}
+
+.commentsList_card_time {
+  opacity: 0.6;
+}
+
+.commentsList_card_comment {
+  background-color: var(--color-primary);
+  background-color: #c1e1e1;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin-top: 0.2rem;
 }

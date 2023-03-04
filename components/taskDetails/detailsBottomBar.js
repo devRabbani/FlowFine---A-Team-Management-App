@@ -22,6 +22,11 @@ export default function DetailsBottomBar() {
   const [status, setStatus] = useState(current || '')
   const [isMarking, setIsMarking] = useState(false)
 
+  // Callback Functions
+  const handleLoading = (value) => {
+    setIsMarking(value)
+  }
+
   return (
     <div className={s.detailsBottomBar}>
       <Button
@@ -34,7 +39,7 @@ export default function DetailsBottomBar() {
             teamCode,
             taskDocId,
             taskid,
-            setIsMarking,
+            handleLoading,
             handleModal
           )
         }
