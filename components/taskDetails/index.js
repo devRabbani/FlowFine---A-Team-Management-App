@@ -15,7 +15,9 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
   // Ref for click Outside Funstion
   const targetRef = useRef()
 
-  const router = useRouter()
+  const {
+    query: { id },
+  } = useRouter()
 
   //  Getting FUll Info of Task
   const { data, loading } = useDataDoc(`taskinfo/${viewDetails.id}`)
@@ -42,6 +44,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
         profiles={profiles}
         profilesLoading={profilesLoading}
         handleModal={handleModal}
+        teamCode={id}
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>

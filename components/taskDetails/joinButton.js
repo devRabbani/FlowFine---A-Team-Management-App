@@ -18,14 +18,17 @@ export default function JoinButton() {
   const { username } = useUser()
 
   // Getting Members
-  const { fullInfo, shortInfo } = useTaskDetails()
-  const taskid = shortInfo?.id
+  const { fullInfo, shortInfo, teamCode } = useTaskDetails()
+  const taskDocId = shortInfo?.id
+  const taskid = shortInfo?.taskid
   const members = fullInfo?.assignedMembers
 
   if (members?.includes(username)) {
     return (
       <Button
-        onClick={() => leaveTask(username, taskid, setIsJoining)}
+        onClick={() =>
+          leaveTask(username, taskDocId, taskid, teamCode, setIsJoining)
+        }
         disabled={isJoining}
         variant="border red smallFont"
       >
@@ -44,7 +47,9 @@ export default function JoinButton() {
 
   return (
     <Button
-      onClick={() => joinTask(username, taskid, setIsJoining)}
+      onClick={() =>
+        joinTask(username, taskDocId, taskid, teamCode, setIsJoining)
+      }
       disabled={isJoining}
       variant="border smallFont"
     >

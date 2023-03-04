@@ -222,47 +222,52 @@ export const createTask = async (
 ) => {
   const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
   const taskInfoRef = doc(db, 'taskinfo', taskRef.id)
-  const commentRef = doc(collection(taskInfoRef, 'comments'))
+  const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
 
   // Getting TASK ID 8 Digit
   const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const nanoid = customAlphabet(alphabet, 8)
-
+  const taskid = nanoid()
   // Creating Batch
   const batch = writeBatch(db)
 
   // Setting intial data
   batch.set(taskRef, {
     ...taskData,
-    taskid: nanoid(),
+    taskid,
     updatedAt: serverTimestamp(),
   })
   // Setting addintional data
   batch.set(taskInfoRef, taskInfoData)
-  // Setting Comments Info Data
-  batch.set(commentRef, {
-    type: 'info',
-    message: `@${username} created the task`,
+  // Setting Activity
+  batch.set(activityRef, {
+    message: `@${username} created the task : ID-${taskid}`,
     timestamp: serverTimestamp(),
   })
 
   await batch.commit()
 }
 
-export const joinTask = async (username, taskId, setIsLoading) => {
+export const joinTask = async (
+  username,
+  taskDocId,
+  taskid,
+  teamCode,
+  setIsLoading
+) => {
   let id
   try {
     setIsLoading(true)
     id = toast.loading(<b>Joining Task Please Wait..</b>)
-    const docRef = doc(db, 'taskinfo', taskId)
-    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+    const docRef = doc(db, 'taskinfo', taskDocId)
+    const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
+
     const batch = writeBatch(db)
     batch.update(docRef, {
       assignedMembers: arrayUnion(username),
     })
-    batch.set(commentRef, {
-      type: 'info',
-      message: `Wow @${username} join this task`,
+    batch.set(activityRef, {
+      message: `Wow @${username} join the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
     await batch.commit()
@@ -275,20 +280,26 @@ export const joinTask = async (username, taskId, setIsLoading) => {
   }
 }
 
-export const leaveTask = async (username, taskId, setIsLoading) => {
+export const leaveTask = async (
+  username,
+  taskDocId,
+  taskid,
+  teamCode,
+  setIsLoading
+) => {
   let id
   try {
     setIsLoading(true)
     id = toast.loading(<b>Leaving Task Please Wait..</b>)
-    const docRef = doc(db, 'taskinfo', taskId)
-    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+    const docRef = doc(db, 'taskinfo', taskDocId)
+    const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
+
     const batch = writeBatch(db)
     batch.update(docRef, {
       assignedMembers: arrayRemove(username),
     })
-    batch.set(commentRef, {
-      type: 'info',
-      message: `@${username} leave this task`,
+    batch.set(activityRef, {
+      message: `@${username} leave the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
     await batch.commit()
@@ -305,7 +316,8 @@ export const markTaskStatus = async (
   username,
   status,
   teamcode,
-  taskId,
+  taskDocId,
+  taskid,
   setIsLoading,
   handleModal
 ) => {
@@ -314,8 +326,8 @@ export const markTaskStatus = async (
     setIsLoading(true)
     id = toast.loading(<b>Changing Task Status...</b>)
     const teamRef = doc(db, 'teams', teamcode)
-    const taskRef = doc(teamRef, 'tasks', taskId)
-    const commentRef = doc(collection(db, 'taskinfo', taskId, 'comments'))
+    const taskRef = doc(teamRef, 'tasks', taskDocId)
+    const activityRef = doc(collection(teamRef, 'activity'))
 
     const batch = writeBatch(db)
 
@@ -325,9 +337,8 @@ export const markTaskStatus = async (
       updatedAt: serverTimestamp(),
     })
     // Writing to Comments Info
-    batch.set(commentRef, {
-      type: 'info',
-      message: `@${username} just set the task status to : ${status}`,
+    batch.set(activityRef, {
+      message: `@${username} just set the task ID-${taskid} status to : ${status}`,
       timestamp: serverTimestamp(),
     })
     // Updating Team Last Updates

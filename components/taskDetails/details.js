@@ -42,6 +42,15 @@ export default function Details() {
             <p className={s.description}>{fullInfo.description}</p>
           </div>
         ) : null}
+        {fullInfo?.tags ? (
+          <div className={s.tagsWrapper}>
+            {fullInfo.tags.map((tag, i) => (
+              <div className={s.tag} key={i}>
+                {tag}
+              </div>
+            ))}
+          </div>
+        ) : null}
         {fullInfo?.attachments?.length ? (
           <div>
             <h3 className={s.header}>Attachments</h3>

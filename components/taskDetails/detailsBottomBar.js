@@ -13,15 +13,12 @@ import Button from '../button'
 import s from './taskDetails.module.css'
 
 export default function DetailsBottomBar() {
-  const { shortInfo, handleModal } = useTaskDetails() // shortInfo for getting status
+  const { shortInfo, handleModal, teamCode } = useTaskDetails() // shortInfo for getting status
   const { username } = useUser() // Username
 
-  // Router for getting team code
-  const {
-    query: { id },
-  } = useRouter()
-
   const current = shortInfo?.status
+  const taskDocId = shortInfo?.id
+  const taskid = shortInfo?.taskid
   const [status, setStatus] = useState(current || '')
   const [isMarking, setIsMarking] = useState(false)
 
@@ -34,8 +31,9 @@ export default function DetailsBottomBar() {
           markTaskStatus(
             username,
             status,
-            id,
-            shortInfo?.id,
+            teamCode,
+            taskDocId,
+            taskid,
             setIsMarking,
             handleModal
           )

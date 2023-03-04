@@ -49,7 +49,14 @@
   overflow-y: auto;
 }
 
-/* Details */
+.comments {
+  height: calc(
+    70vh + 6.18rem
+  ); /* Added because of the bottom bar height 61.8px*/
+}
+
+/* ===== DETAILS SECTION ===== */
+
 .header {
   color: var(--color-green-dark);
   padding-bottom: 0.34rem;
@@ -89,6 +96,21 @@
 
 .description {
   font-size: 1.85rem;
+}
+
+/* Tags */
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -0.4rem;
+  gap: 0.7rem;
+}
+
+.tag {
+  font-size: 1.7rem;
+  padding: 0.2em 0.5em;
+  border-radius: 0.4em;
+  background-color: var(--color-grey);
 }
 
 /* Attachments */
@@ -186,4 +208,21 @@
 
 .detailsBottomBar > * {
   flex-basis: 100%;
+}
+
+/* ===== COMMENTS SECTION ===== */
+.comments textarea {
+  width: 100%;
+  margin-bottom: 0.7rem;
+  font-size: 1.7rem;
+  border: none;
+  outline: none;
+  background-color: var(--color-input);
+  border-radius: 0.4rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--color-input);
+}
+
+.comments textarea:is(:active, :focus) {
+  border-color: var(--color-green-border);
 }
