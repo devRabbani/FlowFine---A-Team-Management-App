@@ -6,14 +6,8 @@
   left: 0;
   right: 0;
   z-index: 999;
-  /* box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.3); */
   border-radius: 0.8rem 0.8rem 0 0;
 }
-
-/* .viewDetails {
-  height: 75vh;
-  overflow: hidden;
-} */
 
 .viewDetails_nav {
   display: flex;
@@ -85,8 +79,6 @@
 .priorityFlexDiv span {
   padding: 0.35em 0.5em;
   border-radius: 0.7rem;
-
-  /* margin-left: 0.3rem; */
 }
 
 .priorityFlexDiv span.date {
@@ -195,16 +187,9 @@
 /* Details Bottom Bar */
 .detailsBottomBar {
   display: flex;
-  /* background-color: #90ada6; */
   padding-block: 1rem;
   gap: 1rem;
 }
-
-/* .detailsBottomBar button {
-  background-color: var(--color-secondary-dark);
-  color: white;
-  padding: 1rem;
-} */
 
 .detailsBottomBar > * {
   flex-basis: 100%;
@@ -250,4 +235,10 @@
   padding: 1rem;
   border-radius: 0.4rem;
   margin-top: 0.2rem;
+}
+
+.noData {
+  margin-top: 5rem;
+  text-align: center;
+  opacity: 0.7;
 }

@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import Button from '../button'
-import s from './taskDetails.module.css'
 import { RiMessage2Fill, RiMessage2Line } from 'react-icons/ri'
-import { useUser } from '../../context/UserContext'
-import { useTaskDetails } from '../../context/TaskDetailsContext'
-import { addComment } from '../../utils/firebase'
+import { useTaskDetails } from '../../../context/TaskDetailsContext'
+import { useUser } from '../../../context/UserContext'
+import { addComment } from '../../../utils/firebase'
+import Button from '../../button'
+import s from '../taskDetails.module.css'
 import CommentsList from './commentsList'
-import usePaginatedData from '../../hooks/usePaginatedData'
 
 export default function Comments() {
   // Local States
@@ -16,14 +15,15 @@ export default function Comments() {
   // Getting Username
   const { username } = useUser()
   //  Getting Task Details
-  const { teamCode, shortInfo, comments, commentsLoading, loadMore } =
-    useTaskDetails()
-  // Getting Comments
-  // const {
-  //   data: comments,
-  //   isLoading: commentsLoading,
-  //   loadMore,
-  // } = usePaginatedData(`taskinfo/${shortInfo?.id}/comments`)
+  const {
+    teamCode,
+    shortInfo,
+    comments,
+    commentsLoading,
+    loadMore,
+    hasMore,
+    btnLoading,
+  } = useTaskDetails()
 
   //  Custom Function
   const handleLoading = (value) => {
@@ -67,7 +67,11 @@ export default function Comments() {
         )}
       </Button>
       <CommentsList loading={commentsLoading} comments={comments} />
-      <button onClick={loadMore}>Load More</button>
+      {hasMore ? (
+        <button disabled={btnLoading} onClick={loadMore}>
+          {btnLoading ? 'Loading' : 'Load More'}
+        </button>
+      ) : null}
     </div>
   )
 }
