@@ -1,12 +1,12 @@
 import moment from 'moment/moment'
-import s from './taskDetails.module.css'
+import s from '../taskDetails.module.css'
 
 export default function CommentsList({ loading, comments }) {
   if (loading) {
     return <p>Loading...</p>
   }
   if (comments?.length === 0) {
-    return <p>No comments found Add some comments</p>
+    return <p className={s.noData}>No comments found Add some comments</p>
   }
 
   return (

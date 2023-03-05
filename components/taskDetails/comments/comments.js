@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import Button from '../button'
-import s from './taskDetails.module.css'
 import { RiMessage2Fill, RiMessage2Line } from 'react-icons/ri'
-import { useUser } from '../../context/UserContext'
-import { useTaskDetails } from '../../context/TaskDetailsContext'
-import { addComment } from '../../utils/firebase'
-import useGetComments from '../../hooks/useGetComments'
+import { useTaskDetails } from '../../../context/TaskDetailsContext'
+import { useUser } from '../../../context/UserContext'
+import { addComment } from '../../../utils/firebase'
+import Button from '../../button'
+import s from '../taskDetails.module.css'
 import CommentsList from './commentsList'
 
 export default function Comments() {
@@ -16,9 +15,15 @@ export default function Comments() {
   // Getting Username
   const { username } = useUser()
   //  Getting Task Details
-  const { teamCode, shortInfo } = useTaskDetails()
-  // Getting Comments
-  const { comments, commentsLoading } = useGetComments(shortInfo?.id)
+  const {
+    teamCode,
+    shortInfo,
+    comments,
+    commentsLoading,
+    loadMore,
+    hasMore,
+    btnLoading,
+  } = useTaskDetails()
 
   //  Custom Function
   const handleLoading = (value) => {
@@ -62,6 +67,11 @@ export default function Comments() {
         )}
       </Button>
       <CommentsList loading={commentsLoading} comments={comments} />
+      {hasMore ? (
+        <button disabled={btnLoading} onClick={loadMore}>
+          {btnLoading ? 'Loading' : 'Load More'}
+        </button>
+      ) : null}
     </div>
   )
 }

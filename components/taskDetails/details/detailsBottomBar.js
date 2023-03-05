@@ -1,16 +1,15 @@
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Select from 'react-select'
-import { useTaskDetails } from '../../context/TaskDetailsContext'
-import { useUser } from '../../context/UserContext'
+import { useTaskDetails } from '../../../context/TaskDetailsContext'
+import { useUser } from '../../../context/UserContext'
 import {
   customTheme,
   statusOptions,
   statusSelectStyle,
-} from '../../lib/reactSelect'
-import { markTaskStatus } from '../../utils/firebase'
-import Button from '../button'
-import s from './taskDetails.module.css'
+} from '../../../lib/reactSelect'
+import { markTaskStatus } from '../../../utils/firebase'
+import Button from '../../button'
+import s from '../taskDetails.module.css'
 
 export default function DetailsBottomBar() {
   const { shortInfo, handleModal, teamCode } = useTaskDetails() // shortInfo for getting status

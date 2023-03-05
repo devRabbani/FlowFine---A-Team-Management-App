@@ -5,8 +5,9 @@ import TaskDetailsContextProvider from '../../context/TaskDetailsContext'
 import useClickOutside from '../../hooks/useClickOutside'
 import useDataDoc from '../../hooks/useDataDoc'
 import useGetProfiles from '../../hooks/useGetProfiles'
-import Comments from './comments'
-import Details from './details'
+import usePaginatedData from '../../hooks/usePaginatedData'
+import Comments from './comments/comments'
+import Details from './details/details'
 import s from './taskDetails.module.css'
 
 export default function TaskDetails({ viewDetails, setViewDetails }) {
@@ -27,11 +28,22 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
     data?.assignedMembers
   )
 
+  // Getting Comments
+  const {
+    data: comments,
+    isLoading: commentsLoading,
+    loadMore,
+    hasMore,
+    btnLoading,
+  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`)
+
   // Custom Function
   // Handle Modal : Will set value to null
   const handleModal = () => {
     setViewDetails(null)
   }
+
+  // Hook for triggering click outside to close modal
   useClickOutside(targetRef, handleModal)
 
   console.count('Task Details')
@@ -45,6 +57,11 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
         profilesLoading={profilesLoading}
         handleModal={handleModal}
         teamCode={id}
+        comments={comments}
+        commentsLoading={commentsLoading}
+        loadMore={loadMore}
+        hasMore={hasMore}
+        btnLoading={btnLoading}
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>
@@ -74,17 +91,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
               Comments
             </div>
           </div>
-          {isCommentMode ? (
-            <Comments />
-          ) : (
-            <Details
-              shortInfo={viewDetails}
-              fullInfo={data}
-              loading={loading}
-              profiles={profiles}
-              profilesLoading={profilesLoading}
-            />
-          )}
+          {isCommentMode ? <Comments /> : <Details />}
         </div>
       </TaskDetailsContextProvider>
     </div>
