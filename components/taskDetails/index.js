@@ -5,6 +5,7 @@ import TaskDetailsContextProvider from '../../context/TaskDetailsContext'
 import useClickOutside from '../../hooks/useClickOutside'
 import useDataDoc from '../../hooks/useDataDoc'
 import useGetProfiles from '../../hooks/useGetProfiles'
+import usePaginatedData from '../../hooks/usePaginatedData'
 import Comments from './comments'
 import Details from './details'
 import s from './taskDetails.module.css'
@@ -27,6 +28,13 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
     data?.assignedMembers
   )
 
+  // Getting Comments
+  const {
+    data: comments,
+    isLoading: commentsLoading,
+    loadMore,
+  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`)
+
   // Custom Function
   // Handle Modal : Will set value to null
   const handleModal = () => {
@@ -45,6 +53,9 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
         profilesLoading={profilesLoading}
         handleModal={handleModal}
         teamCode={id}
+        comments={comments}
+        commentsLoading={commentsLoading}
+        loadMore={loadMore}
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>

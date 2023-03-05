@@ -5,8 +5,8 @@ import { RiMessage2Fill, RiMessage2Line } from 'react-icons/ri'
 import { useUser } from '../../context/UserContext'
 import { useTaskDetails } from '../../context/TaskDetailsContext'
 import { addComment } from '../../utils/firebase'
-import useGetComments from '../../hooks/useGetComments'
 import CommentsList from './commentsList'
+import usePaginatedData from '../../hooks/usePaginatedData'
 
 export default function Comments() {
   // Local States
@@ -16,9 +16,14 @@ export default function Comments() {
   // Getting Username
   const { username } = useUser()
   //  Getting Task Details
-  const { teamCode, shortInfo } = useTaskDetails()
+  const { teamCode, shortInfo, comments, commentsLoading, loadMore } =
+    useTaskDetails()
   // Getting Comments
-  const { comments, commentsLoading } = useGetComments(shortInfo?.id)
+  // const {
+  //   data: comments,
+  //   isLoading: commentsLoading,
+  //   loadMore,
+  // } = usePaginatedData(`taskinfo/${shortInfo?.id}/comments`)
 
   //  Custom Function
   const handleLoading = (value) => {
@@ -62,6 +67,7 @@ export default function Comments() {
         )}
       </Button>
       <CommentsList loading={commentsLoading} comments={comments} />
+      <button onClick={loadMore}>Load More</button>
     </div>
   )
 }
