@@ -1,0 +1,51 @@
+.activity {
+  --nav-height: 6rem;
+  position: absolute;
+  top: var(--nav-height);
+  background-color: var(--color-input);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  width: 96%;
+  margin-inline: auto;
+  border-radius: 0.7rem;
+  padding: 1rem 1.5rem 2rem;
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5),
+    0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.activity_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--nav-height) - 15rem);
+  overflow-y: auto;
+}
+
+.activity_card {
+  border-bottom: 1px solid var(--color-grey);
+  padding-block: 1.2rem;
+}
+
+.activity_card_info {
+  font-size: 1.8rem;
+}
+
+.activity_card_time {
+  font-size: 1.6rem;
+  opacity: 0.6;
+}
+
+.activity_topbar {
+  border-bottom: 1px solid var(--color-grey);
+  padding-bottom: 1rem;
+}
+
+.activity_topbar button {
+  margin-left: auto;
+  color: var(--color-red);
+}
+
+.activity_loadmore {
+  margin-top: 1rem;
+  color: var(--color-blue);
+}

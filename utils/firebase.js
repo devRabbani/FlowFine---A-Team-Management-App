@@ -398,3 +398,11 @@ export const addComment = async (
     handleLoading(false)
   }
 }
+
+// Clear All Activity
+export const clearActivity = async () => {
+  try {
+  } catch (error) {
+    console.log(error)
+  }
+}

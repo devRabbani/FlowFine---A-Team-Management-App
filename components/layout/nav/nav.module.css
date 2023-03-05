@@ -4,6 +4,7 @@
   top: 0;
   /* background-color: var(--color-green-6); */
   background-color: var(--color-primary);
+  z-index: 999;
 }
 .nav {
   height: 5.8rem;
@@ -25,11 +26,19 @@
   margin-left: -0.5rem;
 }
 
-.menu {
+.menus {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menus_menu_activity,
+.menus_menu_profile {
   font-size: 3.5rem;
 }
+
 .close {
   font-size: 4.2rem;
   margin-right: -0.6rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }

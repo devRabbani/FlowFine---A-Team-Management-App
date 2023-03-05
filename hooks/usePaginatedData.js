@@ -41,24 +41,27 @@ export default function usePaginatedData(colPath) {
   }
 
   useEffect(() => {
-    const unsub = onSnapshot(
-      query(
-        collection(db, colPath),
-        orderBy('timestamp', 'desc'),
-        limit(LIMIT)
-      ),
-      (snapshot) => {
-        if (!snapshot.empty) {
-          setData(snapshot.docs.map((item) => item.data()))
-        } else {
-          setData([])
+    let unsub
+    if (colPath) {
+      unsub = onSnapshot(
+        query(
+          collection(db, colPath),
+          orderBy('timestamp', 'desc'),
+          limit(LIMIT)
+        ),
+        (snapshot) => {
+          if (!snapshot.empty) {
+            setData(snapshot.docs.map((item) => item.data()))
+          } else {
+            setData([])
+          }
+          setLast(snapshot.docs[snapshot.docs.length - 1])
+          setHasMore(snapshot.docs.length === LIMIT)
+          setIsLoading(false)
         }
-        setLast(snapshot.docs[snapshot.docs.length - 1])
-        setHasMore(snapshot.docs.length === LIMIT)
-        setIsLoading(false)
-      }
-    )
-    return () => unsub()
+      )
+    }
+    return () => unsub && unsub()
   }, [colPath])
 
   return { data, isLoading, loadMore, btnLoading, hasMore }
