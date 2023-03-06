@@ -10,6 +10,7 @@ import Layout from '../components/layout'
 import nProgress from 'nprogress'
 import { useEffect } from 'react'
 import UserContextProvider from '../context/UserContext'
+import TeamDataContextProvider from '../context/TeamDataContext'
 
 const finlandica = Finlandica({ subsets: ['latin'] })
 
@@ -45,11 +46,13 @@ function MyApp({ Component, pageProps }) {
             {publicRoutes.includes(router.pathname) ? (
               <Component {...pageProps} />
             ) : (
-              <PrivateRoute>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </PrivateRoute>
+              <TeamDataContextProvider>
+                <PrivateRoute>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </PrivateRoute>
+              </TeamDataContextProvider>
             )}
           </UserContextProvider>
         </AuthContextProvider>
