@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import Select from 'react-select'
+import Select from 'react-select/dist/declarations/src/Select'
+import TeamTaskList from '../../../components/teamPageComps/teamTaskList'
+import TasksKanban from '../../../components/teamPageComps/teamTaskList/tasksKanban'
+import TasksList from '../../../components/teamPageComps/teamTaskList/tasksList'
+import TasktopNav from '../../../components/teamPageComps/teamTaskList/taskTopNav'
 import { customTheme, groupSelectStyle } from '../../../lib/reactSelect'
-import TasksKanban from './tasksKanban'
-import TasksList from './tasksList'
-import TasktopNav from './taskTopNav'
-import styles from './teamTaskList.module.css'
+import s from '../../../styles/Tasks.module.css'
 
-export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
+export default function Tasks() {
+  // Local States
   const [isList, setIsList] = useState(true)
 
   const groupOptions = [
@@ -27,7 +28,7 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
   return (
     <>
       <TasktopNav setIsList={setIsList} isList={isList} />
-      <div className={styles.selectGroup}>
+      <div className={s.selectGroup}>
         {/* <label>Filter By Group:</label> */}
         <Select
           styles={groupSelectStyle}

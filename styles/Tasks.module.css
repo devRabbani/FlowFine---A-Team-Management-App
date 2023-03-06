@@ -1,0 +1,198 @@
+.loading {
+  margin: 40px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(75, 113, 90);
+}
+
+/* Task Top Bar */
+.taskTopBar {
+  display: flex;
+}
+
+.taskTopBar_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid #9fdd9f;
+  cursor: pointer;
+}
+
+.taskTopBar_menu.active {
+  font-weight: 600;
+  padding-block: 0.9rem;
+  color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  border-width: 2px;
+}
+
+/* Select Group */
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-block: 1.6rem 2rem;
+}
+
+/* Tasks List */
+.tasksKanbanBody,
+.tasksListBody {
+  background-color: var(--color-green-dark);
+  padding: 1.5rem;
+}
+
+.tasksListBody {
+  min-height: 45vh;
+  border-radius: 0.7rem;
+}
+
+.headerDiv {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--color-green-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sortDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 18rem;
+  margin-bottom: -0.3rem;
+}
+
+.sortDiv > *:nth-child(2) {
+  flex-grow: 1;
+}
+.tasksListWrapper {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Task Kanban */
+.kanbanNav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.2rem;
+}
+.kanbanNav_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.8rem;
+  padding: 1.35rem 1rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  background-color: rgb(182, 206, 201);
+}
+
+.tasksKanbanBody {
+  min-height: 40vh;
+  border-radius: 0 0 0.7rem 0.7rem;
+}
+
+.tasksKanbanBody .tasksListWrapper {
+  margin-top: 1rem;
+}
+
+.kanbanNav_menu.active {
+  background-color: var(--color-green-dark);
+  font-weight: 500;
+  color: var(--color-secondary-dark);
+  font-weight: 500;
+  border: 1px solid var(--color-green-2);
+  border-bottom: none;
+}
+
+/* Task Card */
+.taskCard {
+  background-color: var(--color-primary);
+  padding: 0.7rem 1rem 1rem;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.taskCardTopBar,
+.taskCardBottomBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.taskCardTopBar {
+  gap: 0.6rem;
+  justify-content: space-between;
+}
+
+.low,
+.normal,
+.high {
+  font-size: 1.6rem;
+  background-color: hsl(208, 49%, 61%);
+  color: hsl(208, 79%, 21%);
+  width: 7rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.low {
+  background-color: #ceedce;
+}
+
+.high {
+  background-color: rgb(225, 143, 125);
+  color: rgb(182, 3, 3);
+}
+
+.title {
+  font-size: 2.1rem;
+  line-height: 1.27;
+  /* margin-block: 1rem; */
+  margin-top: 1rem;
+  text-transform: capitalize;
+  color: var(--color-secondary-dark);
+}
+
+.taskid {
+  /* margin-block: 0.7rem 0.2rem; */
+  color: var(--color-green-1);
+  margin-left: auto;
+}
+
+.status {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+  /* margin-left: auto; */
+  text-align: center;
+  background-color: #91b3ab;
+  font-size: 1.3rem;
+}
+
+.taskCardBottomBar {
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.taskCardBottomBar p {
+  font-size: 1.5rem;
+}
+
+/* Media Query */
+@media screen and (min-width: 361px) {
+  .taskCardBottomBar p {
+    font-size: 1.7rem;
+  }
+  .status {
+    font-size: 1.4rem;
+    padding-inline: 0.8rem;
+  }
+}

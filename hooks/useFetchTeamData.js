@@ -1,25 +1,29 @@
 import { doc, onSnapshot } from 'firebase/firestore'
 import { useEffect } from 'react'
-import { useTeamData } from '../context/TeamDataContext'
+import { useTeam } from '../context/TeamContext'
 import { db } from '../lib/firebase'
-import { ADD_DATA, LOADING_FINISH, NO_DATA } from '../reducers/teamDataReducer'
+import {
+  ADD_TEAM_DATA,
+  NO_TEAM_DATA,
+  TEAM_LOADING_FINISH,
+} from '../reducers/teamReducer'
 
 export default function useFetchTeamData(teamCode) {
-  const { dispatch } = useTeamData()
+  const { dispatch } = useTeam()
 
   useEffect(() => {
     let unsub
     try {
       unsub = onSnapshot(doc(db, 'teams', teamCode), (snapshot) => {
         if (snapshot.exists()) {
-          dispatch({ type: ADD_DATA, payload: snapshot.data() })
+          dispatch({ type: ADD_TEAM_DATA, payload: snapshot.data() })
         } else {
-          dispatch({ type: NO_DATA })
+          dispatch({ type: NO_TEAM_DATA })
         }
       })
     } catch (error) {
       console.log('Fetching Team Data:', error)
-      dispatch({ type: LOADING_FINISH })
+      dispatch({ type: TEAM_LOADING_FINISH })
     }
 
     return () => unsub && unsub()
