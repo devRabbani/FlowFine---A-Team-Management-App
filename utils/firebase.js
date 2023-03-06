@@ -398,3 +398,16 @@ export const addComment = async (
     handleLoading(false)
   }
 }
+
+// Clear All Activity
+export const clearActivity = async () => {
+  try {
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Check if user is owner or editor
+export const checkAccess = (teamdata = [], username) => {
+  return teamdata.includes(username)
+}
