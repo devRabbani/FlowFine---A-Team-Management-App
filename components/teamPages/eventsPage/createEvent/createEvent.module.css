@@ -1,0 +1,43 @@
+.createEvent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.twoDiv,
+.btnDiv {
+  display: flex;
+  gap: 1rem;
+}
+
+.twoDiv > * {
+  flex: 1;
+}
+
+.btnDiv {
+  margin-top: 1rem;
+}
+
+.createEvent input,
+.createEvent textarea {
+  background-color: var(--color-input);
+  font-size: 1.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.4rem;
+  outline: none;
+  background-color: var(--color-input);
+  border: 2px solid var(--color-input);
+}
+
+.createEvent input:active,
+.createEvent textarea:active,
+.createEvent input:focus,
+.createEvent textarea:focus {
+  border-color: var(--color-green-border);
+}

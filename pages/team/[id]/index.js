@@ -6,7 +6,7 @@ import TeamHeader from '../../../components/teamHeader'
 import useDataDoc from '../../../hooks/useDataDoc'
 import MembersPage from '../../../components/teamPages/membersPage'
 import CreatePage from '../../../components/teamPages/createPage'
-import GroupsPage from '../../../components/teamPages/groupsPage'
+import EventsPage from '../../../components/teamPages/eventsPage'
 import ArchivePage from '../../../components/teamPages/archivePage'
 import TeamTaskList from '../../../components/teamPages/teamTaskList'
 import s from '../../../styles/Team.module.css'
@@ -42,8 +42,8 @@ export default function TeamPage() {
     return <MembersPage />
   } else if (menu === 'create') {
     return <CreatePage />
-  } else if (menu === 'groups') {
-    return <GroupsPage />
+  } else if (menu === 'events') {
+    return <EventsPage />
   } else if (menu === 'archive') {
     return <ArchivePage />
   } else {
