@@ -7,7 +7,7 @@ export default function HomePage({ id }) {
   // Getting Datas from Context
   const { team_data, team_loading } = useTeam()
   const { name, updatedAt, owner, members, groups } = team_data
-
+  console.count('Home Page')
   return (
     <div className={s.homePage}>
       <TeamHeader name={name} code={id} updatedAt={updatedAt} />

@@ -6,7 +6,7 @@ export default function ActivityLists({ teamCode }) {
   const { data, isLoading, hasMore, loadMore, btnLoading } = usePaginatedData(
     `teams/${teamCode}/activity`
   )
-
+  console.count('Activity')
   if (isLoading) {
     return <p>Loading....</p>
   }

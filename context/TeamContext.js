@@ -8,6 +8,8 @@ export const useTeam = () => useContext(TeamContext)
 const INITIAL = {
   team_data: {},
   team_loading: true,
+  tasks_data: [],
+  tasks_loading: true,
 }
 
 export default function TeamContextProvider({ children }) {

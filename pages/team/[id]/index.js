@@ -22,27 +22,19 @@ export default function TeamPage() {
 
   // Fetching Initial Datas
   useFetchTeamData(id) // Fetching Team Data
-  const { tasks, loading: tasksLoading } = useGetTasks(id)
+  useGetTasks(id) // Fetching Tasks List
 
   // Getting Datas from Context
-  const { team_data, team_loading } = useTeam()
-  const { name, updatedAt, owner, members, groups } = team_data
+  const { team_loading } = useTeam()
 
   if (team_loading) {
     return <p>Loading</p>
   } else if (menu === 'tasks') {
-    return (
-      <TeamTaskList
-        teamCode={id}
-        subgroup={[]}
-        tasks={tasks}
-        loading={tasksLoading}
-      />
-    )
+    return <TeamTaskList />
   } else if (menu === 'members') {
     return <MembersPage />
   } else if (menu === 'create') {
-    return <CreatePage members={members} groups={groups} teamcode={id} />
+    return <CreatePage />
   } else if (menu === 'groups') {
     return <GroupsPage />
   } else if (menu === 'archive') {

@@ -8,55 +8,21 @@ import {
 import TaskCard from '../../../taskCard'
 import { AiOutlineFileSearch } from 'react-icons/ai'
 import s from './tasksList.module.css'
+import SearchTasks from './searchTasks'
+import ListTasks from './listTasks'
+import { useTeam } from '../../../../context/TeamContext'
 
-export default function TasksList({ tasks, loading }) {
-  const [sort, setSort] = useState('updates')
+export default function TasksList() {
+  const [isSearch, setIsSearch] = useState(false)
 
-  console.count('Task List')
+  // Callback Functions
+  const handleSetSearch = (value) => setIsSearch(value)
 
+  console.count('Tasks List')
   return (
     <>
-      <div className={s.searchDiv}>
-        <AiOutlineFileSearch />
-        <input placeholder="Search ID or Task name" type="search" />
-      </div>
-
-      <div className={s.tasksListBody}>
-        <div className={s.headerDiv}>
-          <h3 className="header2">Tasks List</h3>
-          <div className={s.sortDiv}>
-            <label>Filter :</label>
-            <Select
-              styles={sortSelectStyle}
-              options={sortOptions}
-              defaultValue={sortOptions[0]}
-              theme={customTheme}
-              placeholder="Sort"
-              isSearchable={false}
-              onChange={(e) => setSort(e.value)}
-            />
-          </div>
-        </div>
-        <div className={s.tasksListWrapper}>
-          {loading ? (
-            <p>Loading...</p>
-          ) : tasks?.length > 0 ? (
-            tasks
-              .sort((a, b) => {
-                if (sort === 'deadline') {
-                  return new Date(a?.deadline) - new Date(b?.deadline)
-                } else if (sort === 'priority') {
-                  return b?.priority - a?.priority
-                } else {
-                  return b?.updatedAt?.seconds - a?.updatedAt?.seconds
-                }
-              })
-              .map((task) => <TaskCard task={task} key={task.id} />)
-          ) : (
-            <p>No Tasks Found</p>
-          )}
-        </div>
-      </div>
+      <SearchTasks isSearch={isSearch} handleSetSearch={handleSetSearch} />
+      {!isSearch && <ListTasks />}
     </>
   )
 }

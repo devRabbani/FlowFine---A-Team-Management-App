@@ -6,7 +6,7 @@ import TasksList from './tasksList'
 import TasktopNav from './taskTopNav'
 import styles from './teamTaskList.module.css'
 
-export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
+export default function TeamTaskList() {
   const [isList, setIsList] = useState(true)
 
   const groupOptions = [
@@ -28,7 +28,6 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
     <div className={styles.tasksPage}>
       <div className={styles.stickyTop}>
         <div className={styles.selectGroup}>
-          {/* <label>Filter By Group:</label> */}
           <Select
             styles={groupSelectStyle}
             options={groupOptions}
@@ -40,11 +39,7 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
         </div>
         <TasktopNav setIsList={setIsList} isList={isList} />
       </div>
-      {isList ? (
-        <TasksList tasks={tasks} loading={loading} />
-      ) : (
-        <TasksKanban tasks={tasks} loading={loading} />
-      )}
+      {isList ? <TasksList /> : <TasksKanban />}
     </div>
   )
 }
