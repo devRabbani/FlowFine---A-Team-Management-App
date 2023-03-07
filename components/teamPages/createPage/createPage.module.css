@@ -1,3 +1,7 @@
+.createPage {
+  padding-bottom: 15rem;
+}
+
 .createForm {
   display: flex;
   flex-direction: column;

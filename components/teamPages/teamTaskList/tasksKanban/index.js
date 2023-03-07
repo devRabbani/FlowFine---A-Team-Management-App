@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
-import TaskCard from './taskCard'
-import s from './teamTaskList.module.css'
+import TaskCard from '../../../taskCard'
+import s from './tasksKanban.module.css'
 
 export default function TasksKanban({ tasks, loading }) {
   const [statusMenu, setStatusMenu] = useState('idle')

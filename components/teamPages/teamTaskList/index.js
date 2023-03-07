@@ -25,24 +25,26 @@ export default function TeamTaskList({ teamCode, tasks, subGroup, loading }) {
   ]
 
   return (
-    <>
-      <TasktopNav setIsList={setIsList} isList={isList} />
-      <div className={styles.selectGroup}>
-        {/* <label>Filter By Group:</label> */}
-        <Select
-          styles={groupSelectStyle}
-          options={groupOptions}
-          // defaultValue={priorityOptions[1]}
-          theme={customTheme}
-          placeholder="Select Group : All"
-          // onChange={(e) => setPriority(e.value)}
-        />
+    <div className={styles.tasksPage}>
+      <div className={styles.stickyTop}>
+        <div className={styles.selectGroup}>
+          {/* <label>Filter By Group:</label> */}
+          <Select
+            styles={groupSelectStyle}
+            options={groupOptions}
+            // defaultValue={priorityOptions[1]}
+            theme={customTheme}
+            placeholder="Select Group : All"
+            // onChange={(e) => setPriority(e.value)}
+          />
+        </div>
+        <TasktopNav setIsList={setIsList} isList={isList} />
       </div>
       {isList ? (
         <TasksList tasks={tasks} loading={loading} />
       ) : (
         <TasksKanban tasks={tasks} loading={loading} />
       )}
-    </>
+    </div>
   )
 }

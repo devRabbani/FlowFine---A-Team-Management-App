@@ -1,0 +1,83 @@
+.taskCard {
+  background-color: var(--color-primary);
+  padding: 0.7rem 1rem 1rem;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.taskCardTopBar,
+.taskCardBottomBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.taskCardTopBar {
+  gap: 0.6rem;
+  justify-content: space-between;
+}
+
+.low,
+.normal,
+.high {
+  font-size: 1.6rem;
+  background-color: hsl(208, 49%, 61%);
+  color: hsl(208, 79%, 21%);
+  width: 7rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.low {
+  background-color: #ceedce;
+}
+
+.high {
+  background-color: rgb(225, 143, 125);
+  color: rgb(182, 3, 3);
+}
+
+.title {
+  font-size: 2.1rem;
+  line-height: 1.27;
+  /* margin-block: 1rem; */
+  margin-top: 1rem;
+  text-transform: capitalize;
+  color: var(--color-secondary-dark);
+}
+
+.taskid {
+  /* margin-block: 0.7rem 0.2rem; */
+  color: var(--color-green-1);
+  margin-left: auto;
+}
+
+.status {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+  /* margin-left: auto; */
+  text-align: center;
+  background-color: #91b3ab;
+  font-size: 1.3rem;
+}
+
+.taskCardBottomBar {
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.taskCardBottomBar p {
+  font-size: 1.5rem;
+}
+
+/* Media Query */
+@media screen and (min-width: 361px) {
+  .taskCardBottomBar p {
+    font-size: 1.7rem;
+  }
+  .status {
+    font-size: 1.4rem;
+    padding-inline: 0.8rem;
+  }
+}

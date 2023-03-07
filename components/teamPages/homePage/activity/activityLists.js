@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 import usePaginatedData from '../../../../hooks/usePaginatedData'
-import s from './activityMenu.module.css'
+import s from './activity.module.css'
 
 export default function ActivityLists({ teamCode }) {
   const { data, isLoading, hasMore, loadMore, btnLoading } = usePaginatedData(

@@ -4,9 +4,10 @@ import {
   customTheme,
   sortOptions,
   sortSelectStyle,
-} from '../../../lib/reactSelect'
-import TaskCard from './taskCard'
-import s from './teamTaskList.module.css'
+} from '../../../../lib/reactSelect'
+import TaskCard from '../../../taskCard'
+import { AiOutlineFileSearch } from 'react-icons/ai'
+import s from './tasksList.module.css'
 
 export default function TasksList({ tasks, loading }) {
   const [sort, setSort] = useState('updates')
@@ -15,7 +16,10 @@ export default function TasksList({ tasks, loading }) {
 
   return (
     <>
-      <input type="search" name="" id="" />
+      <div className={s.searchDiv}>
+        <AiOutlineFileSearch />
+        <input placeholder="Search ID or Task name" type="search" />
+      </div>
 
       <div className={s.tasksListBody}>
         <div className={s.headerDiv}>

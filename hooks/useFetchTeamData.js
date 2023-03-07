@@ -16,7 +16,11 @@ export default function useFetchTeamData(teamCode) {
     try {
       unsub = onSnapshot(doc(db, 'teams', teamCode), (snapshot) => {
         if (snapshot.exists()) {
-          dispatch({ type: ADD_TEAM_DATA, payload: snapshot.data() })
+          console.count('Run DB')
+          dispatch({
+            type: ADD_TEAM_DATA,
+            payload: { ...snapshot.data(), id: snapshot.id },
+          })
         } else {
           dispatch({ type: NO_TEAM_DATA })
         }

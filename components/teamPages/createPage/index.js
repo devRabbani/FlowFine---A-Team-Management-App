@@ -134,7 +134,7 @@ export default function CreatePage({ members, groups, teamcode }) {
     assignedMembers
   )
   return (
-    <>
+    <div className={s.createPage}>
       <h2 className="pageHeader">Create Task</h2>
       <form className={s.createForm} onSubmit={handleSubmit}>
         <input
@@ -246,6 +246,6 @@ export default function CreatePage({ members, groups, teamcode }) {
           )}
         </Button>
       </form>
-    </>
+    </div>
   )
 }

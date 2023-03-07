@@ -1,0 +1,71 @@
+.tasksListBody {
+  background-color: var(--color-green-dark);
+  padding: 1.5rem;
+}
+
+.tasksListBody {
+  min-height: 45vh;
+  border-radius: 0.7rem;
+}
+
+.headerDiv {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--color-green-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sortDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 18rem;
+  margin-bottom: -0.3rem;
+}
+
+.sortDiv > *:nth-child(2) {
+  flex-grow: 1;
+}
+.tasksListWrapper {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.searchDiv {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-input);
+  margin-block: 1.5rem 2rem;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem 0.7rem 4rem;
+  border: 0.1rem solid transparent;
+}
+
+.searchDiv svg {
+  position: absolute;
+  font-size: 2.6rem;
+  left: 0.3em;
+  top: 0.3em;
+  opacity: 0.6;
+}
+
+.searchDiv input {
+  font-size: 2rem;
+  width: 100%;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+.searchDiv input::placeholder {
+  text-transform: none;
+}
+
+.searchDiv:focus-within svg {
+  opacity: 1;
+}
+
+.searchDiv:focus-within {
+  border-color: var(--color-green-border);
+}
