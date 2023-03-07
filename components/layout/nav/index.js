@@ -21,9 +21,12 @@ import s from './nav.module.css'
 import { useRouter } from 'next/router'
 import placeholder from '../../../public/placeholder.png'
 import ProfileMenu from './profileMenu'
+import { useUser } from '../../../context/UserContext'
 
 export default function Nav({ isBack }) {
   const { user } = useAuth()
+  const { photoURL, username, displayName } = useUser()
+
   const [isProfile, setIsProfile] = useState(false)
 
   const router = useRouter()
@@ -32,6 +35,7 @@ export default function Nav({ isBack }) {
   } = router
   // Custom Functions
   const handleProfileMenu = () => setIsProfile((prev) => !prev)
+  const handleCloseMenu = () => setIsProfile(false)
 
   console.count('Nav')
   return (
@@ -49,15 +53,17 @@ export default function Nav({ isBack }) {
         )}
         <div className={s.menus}>
           <div className={s.menus_menu_profile} onClick={handleProfileMenu}>
-            {isProfile ? (
-              <RiCloseFill className={s.close} />
-            ) : (
-              <RiMenu3Fill className={s.menu} />
-            )}
+            {photoURL ? <Image src={photoURL} alt="User Circle" fill /> : null}
           </div>
+          {isProfile && (
+            <ProfileMenu
+              username={username}
+              displayName={displayName}
+              handleCloseMenu={handleCloseMenu}
+            />
+          )}
         </div>
       </div>
-      {isProfile && <ProfileMenu user={user} setIsProfile={setIsProfile} />}
     </nav>
   )
 }

@@ -30,15 +30,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 }
 
-.menus_menu_activity,
 .menus_menu_profile {
-  font-size: 3.5rem;
-}
-
-.close {
-  font-size: 4.2rem;
-  margin-right: -0.6rem;
-  /* margin-left: 1rem; */
+  height: 4.5rem;
+  width: 4.5rem;
+  background-color: var(--color-white-light);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
 }
