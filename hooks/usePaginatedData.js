@@ -10,14 +10,12 @@ import {
 import { useEffect, useState } from 'react'
 import { db } from '../lib/firebase'
 
-export default function usePaginatedData(colPath) {
+export default function usePaginatedData(colPath, LIMIT = 2) {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [btnLoading, setBtnLoading] = useState(false)
   const [hasMore, setHasMore] = useState(false)
   const [last, setLast] = useState(null)
-
-  const LIMIT = 2
 
   const loadMore = async () => {
     if (last === null) return

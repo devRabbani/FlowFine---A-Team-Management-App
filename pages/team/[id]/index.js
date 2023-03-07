@@ -14,6 +14,7 @@ import useGetTasks from '../../../hooks/useGetTasks'
 import useFetchTeamData from '../../../hooks/useFetchTeamData'
 import { useTeam } from '../../../context/TeamContext'
 import HomePage from '../../../components/teamPages/homePage'
+import usePaginatedData from '../../../hooks/usePaginatedData'
 
 export default function TeamPage() {
   // Router
@@ -23,6 +24,12 @@ export default function TeamPage() {
   // Fetching Initial Datas
   useFetchTeamData(id) // Fetching Team Data
   useGetTasks(id) // Fetching Tasks List
+
+  // Getting Activity
+  const { data, isLoading, hasMore, loadMore, btnLoading } = usePaginatedData(
+    `teams/${id}/activity`,
+    10
+  )
 
   // Getting Datas from Context
   const { team_loading } = useTeam()
@@ -40,6 +47,15 @@ export default function TeamPage() {
   } else if (menu === 'archive') {
     return <ArchivePage />
   } else {
-    return <HomePage id={id} />
+    return (
+      <HomePage
+        id={id}
+        data={data}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        btnLoading={btnLoading}
+        loadMore={loadMore}
+      />
+    )
   }
 }

@@ -2,10 +2,13 @@ import moment from 'moment/moment'
 import usePaginatedData from '../../../../hooks/usePaginatedData'
 import s from './activity.module.css'
 
-export default function ActivityLists({ teamCode }) {
-  const { data, isLoading, hasMore, loadMore, btnLoading } = usePaginatedData(
-    `teams/${teamCode}/activity`
-  )
+export default function ActivityLists({
+  data,
+  isLoading,
+  hasMore,
+  loadMore,
+  btnLoading,
+}) {
   console.count('Activity')
   if (isLoading) {
     return <p>Loading....</p>
