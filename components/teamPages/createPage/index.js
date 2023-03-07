@@ -16,11 +16,11 @@ import Button from '../../button'
 import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
 import { useRouter } from 'next/navigation'
+import { useTeam } from '../../../context/TeamContext'
 
-export default function CreatePage({ members, groups, teamcode }) {
-  const [isLoading, setIsLoading] = useState(true)
+export default function CreatePage() {
+  // Local States
   const [createLoading, setCreateLoading] = useState(false)
-  const [membersOptions, setMembersOptions] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('1')
@@ -29,6 +29,10 @@ export default function CreatePage({ members, groups, teamcode }) {
   const [assignedGroups, setAssignedGroups] = useState([])
   const [assignedMembers, setAssignedMembers] = useState([])
   const [attachments, setAttachments] = useState([])
+
+  // Getting Team Data
+  const { team_data, teamcode } = useTeam()
+  const { members, groups } = team_data ?? {}
 
   const groupOptions = useMemo(
     () =>
@@ -39,24 +43,14 @@ export default function CreatePage({ members, groups, teamcode }) {
     [groups]
   )
 
+  const memberOptions = useMemo(
+    () => members?.map((member) => ({ value: member, label: '@' + member })),
+    [members]
+  )
+
   const router = useRouter()
 
   // Custom Functions
-  //load options
-  const loadMemberOptions = async () => {
-    setIsLoading(true)
-    try {
-      const res = await getUsers(members)
-      if (res) {
-        setMembersOptions(res)
-      }
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error.message)
-      setIsLoading(false)
-    }
-  }
-
   //handle Change for inputs
   const handleChange = (value, name) => {
     if (value?.length) {
@@ -119,22 +113,9 @@ export default function CreatePage({ members, groups, teamcode }) {
       toast.error(<b>{error?.message}</b>, { id: toastId })
     }
   }
-
-  // SIde Effects
-  useEffect(() => {
-    loadMemberOptions() // Load options of select members
-  }, [])
-
-  console.log(
-    title,
-    description,
-    priority,
-    deadline,
-    assignedGroups,
-    assignedMembers
-  )
+  console.log(members, groups, memberOptions, team_data)
   return (
-    <>
+    <div className={s.createPage}>
       <h2 className="pageHeader">Create Task</h2>
       <form className={s.createForm} onSubmit={handleSubmit}>
         <input
@@ -205,16 +186,12 @@ export default function CreatePage({ members, groups, teamcode }) {
             </label>
             <Select
               styles={commonStyles}
-              options={membersOptions}
+              options={memberOptions}
               theme={customTheme}
               placeholder="Choose members"
               isMulti
               isSearchable
-              isLoading={isLoading}
               onChange={(value) => handleChange(value, 'member')}
-              loadingMessage={() => (
-                <span className={s.stateOption}>Getting members..</span>
-              )}
               noOptionsMessage={() => (
                 <span className={s.stateOption}>No data found</span>
               )}
@@ -246,6 +223,6 @@ export default function CreatePage({ members, groups, teamcode }) {
           )}
         </Button>
       </form>
-    </>
+    </div>
   )
 }

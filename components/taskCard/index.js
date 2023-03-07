@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { useState } from 'react'
-import TaskDetails from '../../taskDetails'
-import s from './teamTaskList.module.css'
+import TaskDetails from '../taskDetails'
+import s from './taskCard.module.css'
 
 export default function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
@@ -36,11 +36,7 @@ export default function TaskCard({ task }) {
 
         <p className={s.title}>{task?.title}</p>
         <div className={s.taskCardBottomBar}>
-          <p>
-            {/* {moment(task?.deadline).format('DD MMM')}
-          {' - '} */}
-            Due {moment(task?.deadline).format('DD MMM')}
-          </p>
+          <p>Due {moment(task?.deadline).format('DD MMM')}</p>
           <p className={s.status}>{task?.status}</p>
           <p className={s.taskid}>ID-AGSTEHYX</p>
         </div>

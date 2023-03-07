@@ -67,6 +67,7 @@ body {
   text-rendering: optimizeSpeed;
   background-color: var(--color-primary);
   color: var(--color-secondary);
+  /* overflow-y: auto; */
 }
 
 html:focus-within {
@@ -129,14 +130,7 @@ label {
 }
 
 main {
-  min-height: 100%;
-  height: 100%;
-  max-width: 900px;
-  margin-inline: auto;
-  /* padding-block: 2rem; */
-  overflow: auto;
-  /* padding-right: 0.6rem; */
-  /* overflow: inherit; */
+  flex: 1;
 }
 
 ::-webkit-scrollbar {

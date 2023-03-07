@@ -21,23 +21,17 @@ import s from './nav.module.css'
 import { useRouter } from 'next/router'
 import placeholder from '../../../public/placeholder.png'
 import ProfileMenu from './profileMenu'
-import ActivityMenu from './activityMenu'
 
 export default function Nav({ isBack }) {
   const { user } = useAuth()
   const [isProfile, setIsProfile] = useState(false)
-  const [isActivity, setIsActivity] = useState(false)
+
   const router = useRouter()
   const {
     query: { id: teamCode },
   } = router
   // Custom Functions
   const handleProfileMenu = () => setIsProfile((prev) => !prev)
-  const handleActivityMenu = () => setIsActivity((prev) => !prev)
-
-  const handleCloseActivity = () => {
-    setIsActivity(false)
-  }
 
   console.count('Nav')
   return (
@@ -46,7 +40,7 @@ export default function Nav({ isBack }) {
         {isBack ? (
           <Link href="/" className={s.backBtn}>
             <FaCaretLeft />
-            Home
+            All Teams
           </Link>
         ) : (
           <Link href="/" className={s.logo}>
@@ -54,19 +48,6 @@ export default function Nav({ isBack }) {
           </Link>
         )}
         <div className={s.menus}>
-          <div className={s.menus_menu_activity}>
-            {isActivity ? (
-              <>
-                <RiNotification3Fill />
-                <ActivityMenu
-                  teamCode={teamCode}
-                  handleCloseActivity={handleCloseActivity}
-                />
-              </>
-            ) : (
-              <RiNotification3Line onClick={handleActivityMenu} />
-            )}
-          </div>
           <div className={s.menus_menu_profile} onClick={handleProfileMenu}>
             {isProfile ? (
               <RiCloseFill className={s.close} />

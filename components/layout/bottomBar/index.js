@@ -22,20 +22,20 @@ import s from './bottomBar.module.css'
 export default function BottomBar({ teamCode }) {
   const navItems = [
     {
-      icon: <RiTodoLine />,
-      active: <RiTodoFill />,
-      name: 'Tasks',
+      icon: <RiHome3Line />,
+      active: <RiHome3Fill />,
+      name: 'Home',
       path: '',
       href: '/team/' + teamCode,
     },
     {
-      icon: <RiUser6Line />,
-      active: <RiUser6Fill />,
-      name: 'Members',
-      path: 'members',
+      icon: <RiTodoLine />,
+      active: <RiTodoFill />,
+      name: 'Tasks',
+      path: 'tasks',
       href: {
         pathname: '/team/' + teamCode,
-        query: { menu: 'members' },
+        query: { menu: 'tasks' },
       },
     },
     {
@@ -49,6 +49,17 @@ export default function BottomBar({ teamCode }) {
       },
     },
     {
+      icon: <RiUser6Line />,
+      active: <RiUser6Fill />,
+      name: 'Members',
+      path: 'members',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'members' },
+      },
+    },
+
+    {
       icon: <RiGroupLine />,
       active: <RiGroupFill />,
       name: 'Groups',
@@ -58,16 +69,16 @@ export default function BottomBar({ teamCode }) {
         query: { menu: 'groups' },
       },
     },
-    {
-      icon: <RiArchiveLine />,
-      active: <RiArchiveFill />,
-      name: 'Archive',
-      path: 'archive',
-      href: {
-        pathname: '/team/' + teamCode,
-        query: { menu: 'archive' },
-      },
-    },
+    // {
+    //   icon: <RiArchiveLine />,
+    //   active: <RiArchiveFill />,
+    //   name: 'Archive',
+    //   path: 'archive',
+    //   href: {
+    //     pathname: '/team/' + teamCode,
+    //     query: { menu: 'archive' },
+    //   },
+    // },
   ]
 
   const {
