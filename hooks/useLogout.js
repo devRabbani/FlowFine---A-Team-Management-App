@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { useAuth } from '../context/AuthContext'
 import { auth } from '../lib/firebase'
+import { LOGOUT } from '../reducers/authReducer'
 
 export default function useLogout() {
   const { dispatch } = useAuth()
@@ -9,7 +10,7 @@ export default function useLogout() {
   const logout = async () => {
     try {
       await signOut(auth)
-      dispatch({ type: 'LOGOUT' })
+      dispatch({ type: LOGOUT })
       router.push('/welcome')
     } catch (error) {
       console.log(error.message)

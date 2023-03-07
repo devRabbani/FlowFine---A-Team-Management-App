@@ -67,6 +67,7 @@ body {
   text-rendering: optimizeSpeed;
   background-color: var(--color-primary);
   color: var(--color-secondary);
+  /* overflow-y: auto; */
 }
 
 html:focus-within {
@@ -129,14 +130,7 @@ label {
 }
 
 main {
-  min-height: 100%;
-  height: 100%;
-  max-width: 900px;
-  margin-inline: auto;
-  /* padding-block: 2rem; */
-  overflow: auto;
-  /* padding-right: 0.6rem; */
-  /* overflow: inherit; */
+  flex: 1;
 }
 
 ::-webkit-scrollbar {
@@ -158,6 +152,7 @@ main {
 /* .header2 {
   text-align: center;
 }
+
 .header2::after {
   content: '';
   display: block;
@@ -199,4 +194,20 @@ select {
   background-color: none;
   font-size: 1.9rem;
   color: var(--color-secondary-dark);
+}
+
+/* Priority Colors */
+.Low {
+  background-color: rgb(199, 223, 219);
+  color: rgb(3, 106, 104);
+}
+
+.Normal {
+  background-color: rgb(194 194 236);
+  color: #0b0b9b;
+}
+
+.High {
+  background-color: #edcbc6;
+  color: #9b0606;
 }

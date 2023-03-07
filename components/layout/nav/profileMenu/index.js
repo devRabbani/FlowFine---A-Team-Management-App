@@ -1,28 +1,27 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaAt, FaSignOutAlt } from 'react-icons/fa'
-import { useUser } from '../../context/UserContext'
-import useLogout from '../../hooks/useLogout'
+import { useUser } from '../../../../context/UserContext'
+import useLogout from '../../../../hooks/useLogout'
 import s from './profileMenu.module.css'
 
-export default function ProfileMenu({ user, setIsProfileMenu }) {
+export default function ProfileMenu({ user, setIsProfile }) {
   const { logout } = useLogout()
   const router = useRouter()
   const { username, displayName, photoURL } = useUser()
 
   const handleClick = () => {
-    setIsProfileMenu(false)
+    setIsProfile(false)
     router.push('/profile')
   }
   const handleLogout = () => {
-    setIsProfileMenu(false)
+    setIsProfile(false)
     logout()
   }
 
   const handleClose = (e) => {
     if (e.target.classList.contains(s.menuWrapper)) {
-      setIsProfileMenu(false)
+      setIsProfile(false)
     }
   }
 

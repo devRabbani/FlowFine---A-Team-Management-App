@@ -1,0 +1,51 @@
+.tasksPage {
+  padding-bottom: 15rem;
+}
+
+.loading {
+  margin: 40px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(75, 113, 90);
+}
+
+/* Task Top Bar */
+.stickyTop {
+  position: sticky;
+  top: 5.8rem;
+  padding-top: 1rem;
+  z-index: 99;
+  background-color: var(--color-primary);
+}
+
+.taskTopBar {
+  display: flex;
+}
+
+.taskTopBar_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-block: 1rem;
+  border-bottom: 0.1rem solid #9fdd9f;
+  cursor: pointer;
+}
+
+.taskTopBar_menu.active {
+  font-weight: 600;
+  padding-bottom: 0.9rem;
+  color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  border-width: 0.2rem;
+}
+
+/* Select Group */
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}

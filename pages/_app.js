@@ -10,6 +10,7 @@ import Layout from '../components/layout'
 import nProgress from 'nprogress'
 import { useEffect } from 'react'
 import UserContextProvider from '../context/UserContext'
+import TeamContextProvider from '../context/TeamContext'
 
 const finlandica = Finlandica({ subsets: ['latin'] })
 
@@ -39,22 +40,27 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>FlowFine - Perfect Ways to Manage Team</title>
       </Head>
-      <main className={finlandica.className}>
-        <AuthContextProvider>
-          <UserContextProvider>
-            {publicRoutes.includes(router.pathname) ? (
-              <Component {...pageProps} />
-            ) : (
+      <style jsx global>{`
+        html {
+          font-family: ${finlandica.style.fontFamily};
+        }
+      `}</style>
+      <AuthContextProvider>
+        <UserContextProvider>
+          {publicRoutes.includes(router.pathname) ? (
+            <Component {...pageProps} />
+          ) : (
+            <TeamContextProvider>
               <PrivateRoute>
                 <Layout>
                   <Component {...pageProps} />
                 </Layout>
               </PrivateRoute>
-            )}
-          </UserContextProvider>
-        </AuthContextProvider>
-        <Toaster />
-      </main>
+            </TeamContextProvider>
+          )}
+        </UserContextProvider>
+      </AuthContextProvider>
+      <Toaster />
     </>
   )
 }

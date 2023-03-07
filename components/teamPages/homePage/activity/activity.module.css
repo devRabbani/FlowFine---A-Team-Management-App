@@ -1,0 +1,44 @@
+.activity {
+  background-color: var(--color-input);
+  border-radius: 0.7rem;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.activity_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--nav-height) - 15rem);
+  overflow-y: auto;
+}
+
+.activity_card {
+  border-bottom: 1px solid var(--color-grey);
+  padding-block: 1.2rem;
+}
+
+.activity_card_info {
+  font-size: 1.8rem;
+}
+
+.activity_card_time {
+  font-size: 1.6rem;
+  opacity: 0.6;
+}
+
+.activity_topbar {
+  border-bottom: 1px solid var(--color-green-1);
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity_topbar button {
+  margin-left: auto;
+  color: var(--color-red);
+}
+
+.activity_loadmore {
+  margin-top: 1rem;
+  color: var(--color-blue);
+}

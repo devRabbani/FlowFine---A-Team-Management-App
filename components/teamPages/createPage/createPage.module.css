@@ -1,3 +1,7 @@
+.createPage {
+  padding-bottom: 15rem;
+}
+
 .createForm {
   display: flex;
   flex-direction: column;
@@ -28,9 +32,11 @@
   border-radius: 0.4rem;
   outline: none;
   background-color: var(--color-input);
-  border: 2px solid var(--color-white-light);
+  border: 2px solid var(--color-input);
 }
-
+.createForm textarea {
+  resize: vertical;
+}
 .createForm input[type='date'] {
   padding: 0.5rem 1rem;
   height: 100%;

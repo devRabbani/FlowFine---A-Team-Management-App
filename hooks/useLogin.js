@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { auth } from '../lib/firebase'
-import { createUser } from '../utils/firebase'
 import { useRouter } from 'next/router'
 import { useAuth } from '../context/AuthContext'
+import { LOGIN } from '../reducers/authReducer'
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false)
@@ -19,7 +19,7 @@ export default function useLogin() {
       const res = await signInWithPopup(auth, new GoogleAuthProvider())
       if (res) {
         toast.success(<b>Welcome {res.user.displayName}</b>, { id })
-        dispatch({ type: 'LOGIN', payload: res.user })
+        dispatch({ type: LOGIN, payload: res.user })
         setIsLoading(false)
       } else {
         throw new Error('Something went wrong please try again!')

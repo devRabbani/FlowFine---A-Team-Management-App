@@ -5,7 +5,7 @@ import { FaCheck, FaShareAlt } from 'react-icons/fa'
 import { getTeam } from '../../utils/firebase'
 import styles from './teamHeader.module.css'
 
-export default function TeamHeader({ name, code, updated }) {
+export default function TeamHeader({ name, code, updatedAt }) {
   const shareData = {
     title: `FlowFine Join to ${name?.toUpperCase()}`,
     text: `Go to the app , search ${name} and request to join.`,
@@ -29,7 +29,7 @@ export default function TeamHeader({ name, code, updated }) {
           <p className={styles.code}>{code}</p>
           <FaShareAlt onClick={handleShare} />
         </div> */}
-        <p>Last updates {moment.unix(updated.seconds).fromNow()}</p>
+        <p>Last updates {moment.unix(updatedAt?.seconds).fromNow()}</p>
       </div>
     </div>
   )

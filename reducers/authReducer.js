@@ -1,10 +1,16 @@
-export const AuthReducer = (state, action) => {
+// Actions
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const AUTHREADY = 'AUTHREADY'
+
+// Reducer
+export default function AuthReducer(state, action) {
   switch (action.type) {
-    case 'LOGIN':
+    case LOGIN:
       return { ...state, user: action.payload }
-    case 'LOGOUT':
+    case LOGOUT:
       return { ...state, user: null }
-    case 'AUTHREADY':
+    case AUTHREADY:
       return { authReady: true, user: action.payload }
     default:
       return state

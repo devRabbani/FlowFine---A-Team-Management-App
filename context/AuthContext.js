@@ -1,13 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 import { auth } from '../lib/firebase'
-import { AuthReducer } from '../reducers/authReducer'
+import AuthReducer, { AUTHREADY } from '../reducers/authReducer'
 
 const AuthContext = createContext(null)
 
@@ -23,7 +17,7 @@ export default function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (authUser) => [
-      dispatch({ type: 'AUTHREADY', payload: authUser }),
+      dispatch({ type: AUTHREADY, payload: authUser }),
     ])
     return () => unsub()
   }, [])

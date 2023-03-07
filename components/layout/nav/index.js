@@ -8,21 +8,31 @@ import {
   FaTimes,
   FaUserFriends,
 } from 'react-icons/fa'
-import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri'
+import {
+  RiCloseFill,
+  RiMenu3Fill,
+  RiNotification3Fill,
+  RiNotification3Line,
+} from 'react-icons/ri'
 
 import { useAuth } from '../../../context/AuthContext'
 import useLogout from '../../../hooks/useLogout'
-import ProfileMenu from '../../profileMenu'
 import s from './nav.module.css'
 import { useRouter } from 'next/router'
 import placeholder from '../../../public/placeholder.png'
+import ProfileMenu from './profileMenu'
 
 export default function Nav({ isBack }) {
   const { user } = useAuth()
-  const [isProfileMenu, setIsProfileMenu] = useState(false)
-  const router = useRouter()
+  const [isProfile, setIsProfile] = useState(false)
 
-  const handleClick = () => setIsProfileMenu((prev) => !prev)
+  const router = useRouter()
+  const {
+    query: { id: teamCode },
+  } = router
+  // Custom Functions
+  const handleProfileMenu = () => setIsProfile((prev) => !prev)
+
   console.count('Nav')
   return (
     <nav className={s.navWrapper}>
@@ -30,24 +40,24 @@ export default function Nav({ isBack }) {
         {isBack ? (
           <Link href="/" className={s.backBtn}>
             <FaCaretLeft />
-            Home
+            All Teams
           </Link>
         ) : (
           <Link href="/" className={s.logo}>
             FlowFine
           </Link>
         )}
-        <span onClick={handleClick}>
-          {isProfileMenu ? (
-            <RiCloseFill className={s.close} />
-          ) : (
-            <RiMenu3Fill className={s.menu} />
-          )}
-        </span>
+        <div className={s.menus}>
+          <div className={s.menus_menu_profile} onClick={handleProfileMenu}>
+            {isProfile ? (
+              <RiCloseFill className={s.close} />
+            ) : (
+              <RiMenu3Fill className={s.menu} />
+            )}
+          </div>
+        </div>
       </div>
-      {isProfileMenu && (
-        <ProfileMenu user={user} setIsProfileMenu={setIsProfileMenu} />
-      )}
+      {isProfile && <ProfileMenu user={user} setIsProfile={setIsProfile} />}
     </nav>
   )
 }

@@ -14,7 +14,7 @@ export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
       <Nav isBack={isBack} />
-      <div className="wrapper">{children}</div>
+      <main className="wrapper">{children}</main>
       {router.pathname !== '/' ? <BottomBar teamCode={teamCode} /> : <Footer />}
     </div>
   )
