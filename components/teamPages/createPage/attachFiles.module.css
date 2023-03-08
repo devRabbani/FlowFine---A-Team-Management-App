@@ -6,7 +6,7 @@
 
 .attachment {
   display: flex;
-  gap: 0.7rem;
+  gap: 0.5rem;
   overflow-x: hidden;
   align-items: center;
   position: relative;
@@ -24,6 +24,7 @@
 }
 .attachment p {
   white-space: nowrap;
+  font-size: 1.5rem;
 }
 
 .attachment::after {

@@ -299,7 +299,7 @@ export const leaveTask = async (
       assignedMembers: arrayRemove(username),
     })
     batch.set(activityRef, {
-      message: `@${username} leave the task : ID-${taskid}`,
+      message: `Ohh ho! @${username} leave the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
     await batch.commit()
@@ -338,7 +338,7 @@ export const markTaskStatus = async (
     })
     // Writing to Comments Info
     batch.set(activityRef, {
-      message: `@${username} just set the task ID-${taskid} status to : ${status}`,
+      message: `@${username} just set the task ID-${taskid} status to : ${status?.toUppercase()}`,
       timestamp: serverTimestamp(),
     })
     // Updating Team Last Updates
