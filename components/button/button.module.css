@@ -1,7 +1,8 @@
 .btn {
-  padding: 0.4em 0.5em;
+  padding-block: 0.4em;
   width: 6.316em; /* 120px */
   border-radius: 0.7rem;
+  white-space: nowrap;
 }
 
 /* Medium In SIze width */
