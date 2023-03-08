@@ -196,6 +196,10 @@ select {
   color: var(--color-secondary-dark);
 }
 
+textarea {
+  resize: vertical;
+}
+
 /* Priority Colors */
 .Low {
   background-color: rgb(199, 223, 219);

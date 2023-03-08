@@ -411,3 +411,42 @@ export const clearActivity = async () => {
 export const checkAccess = (teamdata = [], username) => {
   return teamdata.includes(username)
 }
+
+// Add Event
+export const addEvent = async (
+  teamcode,
+  data,
+  username,
+  setIsLoading,
+  handleClose
+) => {
+  setIsLoading(true)
+  let id = toast.loading(<b>Creating event</b>)
+  try {
+    const teamRef = doc(db, 'teams', teamcode)
+    const eventRef = doc(collection(teamRef, 'events'))
+    const activityRef = doc(collection(teamRef, 'activity'))
+
+    const batch = writeBatch(db)
+    // Set Event
+    batch.set(eventRef, { data })
+    // Update team
+    batch.update(teamRef, {
+      updatedAt: serverTimestamp(),
+    })
+    // Set activity
+    batch.set(activityRef, {
+      message: `@${username} created a new event for ${data.time}`,
+      timestamp: serverTimestamp(),
+    })
+    // commit all changes
+    await batch.commit()
+    toast.success(<b>Event created successfully</b>, { id })
+    setIsLoading(false)
+    handleClose()
+  } catch (error) {
+    console.log('Creating event error:', error)
+    toast.error(<b>{error.message}</b>, { id })
+    setIsLoading(false)
+  }
+}

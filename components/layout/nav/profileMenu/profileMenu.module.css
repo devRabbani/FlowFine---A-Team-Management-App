@@ -1,52 +1,20 @@
-.menuWrapper {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-
 .menu {
   background-color: var(--color-input);
-  padding: 8px 18px 30px;
-  width: auto;
-  position: fixed;
-  top: 6.4rem;
-  right: 0.5rem;
-  left: 0.5rem;
-  border-radius: 0.4rem 0.4rem 0.7rem 0.7rem;
+  padding: 1rem 1.8rem 2rem;
+  width: 20rem;
+  position: absolute;
+  top: 5.3rem;
+  right: 0;
+  border-radius: 0.7rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.imgDiv {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1.4rem;
-  padding: 0.8em 0;
-  border-bottom: 1px solid grey;
-  margin-bottom: 1em;
-  color: black;
-}
-.img {
-  aspect-ratio: 1/1;
-  width: 15%;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-}
-.img img {
-  object-fit: cover;
 }
 
 .btn,
 .btnLogout {
   display: flex;
   align-items: center;
-  gap: 5px;
-  /* font-size: 1.2rem; */
-  padding: 8px 0 8px 7px;
+  gap: 0.5rem;
+  padding-block: 0.8rem;
   background-color: transparent;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
@@ -54,26 +22,30 @@
 }
 
 .btnLogout {
-  color: red;
+  color: var(--color-red);
 }
 
 .btn:active,
 .btnLogout:active {
-  gap: 10px;
+  gap: 1rem;
   font-weight: 600;
 }
 
 .displayName {
   font-size: 2.5rem;
   text-transform: capitalize;
+  line-height: 1.2;
+  font-weight: 500;
 }
 .userName {
   font-size: 1.7rem;
-  margin-top: -0.2rem;
   color: var(--color-green-2);
 }
 
 .nameDiv {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid var(--color-grey);
+  padding-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }

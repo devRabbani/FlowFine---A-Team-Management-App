@@ -16,6 +16,8 @@ import {
   RiTodoFill,
   RiUser6Fill,
   RiUser6Line,
+  RiCalendarEventLine,
+  RiCalendarEventFill,
 } from 'react-icons/ri'
 import s from './bottomBar.module.css'
 
@@ -49,24 +51,24 @@ export default function BottomBar({ teamCode }) {
       },
     },
     {
-      icon: <RiUser6Line />,
-      active: <RiUser6Fill />,
-      name: 'Members',
-      path: 'members',
+      icon: <RiCalendarEventLine />,
+      active: <RiCalendarEventFill />,
+      name: 'Events',
+      path: 'events',
       href: {
         pathname: '/team/' + teamCode,
-        query: { menu: 'members' },
+        query: { menu: 'events' },
       },
     },
 
     {
       icon: <RiGroupLine />,
       active: <RiGroupFill />,
-      name: 'Groups',
-      path: 'groups',
+      name: 'Members',
+      path: 'members',
       href: {
         pathname: '/team/' + teamCode,
-        query: { menu: 'groups' },
+        query: { menu: 'members' },
       },
     },
     // {
