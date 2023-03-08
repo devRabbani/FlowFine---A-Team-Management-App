@@ -11,7 +11,7 @@
   /* display: grid;
   grid-template-columns: repeat(5, 1fr); */
   /* align-items: flex-end; */
-  box-shadow: 0 -7px 25px rgba(0, 0, 0, 0.13), 0 -1px 4px rgba(0, 129, 24, 0.3);
+  box-shadow: 0 -7px 25px rgba(0, 0, 0, 0.13), 0 -1px 4px #a3c4bcc6;
 }
 
 .nav {
@@ -50,7 +50,7 @@
   content: '';
   height: 0.23rem;
   position: absolute;
-  top: -0.17rem;
+  top: -0.13rem;
   width: 4rem;
   border-radius: 50vw;
   background-color: var(--color-secondary-dark);

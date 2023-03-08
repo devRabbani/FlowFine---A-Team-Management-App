@@ -11,9 +11,9 @@
 }
 
 .createTeam input {
-  padding: 0.45em 0.8em;
+  padding: 0.44em 0.56em;
   border-radius: 0.7rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   width: 100%;
   margin-bottom: 0.3rem;
   border: 2px solid transparent;
@@ -24,5 +24,5 @@
 }
 
 .createTeam label {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }

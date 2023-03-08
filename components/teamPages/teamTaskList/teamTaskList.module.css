@@ -30,7 +30,7 @@
   justify-content: center;
   gap: 0.7rem;
   padding-block: 1rem;
-  border-bottom: 0.1rem solid #9fdd9f;
+  border-bottom: 0.1rem solid var(--color-input);
   cursor: pointer;
 }
 
