@@ -127,7 +127,7 @@ export default function CreatePage() {
           maxLength={120}
         />
         <textarea
-          rows="5"
+          rows="4"
           placeholder="Enter Task Description"
           name="description"
           value={description}

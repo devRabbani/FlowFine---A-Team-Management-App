@@ -1,8 +1,8 @@
 .modalWrapper {
   height: 100%;
   width: 100%;
-  background-color: #a3c4bcd4;
-  backdrop-filter: blur(4px);
+  background-color: var(--color-primary);
+  /* backdrop-filter: blur(4px); */
   position: fixed;
   top: 0;
   left: 0;
