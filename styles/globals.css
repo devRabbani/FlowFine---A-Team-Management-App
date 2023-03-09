@@ -202,16 +202,16 @@ textarea {
 
 /* Priority Colors */
 .Low {
-  background-color: rgb(199, 223, 219);
-  color: rgb(3, 106, 104);
+  background-color: #eefcfa;
+  color: rgb(3, 106, 84);
 }
 
 .Normal {
-  background-color: rgb(194 194 236);
-  color: #0b0b9b;
+  background-color: hsl(240, 87%, 85%);
+  color: hsl(240, 87%, 33%);
 }
 
 .High {
-  background-color: #edcbc6;
+  background-color: hsl(8, 72%, 90%);
   color: #9b0606;
 }

@@ -14,3 +14,63 @@
   font-weight: 500;
   color: var(--color-secondary-dark);
 }
+
+/* Events List Wrapper */
+.eventsList_wrapper {
+  /* min-height: 20rem; */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.noData {
+  color: var(--color-green-1);
+  text-align: center;
+  margin: 10vh auto;
+  max-width: 90%;
+}
+
+.eventCard {
+  padding: 1rem 1rem 1.5rem;
+  border-radius: 0.7rem;
+  overflow-x: hidden;
+  word-break: break-word;
+  background-color: var(--color-input);
+}
+
+.eventCard_description {
+  font-size: 1.8rem;
+  /* word-break: break-word; */
+  color: var(--color-secondary-dark);
+}
+
+.eventCard_description a {
+  color: var(--color-blue);
+  font-weight: 500;
+}
+
+.eventCard_time {
+  font-size: 1.5rem;
+}
+
+.eventCard_time span {
+  background-color: var(--color-primary);
+  padding: 0.2em 0.5em;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.timeDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.eventCard_priority {
+  font-size: 1.4rem;
+  padding-inline: 0.5em;
+  border-radius: 0.4rem;
+}

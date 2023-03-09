@@ -1,5 +1,4 @@
 import {
-  addDoc,
   arrayRemove,
   arrayUnion,
   collection,
@@ -338,7 +337,7 @@ export const markTaskStatus = async (
     })
     // Writing to Comments Info
     batch.set(activityRef, {
-      message: `@${username} just set the task ID-${taskid} status to : ${status?.toUppercase()}`,
+      message: `@${username} just set the task ID-${taskid} status to : ${status?.toUpperCase()}`,
       timestamp: serverTimestamp(),
     })
     // Updating Team Last Updates
@@ -429,7 +428,7 @@ export const addEvent = async (
 
     const batch = writeBatch(db)
     // Set Event
-    batch.set(eventRef, { data })
+    batch.set(eventRef, data)
     // Update team
     batch.update(teamRef, {
       updatedAt: serverTimestamp(),

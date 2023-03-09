@@ -60,7 +60,13 @@ function MyApp({ Component, pageProps }) {
           )}
         </UserContextProvider>
       </AuthContextProvider>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            fontSize: '1.7rem',
+          },
+        }}
+      />
     </>
   )
 }
