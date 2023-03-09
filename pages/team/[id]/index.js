@@ -1,15 +1,8 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import { useAuth } from '../../../context/AuthContext'
-import TeamHeader from '../../../components/teamHeader'
-import useDataDoc from '../../../hooks/useDataDoc'
 import MembersPage from '../../../components/teamPages/membersPage'
-import CreatePage from '../../../components/teamPages/createPage'
 import EventsPage from '../../../components/teamPages/eventsPage'
 import ArchivePage from '../../../components/teamPages/archivePage'
 import TeamTaskList from '../../../components/teamPages/teamTaskList'
-import s from '../../../styles/Team.module.css'
 import useGetTasks from '../../../hooks/useGetTasks'
 import useFetchTeamData from '../../../hooks/useFetchTeamData'
 import { useTeam } from '../../../context/TeamContext'
@@ -28,7 +21,7 @@ export default function TeamPage() {
   // Getting Activity
   const { data, isLoading, hasMore, loadMore, btnLoading } = usePaginatedData(
     `teams/${id}/activity`,
-    10
+    7
   )
 
   // Getting Datas from Context
@@ -40,8 +33,6 @@ export default function TeamPage() {
     return <TeamTaskList />
   } else if (menu === 'members') {
     return <MembersPage />
-  } else if (menu === 'create') {
-    return <CreatePage />
   } else if (menu === 'events') {
     return <EventsPage />
   } else if (menu === 'archive') {

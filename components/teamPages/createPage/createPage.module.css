@@ -1,5 +1,5 @@
 .createPage {
-  padding-bottom: 15rem;
+  padding-block: 1rem 4rem;
 }
 
 .createForm {
@@ -57,4 +57,9 @@
 
 .createForm input[type='file'] {
   display: none;
+}
+
+.btnDiv {
+  display: flex;
+  gap: 1rem;
 }
