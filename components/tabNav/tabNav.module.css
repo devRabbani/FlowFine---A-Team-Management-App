@@ -1,0 +1,24 @@
+.tabNav {
+  display: flex;
+}
+
+.tabNav_menu {
+  font-size: 2rem;
+  flex-basis: 100%;
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-block: 1rem;
+  color: var(--color-green-border);
+  border-bottom: 0.1rem solid var(--color-input);
+  cursor: pointer;
+}
+
+.tabNav_menu.active {
+  padding-bottom: 0.9rem;
+  color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  border-width: 0.2rem;
+}

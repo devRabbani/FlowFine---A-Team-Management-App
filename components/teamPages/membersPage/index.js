@@ -1,5 +1,14 @@
+import { useState } from 'react'
+import Modal from '../../modal'
+import TabNav from '../../tabNav'
+import CreatePage from '../createPage'
 import s from './membersPage.module.css'
 
 export default function MembersPage() {
-  return <h2 className="pageHeader">Members</h2>
+  const [isMembers, setIsMembers] = useState(true)
+  return (
+    <div className={s.membersPage}>
+      <TabNav setMenu={setIsMembers} menu={isMembers} type="members" />
+    </div>
+  )
 }

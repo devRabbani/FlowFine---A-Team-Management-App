@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FaPlus, FaTrashAlt, FaUsers, FaUserTie } from 'react-icons/fa'
 import {
-  RiAddCircleFill,
-  RiAddCircleLine,
-  RiAddFill,
-  RiAddLine,
   RiArchiveFill,
   RiArchiveLine,
   RiGroupFill,
@@ -14,12 +9,12 @@ import {
   RiHome3Line,
   RiTodoLine,
   RiTodoFill,
-  RiUser6Fill,
-  RiUser6Line,
+  RiCalendarEventLine,
+  RiCalendarEventFill,
 } from 'react-icons/ri'
 import s from './bottomBar.module.css'
 
-export default function BottomBar({ teamCode }) {
+export default function BottomBar({ teamCode, menu = '' }) {
   const navItems = [
     {
       icon: <RiHome3Line />,
@@ -39,18 +34,19 @@ export default function BottomBar({ teamCode }) {
       },
     },
     {
-      icon: <RiAddCircleLine />,
-      active: <RiAddCircleFill />,
-      name: 'Create',
-      path: 'create',
+      icon: <RiCalendarEventLine />,
+      active: <RiCalendarEventFill />,
+      name: 'Events',
+      path: 'events',
       href: {
         pathname: '/team/' + teamCode,
-        query: { menu: 'create' },
+        query: { menu: 'events' },
       },
     },
+
     {
-      icon: <RiUser6Line />,
-      active: <RiUser6Fill />,
+      icon: <RiGroupLine />,
+      active: <RiGroupFill />,
       name: 'Members',
       path: 'members',
       href: {
@@ -58,33 +54,18 @@ export default function BottomBar({ teamCode }) {
         query: { menu: 'members' },
       },
     },
-
     {
-      icon: <RiGroupLine />,
-      active: <RiGroupFill />,
-      name: 'Groups',
-      path: 'groups',
+      icon: <RiArchiveLine />,
+      active: <RiArchiveFill />,
+      name: 'Archive',
+      path: 'archive',
       href: {
         pathname: '/team/' + teamCode,
-        query: { menu: 'groups' },
+        query: { menu: 'archive' },
       },
     },
-    // {
-    //   icon: <RiArchiveLine />,
-    //   active: <RiArchiveFill />,
-    //   name: 'Archive',
-    //   path: 'archive',
-    //   href: {
-    //     pathname: '/team/' + teamCode,
-    //     query: { menu: 'archive' },
-    //   },
-    // },
   ]
 
-  const {
-    query: { menu = '' },
-  } = useRouter()
-  console.log(menu)
   return (
     <div className={s.bar}>
       {navItems.map((item, i) => {

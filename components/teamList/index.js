@@ -48,7 +48,7 @@ export default function TeamList({ uid }) {
         )}
       </div>
       {isModal ? (
-        <Modal handleClose={handleClose}>
+        <Modal title="Create Team" handleClose={handleClose}>
           <CreateTeamModal handleClose={handleClose} uid={uid} />
         </Modal>
       ) : null}

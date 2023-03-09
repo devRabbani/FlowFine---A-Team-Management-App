@@ -1,0 +1,16 @@
+.eventsPage {
+  padding-block: 1rem 15rem;
+}
+
+.eventHeaderBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--color-green-1);
+}
+
+.eventHeaderBar button {
+  font-weight: 500;
+  color: var(--color-secondary-dark);
+}

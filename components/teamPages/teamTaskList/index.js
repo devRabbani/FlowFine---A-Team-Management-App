@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Select from 'react-select'
 import { customTheme, groupSelectStyle } from '../../../lib/reactSelect'
+import TabNav from '../../tabNav'
 import TasksKanban from './tasksKanban'
 import TasksList from './tasksList'
-import TasktopNav from './taskTopNav'
 import styles from './teamTaskList.module.css'
 
 export default function TeamTaskList() {
@@ -37,7 +37,7 @@ export default function TeamTaskList() {
             // onChange={(e) => setPriority(e.value)}
           />
         </div>
-        <TasktopNav setIsList={setIsList} isList={isList} />
+        <TabNav setMenu={setIsList} menu={isList} />
       </div>
       {isList ? <TasksList /> : <TasksKanban />}
     </div>

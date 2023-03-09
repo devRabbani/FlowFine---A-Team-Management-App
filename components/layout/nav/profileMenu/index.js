@@ -1,51 +1,46 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FaAt, FaSignOutAlt } from 'react-icons/fa'
-import { useUser } from '../../../../context/UserContext'
+import { useRef } from 'react'
+import { FaSignOutAlt, FaUserEdit } from 'react-icons/fa'
+import useClickOutside from '../../../../hooks/useClickOutside'
 import useLogout from '../../../../hooks/useLogout'
 import s from './profileMenu.module.css'
 
-export default function ProfileMenu({ user, setIsProfile }) {
+export default function ProfileMenu({
+  username,
+  displayName,
+  handleCloseMenu,
+  avatarRef,
+}) {
   const { logout } = useLogout()
   const router = useRouter()
-  const { username, displayName, photoURL } = useUser()
 
   const handleClick = () => {
-    setIsProfile(false)
+    handleCloseMenu()
     router.push('/profile')
   }
   const handleLogout = () => {
-    setIsProfile(false)
+    handleCloseMenu()
     logout()
   }
 
-  const handleClose = (e) => {
-    if (e.target.classList.contains(s.menuWrapper)) {
-      setIsProfile(false)
-    }
-  }
+  // Click Outside handler
+  const targetRef = useRef()
+  useClickOutside(targetRef, handleCloseMenu, avatarRef)
 
   return (
-    <div onClick={handleClose} className={s.menuWrapper}>
-      <div className={s.menu}>
-        <div className={s.imgDiv}>
-          <div className={s.img}>
-            <Image src={photoURL} alt={displayName} fill sizes="33vw" />
-          </div>
-          <div className={s.nameDiv}>
-            <p className={s.displayName}>{displayName || 'Display Name'}</p>
-            <p className={s.userName}>@{username || 'username'}</p>
-          </div>
-        </div>
-
-        <button onClick={handleClick} className={s.btn}>
-          <FaAt /> View Profile
-        </button>
-
-        <button onClick={handleLogout} className={s.btnLogout}>
-          <FaSignOutAlt /> Logout
-        </button>
+    <div ref={targetRef} className={s.menu}>
+      <div className={s.nameDiv}>
+        <p className={s.displayName}>{displayName || 'Display Name'}</p>
+        <p className={s.userName}>@{username || 'username'}</p>
       </div>
+
+      <button onClick={handleClick} className={s.btn}>
+        <FaUserEdit /> Edit Profile
+      </button>
+
+      <button onClick={handleLogout} className={s.btnLogout}>
+        <FaSignOutAlt /> Logout
+      </button>
     </div>
   )
 }

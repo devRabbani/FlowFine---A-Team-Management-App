@@ -35,7 +35,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
     loadMore,
     hasMore,
     btnLoading,
-  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`)
+  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`,10)
 
   // Custom Function
   // Handle Modal : Will set value to null
