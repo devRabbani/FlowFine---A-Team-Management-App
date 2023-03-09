@@ -10,12 +10,12 @@
   justify-content: center;
   gap: 0.7rem;
   padding-block: 1rem;
+  color: var(--color-green-border);
   border-bottom: 0.1rem solid var(--color-input);
   cursor: pointer;
 }
 
 .tabNav_menu.active {
-  font-weight: 600;
   padding-bottom: 0.9rem;
   color: var(--color-secondary-dark);
   border-color: var(--color-secondary-dark);

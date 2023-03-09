@@ -1,19 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import {
-  FaCaretLeft,
-  FaPlus,
-  FaShare,
-  FaTimes,
-  FaUserFriends,
-} from 'react-icons/fa'
-import {
-  RiCloseFill,
-  RiMenu3Fill,
-  RiNotification3Fill,
-  RiNotification3Line,
-} from 'react-icons/ri'
+import { useRef, useState } from 'react'
+import { FaCaretLeft } from 'react-icons/fa'
 
 import { useAuth } from '../../../context/AuthContext'
 import useLogout from '../../../hooks/useLogout'
@@ -28,7 +16,7 @@ export default function Nav({ isBack }) {
   const { photoURL, username, displayName } = useUser()
 
   const [isProfile, setIsProfile] = useState(false)
-
+  const avatarRef = useRef()
   const router = useRouter()
   const {
     query: { id: teamCode },
@@ -52,13 +40,18 @@ export default function Nav({ isBack }) {
           </Link>
         )}
         <div className={s.menus}>
-          <div className={s.menus_menu_profile} onClick={handleProfileMenu}>
+          <div
+            ref={avatarRef}
+            className={s.menus_menu_profile}
+            onClick={handleProfileMenu}
+          >
             {photoURL ? <Image src={photoURL} alt="User Circle" fill /> : null}
           </div>
           {isProfile && (
             <ProfileMenu
               username={username}
               displayName={displayName}
+              avatarRef={avatarRef}
               handleCloseMenu={handleCloseMenu}
             />
           )}
