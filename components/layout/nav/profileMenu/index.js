@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
-import { FaAt, FaSignOutAlt } from 'react-icons/fa'
+import { FaAt, FaSignOutAlt, FaUserEdit } from 'react-icons/fa'
 import useClickOutside from '../../../../hooks/useClickOutside'
 import useLogout from '../../../../hooks/useLogout'
 import s from './profileMenu.module.css'
@@ -9,6 +9,7 @@ export default function ProfileMenu({
   username,
   displayName,
   handleCloseMenu,
+  avatarRef,
 }) {
   const { logout } = useLogout()
   const router = useRouter()
@@ -24,7 +25,7 @@ export default function ProfileMenu({
 
   // Click Outside handler
   const targetRef = useRef()
-  useClickOutside(targetRef, handleCloseMenu)
+  useClickOutside(targetRef, handleCloseMenu, avatarRef)
 
   return (
     <div ref={targetRef} className={s.menu}>
@@ -34,7 +35,7 @@ export default function ProfileMenu({
       </div>
 
       <button onClick={handleClick} className={s.btn}>
-        <FaAt /> Edit Profile
+        <FaUserEdit /> Edit Profile
       </button>
 
       <button onClick={handleLogout} className={s.btnLogout}>

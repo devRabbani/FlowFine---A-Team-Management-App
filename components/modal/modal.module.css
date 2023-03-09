@@ -11,8 +11,8 @@
   z-index: 10000;
 }
 .cross {
-  font-size: 5rem;
-  position: absolute;
+  font-size: 4rem;
+  position: fixed;
   top: 1rem;
   right: 1rem;
 }
