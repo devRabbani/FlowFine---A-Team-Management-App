@@ -45,6 +45,7 @@ export default function CreateEvent({ handleClose }) {
           placeholder="Event Description"
           required
           value={description}
+          maxLength={200}
           onChange={(e) => setDecription(e.target.value)}
         />
       </div>

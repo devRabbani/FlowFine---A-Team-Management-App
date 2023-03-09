@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FaPlus, FaTrashAlt, FaUsers, FaUserTie } from 'react-icons/fa'
 import {
-  RiAddCircleFill,
-  RiAddCircleLine,
-  RiAddFill,
-  RiAddLine,
   RiArchiveFill,
   RiArchiveLine,
   RiGroupFill,
@@ -14,14 +9,12 @@ import {
   RiHome3Line,
   RiTodoLine,
   RiTodoFill,
-  RiUser6Fill,
-  RiUser6Line,
   RiCalendarEventLine,
   RiCalendarEventFill,
 } from 'react-icons/ri'
 import s from './bottomBar.module.css'
 
-export default function BottomBar({ teamCode }) {
+export default function BottomBar({ teamCode, menu = '' }) {
   const navItems = [
     {
       icon: <RiHome3Line />,
@@ -38,16 +31,6 @@ export default function BottomBar({ teamCode }) {
       href: {
         pathname: '/team/' + teamCode,
         query: { menu: 'tasks' },
-      },
-    },
-    {
-      icon: <RiAddCircleLine />,
-      active: <RiAddCircleFill />,
-      name: 'Create',
-      path: 'create',
-      href: {
-        pathname: '/team/' + teamCode,
-        query: { menu: 'create' },
       },
     },
     {
@@ -71,22 +54,18 @@ export default function BottomBar({ teamCode }) {
         query: { menu: 'members' },
       },
     },
-    // {
-    //   icon: <RiArchiveLine />,
-    //   active: <RiArchiveFill />,
-    //   name: 'Archive',
-    //   path: 'archive',
-    //   href: {
-    //     pathname: '/team/' + teamCode,
-    //     query: { menu: 'archive' },
-    //   },
-    // },
+    {
+      icon: <RiArchiveLine />,
+      active: <RiArchiveFill />,
+      name: 'Archive',
+      path: 'archive',
+      href: {
+        pathname: '/team/' + teamCode,
+        query: { menu: 'archive' },
+      },
+    },
   ]
 
-  const {
-    query: { menu = '' },
-  } = useRouter()
-  console.log(menu)
   return (
     <div className={s.bar}>
       {navItems.map((item, i) => {

@@ -22,7 +22,7 @@ export default function EventsPage() {
         </button>
       </div>
       {isCreate ? (
-        <Modal handleClose={handleCloseModal}>
+        <Modal title="Create Event" handleClose={handleCloseModal}>
           <CreateEvent handleClose={handleCloseModal} />
         </Modal>
       ) : null}

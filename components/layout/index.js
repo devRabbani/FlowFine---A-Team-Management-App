@@ -6,16 +6,18 @@ import BottomBar from './bottomBar'
 
 export default function Layout({ children }) {
   const router = useRouter()
-  const teamCode = router.query?.id
+  const { id: teamCode, menu } = router.query
+  const pathname = router.pathname
+
   const backPath = ['/team/[id]', '/team/[id]/create']
   // const isBack = backPath.includes(router.pathname)
-  const isBack = router.pathname !== '/'
-  const isTeam = router.pathname === '/'
+  const isBack = pathname !== '/'
+
   return (
     <div className={styles.layout}>
       <Nav isBack={isBack} />
       <main className="wrapper">{children}</main>
-      {router.pathname !== '/' ? <BottomBar teamCode={teamCode} /> : <Footer />}
+      {isBack ? <BottomBar teamCode={teamCode} menu={menu} /> : <Footer />}
     </div>
   )
 }

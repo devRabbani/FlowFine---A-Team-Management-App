@@ -41,3 +41,7 @@
   overflow: hidden;
   position: relative;
 }
+
+.menus_menu_create {
+  font-size: 4.5rem;
+}
