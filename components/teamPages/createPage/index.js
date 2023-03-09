@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { RiAddLine, RiLoaderLine, RiRefreshLine } from 'react-icons/ri'
+import {
+  RiAddLine,
+  RiCloseLine,
+  RiLoaderLine,
+  RiRefreshLine,
+} from 'react-icons/ri'
 import Select from 'react-select'
 import {
   commonStyles,
@@ -18,9 +23,13 @@ import s from './createPage.module.css'
 import { useRouter } from 'next/navigation'
 import { useTeam } from '../../../context/TeamContext'
 
-export default function CreatePage() {
+export default function CreatePage({
+  handleClose,
+  createLoading,
+  setCreateLoading,
+}) {
   // Local States
-  const [createLoading, setCreateLoading] = useState(false)
+  // const [createLoading, setCreateLoading] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('1')
@@ -106,17 +115,16 @@ export default function CreatePage() {
       await createTask(taskData, taskInfoData, teamcode)
       setCreateLoading(false)
       toast.success(<b>{title} created successfully</b>, { id: toastId })
-      router.push('/team/' + teamcode)
+      handleClose()
     } catch (error) {
       console.log(error.message)
       setCreateLoading(false)
       toast.error(<b>{error?.message}</b>, { id: toastId })
     }
   }
-  console.log(members, groups, memberOptions, team_data)
+
   return (
-    <div className={s.createPage}>
-      <h2 className="pageHeader">Create Task</h2>
+    <div className={`${s.createPage} wrapper`}>
       <form className={s.createForm} onSubmit={handleSubmit}>
         <input
           type="text"
@@ -211,17 +219,26 @@ export default function CreatePage() {
             />
           </div>
         </div>
-        <Button disabled={createLoading} variant="primary full" type="submit">
-          {createLoading ? (
-            <>
-              <RiLoaderLine /> Creating
-            </>
-          ) : (
-            <>
-              <RiAddLine /> Create
-            </>
-          )}
-        </Button>
+        <div className={s.btnDiv}>
+          <Button
+            disabled={createLoading}
+            onClick={handleClose}
+            variant="grey full"
+          >
+            <RiCloseLine /> CLose
+          </Button>
+          <Button disabled={createLoading} variant="primary full" type="submit">
+            {createLoading ? (
+              <>
+                <RiLoaderLine /> Creating
+              </>
+            ) : (
+              <>
+                <RiAddLine /> Create
+              </>
+            )}
+          </Button>
+        </div>
       </form>
     </div>
   )

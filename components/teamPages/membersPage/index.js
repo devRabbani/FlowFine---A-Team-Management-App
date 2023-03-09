@@ -9,9 +9,6 @@ export default function MembersPage() {
   return (
     <div className={s.membersPage}>
       <TabNav setMenu={setIsMembers} menu={isMembers} type="members" />
-      <Modal handleClose={() => console.log('asd')}>
-        <CreatePage />
-      </Modal>
     </div>
   )
 }

@@ -9,10 +9,21 @@
   display: grid;
   place-items: center;
   z-index: 10000;
+  padding-top: 6.8rem;
+  overflow-y: auto;
 }
 .cross {
   font-size: 4rem;
+  cursor: pointer;
+}
+
+.modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-primary);
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  padding-block: 1.2rem 0.5rem;
+  border-bottom: 1px solid var(--color-green-1);
 }

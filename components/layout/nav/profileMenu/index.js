@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
-import { FaAt, FaSignOutAlt, FaUserEdit } from 'react-icons/fa'
+import { FaSignOutAlt, FaUserEdit } from 'react-icons/fa'
 import useClickOutside from '../../../../hooks/useClickOutside'
 import useLogout from '../../../../hooks/useLogout'
 import s from './profileMenu.module.css'
