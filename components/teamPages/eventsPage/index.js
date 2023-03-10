@@ -31,7 +31,16 @@ export default function EventsPage({ teamCode }) {
           <RiAddCircleFill /> Add New
         </button>
       </div>
-      {isLoading ? <p>Loading...</p> : <EventsList events={events} />}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <EventsList
+          events={events}
+          hasMore={hasMore}
+          loadMore={loadMore}
+          btnLoading={btnLoading}
+        />
+      )}
       {isCreate ? (
         <Modal title="Create Event" handleClose={handleCloseModal}>
           <CreateEvent handleClose={handleCloseModal} />

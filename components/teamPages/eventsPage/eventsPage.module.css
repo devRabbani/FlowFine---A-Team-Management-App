@@ -1,5 +1,5 @@
 .eventsPage {
-  padding-block: 1rem 15rem;
+  padding-block: 1rem 10rem;
 }
 
 .eventHeaderBar {
@@ -32,7 +32,7 @@
 }
 
 .eventCard {
-  padding: 1rem 1rem 1.5rem;
+  padding: 1rem;
   border-radius: 0.7rem;
   overflow-x: hidden;
   word-break: break-word;
@@ -67,10 +67,29 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-block: 1.5rem;
 }
 .eventCard_priority {
   font-size: 1.4rem;
   padding-inline: 0.5em;
   border-radius: 0.4rem;
+}
+
+.btnDiv {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.eventCard button {
+  font-size: 1.8rem;
+  gap: 0.4rem;
+}
+
+.dltBtn {
+  color: var(--color-red);
+}
+
+.loadMoreBtn {
+  margin-inline: auto;
 }

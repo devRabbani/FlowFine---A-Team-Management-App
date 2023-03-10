@@ -55,7 +55,9 @@ export default function usePaginatedData(
         query(collection(db, colPath), orderBy(type, order), limit(LIMIT)),
         (snapshot) => {
           if (!snapshot.empty) {
-            setData(snapshot.docs.map((item) => item.data()))
+            setData(
+              snapshot.docs.map((item) => ({ ...item.data(), id: item.id }))
+            )
           } else {
             setData([])
           }

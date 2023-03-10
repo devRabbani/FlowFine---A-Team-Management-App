@@ -9,11 +9,11 @@ import { addEvent } from '../../../../utils/firebase'
 import Button from '../../../button'
 import s from './createEvent.module.css'
 
-export default function CreateEvent({ handleClose }) {
+export default function CreateEvent({ handleClose, selected }) {
   // Local States
-  const [description, setDecription] = useState('')
-  const [priority, setPriority] = useState('normal')
-  const [time, setTime] = useState('')
+  const [description, setDecription] = useState(selected?.description || '')
+  const [priority, setPriority] = useState(selected?.priority || 1)
+  const [time, setTime] = useState(selected?.time || '')
   const [isLoading, setIsLoading] = useState(false)
 
   // Getting Uername
@@ -31,7 +31,8 @@ export default function CreateEvent({ handleClose }) {
       { description, time, priority },
       username,
       setIsLoading,
-      handleClose
+      handleClose,
+      selected?.id
     )
   }
 
@@ -74,8 +75,14 @@ export default function CreateEvent({ handleClose }) {
         </div>
       </div>
       <div className={s.btnDiv}>
-        <Button disabled={isLoading} variant="primary">
-          {isLoading ? 'Creating' : 'Create'}
+        <Button disabled={isLoading} variant="primary" type="submit">
+          {selected
+            ? isLoading
+              ? 'Updating'
+              : 'Update'
+            : isLoading
+            ? 'Creating'
+            : 'Create'}
         </Button>
         <Button disabled={isLoading} onClick={handleClose} variant="grey">
           Close
