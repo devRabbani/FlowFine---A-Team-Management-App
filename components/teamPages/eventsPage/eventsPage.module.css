@@ -40,7 +40,7 @@
 }
 
 .eventCard_description {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   /* word-break: break-word; */
   color: var(--color-secondary-dark);
 }
@@ -82,7 +82,7 @@
 }
 
 .eventCard button {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   gap: 0.4rem;
 }
 
