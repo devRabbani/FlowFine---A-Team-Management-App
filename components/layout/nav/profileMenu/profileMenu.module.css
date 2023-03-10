@@ -1,7 +1,7 @@
 .menu {
   background-color: var(--color-input);
   padding: 1rem 1.8rem 2rem;
-  width: 20rem;
+  width: 19rem;
   position: absolute;
   top: 5.3rem;
   right: 0;
@@ -14,10 +14,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-block: 0.8rem;
+  padding-block: 0.65rem;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   width: fit-content;
+  font-size: 1.7rem;
 }
 
 .btnLogout {
@@ -31,13 +32,13 @@
 }
 
 .displayName {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   text-transform: capitalize;
   line-height: 1.2;
   font-weight: 500;
 }
 .userName {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   color: var(--color-green-2);
 }
 
