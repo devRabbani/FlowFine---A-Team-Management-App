@@ -34,7 +34,7 @@ export default function TeamPage() {
   } else if (menu === 'members') {
     return <MembersPage />
   } else if (menu === 'events') {
-    return <EventsPage />
+    return <EventsPage teamCode={id} />
   } else if (menu === 'archive') {
     return <ArchivePage />
   } else {

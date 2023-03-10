@@ -10,7 +10,12 @@ import {
 import { useEffect, useState } from 'react'
 import { db } from '../lib/firebase'
 
-export default function usePaginatedData(colPath, LIMIT = 2) {
+export default function usePaginatedData(
+  colPath,
+  LIMIT = 2,
+  type = 'timestamp',
+  order = 'desc'
+) {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [btnLoading, setBtnLoading] = useState(false)
@@ -18,38 +23,41 @@ export default function usePaginatedData(colPath, LIMIT = 2) {
   const [last, setLast] = useState(null)
 
   const loadMore = async () => {
-    if (last === null) return
-    setBtnLoading(true)
-    const dataQuery = query(
-      collection(db, colPath),
-      orderBy('timestamp', 'desc'),
-      startAfter(last),
-      limit(LIMIT)
-    )
+    try {
+      if (last === null) return
+      setBtnLoading(true)
+      let dataQuery = query(
+        collection(db, colPath),
+        orderBy(type, order),
+        startAfter(last),
+        limit(LIMIT)
+      )
 
-    const snapshot = await getDocs(dataQuery)
-    const newData = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
-    setData((prev) => [...prev, ...newData])
-    setBtnLoading(false)
-    setHasMore(snapshot.docs.length === LIMIT)
-    setLast(snapshot.docs[snapshot.docs.length - 1])
+      const snapshot = await getDocs(dataQuery)
+      const newData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setData((prev) => [...prev, ...newData])
+      setBtnLoading(false)
+      setHasMore(snapshot.docs.length === LIMIT)
+      setLast(snapshot.docs[snapshot.docs.length - 1])
+    } catch (error) {
+      setBtnLoading(false)
+      console.log('Load More Error', error)
+    }
   }
 
   useEffect(() => {
     let unsub
     if (colPath) {
       unsub = onSnapshot(
-        query(
-          collection(db, colPath),
-          orderBy('timestamp', 'desc'),
-          limit(LIMIT)
-        ),
+        query(collection(db, colPath), orderBy(type, order), limit(LIMIT)),
         (snapshot) => {
           if (!snapshot.empty) {
-            setData(snapshot.docs.map((item) => item.data()))
+            setData(
+              snapshot.docs.map((item) => ({ ...item.data(), id: item.id }))
+            )
           } else {
             setData([])
           }
@@ -61,7 +69,7 @@ export default function usePaginatedData(colPath, LIMIT = 2) {
       )
     }
     return () => unsub && unsub()
-  }, [colPath])
+  }, [colPath, type, order, LIMIT])
 
   return { data, isLoading, loadMore, btnLoading, hasMore }
 }
