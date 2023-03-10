@@ -1,0 +1,64 @@
+.cardWrapper {
+  background-color: var(--color-primary);
+  width: 105%;
+  margin-left: -2.5%;
+  /* padding-top: 2rem;
+  padding-bottom: 1.5rem; */
+  padding-block: 2rem;
+  position: sticky;
+  top: 5.78rem;
+  z-index: 99;
+}
+
+.card {
+  background-color: var(--color-secondary);
+  padding: 1.1rem 1.3rem 1rem;
+  border-radius: 0.7rem;
+  /* margin-top: 2rem; */
+  width: 95%;
+  margin-inline: auto;
+  color: white;
+}
+
+.card h1 {
+  font-weight: 500;
+  font-size: 3.45rem;
+  line-height: 1.12;
+  text-transform: capitalize;
+}
+
+.updates {
+  font-size: 1.4rem;
+  opacity: 0.5;
+}
+
+.taskDiv {
+  font-size: 1.5rem;
+  padding-block: 1rem 0.6rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-green-dark);
+  display: flex;
+  gap: 0.4rem 0.9rem;
+  flex-wrap: wrap;
+}
+
+.taskDiv span {
+  background-color: var(--color-input);
+  padding-inline: 0.4em;
+  border-radius: 0.2em;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottomBar a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.5rem;
+}
