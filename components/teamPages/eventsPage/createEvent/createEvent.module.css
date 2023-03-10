@@ -15,10 +15,11 @@
 .btnDiv {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .twoDiv > * {
-  flex: 1;
+  flex: 1 1 fit-content;
 }
 
 .btnDiv {
