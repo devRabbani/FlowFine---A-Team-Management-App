@@ -30,12 +30,13 @@
 .heroPara {
   margin-block: 1rem 1.8rem;
   max-width: 550px;
-  font-weight: 500;
-  line-height: 2rem;
+  line-height: 2.3rem;
+  font-size: 1.8rem;
 }
 
-.leftContainnerChild h4 p {
+.leftContainnerChild h4 {
   font-size: 1.7rem;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .heroBtn {

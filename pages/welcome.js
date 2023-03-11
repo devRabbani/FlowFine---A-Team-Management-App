@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Modal from "../components/modal"
 import UsernamePage from "../components/usernamePage"
+import Features from "../components/welcomePage/features"
 import HeroSection from "../components/welcomePage/heroSection"
 import Nav from "../components/welcomePage/nav"
 import { useAuth } from "../context/AuthContext"
@@ -38,6 +39,7 @@ export default function Welcome() {
         isLoading={isLoading}
         signin={signin}
       />
+      <Features />
     </div>
   )
 }
