@@ -1,0 +1,44 @@
+.nav {
+  display: flex;
+  height: 66px;
+  align-items: center;
+}
+.logo {
+  margin: 0 15px;
+  cursor: pointer;
+}
+.navElement {
+  display: flex;
+  margin-left: auto;
+  margin-right: 15px;
+  font-size: 1.7rem;
+}
+.navElement a {
+  margin: 0 10px;
+}
+.menuButton {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 15px;
+  font-size: 2.4rem;
+}
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  justify-content: center;
+}
+.sideNav a {
+  padding: 10px 5px;
+}
+@media screen and (max-width: 600px) {
+  .navElement {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .menuButton {
+    display: none;
+  }
+}

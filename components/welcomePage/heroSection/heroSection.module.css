@@ -1,0 +1,86 @@
+.heroSection {
+  min-height: 100%;
+  color: black;
+}
+
+.containner {
+  display: flex;
+  flex-wrap: wrap;
+  height: 90vh;
+}
+
+.leftContainner {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leftContainnerChild {
+  margin-left: 5rem;
+}
+
+.leftContainnerChild h1 {
+  font-size: 4.5rem;
+  line-height: 1.08;
+  text-align: start;
+  color: var(--color-secondary);
+}
+
+.heroPara {
+  margin-block: 1rem 1.8rem;
+  max-width: 550px;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.leftContainnerChild h4 p {
+  font-size: 1.7rem;
+}
+
+.heroBtn {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.heroPrimaryBtn {
+  background-color: var(--color-secondary-dark);
+  background-color: var(--color-accent-1);
+  width: 15rem;
+  padding: 0.45em 0;
+  border-radius: 50vw;
+  font-size: 2rem;
+  margin-right: 2rem;
+  color: rgb(231, 238, 240);
+}
+
+.rightContainner {
+  flex-basis: 50%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobileMockup {
+  display: flex;
+  justify-content: space-around;
+}
+.mobileMockup img {
+  width: 200px;
+  aspect-ratio: 9/20;
+  height: 100%;
+  border: 0.35rem solid black;
+  box-shadow: 0.7rem 0.7rem 2rem rgba(0, 0, 0, 0.35);
+  border-radius: 2rem;
+  overflow: hidden;
+  margin-inline: 25px;
+}
+
+.leftMockup {
+  margin-bottom: 50px;
+}
+.rightMockup {
+  margin-top: 60px;
+}
