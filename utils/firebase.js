@@ -142,6 +142,7 @@ export const getTeamQuery = (lists) => {
 export const getProfilesQuery = (usernames) => {
   let q = query(collection(db, 'users'))
   const chunks = getChunks(usernames)
+
   for (const chunk of chunks) {
     q = query(q, where('username', 'in', chunk))
   }
@@ -426,11 +427,14 @@ export const clearActivity = async (teamCode, isEditor, setIsLoading) => {
 }
 
 // Check if user is owner or editor
-export const checkAccess = (editors = [], owners = [], username, isOwner) => {
-  if (isOwner) {
-    return owners.includes(username)
+export const checkAccess = (editors = [], owners = [], username) => {
+  if (owners.includes(username)) {
+    return 2
+  } else if (editors.includes(username)) {
+    return 1
+  } else {
+    return 0
   }
-  return owners.includes(username) || editors.includes(username)
 }
 
 // Add Event

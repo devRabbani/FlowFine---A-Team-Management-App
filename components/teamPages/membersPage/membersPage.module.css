@@ -1,0 +1,71 @@
+.membersPage {
+  padding-bottom: 10rem;
+}
+
+/* Div Header */
+.divHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-block: 1.5rem 0.5rem;
+  border-bottom: 0.1rem solid var(--color-green-1);
+}
+
+.divHeader button {
+  font-weight: 500;
+  color: var(--color-secondary-dark);
+}
+
+/* Members Page */
+.membersList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.membersList_memberCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color-green-1);
+}
+
+.memberCard_info {
+  display: flex;
+  gap: 1rem;
+}
+
+.memberCard_info img {
+  border-radius: 1rem;
+}
+
+.memberCard_name {
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.owner {
+  color: var(--color-red);
+}
+
+.editor {
+  color: var(--color-blue);
+}
+
+/* Invite Box */
+.inviteBox {
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.inviteBox input {
+  width: 100%;
+  border-radius: 0.4rem;
+  background-color: var(--color-input);
+  padding: 0.4em 0.5em;
+}

@@ -1,7 +1,5 @@
 import { createContext, useContext, useReducer } from 'react'
 import TeamReducer from '../reducers/teamReducer'
-import { checkAccess } from '../utils/firebase'
-import { useUser } from './UserContext'
 
 const TeamContext = createContext()
 
