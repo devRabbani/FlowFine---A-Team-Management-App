@@ -3,6 +3,8 @@ import TeamHeader from './teamHeader'
 import Activity from './activity'
 import s from './homwPage.module.css'
 import { useMemo } from 'react'
+import { checkAccess } from '../../../utils/firebase'
+import { useUser } from '../../../context/UserContext'
 
 export default function HomePage({
   data,
@@ -14,7 +16,11 @@ export default function HomePage({
   // Getting Datas from Context
   const { team_data, tasks_loading, tasks_data } = useTeam()
 
-  const { name, updatedAt, owner, members, groups, id } = team_data
+  const { name, updatedAt, owners, editors, members, groups, id } = team_data
+
+  // Getting Username
+  const { username } = useUser()
+
   console.log(tasks_data)
   // Calculate
   const totalWorking = useMemo(
@@ -27,6 +33,10 @@ export default function HomePage({
     [tasks_data]
   )
 
+  // Check Editor
+  const isEditor = checkAccess(editors, owners, username)
+
+  console.log(team_data)
   console.count('Home Page')
   return (
     <div className={s.homePage}>
@@ -44,6 +54,8 @@ export default function HomePage({
         hasMore={hasMore}
         btnLoading={btnLoading}
         loadMore={loadMore}
+        isEditor={isEditor}
+        teamCode={id}
       />
     </div>
   )

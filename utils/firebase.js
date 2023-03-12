@@ -101,8 +101,8 @@ export const createTeam = async (teamName, uid) => {
     name: teamName.toLowerCase().trim(),
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
-    owner: [uid],
-    editor: [],
+    owners: [uid],
+    editors: [],
     members: [uid],
     teamcode: teamCode,
   })
@@ -399,10 +399,29 @@ export const addComment = async (
 }
 
 // Clear All Activity
-export const clearActivity = async () => {
+export const clearActivity = async (teamCode, isEditor, setIsLoading) => {
+  setIsLoading(true)
+  const id = toast.loading(<b>Clearing all activity...</b>)
   try {
+    if (isEditor) {
+      const isConfirm = confirm(
+        'Are you sure you want to clear all activities?'
+      )
+      if (isConfirm) {
+        const q = collection(db, 'teams', teamCode, 'activity')
+        await deleteCollection(q)
+        setIsLoading(false)
+        toast.success(<b>All activities cleared</b>, { id })
+      } else {
+        throw new Error('Clearing canceled by user')
+      }
+    } else {
+      throw new Error('You must need to be an editor for this operation.')
+    }
   } catch (error) {
     console.log(error)
+    toast.error(<b>{error.message}</b>, { id })
+    setIsLoading(false)
   }
 }
 
@@ -503,4 +522,21 @@ export const removeEvent = async (
   } finally {
     setIsLoading(false)
   }
+}
+
+// Delete all docs in collection
+const deleteCollection = async (q) => {
+  // Getting All Docs
+  const data = await getDocs(q)
+
+  // Intialising Batch
+  const batch = writeBatch(db)
+
+  // Deleting Each Docs
+  data.docs.forEach((item) => {
+    batch.delete(item.ref)
+  })
+
+  // Commiting Changes
+  await batch.commit()
 }

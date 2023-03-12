@@ -6,6 +6,7 @@ import { FaCheck, FaShareAlt } from 'react-icons/fa'
 import { RiSettings3Line } from 'react-icons/ri'
 import Modal from '../../../modal'
 import styles from './teamHeader.module.css'
+import TeamSetting from './teamSetting'
 
 export default function TeamHeader({
   name,
@@ -53,7 +54,7 @@ export default function TeamHeader({
 
       {isTeamSetting ? (
         <Modal title="Team Settings" handleClose={handleClose}>
-          Team Setting
+          <TeamSetting />
         </Modal>
       ) : null}
     </>

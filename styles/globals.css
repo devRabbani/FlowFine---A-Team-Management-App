@@ -215,3 +215,9 @@ textarea {
   background-color: hsl(8, 72%, 90%);
   color: #9b0606;
 }
+
+.noData {
+  text-align: center;
+  margin-block: 10vh;
+  color: var(--color-green-dark);
+}
