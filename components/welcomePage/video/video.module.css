@@ -1,0 +1,59 @@
+.video {
+  min-height: 100vh;
+  display: flex;
+  padding-top: 30px;
+  background-color: var(--color-black-1);
+  position: relative;
+}
+.videoLeft,
+.videoRight {
+  width: 50%;
+}
+
+.videoLeft iframe {
+  width: 553px;
+  height: 315px;
+  border: 0.4rem solid rgba(0, 0, 0, 0.89);
+  border-radius: 1.7rem;
+  overflow: hidden;
+}
+
+.videoRight {
+  color: #000;
+}
+.videoLeft {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--color-black-1);
+}
+
+.point1,
+.point2,
+.point3 {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pointsPara {
+  font-size: 1.6rem;
+  max-width: 400px;
+  text-align: center;
+  line-height: 25px;
+}
+
+.pointsH4 {
+  margin-block: 2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+}

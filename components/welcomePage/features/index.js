@@ -8,7 +8,7 @@ export default function Features() {
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est
         animi, porro aliquid inventore sapiente deserunt cumque aspernatur.
-        Deleniti, accusantium.
+        Deleniti, accusantium .
       </p>
       <div className={s.featureContainner}>
         <FeatureCard

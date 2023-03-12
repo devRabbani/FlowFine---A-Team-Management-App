@@ -6,6 +6,7 @@ import UsernamePage from "../components/usernamePage"
 import Features from "../components/welcomePage/features"
 import HeroSection from "../components/welcomePage/heroSection"
 import Nav from "../components/welcomePage/nav"
+import Video from "../components/welcomePage/video"
 import { useAuth } from "../context/AuthContext"
 import { useUser } from "../context/UserContext"
 import useLogin from "../hooks/useLogin"
@@ -40,6 +41,7 @@ export default function Welcome() {
         signin={signin}
       />
       <Features />
+      <Video />
     </div>
   )
 }

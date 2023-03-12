@@ -39,7 +39,7 @@ export default function HeroSection({
                   {isLoading ? "Signing In" : "Get Started"}
                 </button>
                 <button className={s.heroSecondaryBtn}>
-                  See more features
+                  See more features ...
                 </button>
               </div>
             )}
@@ -47,8 +47,8 @@ export default function HeroSection({
         </div>
         <div className={s.rightContainner}>
           <div className={s.mobileMockup}>
-            <Image className={s.leftMockup} src={mockup1} />
-            <Image className={s.rightMockup} src={mockup2} />
+            <Image className={s.leftMockup} src={mockup1} alt="Mockup" />
+            <Image className={s.rightMockup} src={mockup2} alt="Mockup" />
           </div>
         </div>
       </div>
