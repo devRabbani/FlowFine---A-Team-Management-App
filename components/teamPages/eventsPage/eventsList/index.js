@@ -34,7 +34,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
     () => events.filter((event) => new Date(event?.time) < new Date()),
     [events]
   )
-  console.log(owner, editor, isEditor, team_data)
+  console.log(owners, editors, isEditor, team_data)
   return (
     <>
       <div className={s.eventsList_wrapper}>
@@ -50,7 +50,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
             />
           ))
         ) : (
-          <p className={s.noData}>
+          <p className="noData">
             No Upcomming Events Found, Click Add New to add event
           </p>
         )}
@@ -71,7 +71,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
             />
           ))
         ) : (
-          <p className={s.noData}>No Events Data Found</p>
+          <p className="noData">No Events Data Found</p>
         )}
       </div>
       {hasMore ? (

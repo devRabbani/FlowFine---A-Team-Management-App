@@ -218,6 +218,7 @@ textarea {
 
 .noData {
   text-align: center;
-  margin-block: 10vh;
-  color: var(--color-green-dark);
+  color: var(--color-green-1);
+  max-width: 90%;
+  margin: 10vh auto;
 }
