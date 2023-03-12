@@ -1,0 +1,124 @@
+.footer {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-top: 10rem;
+  color: var(--color-grey);
+}
+
+.topFooter {
+  display: flex;
+  padding: 5rem;
+  background-color: rgb(12, 12, 12);
+}
+.topLeft {
+  flex-basis: 50%;
+}
+
+.canwebe {
+  font-size: 4rem;
+}
+
+.can {
+  color: var(--color-canwebe-deep);
+  font-weight: 500;
+}
+
+.topPara {
+  padding-top: 13px;
+  word-spacing: 2px;
+  max-width: 55rem;
+  margin-inline: auto;
+  opacity: 0.8;
+  line-height: 2.5rem;
+}
+
+.topRight {
+  flex-basis: 50%;
+  display: flex;
+}
+.h4 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.rightLeft {
+  flex-basis: 50%;
+}
+
+.footerLink {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem;
+}
+
+.rightRight {
+  flex-basis: 50%;
+}
+
+.bottomFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5rem;
+  border-top: 2px solid rgb(39, 39, 39);
+  background-color: black;
+}
+
+.bottomLeft {
+}
+
+.bottomRight {
+  display: flex;
+  gap: 2rem;
+  font-size: 2.2rem;
+}
+
+.facebook,
+.twitter,
+.instagram,
+.linkedin,
+.youtube,
+.footerLink {
+  transition: all 0.3s ease-in-out;
+}
+
+.facebook:active {
+  color: #1877f2;
+}
+
+.instagram:active {
+  color: #e1306c;
+}
+.twitter:active {
+  color: #1da1f2;
+}
+.linkedin:active {
+  color: #0077b5;
+}
+
+.youtube:active {
+  color: #ff0000;
+}
+
+@media (hover: hover) {
+  .footerLink:hover {
+    color: var(--color-canwebe-deep);
+  }
+
+  .facebook:hover {
+    color: #1877f2;
+  }
+
+  .instagram:hover {
+    color: #e1306c;
+  }
+  .twitter:hover {
+    color: #1da1f2;
+  }
+  .linkedin:hover {
+    color: #0077b5;
+  }
+
+  .youtube:hover {
+    color: #ff0000;
+  }
+}

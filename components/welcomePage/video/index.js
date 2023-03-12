@@ -2,7 +2,7 @@ import s from "./video.module.css"
 
 export default function Video() {
   return (
-    <div className={`${s.video} wrapper`}>
+    <div className={s.video}>
       <div className={s.videoLeft}>
         <iframe
           src="https://www.youtube.com/embed/VoCNMBo0kZ8"

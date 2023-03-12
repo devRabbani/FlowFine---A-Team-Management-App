@@ -1,12 +1,11 @@
-.heroSection {
-  min-height: 100%;
-  color: black;
+.mainHeroSectionWrapper {
+  height: 100%;
 }
 
-.containner {
+.heroSection {
   display: flex;
   flex-wrap: wrap;
-  height: 90vh;
+  height: 90%;
 }
 
 .leftContainner {
@@ -22,7 +21,7 @@
 
 .leftContainnerChild h1 {
   font-size: 4.5rem;
-  line-height: 1.08;
+  line-height: 40px;
   text-align: start;
   color: var(--color-secondary);
 }
@@ -36,7 +35,6 @@
 
 .leftContainnerChild h4 {
   font-size: 1.7rem;
-  color: rgba(0, 0, 0, 0.65);
 }
 
 .heroBtn {
@@ -56,32 +54,32 @@
   color: rgb(231, 238, 240);
 }
 
+.heroSecondaryBtn {
+  font-size: 2rem;
+}
+
 .rightContainner {
   flex-basis: 50%;
-  height: 90vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.mobileMockup {
-  display: flex;
-  justify-content: space-around;
-}
-.mobileMockup img {
+.rightContainner > img {
   width: 200px;
   aspect-ratio: 9/20;
-  height: 100%;
+  height: auto;
   border: 0.35rem solid black;
   box-shadow: 0.7rem 0.7rem 2rem rgba(0, 0, 0, 0.35);
   border-radius: 2rem;
   overflow: hidden;
-  margin-inline: 25px;
+  margin-inline: 20px;
 }
 
 .leftMockup {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .rightMockup {
-  margin-top: 60px;
+  margin-top: 40px;
 }

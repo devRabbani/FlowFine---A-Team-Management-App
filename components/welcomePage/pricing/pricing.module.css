@@ -1,0 +1,39 @@
+/* .wholePricing {
+  background-color: var(--color-white-light);
+} */
+
+.pricing {
+  text-align: center;
+  width: 70%;
+  margin-inline: auto;
+  margin-block: 5rem 0;
+  padding: 3rem 2rem 5rem;
+  border: 0.2rem solid var(--color-secondary);
+  border-radius: 1rem;
+}
+
+.pricing h3 {
+  font-size: 3.6rem;
+  margin-bottom: 2rem;
+}
+
+.pricingP {
+  width: 60rem;
+  margin-inline: auto;
+}
+
+.btnContainner {
+  text-align: center;
+  margin-top: -1.5rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: 0.2rem solid var(--color-secondary);
+  border-radius: 0.8rem;
+  width: 16rem;
+  background-color: white;
+  font-size: 2rem;
+  text-align: center;
+  margin-inline: 2.5rem;
+}

@@ -1,32 +1,43 @@
+/* Nav */
+
 .nav {
   display: flex;
   height: 66px;
   align-items: center;
 }
+
 .logo {
-  margin: 0 15px;
+  width: 4rem;
+  height: 4rem;
+  margin-left: 5rem;
+}
+
+.logoText {
+  font-size: 3.2rem;
+  margin: 0 1rem;
   cursor: pointer;
 }
 .navElement {
   display: flex;
-  margin-left: auto;
-  margin-right: 15px;
+  margin-left: 10rem;
+  margin-right: 1.5rem;
   font-size: 1.7rem;
 }
 .navElement a {
-  margin: 0 10px;
+  margin: 0 3rem;
+  font-weight: 500;
 }
 .menuButton {
   cursor: pointer;
   margin-left: auto;
-  margin-right: 15px;
+  margin-right: 1.5rem;
   font-size: 2.4rem;
 }
 .sideNav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50vh;
+  height: 50%;
   justify-content: center;
 }
 .sideNav a {

@@ -1,16 +1,16 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Modal from "../components/modal"
 import UsernamePage from "../components/usernamePage"
 import Features from "../components/welcomePage/features"
+import Footer from "../components/welcomePage/footer"
 import HeroSection from "../components/welcomePage/heroSection"
-import Nav from "../components/welcomePage/nav"
 import Video from "../components/welcomePage/video"
 import { useAuth } from "../context/AuthContext"
 import { useUser } from "../context/UserContext"
 import useLogin from "../hooks/useLogin"
-import s from "../styles/Welcome.module.css"
+
+import Pricing from "../components/welcomePage/Pricing"
 
 export default function Welcome() {
   const { user } = useAuth()
@@ -31,8 +31,7 @@ export default function Welcome() {
   }
 
   return (
-    <div className={s.welcomePage}>
-      <Nav />
+    <>
       <HeroSection
         user={user}
         userName={username}
@@ -40,8 +39,10 @@ export default function Welcome() {
         isLoading={isLoading}
         signin={signin}
       />
-      <Features />
-      <Video />
-    </div>
+      <Features id="features" />
+      <Video id="video" />
+      <Pricing />
+      <Footer />
+    </>
   )
 }

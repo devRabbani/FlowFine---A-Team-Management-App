@@ -19,6 +19,7 @@
   border-radius: 1.5rem;
   z-index: -1;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  background-color: var(--color-green-dark);
 }
 
 .cardPara h4 {

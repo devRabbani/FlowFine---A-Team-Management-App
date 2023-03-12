@@ -1,6 +1,7 @@
 .features {
+  height: 100%;
   text-align: center;
-  margin-block: 5rem 0.5rem;
+  margin-block: auto;
 }
 
 .features h2 {

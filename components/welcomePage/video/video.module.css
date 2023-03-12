@@ -1,8 +1,8 @@
 .video {
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   padding-top: 30px;
-  background-color: var(--color-black-1);
+  background-color: var(--color-white-light);
   position: relative;
 }
 .videoLeft,
@@ -12,15 +12,12 @@
 
 .videoLeft iframe {
   width: 553px;
-  height: 315px;
-  border: 0.4rem solid rgba(0, 0, 0, 0.89);
+  height: 310px;
+  border: none;
   border-radius: 1.7rem;
   overflow: hidden;
 }
 
-.videoRight {
-  color: #000;
-}
 .videoLeft {
   height: 100vh;
   display: flex;
