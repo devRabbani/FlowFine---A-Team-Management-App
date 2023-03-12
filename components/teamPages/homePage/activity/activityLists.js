@@ -15,7 +15,7 @@ export default function ActivityLists({
   }
 
   if (!data?.length) {
-    return <p>No Activity Records Found</p>
+    return <p className="noData">No Activity Records Found</p>
   }
 
   return (
