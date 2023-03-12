@@ -19,11 +19,11 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
 
   // Getting Team Data
   const { team_data } = useTeam()
-  const { owner, editor, teamcode } = team_data
+  const { owners, editors, teamcode } = team_data
   // Getting username
   const { username } = useUser()
 
-  const isEditor = checkAccess(editor, owner, username)
+  const isEditor = checkAccess(editors, owners, username)
 
   // Partioning Events
   const upcomming = useMemo(

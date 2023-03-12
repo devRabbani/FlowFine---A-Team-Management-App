@@ -21,7 +21,7 @@ export default function ListTasks() {
       <div className={s.headerDiv}>
         <h3 className="header2">Tasks List</h3>
         <div className={s.sortDiv}>
-          <label>Filter :</label>
+          <label>Sort :</label>
           <Select
             styles={sortSelectStyle}
             options={sortOptions}
