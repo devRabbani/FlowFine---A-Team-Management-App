@@ -222,3 +222,7 @@ textarea {
   max-width: 90%;
   margin: 10vh auto;
 }
+
+.noData.low {
+  margin-block: 6vh;
+}

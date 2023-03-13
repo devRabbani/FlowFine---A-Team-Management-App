@@ -151,15 +151,15 @@ export const getProfilesQuery = (usernames) => {
 }
 
 // Get Search Teams
-export const getSearchTeams = async (name) => {
+export const getSearchResults = async (searchStr, searchField, colName) => {
   const q = query(
-    collection(db, 'teams'),
-    orderBy('name'),
-    startAt(name.toLowerCase().trim()),
-    endAt(name.toLowerCase().trim() + '~')
+    collection(db, colName),
+    orderBy(searchField),
+    startAt(searchStr.toLowerCase().trim()),
+    endAt(searchStr.toLowerCase().trim() + '~')
   )
   const snapshot = await getDocs(q)
-  console.log(snapshot)
+
   if (!snapshot.empty) {
     return snapshot.docs.map((item) => item.data())
   } else {
@@ -543,4 +543,15 @@ const deleteCollection = async (q) => {
 
   // Commiting Changes
   await batch.commit()
+}
+
+export const giveRequest = async (teamCode, username, type) => {
+  const teamRef = doc(db, 'teams', teamCode)
+  await updateDoc(teamRef, {
+    invites: arrayUnion({
+      type,
+      username,
+      timestamp: serverTimestamp(),
+    }),
+  })
 }

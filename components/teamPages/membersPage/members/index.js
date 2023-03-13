@@ -5,8 +5,26 @@ import s from '../membersPage.module.css'
 import InviteBox from './inviteBox'
 import MemberCard from './memberCard'
 
-export default function Members({ loading, members, profiles = {} }) {
+export default function Members({
+  loading,
+  members,
+  teamCode,
+  profiles = {},
+  invites = [],
+  access,
+}) {
   const [isInvite, setIsInvite] = useState(false)
+
+  // Check Members
+  // Check Already Invited
+  const checkMembers = (username) => {
+    return members.includes(username)
+  }
+
+  // Check Already Invited
+  const checkInvite = (username) => {
+    return invites.some((invite) => invite.username === username)
+  }
 
   return (
     <div>
@@ -16,7 +34,14 @@ export default function Members({ loading, members, profiles = {} }) {
           <RiUserAddFill /> {isInvite ? 'Close' : 'Invite'}
         </button>
       </div>
-      {isInvite ? <InviteBox /> : null}
+      {isInvite ? (
+        <InviteBox
+          checkInvite={checkInvite}
+          checkMembers={checkMembers}
+          teamCode={teamCode}
+          access={access}
+        />
+      ) : null}
       {loading ? (
         <p>Loading</p>
       ) : members?.length ? (
