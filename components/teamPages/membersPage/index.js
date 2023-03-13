@@ -42,7 +42,7 @@ export default function MembersPage() {
           access={access}
         />
       ) : (
-        <Groups />
+        <Groups members={members} access={access} teamCode={teamcode} />
       )}
     </div>
   )

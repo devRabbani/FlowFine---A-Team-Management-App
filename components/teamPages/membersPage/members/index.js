@@ -28,7 +28,7 @@ export default function Members({
   }
 
   return (
-    <div>
+    <>
       {invites?.length ? (
         <Requests teamCode={teamCode} access={access} invites={invites} />
       ) : null}
@@ -59,6 +59,6 @@ export default function Members({
           No Members Data Found, Try to Invite One by clicking invite button.
         </p>
       )}
-    </div>
+    </>
   )
 }

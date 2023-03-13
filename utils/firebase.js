@@ -596,3 +596,50 @@ export const acceptRequest = async (teamCode, data) => {
   // Committing Changes
   await batch.commit()
 }
+
+// Create Group
+export const createGroup = async (
+  teamCode,
+  data,
+  username,
+  access,
+  handleLoading,
+  handleClose
+) => {
+  let id
+  try {
+    id = toast.loading(<b>Creating Group...</b>)
+    handleLoading(true)
+    if (access < 1) {
+      throw new Error('You dont have the required permission to do this!!')
+    } else {
+      const teamRef = doc(db, 'teams', teamCode)
+      const activityRef = doc(collection(teamRef, 'activity'))
+
+      const batch = writeBatch(db)
+
+      // Updating Team
+      batch.update(teamRef, {
+        groups: arrayUnion(data),
+        updatedAt: serverTimestamp(),
+      })
+
+      // Setting Activity
+      batch.set(activityRef, {
+        message: `@${username} created a new Group : ${data?.name}`,
+        timestamp: serverTimestamp(),
+      })
+
+      // Committing Changes
+      await batch.commit()
+
+      toast.success(<b>Group created successfully</b>, { id })
+      handleClose()
+    }
+  } catch (error) {
+    console.log('Creating Group', error)
+    toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    handleLoading(false)
+  }
+}

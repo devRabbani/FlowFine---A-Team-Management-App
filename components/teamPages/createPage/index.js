@@ -183,7 +183,7 @@ export default function CreatePage({
               isSearchable
               isLoading={false}
               noOptionsMessage={() => (
-                <span className={s.stateOption}>No data found</span>
+                <span className={s.stateOption}>No Groups found</span>
               )}
             />
           </div>
@@ -201,7 +201,7 @@ export default function CreatePage({
               isSearchable
               onChange={(value) => handleChange(value, 'member')}
               noOptionsMessage={() => (
-                <span className={s.stateOption}>No data found</span>
+                <span className={s.stateOption}>No Members found</span>
               )}
             />
           </div>

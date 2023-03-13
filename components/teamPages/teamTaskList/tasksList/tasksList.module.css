@@ -57,9 +57,14 @@
   width: 100%;
   background-color: transparent;
   text-transform: uppercase;
+  border: none;
+  padding: 0;
 }
 .searchDiv input::placeholder {
   text-transform: none;
+}
+.searchDiv input:is(:focus, :active) {
+  border-color: transparent;
 }
 
 .searchDiv:focus-within svg {

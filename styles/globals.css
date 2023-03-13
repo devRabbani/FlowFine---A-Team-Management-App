@@ -188,16 +188,26 @@ a {
 }
 
 input,
-select {
+select,
+textarea {
   outline: none;
   border: none;
   background-color: none;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: var(--color-secondary-dark);
+  background-color: var(--color-input);
+  padding: 0.44em 0.56em;
+  border-radius: 0.4rem;
+  border: 0.2rem solid var(--color-input);
 }
 
 textarea {
   resize: vertical;
+}
+
+input:is(:active, :focus),
+textarea:is(:active, :focus) {
+  border-color: var(--color-green-border);
 }
 
 /* Priority Colors */
@@ -231,4 +241,10 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
