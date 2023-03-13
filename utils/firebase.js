@@ -545,13 +545,54 @@ const deleteCollection = async (q) => {
   await batch.commit()
 }
 
-export const giveRequest = async (teamCode, username, type) => {
+// Giving Request to team or user
+export const giveRequest = async (teamCode, username, uid, type) => {
   const teamRef = doc(db, 'teams', teamCode)
   await updateDoc(teamRef, {
     invites: arrayUnion({
       type,
       username,
-      timestamp: serverTimestamp(),
+      uid,
+      timestamp: Date.now(),
     }),
   })
+}
+
+// Canceling Request
+export const cancelRequest = async (teamCode, data) => {
+  const teamRef = doc(db, 'teams', teamCode)
+  await updateDoc(teamRef, {
+    invites: arrayRemove(data),
+  })
+}
+
+// Accepting Request
+export const acceptRequest = async (teamCode, data) => {
+  const { username, uid } = data
+  const teamRef = doc(db, 'teams', teamCode)
+  const activityRef = doc(collection(teamRef, 'activity'))
+  const userRef = doc(db, 'users', uid)
+
+  // Batch Initi
+  const batch = writeBatch(db)
+
+  // Updating Team Data
+  batch.update(teamRef, {
+    members: arrayUnion(username),
+    invites: arrayRemove(data),
+  })
+
+  // Updating User Info
+  batch.update(userRef, {
+    teams: arrayUnion(teamCode),
+  })
+
+  // Setting Activity
+  batch.set(activityRef, {
+    message: `@${username} just joined with our team`,
+    timestamp: serverTimestamp(),
+  })
+
+  // Committing Changes
+  await batch.commit()
 }

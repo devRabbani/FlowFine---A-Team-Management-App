@@ -21,7 +21,7 @@ export default function MemberCard({ profile = {} }) {
   }
 
   return (
-    <div className={s.membersList_memberCard}>
+    <div className={`${s.membersList_memberCard} flexBetween`}>
       <div className={s.memberCard_info}>
         <Image src={photoURL} width={50} height={50} alt={username} />
         <div className={s.memberCard_nameDiv}>

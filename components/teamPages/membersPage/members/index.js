@@ -4,6 +4,7 @@ import { RiUserAddFill, RiUserAddLine } from 'react-icons/ri'
 import s from '../membersPage.module.css'
 import InviteBox from './inviteBox'
 import MemberCard from './memberCard'
+import Requests from './requests'
 
 export default function Members({
   loading,
@@ -28,7 +29,10 @@ export default function Members({
 
   return (
     <div>
-      <div className={s.divHeader}>
+      {invites?.length ? (
+        <Requests teamCode={teamCode} access={access} invites={invites} />
+      ) : null}
+      <div className={`${s.divHeader} flexBetween`}>
         <h3 className="header2">All Members</h3>
         <button onClick={() => setIsInvite((prev) => !prev)}>
           <RiUserAddFill /> {isInvite ? 'Close' : 'Invite'}

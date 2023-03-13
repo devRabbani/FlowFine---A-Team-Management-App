@@ -50,11 +50,11 @@ export default function InviteBox({
   )
 
   // Giving Invite
-  const giveInvite = async (username) => {
+  const giveInvite = async (user) => {
     try {
       setInviteLoading(true)
       if (access > 1) {
-        await giveRequest(teamCode, username, 'invite')
+        await giveRequest(teamCode, user?.username, user?.uid, 'invite')
       } else {
         throw new Error('You dont have the access to do it!')
       }
@@ -89,7 +89,10 @@ export default function InviteBox({
           ) : results.length ? (
             <div className={s.searchResults}>
               {results?.map((result, i) => (
-                <div key={i} className={s.membersList_memberCard}>
+                <div
+                  key={i}
+                  className={`${s.membersList_memberCard} flexBetween`}
+                >
                   <div className={s.memberCard_info}>
                     <div className={s.memberCard_nameDiv}>
                       <p className={s.memberCard_name}>{result?.displayName}</p>
@@ -104,7 +107,7 @@ export default function InviteBox({
                     <p>requested</p>
                   ) : (
                     <button
-                      onClick={() => giveInvite(result?.username)}
+                      onClick={() => giveInvite(result)}
                       disabled={inviteLoading}
                     >
                       {inviteLoading ? 'Inviting' : 'Invite'}

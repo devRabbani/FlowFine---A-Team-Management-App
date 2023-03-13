@@ -4,9 +4,6 @@
 
 /* Div Header */
 .divHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
   padding-block: 1.5rem 0.5rem;
   border-bottom: 0.1rem solid var(--color-green-1);
@@ -25,11 +22,8 @@
 }
 
 .membersList_memberCard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-block: 1rem;
-  border-bottom: 1px solid var(--color-green-1);
+  border-bottom: 1px solid var(--color-green-dark);
 }
 
 .memberCard_info {
@@ -97,4 +91,75 @@
 .searchResultsWrapper {
   margin-block: 1.5rem 4rem;
   border-top: 1px solid var(--color-green-1);
+}
+
+/* Requests */
+/* .requestsWrapper {
+  margin-bottom: 1rem;
+} */
+.requestsHeaderDiv {
+  color: var(--color-secondary-dark);
+  border-bottom: 1px solid var(--color-green-1);
+  padding-block: 1.5rem 0.5rem;
+}
+
+.requestsHeader {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 2.24rem;
+  font-weight: 500;
+}
+
+.requestsHeader svg {
+  flex-shrink: 0;
+  margin-left: -0.8rem;
+  transition: all 0.23s ease-in-out;
+}
+
+.requestsHeader svg.open {
+  transform: rotateZ(90deg);
+}
+
+.requestsHeader span {
+  margin-left: 0.7rem;
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.request {
+  padding-block: 1rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--color-green-dark);
+}
+.request_username {
+  font-weight: 500;
+  font-size: 1.9rem;
+  word-break: break-word;
+}
+
+.request_btnDiv {
+  display: flex;
+  gap: 1.1rem;
+}
+
+.request button {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.request_cancelBtn {
+  color: var(--color-red) !important;
+}
+
+.request_loading {
+  opacity: 0.7;
+  font-size: 1.6rem;
 }

@@ -226,3 +226,9 @@ textarea {
 .noData.low {
   margin-block: 6vh;
 }
+
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
