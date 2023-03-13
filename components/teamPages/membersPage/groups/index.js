@@ -4,8 +4,15 @@ import { MdGroupAdd } from 'react-icons/md'
 import { RiAddCircleFill } from 'react-icons/ri'
 import Modal from '../../../modal'
 import CreateGroup from './createGroup'
+import GroupCard from './groupCard'
 
-export default function Groups({ members, access, teamCode }) {
+export default function Groups({
+  members,
+  access,
+  teamCode,
+  groups,
+  profiles,
+}) {
   // Local States
   const [isOpen, setIsOpen] = useState(false)
 
@@ -20,7 +27,23 @@ export default function Groups({ members, access, teamCode }) {
           <RiAddCircleFill /> Add New
         </button>
       </div>
-      <div className={s.groupsList}></div>
+      {groups?.length ? (
+        <div className={s.groupsList}>
+          {groups.map((group, i) => (
+            <GroupCard
+              key={group.name + i}
+              data={group}
+              profiles={profiles}
+              access={access}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="noData">
+          No groups found, Create one by clicking the add new button
+        </p>
+      )}
+
       {isOpen ? (
         <Modal handleClose={handleClose} title="Create Group">
           <CreateGroup
