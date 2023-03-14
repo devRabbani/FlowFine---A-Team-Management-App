@@ -1,6 +1,4 @@
 import {
-  arrayRemove,
-  arrayUnion,
   collection,
   doc,
   endAt,
@@ -11,12 +9,10 @@ import {
   serverTimestamp,
   setDoc,
   startAt,
-  updateDoc,
   where,
   writeBatch,
 } from 'firebase/firestore'
 
-import { customAlphabet } from 'nanoid'
 import { db } from '../../lib/firebase'
 
 export const getTeam = async (teamcode) => {
@@ -48,29 +44,6 @@ export const getMembers = async (teamcode) => {
   if (!colSnap.empty) {
     return colSnap.docs.map((item) => ({ ...item.data(), uid: item.id }))
   }
-}
-
-// Check Username
-export const checkUsernameExist = async (value) => {
-  const snapshot = await getDoc(doc(db, 'usernames', value))
-  return snapshot.exists()
-}
-
-// Create user
-export const createUser = async (uid, displayName, photoURL, username) => {
-  const batch = writeBatch(db)
-
-  const userRef = doc(db, `users/${uid}`)
-  const usernameRef = doc(db, `usernames/${username}`)
-  batch.set(userRef, {
-    displayName,
-    uid,
-    photoURL,
-    username,
-    timestamp: serverTimestamp(),
-  })
-  batch.set(usernameRef, { uid })
-  await batch.commit()
 }
 
 // get Chunks

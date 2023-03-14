@@ -1,11 +1,7 @@
 import { useState } from 'react'
-import {
-  addTeamToUser,
-  addUserToTeam,
-  createTeam,
-  getTeam,
-} from '../utils/firebase'
 import toast from 'react-hot-toast'
+import { getTeam } from '../utils/firebase/common'
+import { createTeam } from '../utils/firebase/teamsPage'
 
 export default function useCreateTeam() {
   const [isCreating, setIsCreating] = useState(false)
@@ -17,11 +13,11 @@ export default function useCreateTeam() {
       // Creating Team
       const teamCode = await createTeam(teamName, uid)
       // Adding user to team
-      await addUserToTeam(teamCode, uid, displayName, photoURL)
+      // await addUserToTeam(teamCode, uid, displayName, photoURL)
       // Getting TimeStamp
       const { timestamp } = await getTeam(teamCode)
       // Adding Team to Own
-      await addTeamToUser(uid, teamCode, teamName, timestamp)
+      // await addTeamToUser(uid, teamCode, teamName, timestamp)
       toast.success(<b>{`${teamName} is created`}</b>, { id })
       setIsCreating(false)
       return true
