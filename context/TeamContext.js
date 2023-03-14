@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useMemo, useReducer } from 'react'
 import TeamReducer from '../reducers/teamReducer'
 
 const TeamContext = createContext()

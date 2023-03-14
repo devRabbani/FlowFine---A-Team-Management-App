@@ -20,6 +20,7 @@ export default function CreatePage({
   handleClose,
   createLoading,
   setCreateLoading,
+  username,
 }) {
   // Local States
 
@@ -33,21 +34,24 @@ export default function CreatePage({
   const [attachments, setAttachments] = useState([])
 
   // Getting Team Data
-  const { team_data, teamcode } = useTeam()
-  const { members, groups } = team_data ?? {}
+  const { team_data } = useTeam()
 
   const groupOptions = useMemo(
     () =>
-      groups?.map((item) => ({
+      team_data?.groups?.map((item) => ({
         value: item.name,
         label: item.name,
       })),
-    [groups]
+    [team_data?.groups]
   )
 
   const memberOptions = useMemo(
-    () => members?.map((member) => ({ value: member, label: '@' + member })),
-    [members]
+    () =>
+      team_data?.members?.map((member) => ({
+        value: member,
+        label: '@' + member,
+      })),
+    [team_data?.members]
   )
 
   // Custom Functions
@@ -84,7 +88,10 @@ export default function CreatePage({
     const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
     try {
       setCreateLoading(true)
-      const attachmentsLists = await handleAttachments(attachments, teamcode)
+      const attachmentsLists = await handleAttachments(
+        attachments,
+        team_data?.teamcode
+      )
       const tagsList = tags
         .split(',')
         .map((tag) => tag.trim())
@@ -103,12 +110,12 @@ export default function CreatePage({
         attachments: attachmentsLists,
         tags: tagsList,
       }
-      await createTask(taskData, taskInfoData, teamcode)
+      await createTask(taskData, taskInfoData, team_data?.teamcode, username)
       setCreateLoading(false)
       toast.success(<b>{title} created successfully</b>, { id: toastId })
       handleClose()
     } catch (error) {
-      console.log(error.message)
+      console.log('Task Creating Error', error)
       setCreateLoading(false)
       toast.error(<b>{error?.message}</b>, { id: toastId })
     }

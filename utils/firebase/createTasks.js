@@ -36,9 +36,11 @@ export const createTask = async (
   teamCode,
   username
 ) => {
-  const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
+  console.log(taskData, taskInfoData, teamCode, username)
+  const teamRef = doc(db, 'teams', teamCode)
+  const taskRef = doc(collection(teamRef, 'tasks'))
   const taskInfoRef = doc(db, 'taskinfo', taskRef.id)
-  const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
+  const activityRef = doc(collection(teamRef, 'activity'))
 
   // Getting TASK ID 8 Digit
   const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -55,6 +57,12 @@ export const createTask = async (
   })
   // Setting addintional data
   batch.set(taskInfoRef, taskInfoData)
+
+  //Update Team
+  batch.update(teamRef, {
+    updatedAt: serverTimestamp(),
+  })
+
   // Setting Activity
   batch.set(activityRef, {
     message: `@${username} created the task : ID-${taskid}`,
