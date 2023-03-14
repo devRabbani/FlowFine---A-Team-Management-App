@@ -81,26 +81,54 @@ export const markTaskStatus = async (
   taskDocId,
   taskid,
   handleLoading,
-  handleModal
+  handleModal,
+  isJoined,
+  access,
+  taskShortData
 ) => {
   let id
   try {
     handleLoading(true)
     id = toast.loading(<b>Changing Task Status...</b>)
+    const isArchive = status === 'archive'
+
+    if (!isJoined) {
+      throw new Error('You need to joined first!')
+    }
+    if (isArchive && access < 1) {
+      throw new Error(
+        'You dont have the required permission to archive this task.'
+      )
+    }
+
     const teamRef = doc(db, 'teams', teamcode)
     const taskRef = doc(teamRef, 'tasks', taskDocId)
     const activityRef = doc(collection(teamRef, 'activity'))
+    const archiveRef = doc(collection(db, 'archives'))
 
     const batch = writeBatch(db)
 
-    // Changing Status
-    batch.update(taskRef, {
-      status,
-      updatedAt: serverTimestamp(),
-    })
+    if (isArchive) {
+      batch.set(archiveRef, {
+        ...taskShortData,
+        updatedAt: serverTimestamp(),
+        status: 'archived',
+        teamcode,
+      })
+      batch.delete(taskRef)
+    } else {
+      // Changing Status
+      batch.update(taskRef, {
+        status,
+        updatedAt: serverTimestamp(),
+      })
+    }
+
     // Writing to Comments Info
     batch.set(activityRef, {
-      message: `@${username} just set the task ID-${taskid} status to : ${status?.toUpperCase()}`,
+      message: isArchive
+        ? `@${username} archived the task ID-${taskid}`
+        : `@${username} just set the task ID-${taskid} status to : ${status?.toUpperCase()}`,
       timestamp: serverTimestamp(),
     })
     // Updating Team Last Updates
