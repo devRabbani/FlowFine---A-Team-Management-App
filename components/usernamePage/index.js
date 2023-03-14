@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import useLogout from '../../hooks/useLogout'
-import { checkUsernameExist, createUser } from '../../utils/firebase'
+import { checkUsernameExist, createUser } from '../../utils/firebase/user'
 import Button from '../button'
 import s from './usernamePage.module.css'
 
