@@ -1,8 +1,5 @@
 import moment from 'moment/moment'
-import Link from 'next/link'
 import { useState } from 'react'
-import toast from 'react-hot-toast'
-import { FaCheck, FaShareAlt } from 'react-icons/fa'
 import { RiSettings3Line } from 'react-icons/ri'
 import Modal from '../../../modal'
 import styles from './teamHeader.module.css'
@@ -10,7 +7,6 @@ import TeamSetting from './teamSetting'
 
 export default function TeamHeader({
   name,
-  code,
   updatedAt,
   tasks_loading,
   totalWorking,

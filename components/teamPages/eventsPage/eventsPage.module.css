@@ -24,19 +24,12 @@
   padding: 2rem 0;
 }
 
-.noData {
-  color: var(--color-green-1);
-  text-align: center;
-  margin: 10vh auto;
-  max-width: 90%;
-}
-
 .eventCard {
   padding: 1rem;
   border-radius: 0.7rem;
   overflow-x: hidden;
   word-break: break-word;
-  background-color: var(--color-input);
+  background-color: var(--color-green-light);
 }
 
 .eventCard_description {

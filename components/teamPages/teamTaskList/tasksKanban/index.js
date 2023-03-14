@@ -51,7 +51,7 @@ export default function TasksKanban() {
           ) : tasksList?.length > 0 ? (
             tasksList.map((task) => <TaskCard task={task} key={task.id} />)
           ) : (
-            <p>No Tasks Found</p>
+            <p className="noData">No Tasks Found</p>
           )}
         </div>
       </div>

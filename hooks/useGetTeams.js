@@ -1,6 +1,6 @@
 import { onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { getTeamQuery } from '../utils/firebase'
+import { getTeamQuery } from '../utils/firebase/common'
 
 export default function useGetTeams(teams) {
   const [teamsList, setTeamsList] = useState([])

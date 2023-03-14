@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { createTeam } from '../../utils/firebase'
+import { createTeam } from '../../utils/firebase/teamsPage'
 import Button from '../button'
 import s from './createTeamModal.module.css'
 

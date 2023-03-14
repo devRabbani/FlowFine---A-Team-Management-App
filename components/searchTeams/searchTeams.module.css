@@ -16,11 +16,17 @@
 
 .searchBox input {
   font-size: 1.9rem;
+  border: none;
+  padding: 0;
   width: 100%;
   background-color: inherit;
 }
 .searchBox:focus-within {
   border-color: var(--color-green-border);
+}
+
+.searchBox input:is(:active, :focus) {
+  border: none;
 }
 
 .searchBox svg {

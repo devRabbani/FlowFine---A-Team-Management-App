@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useState } from 'react'
 import { RiLoaderFill, RiSearch2Line } from 'react-icons/ri'
-import { getSearchTeams } from '../../utils/firebase'
+import { getSearchResults } from '../../utils/firebase/common'
 import TeamCard from '../teamCard'
 import s from './searchTeams.module.css'
 
@@ -15,6 +15,7 @@ export default function SearchTeams({ uid }) {
     if (value.length < 3) {
       setIsLoading(false)
       setSearchTerm(value)
+      setTeamsList([])
     } else {
       setIsLoading(true)
       setSearchTerm(value)
@@ -25,7 +26,7 @@ export default function SearchTeams({ uid }) {
     debounce(async (value) => {
       if (value.length >= 3) {
         try {
-          const res = await getSearchTeams(value)
+          const res = await getSearchResults(value, 'name', 'teams')
           setTeamsList(res)
           setIsLoading(false)
         } catch (error) {

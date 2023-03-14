@@ -49,7 +49,9 @@ export default function ListTasks() {
             })
             .map((task) => <TaskCard task={task} key={task.id} />)
         ) : (
-          <p>No Tasks Found</p>
+          <p className="noData">
+            No Tasks Found, Add one by clicking the add icon
+          </p>
         )}
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useTeam } from '../../../../context/TeamContext'
 import { useUser } from '../../../../context/UserContext'
-import { checkAccess } from '../../../../utils/firebase'
+import { checkAccess } from '../../../../utils/firebase/common'
 import Modal from '../../../modal'
 import CreateEvent from '../createEvent'
 import s from '../eventsPage.module.css'
@@ -15,7 +15,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
   const handleCloseModal = () => setSelected(null)
 
   // Setting Update Event
-  const handleSelect = (value) => setSelected(value)
+  const handleSelect = useCallback((value) => setSelected(value), [])
 
   // Getting Team Data
   const { team_data } = useTeam()
@@ -34,7 +34,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
     () => events.filter((event) => new Date(event?.time) < new Date()),
     [events]
   )
-  console.log(owner, editor, isEditor, team_data)
+
   return (
     <>
       <div className={s.eventsList_wrapper}>
@@ -50,7 +50,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
             />
           ))
         ) : (
-          <p className={s.noData}>
+          <p className="noData">
             No Upcomming Events Found, Click Add New to add event
           </p>
         )}
@@ -71,7 +71,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
             />
           ))
         ) : (
-          <p className={s.noData}>No Events Data Found</p>
+          <p className="noData">No Events Data Found</p>
         )}
       </div>
       {hasMore ? (
