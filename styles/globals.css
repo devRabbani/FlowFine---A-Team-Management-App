@@ -2,7 +2,6 @@
   --color-primary: #a3c4bc;
   --color-green-dark: #7c9e96;
   --color-green-light: #bde0d8;
-  /* --color-secondary: #294f5e; */
   --color-secondary: #2e4861;
   --color-secondary-dark: #140f2d;
   --color-accent-1: hsl(12, 46%, 53%);
@@ -15,7 +14,7 @@
   --color-white: #edfffb;
   --color-white-light: #e1edf2;
   --color-green-border: #617772;
-  --card-shadow: 3px 3px 5px -3px rgba(0, 0, 0, 0.3),
+  --card-shadow: 4px 4px 5px -5px rgba(0, 0, 0, 0.3),
     0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 

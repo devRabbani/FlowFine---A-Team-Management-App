@@ -29,7 +29,7 @@
 .menus {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
   position: relative;
 }
 
@@ -44,4 +44,7 @@
 
 .menus_menu_create {
   font-size: 4.5rem;
+  padding: 0.2rem;
+  background-color: #96bab2;
+  border-radius: 50%;
 }
