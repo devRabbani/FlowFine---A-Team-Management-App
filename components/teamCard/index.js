@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useCallback, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useAuth } from '../../context/AuthContext'
-import { giveTeamJoinRequest } from '../../utils/firebase'
+import { giveTeamJoinRequest } from '../../utils/firebase/teamsPage'
 import s from './teamCard.module.css'
 
 export default function TeamCard({

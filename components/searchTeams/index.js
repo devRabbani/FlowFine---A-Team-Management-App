@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useState } from 'react'
 import { RiLoaderFill, RiSearch2Line } from 'react-icons/ri'
-import { getSearchResults } from '../../utils/firebase'
+import { getSearchResults } from '../../utils/firebase/common'
 import TeamCard from '../teamCard'
 import s from './searchTeams.module.css'
 
