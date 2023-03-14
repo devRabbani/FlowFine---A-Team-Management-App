@@ -1,14 +1,17 @@
-/* .wholePricing {
-  background-color: var(--color-white-light);
-} */
+.wholePricing {
+  padding-block: 6rem;
+  color: var(--color-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .pricing {
+  background-color: var(--color-white-light);
   text-align: center;
-  width: 70%;
-  margin-inline: auto;
-  margin-block: 5rem 0;
-  padding: 3rem 2rem 5rem;
-  border: 0.2rem solid var(--color-secondary);
+  width: 80%;
+  height: 30rem;
+  padding-block: 5rem;
   border-radius: 1rem;
 }
 
@@ -18,22 +21,25 @@
 }
 
 .pricingP {
-  width: 60rem;
+  width: 70%;
   margin-inline: auto;
 }
 
 .btnContainner {
   text-align: center;
-  margin-top: -1.5rem;
+  margin-top: -2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .btn {
   padding: 1rem 2rem;
-  border: 0.2rem solid var(--color-secondary);
   border-radius: 0.8rem;
   width: 16rem;
   background-color: white;
   font-size: 2rem;
   text-align: center;
-  margin-inline: 2.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.13);
+  color: var(--color-secondary-dark);
 }

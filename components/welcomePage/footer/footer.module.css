@@ -1,21 +1,24 @@
 .footer {
   text-align: center;
   font-size: 1.7rem;
-  margin-top: 10rem;
+  /* margin-top: 10rem; */
   color: var(--color-grey);
 }
 
 .topFooter {
   display: flex;
+  flex-wrap: wrap;
   padding: 5rem;
   background-color: rgb(12, 12, 12);
 }
 .topLeft {
   flex-basis: 50%;
+  text-align: left;
 }
 
 .canwebe {
-  font-size: 4rem;
+  font-size: 5.2rem;
+  margin-left: 5rem;
 }
 
 .can {
@@ -30,11 +33,14 @@
   margin-inline: auto;
   opacity: 0.8;
   line-height: 2.5rem;
+  text-align: left;
 }
 
 .topRight {
-  flex-basis: 50%;
+  flex-basis: 45%;
   display: flex;
+  text-align: left;
+  padding-left: 10rem;
 }
 .h4 {
   font-size: 2.5rem;
@@ -48,7 +54,8 @@
 .footerLink {
   display: flex;
   flex-direction: column;
-  padding: 0.6rem;
+  padding-block: 0.3rem;
+  opacity: 0.8;
 }
 
 .rightRight {
@@ -59,11 +66,8 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem 5rem;
-  border-top: 2px solid rgb(39, 39, 39);
   background-color: black;
-}
-
-.bottomLeft {
+  color: #4b4b4b;
 }
 
 .bottomRight {

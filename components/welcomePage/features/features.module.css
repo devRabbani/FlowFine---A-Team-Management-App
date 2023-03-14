@@ -1,7 +1,8 @@
 .features {
-  height: 100%;
+  padding-block: 3rem 5rem;
   text-align: center;
   margin-block: auto;
+  margin-top: 5rem;
 }
 
 .features h2 {
@@ -10,7 +11,7 @@
 }
 
 .features > p {
-  width: 600px;
+  max-width: 600px;
   margin-inline: auto;
   margin-bottom: 5rem;
 }

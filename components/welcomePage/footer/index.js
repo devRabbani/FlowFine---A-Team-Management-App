@@ -21,12 +21,9 @@ export default function Footer() {
             <span className={s.can}>Can</span>WeBe!
           </Link>
           <p className={s.topPara}>
-            CanWeBe is a software development organization which is founded by a
-            group of students.We here at canwebe mainly developed softwares to
-            solve daily life problems, Other than this we have a team of varius
-            skilled person from different different field of work. We
-            collaborate and brainstorm on ideas and deliver easy to use software
-            to general users free of cost.
+            We assist you to remodel everyday problems into modern techy
+            solution.We help the society by presenting cost-free cutting edge
+            applications.
           </p>
         </div>
         <div className={s.topRight}>
