@@ -16,6 +16,9 @@
   align-items: center;
 }
 
+.headerDiv h3 span {
+  text-transform: uppercase;
+}
 .sortDiv {
   display: flex;
   align-items: center;

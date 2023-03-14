@@ -10,7 +10,6 @@ import {
 import Button from '../../button'
 import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
-import { useRouter } from 'next/navigation'
 import { useTeam } from '../../../context/TeamContext'
 import {
   createTask,
@@ -40,7 +39,7 @@ export default function CreatePage({
   const groupOptions = useMemo(
     () =>
       groups?.map((item) => ({
-        value: item.groupId,
+        value: item.name,
         label: item.name,
       })),
     [groups]
@@ -50,8 +49,6 @@ export default function CreatePage({
     () => members?.map((member) => ({ value: member, label: '@' + member })),
     [members]
   )
-
-  const router = useRouter()
 
   // Custom Functions
   //handle Change for inputs

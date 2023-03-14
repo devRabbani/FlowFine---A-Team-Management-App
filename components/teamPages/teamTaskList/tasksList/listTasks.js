@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Select from 'react-select'
-import { useTeam } from '../../../../context/TeamContext'
 import {
   customTheme,
   sortOptions,
@@ -9,12 +8,9 @@ import {
 import TaskCard from '../../../taskCard'
 import s from './tasksList.module.css'
 
-export default function ListTasks() {
+export default function ListTasks({ tasks, loading }) {
   // Local States
   const [sort, setSort] = useState('updates')
-
-  // Getting Tasks and Loading State
-  const { tasks_data, tasks_loading } = useTeam()
 
   return (
     <div className={s.tasksListBody}>
@@ -34,10 +30,10 @@ export default function ListTasks() {
         </div>
       </div>
       <div className={s.tasksListWrapper}>
-        {tasks_loading ? (
+        {loading ? (
           <p>Loading...</p>
-        ) : tasks_data?.length > 0 ? (
-          tasks_data
+        ) : tasks?.length > 0 ? (
+          tasks
             .sort((a, b) => {
               if (sort === 'deadline') {
                 return new Date(a?.deadline) - new Date(b?.deadline)
