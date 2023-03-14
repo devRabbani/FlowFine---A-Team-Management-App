@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { RiLoader2Fill, RiLogoutBoxLine, RiTeamFill } from 'react-icons/ri'
 import { useTaskDetails } from '../../../context/TaskDetailsContext'
 import { useUser } from '../../../context/UserContext'
-import { joinTask, leaveTask } from '../../../utils/firebase'
+import { joinTask, leaveTask } from '../../../utils/firebase/tasksPage'
+
 import Button from '../../button'
 
 export default function JoinButton() {

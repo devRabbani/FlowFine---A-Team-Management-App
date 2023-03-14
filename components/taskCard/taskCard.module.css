@@ -3,6 +3,7 @@
   padding: 0.7rem 1rem 1rem;
   border-radius: 0.7rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--card-shadow);
 }
 
 .taskCardTopBar,

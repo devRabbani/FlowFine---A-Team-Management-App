@@ -1,11 +1,10 @@
-import moment from 'moment/moment'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Select from 'react-select'
 import { useUser } from '../../../../context/UserContext'
 import { commonStyles, customTheme } from '../../../../lib/reactSelect'
 import { priorityOptions } from '../../../../lib/reactSelect'
-import { addEvent } from '../../../../utils/firebase'
+import { addEvent } from '../../../../utils/firebase/eventsPage'
 import Button from '../../../button'
 import s from './createEvent.module.css'
 
@@ -38,10 +37,10 @@ export default function CreateEvent({ handleClose, selected }) {
 
   return (
     <form onSubmit={handleSubmit} className={`${s.createEvent} wrapper`}>
-      <div className={s.formDiv}>
+      <div className="formDiv">
         <label htmlFor="description">Description</label>
         <textarea
-          name="description"
+          id="description"
           rows="3"
           placeholder="Event Description"
           required
@@ -51,7 +50,7 @@ export default function CreateEvent({ handleClose, selected }) {
         />
       </div>
       <div className={s.twoDiv}>
-        <div className={s.formDiv}>
+        <div className="formDiv">
           <label>Priority :</label>
           <Select
             styles={commonStyles}
@@ -61,12 +60,12 @@ export default function CreateEvent({ handleClose, selected }) {
             onChange={(e) => setPriority(e.value)}
           />
         </div>
-        <div className={s.formDiv}>
+        <div className="formDiv">
           <label htmlFor="time">Time :</label>
           <input
             type="datetime-local"
             placeholder="Enter Time"
-            name="time"
+            id="time"
             value={time}
             required
             min={new Date().toISOString()}

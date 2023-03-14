@@ -1,15 +1,8 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { toast } from 'react-hot-toast'
-import { storage } from '../../../lib/firebase'
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from 'firebase/storage'
 import Button from '../../button'
 import s from './attachFiles.module.css'
-import { RiDeleteBin5Line, RiCloseLine, RiAttachment2 } from 'react-icons/ri'
+import { RiCloseLine, RiAttachment2 } from 'react-icons/ri'
 
 export default function AttachFiles({
   isLoading,

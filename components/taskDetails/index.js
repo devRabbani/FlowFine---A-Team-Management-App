@@ -27,7 +27,6 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
   const { profiles, loading: profilesLoading } = useGetProfiles(
     data?.assignedMembers
   )
-
   // Getting Comments
   const {
     data: comments,
@@ -35,7 +34,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
     loadMore,
     hasMore,
     btnLoading,
-  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`,10)
+  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`, 10)
 
   // Custom Function
   // Handle Modal : Will set value to null

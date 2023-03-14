@@ -1,6 +1,7 @@
 :root {
   --color-primary: #a3c4bc;
   --color-green-dark: #7c9e96;
+  --color-green-light: #bde0d8;
   /* --color-secondary: #294f5e; */
   --color-secondary: #2e4861;
   --color-secondary-dark: #140f2d;
@@ -14,14 +15,8 @@
   --color-white: #edfffb;
   --color-white-light: #e1edf2;
   --color-green-border: #617772;
-
-  /* --color-green-1: #a3c4bc;
-  --color-green-2: #3c6e71;
-  --color-green-3: #7c9e96;
-  --color-green-4: #a3ccc2;
-  --color-green-5: #bcebea;
-  --color-green-6: #c9e3e2;
-  --color-green-7: #617772; */
+  --card-shadow: 3px 3px 5px -3px rgba(0, 0, 0, 0.3),
+    0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 /*
@@ -188,16 +183,26 @@ a {
 }
 
 input,
-select {
+select,
+textarea {
   outline: none;
   border: none;
   background-color: none;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: var(--color-secondary-dark);
+  background-color: var(--color-input);
+  padding: 0.44em 0.56em;
+  border-radius: 0.4rem;
+  border: 0.2rem solid var(--color-input);
 }
 
 textarea {
   resize: vertical;
+}
+
+input:is(:active, :focus),
+textarea:is(:active, :focus) {
+  border-color: var(--color-green-border);
 }
 
 /* Priority Colors */
@@ -221,4 +226,20 @@ textarea {
   color: var(--color-green-1);
   max-width: 90%;
   margin: 10vh auto;
+}
+
+.noData.low {
+  margin-block: 6vh;
+}
+
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
