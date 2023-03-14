@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import { useTeam } from '../../../../context/TeamContext'
 import { useUser } from '../../../../context/UserContext'
-import { checkAccess } from '../../../../utils/firebase'
+import { checkAccess } from '../../../../utils/firebase/common'
 import Modal from '../../../modal'
 import CreateEvent from '../createEvent'
 import s from '../eventsPage.module.css'

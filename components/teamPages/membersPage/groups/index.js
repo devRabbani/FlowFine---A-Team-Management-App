@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import s from '../membersPage.module.css'
-import { MdGroupAdd } from 'react-icons/md'
 import { RiAddCircleFill } from 'react-icons/ri'
 import Modal from '../../../modal'
 import CreateGroup from './createGroup'
@@ -15,12 +14,16 @@ export default function Groups({
 }) {
   // Local States
   const [isOpen, setIsOpen] = useState(false)
+  const [selected, setSelected] = useState(null) // For Update operation
 
+  // Set Selected value
+  const handleSelect = useCallback((value) => setSelected(value), [])
   // handle Close
   const handleClose = () => setIsOpen(false)
+  const handleCloseSelect = () => setSelected(null)
 
   return (
-    <>
+    <div>
       <div className={`${s.divHeader} flexBetween`}>
         <h3 className="header2">All Groups</h3>
         <button onClick={() => setIsOpen(true)}>
@@ -35,6 +38,8 @@ export default function Groups({
               data={group}
               profiles={profiles}
               access={access}
+              handleSelect={handleSelect}
+              teamCode={teamCode}
             />
           ))}
         </div>
@@ -44,16 +49,21 @@ export default function Groups({
         </p>
       )}
 
-      {isOpen ? (
-        <Modal handleClose={handleClose} title="Create Group">
+      {selected || isOpen ? (
+        <Modal
+          handleClose={selected ? handleCloseSelect : handleClose}
+          title="Create Group"
+        >
           <CreateGroup
             access={access}
             members={members}
-            handleClose={handleClose}
+            handleClose={selected ? handleCloseSelect : handleClose}
             teamCode={teamCode}
+            selected={selected}
+            groups={groups}
           />
         </Modal>
       ) : null}
-    </>
+    </div>
   )
 }

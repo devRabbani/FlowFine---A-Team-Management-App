@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { RiUserSearchLine, RiUserShared2Fill } from 'react-icons/ri'
+import { RiUserSearchLine } from 'react-icons/ri'
 import { CgSearchLoading } from 'react-icons/cg'
-import Button from '../../../button'
 import s from '../membersPage.module.css'
 import debounce from 'lodash.debounce'
-import { getSearchResults, giveRequest } from '../../../../utils/firebase'
 import { toast } from 'react-hot-toast'
+import { getSearchResults } from '../../../../utils/firebase/common'
+import { giveRequest } from '../../../../utils/firebase/membersPage'
 
 export default function InviteBox({
   checkInvite,
@@ -78,7 +78,7 @@ export default function InviteBox({
         <input
           value={searchStr}
           type="search"
-          placeholder="Type username or name"
+          placeholder="Type username eg: ganesh"
           onChange={handleChange}
         />
       </div>

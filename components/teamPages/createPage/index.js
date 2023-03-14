@@ -1,27 +1,21 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import {
-  RiAddLine,
-  RiCloseLine,
-  RiLoaderLine,
-  RiRefreshLine,
-} from 'react-icons/ri'
+import { RiAddLine, RiCloseLine, RiLoaderLine } from 'react-icons/ri'
 import Select from 'react-select'
 import {
   commonStyles,
   customTheme,
   priorityOptions,
 } from '../../../lib/reactSelect'
-import {
-  createTask,
-  getUsers,
-  handleAttachments,
-} from '../../../utils/firebase'
 import Button from '../../button'
 import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
 import { useRouter } from 'next/navigation'
 import { useTeam } from '../../../context/TeamContext'
+import {
+  createTask,
+  handleAttachments,
+} from '../../../utils/firebase/createTasks'
 
 export default function CreatePage({
   handleClose,
@@ -29,7 +23,7 @@ export default function CreatePage({
   setCreateLoading,
 }) {
   // Local States
-  // const [createLoading, setCreateLoading] = useState(false)
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('1')

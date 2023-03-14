@@ -1,11 +1,10 @@
-import moment from 'moment/moment'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Select from 'react-select'
 import { useUser } from '../../../../context/UserContext'
 import { commonStyles, customTheme } from '../../../../lib/reactSelect'
 import { priorityOptions } from '../../../../lib/reactSelect'
-import { addEvent } from '../../../../utils/firebase'
+import { addEvent } from '../../../../utils/firebase/eventsPage'
 import Button from '../../../button'
 import s from './createEvent.module.css'
 

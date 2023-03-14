@@ -1,6 +1,5 @@
-import Image from 'next/image'
 import { useState } from 'react'
-import { RiUserAddFill, RiUserAddLine } from 'react-icons/ri'
+import { RiUserAddFill } from 'react-icons/ri'
 import s from '../membersPage.module.css'
 import InviteBox from './inviteBox'
 import MemberCard from './memberCard'

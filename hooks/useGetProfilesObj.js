@@ -1,7 +1,6 @@
 import { getDocs } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-
-import { getProfilesQuery } from '../utils/firebase'
+import { getProfilesQuery } from '../utils/firebase/common'
 
 export default function useGetProfilesObj(usernames) {
   const [profiles, setProfiles] = useState({})

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useTeam } from '../../../../context/TeamContext'
-import { checkAccess } from '../../../../utils/firebase'
+import { checkAccess } from '../../../../utils/firebase/common'
 import s from '../membersPage.module.css'
 
 export default function MemberCard({ profile = {} }) {

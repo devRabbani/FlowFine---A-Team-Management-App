@@ -4,8 +4,8 @@ import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import s from '../eventsPage.module.css'
 import ReadableLinks from './readableLinks'
 import { useState } from 'react'
-import { removeEvent } from '../../../../utils/firebase'
 import { memo } from 'react'
+import { removeEvent } from '../../../../utils/firebase/eventsPage'
 
 export default memo(function EventCard({
   event,

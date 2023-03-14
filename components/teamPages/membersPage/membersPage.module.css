@@ -183,6 +183,7 @@
 
 .createGroupForm {
   gap: 1rem;
+  margin-top: -6.8rem;
 }
 
 .createGroup_btnDiv {
@@ -196,7 +197,7 @@
 }
 
 .groupCard {
-  background-color: var(--color-input);
+  background-color: var(--color-green-light);
   padding: 1rem;
   border-radius: 0.7rem;
 }

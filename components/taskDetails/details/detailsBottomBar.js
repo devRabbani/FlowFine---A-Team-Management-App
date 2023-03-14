@@ -7,7 +7,7 @@ import {
   statusOptions,
   statusSelectStyle,
 } from '../../../lib/reactSelect'
-import { markTaskStatus } from '../../../utils/firebase'
+import { markTaskStatus } from '../../../utils/firebase/tasksPage'
 import Button from '../../button'
 import s from '../taskDetails.module.css'
 

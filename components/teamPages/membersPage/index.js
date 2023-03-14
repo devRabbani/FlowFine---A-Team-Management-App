@@ -1,12 +1,9 @@
 import { useState } from 'react'
 import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
-import useGetProfiles from '../../../hooks/useGetProfiles'
 import useGetProfilesObj from '../../../hooks/useGetProfilesObj'
-import { checkAccess } from '../../../utils/firebase'
-import Modal from '../../modal'
+import { checkAccess } from '../../../utils/firebase/common'
 import TabNav from '../../tabNav'
-import CreatePage from '../createPage'
 import Groups from './groups'
 import Members from './members'
 

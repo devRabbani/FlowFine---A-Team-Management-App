@@ -1,6 +1,6 @@
 import { onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { getProfilesQuery } from '../utils/firebase'
+import { getProfilesQuery } from '../utils/firebase/common'
 
 export default function useGetProfiles(usernames) {
   const [profiles, setProfiles] = useState([])

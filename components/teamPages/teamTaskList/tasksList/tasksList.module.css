@@ -29,9 +29,9 @@
 }
 .tasksListWrapper {
   display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+  padding-bottom: 1.6rem;
 }
 
 .searchDiv {

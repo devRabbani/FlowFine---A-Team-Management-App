@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { RiArrowDropRightFill, RiArrowRightSFill } from 'react-icons/ri'
-import { acceptRequest, cancelRequest } from '../../../../utils/firebase'
+import { RiArrowRightSFill } from 'react-icons/ri'
+import {
+  acceptRequest,
+  cancelRequest,
+} from '../../../../utils/firebase/membersPage'
 import s from '../membersPage.module.css'
 
 export default function Requests({ invites, access, teamCode }) {

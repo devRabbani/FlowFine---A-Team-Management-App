@@ -3,7 +3,10 @@ import { toast } from 'react-hot-toast'
 import Select from 'react-select'
 import { useUser } from '../../../../context/UserContext'
 import { commonStyles, customTheme } from '../../../../lib/reactSelect'
-import { createGroup } from '../../../../utils/firebase'
+import {
+  createGroup,
+  updateGroup,
+} from '../../../../utils/firebase/membersPage'
 import Button from '../../../button'
 import s from '../membersPage.module.css'
 
@@ -13,15 +16,25 @@ export default function CreateGroup({
   selected,
   access,
   teamCode,
+  groups,
 }) {
   // Local States
-  const [name, setName] = useState('')
-  const [addedMembers, setAddedMembers] = useState([])
+  const [name, setName] = useState(selected?.name || '')
+  const [addedMembers, setAddedMembers] = useState(selected?.members || [])
   const [isLoading, setIsLoading] = useState(false)
 
   // Getting Username
   const { username } = useUser()
 
+  // Default select options
+  const defaultOptions = useMemo(
+    () =>
+      selected?.members?.map((member) => ({
+        value: member,
+        label: '@' + member,
+      })),
+    [selected?.members]
+  )
   // Select Options
   const memberOptions = useMemo(
     () => members?.map((member) => ({ value: member, label: '@' + member })),
@@ -43,14 +56,25 @@ export default function CreateGroup({
       toast.error(<b>You need to assign minimum one member</b>)
       return
     }
-    createGroup(
-      teamCode,
-      { name, members: addedMembers },
-      username,
-      access,
-      handleLoading,
-      handleClose
-    )
+    selected
+      ? updateGroup(
+          teamCode,
+          { name, members: addedMembers },
+          selected?.name,
+          groups,
+          username,
+          access,
+          handleLoading,
+          handleClose
+        )
+      : createGroup(
+          teamCode,
+          { name, members: addedMembers },
+          username,
+          access,
+          handleLoading,
+          handleClose
+        )
   }
   return (
     <form onSubmit={handleSubmit} className={`wrapper ${s.createGroupForm}`}>
@@ -70,6 +94,7 @@ export default function CreateGroup({
         <Select
           styles={commonStyles}
           options={memberOptions}
+          defaultValue={selected ? defaultOptions : null}
           theme={customTheme}
           placeholder="Choose members"
           isMulti
