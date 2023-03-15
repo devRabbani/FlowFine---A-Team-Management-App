@@ -24,9 +24,9 @@ export default function Groups({
 
   return (
     <div>
-      <div className={`${s.divHeader} flexBetween`}>
+      <div className={`${s.divHeader} flexBetween headerDiv`}>
         <h3 className="header2">All Groups</h3>
-        <button onClick={() => setIsOpen(true)}>
+        <button className="headerBtn" onClick={() => setIsOpen(true)}>
           <RiAddCircleFill /> Add New
         </button>
       </div>

@@ -31,9 +31,12 @@ export default function Members({
       {invites?.length ? (
         <Requests teamCode={teamCode} access={access} invites={invites} />
       ) : null}
-      <div className={`${s.divHeader} flexBetween`}>
+      <div className={`${s.divHeader} flexBetween headerDiv`}>
         <h3 className="header2">All Members</h3>
-        <button onClick={() => setIsInvite((prev) => !prev)}>
+        <button
+          className="headerBtn"
+          onClick={() => setIsInvite((prev) => !prev)}
+        >
           <RiUserAddFill /> {isInvite ? 'Close' : 'Invite'}
         </button>
       </div>

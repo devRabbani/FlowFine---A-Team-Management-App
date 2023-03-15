@@ -95,7 +95,7 @@ export const markTaskStatus = async (
     if (!isJoined) {
       throw new Error('You need to joined first!')
     }
-    if (isArchive && access < 1) {
+    if (isArchive && !(access > 0)) {
       throw new Error(
         'You dont have the required permission to archive this task.'
       )
@@ -104,7 +104,7 @@ export const markTaskStatus = async (
     const teamRef = doc(db, 'teams', teamcode)
     const taskRef = doc(teamRef, 'tasks', taskDocId)
     const activityRef = doc(collection(teamRef, 'activity'))
-    const archiveRef = doc(collection(db, 'archives'))
+    const archiveRef = doc(teamRef, 'archives', taskDocId)
 
     const batch = writeBatch(db)
 
@@ -113,7 +113,7 @@ export const markTaskStatus = async (
         ...taskShortData,
         updatedAt: serverTimestamp(),
         status: 'archived',
-        teamcode,
+        archivedBy: username,
       })
       batch.delete(taskRef)
     } else {

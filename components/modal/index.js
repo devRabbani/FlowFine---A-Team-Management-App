@@ -9,7 +9,7 @@ export default function Modal({ children, title, handleClose, isLoading }) {
   }
   return (
     <div className={styles.modalWrapper}>
-      <div className={`${styles.modal_header} wrapper`}>
+      <div className={`${styles.modal_header} flexBetween headerDiv wrapper`}>
         <h3 className="header2">{title || ''}</h3>
         <RiCloseLine onClick={handleClick} className={styles.cross} />
       </div>

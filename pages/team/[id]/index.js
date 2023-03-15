@@ -36,11 +36,10 @@ export default function TeamPage() {
   } else if (menu === 'events') {
     return <EventsPage teamCode={id} />
   } else if (menu === 'archive') {
-    return <ArchivePage />
+    return <ArchivePage teamCode={id} />
   } else {
     return (
       <HomePage
-        id={id}
         data={data}
         isLoading={isLoading}
         hasMore={hasMore}

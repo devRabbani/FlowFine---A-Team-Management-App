@@ -16,7 +16,7 @@ export default function HomePage({
   // Getting Datas from Context
   const { team_data, tasks_loading, tasks_data } = useTeam()
 
-  const { name, updatedAt, owners, editors, id } = team_data
+  const { name, updatedAt, owners, editors, teamcode } = team_data
 
   // Getting Username
   const { username } = useUser()
@@ -54,7 +54,7 @@ export default function HomePage({
         btnLoading={btnLoading}
         loadMore={loadMore}
         access={access}
-        teamCode={id}
+        teamCode={teamcode}
       />
     </div>
   )

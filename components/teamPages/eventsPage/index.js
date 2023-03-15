@@ -25,9 +25,9 @@ export default function EventsPage({ teamCode }) {
   console.log('Events', events)
   return (
     <div className={s.eventsPage}>
-      <div className={s.eventHeaderBar}>
+      <div className="flexBetween headerDiv">
         <h3 className="header2">Upcomming Events</h3>
-        <button onClick={() => setIsCreate(true)}>
+        <button className="headerBtn" onClick={() => setIsCreate(true)}>
           <RiAddCircleFill /> Add New
         </button>
       </div>

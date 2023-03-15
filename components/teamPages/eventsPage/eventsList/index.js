@@ -55,7 +55,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
           </p>
         )}
       </div>
-      <div className={s.eventHeaderBar}>
+      <div className="flexBetween headerDiv">
         <h3 className="header2">Past Events</h3>
       </div>
       <div className={s.eventsList_wrapper}>

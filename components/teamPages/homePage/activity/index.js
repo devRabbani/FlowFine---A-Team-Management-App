@@ -17,7 +17,7 @@ export default function Activity({
 
   return (
     <div className={s.activity}>
-      <div className={s.activity_topbar}>
+      <div className={`${s.activity_topbar} flexBetween headerDiv`}>
         <h3 className="header2">Activities</h3>
         <button
           disabled={isClearing || isLoading}
