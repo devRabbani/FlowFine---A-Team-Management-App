@@ -14,13 +14,17 @@ export const addEvent = async (
   teamcode,
   data,
   username,
-  setIsLoading,
+  handleLoading,
   handleClose,
   eventId
 ) => {
-  setIsLoading(true)
-  let id = toast.loading(<b>Creating event</b>)
+  let id
   try {
+    // Initialization Loading
+    id = toast.loading(<b>Creating event</b>)
+    handleLoading(true)
+
+    // Refs
     const teamRef = doc(db, 'teams', teamcode)
     const eventRef = eventId
       ? doc(teamRef, 'events', eventId)
@@ -28,8 +32,10 @@ export const addEvent = async (
     const activityRef = doc(collection(teamRef, 'activity'))
 
     const batch = writeBatch(db)
+
     // Set Event or Update
     eventId ? batch.update(eventRef, data) : batch.set(eventRef, data)
+
     // Update team
     batch.update(teamRef, {
       updatedAt: serverTimestamp(),
@@ -46,12 +52,12 @@ export const addEvent = async (
     toast.success(<b>Event {eventId ? 'updated' : 'created'} successfully</b>, {
       id,
     })
-    setIsLoading(false)
+    handleLoading(false)
     handleClose()
   } catch (error) {
     console.log('Creating event error:', error)
     toast.error(<b>{error.message}</b>, { id })
-    setIsLoading(false)
+    handleLoading(false)
   }
 }
 
@@ -60,14 +66,18 @@ export const removeEvent = async (
   teamcode,
   eventId,
   username,
-  setIsLoading
+  handleLoading
 ) => {
+  // Confirmation
   const isConfirm = confirm('Are you sure to delete this event?')
   if (!isConfirm) return
 
-  setIsLoading(true)
-  const toastId = toast.loading(<b>Deleting please wait!</b>)
+  let toastId
   try {
+    // Initialization Loading
+    toastId = toast.loading(<b>Deleting please wait!</b>)
+    handleLoading(true)
+
     // Reference
     const teamRef = doc(db, 'teams', teamcode)
     const activityRef = doc(collection(teamRef, 'activity'))
@@ -96,6 +106,6 @@ export const removeEvent = async (
     console.log('Deleting Event error', error)
     toast.error(<b>{error.message}</b>, { id: toastId })
   } finally {
-    setIsLoading(false)
+    handleLoading(false)
   }
 }

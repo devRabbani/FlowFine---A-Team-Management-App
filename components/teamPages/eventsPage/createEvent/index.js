@@ -23,13 +23,16 @@ export default function CreateEvent({ handleClose, selected }) {
   } = useRouter()
 
   // Functions
+  const handleLoading = (value) => setIsLoading(value)
+
+  // Submit
   const handleSubmit = (e) => {
     e.preventDefault()
     addEvent(
       id,
       { description, time, priority },
       username,
-      setIsLoading,
+      handleLoading,
       handleClose,
       selected?.id
     )

@@ -12,7 +12,7 @@ import ProfileMenu from './profileMenu'
 import { useUser } from '../../../context/UserContext'
 import Modal from '../../modal'
 import CreatePage from '../../teamPages/createPage'
-import { RiAddCircleLine, RiAddLine } from 'react-icons/ri'
+import { RiAddLine } from 'react-icons/ri'
 
 export default function Nav({ isBack }) {
   const { photoURL, username, displayName } = useUser()
@@ -82,6 +82,7 @@ export default function Nav({ isBack }) {
             handleClose={handleCloseCreate}
             createLoading={createLoading}
             setCreateLoading={setCreateLoading}
+            username={username}
           />
         </Modal>
       ) : null}

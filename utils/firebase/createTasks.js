@@ -5,17 +5,16 @@ import {
   writeBatch,
 } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { customAlphabet } from 'nanoid'
 import { db, storage } from '../../lib/firebase'
 
 // **** CREATE TASKS
 
 // File uploads
-export const handleAttachments = async (attachments, teamcode) => {
+export const handleAttachments = async (attachments, teamcode, taskid) => {
   let promises = []
   for (const attachment of attachments) {
     const filename = Date.now() + '-' + attachment.name
-    const fileRef = ref(storage, `${teamcode}/${filename}`)
+    const fileRef = ref(storage, `${teamcode}/${taskid}/${filename}`)
     const uploadTask = uploadBytes(fileRef, attachment).then(async () => {
       const url = await getDownloadURL(fileRef)
       return {
@@ -34,16 +33,14 @@ export const createTask = async (
   taskData,
   taskInfoData,
   teamCode,
-  username
+  username,
+  taskid
 ) => {
-  const taskRef = doc(collection(db, 'teams', teamCode, 'tasks'))
+  const teamRef = doc(db, 'teams', teamCode)
+  const taskRef = doc(collection(teamRef, 'tasks'))
   const taskInfoRef = doc(db, 'taskinfo', taskRef.id)
-  const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
+  const activityRef = doc(collection(teamRef, 'activity'))
 
-  // Getting TASK ID 8 Digit
-  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const nanoid = customAlphabet(alphabet, 8)
-  const taskid = nanoid()
   // Creating Batch
   const batch = writeBatch(db)
 
@@ -55,6 +52,12 @@ export const createTask = async (
   })
   // Setting addintional data
   batch.set(taskInfoRef, taskInfoData)
+
+  //Update Team
+  batch.update(teamRef, {
+    updatedAt: serverTimestamp(),
+  })
+
   // Setting Activity
   batch.set(activityRef, {
     message: `@${username} created the task : ID-${taskid}`,

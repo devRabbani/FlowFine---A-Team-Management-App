@@ -4,14 +4,7 @@
 
 /* Div Header */
 .divHeader {
-  flex-wrap: wrap;
-  padding-block: 1.5rem 0.5rem;
-  border-bottom: 0.1rem solid var(--color-green-1);
-}
-
-.divHeader button {
-  font-weight: 500;
-  color: var(--color-secondary-dark);
+  padding-top: 1.5rem;
 }
 
 /* Members Page */

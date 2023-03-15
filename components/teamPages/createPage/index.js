@@ -10,17 +10,18 @@ import {
 import Button from '../../button'
 import AttachFiles from './attachFiles'
 import s from './createPage.module.css'
-import { useRouter } from 'next/navigation'
 import { useTeam } from '../../../context/TeamContext'
 import {
   createTask,
   handleAttachments,
 } from '../../../utils/firebase/createTasks'
+import { customAlphabet } from 'nanoid'
 
 export default function CreatePage({
   handleClose,
   createLoading,
   setCreateLoading,
+  username,
 }) {
   // Local States
 
@@ -34,24 +35,25 @@ export default function CreatePage({
   const [attachments, setAttachments] = useState([])
 
   // Getting Team Data
-  const { team_data, teamcode } = useTeam()
-  const { members, groups } = team_data ?? {}
+  const { team_data } = useTeam()
 
   const groupOptions = useMemo(
     () =>
-      groups?.map((item) => ({
-        value: item.groupId,
+      team_data?.groups?.map((item) => ({
+        value: item.name,
         label: item.name,
       })),
-    [groups]
+    [team_data?.groups]
   )
 
   const memberOptions = useMemo(
-    () => members?.map((member) => ({ value: member, label: '@' + member })),
-    [members]
+    () =>
+      team_data?.members?.map((member) => ({
+        value: member,
+        label: '@' + member,
+      })),
+    [team_data?.members]
   )
-
-  const router = useRouter()
 
   // Custom Functions
   //handle Change for inputs
@@ -87,7 +89,19 @@ export default function CreatePage({
     const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
     try {
       setCreateLoading(true)
-      const attachmentsLists = await handleAttachments(attachments, teamcode)
+
+      // Getting TASK ID 8 Digit
+      const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      const nanoid = customAlphabet(alphabet, 8)
+      const taskid = nanoid()
+
+      const attachmentsLists = await handleAttachments(
+        attachments,
+        team_data?.teamcode,
+        taskid
+      )
+
+      // Getting Tags List
       const tagsList = tags
         .split(',')
         .map((tag) => tag.trim())
@@ -100,18 +114,26 @@ export default function CreatePage({
         assignedGroups,
         status: 'idle',
       }
+
       const taskInfoData = {
         description,
         assignedMembers,
         attachments: attachmentsLists,
         tags: tagsList,
       }
-      await createTask(taskData, taskInfoData, teamcode)
+
+      await createTask(
+        taskData,
+        taskInfoData,
+        team_data?.teamcode,
+        username,
+        taskid
+      )
       setCreateLoading(false)
       toast.success(<b>{title} created successfully</b>, { id: toastId })
       handleClose()
     } catch (error) {
-      console.log(error.message)
+      console.log('Task Creating Error', error)
       setCreateLoading(false)
       toast.error(<b>{error?.message}</b>, { id: toastId })
     }

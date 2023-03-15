@@ -15,13 +15,16 @@ export default function Activity({
 }) {
   const [isClearing, setIsClearing] = useState(false)
 
+  // Callback Funtion
+  const handleLoading = (value) => setIsClearing(value)
+
   return (
     <div className={s.activity}>
-      <div className={s.activity_topbar}>
+      <div className={`${s.activity_topbar} flexBetween headerDiv`}>
         <h3 className="header2">Activities</h3>
         <button
           disabled={isClearing || isLoading}
-          onClick={() => clearActivity(teamCode, access, setIsClearing)}
+          onClick={() => clearActivity(teamCode, access, handleLoading)}
         >
           <RiDeleteBin5Fill /> {isClearing ? 'Clearing' : 'Clear All'}
         </button>
