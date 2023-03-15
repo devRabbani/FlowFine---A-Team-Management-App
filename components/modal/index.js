@@ -1,5 +1,4 @@
 import styles from './modal.module.css'
-import { FaTimes } from 'react-icons/fa'
 import { RiCloseLine } from 'react-icons/ri'
 
 export default function Modal({ children, title, handleClose, isLoading }) {

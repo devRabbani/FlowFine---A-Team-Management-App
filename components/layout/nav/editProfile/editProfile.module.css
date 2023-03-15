@@ -1,0 +1,54 @@
+.editProfileWrapper {
+  margin-top: -6.8rem;
+}
+
+.changeNameDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  margin-block: 1.6rem 4rem;
+}
+
+.imgDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.img {
+  position: relative;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.editIcon {
+  font-size: 3rem;
+  color: var(--color-white-light);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.259),
+    rgba(0, 0, 0, 0.558)
+  );
+  padding: 0.6rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.editProfileWrapper input[type='file'] {
+  display: none;
+}
+
+.btnDiv {
+  display: flex;
+  gap: 1rem;
+}

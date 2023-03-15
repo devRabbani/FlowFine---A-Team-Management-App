@@ -13,18 +13,26 @@ import { useUser } from '../../../context/UserContext'
 import Modal from '../../modal'
 import CreatePage from '../../teamPages/createPage'
 import { RiAddLine } from 'react-icons/ri'
+import EditProfile from './editProfile'
 
 export default function Nav({ isBack }) {
-  const { photoURL, username, displayName } = useUser()
-
+  const { photoURL, username, displayName, uid } = useUser()
+  // Local States
   const [isProfile, setIsProfile] = useState(false)
   const [isCreate, setIsCreate] = useState(false)
+  const [isEditProfile, setIsEditProfile] = useState(false)
   const [createLoading, setCreateLoading] = useState(false)
+  const [profileLoading, setProfileLoading] = useState(false)
+
   const avatarRef = useRef()
 
   // Custom Functions
   const handleProfileMenu = () => setIsProfile((prev) => !prev)
   const handleCloseProfileMenu = () => setIsProfile(false)
+  const handleCloseEditProfile = () => setIsEditProfile(false)
+  const handleEditProfile = (value) => setIsEditProfile(value)
+
+  const handleProfileLoading = (value) => setProfileLoading(value)
 
   const handleCloseCreate = () => setIsCreate(false)
 
@@ -66,12 +74,28 @@ export default function Nav({ isBack }) {
                 username={username}
                 displayName={displayName}
                 avatarRef={avatarRef}
+                handleEditProfile={handleEditProfile}
                 handleCloseMenu={handleCloseProfileMenu}
               />
             )}
           </div>
         </div>
       </nav>
+      {isEditProfile ? (
+        <Modal
+          title="Edit Profile"
+          handleClose={handleCloseEditProfile}
+          isLoading={profileLoading}
+        >
+          <EditProfile
+            photoURL={photoURL}
+            uid={uid}
+            displayName={displayName}
+            handleLoading={handleProfileLoading}
+            loading={profileLoading}
+          />
+        </Modal>
+      ) : null}
       {isCreate ? (
         <Modal
           title="Create Task"
