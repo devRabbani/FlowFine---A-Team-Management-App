@@ -12,8 +12,9 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore'
+import { deleteObject, listAll, ref } from 'firebase/storage'
 
-import { db } from '../../lib/firebase'
+import { db, storage } from '../../lib/firebase'
 
 export const getTeam = async (teamcode) => {
   const docRef = doc(db, `teams/${teamcode}`)
@@ -143,4 +144,17 @@ export const deleteCollection = async (q) => {
 
   // Commiting Changes
   await batch.commit()
+}
+
+// Delete All Files
+export const deleteFiles = async (foldername) => {
+  const folderRef = ref(storage, foldername)
+
+  // List ALl Files and Then delete each
+  const filesRefs = await listAll(folderRef)
+
+  await Promise.all(filesRefs.items.map((item) => deleteObject(item)))
+
+  // // Now Delete The Folder
+  // await deleteObject(folderRef)
 }

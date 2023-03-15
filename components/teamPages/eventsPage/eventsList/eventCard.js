@@ -9,7 +9,7 @@ import { removeEvent } from '../../../../utils/firebase/eventsPage'
 
 export default memo(function EventCard({
   event,
-  isEditor,
+  access = 0,
   handleSelect,
   teamcode,
   username,
@@ -18,6 +18,9 @@ export default memo(function EventCard({
   const [isDeleting, setIsDeleting] = useState(false)
 
   const priority = ['Low', 'Normal', 'High']
+
+  // Callback Functions
+  const handleLoading = (value) => setIsDeleting(value)
 
   return (
     <div className={s.eventCard}>
@@ -31,7 +34,7 @@ export default memo(function EventCard({
           {priority[event?.priority]}
         </div>
       </div>
-      {isEditor ? (
+      {access ? (
         <div className={s.btnDiv}>
           <button disabled={isDeleting} onClick={() => handleSelect(event)}>
             <RiEditLine />
@@ -40,7 +43,7 @@ export default memo(function EventCard({
           <button
             className={s.dltBtn}
             onClick={() =>
-              removeEvent(teamcode, event?.id, username, setIsDeleting)
+              removeEvent(teamcode, event?.id, username, handleLoading)
             }
           >
             <IoMdRemoveCircleOutline />

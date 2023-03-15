@@ -22,7 +22,7 @@ export default function EventsPage({ teamCode }) {
   const handleCloseModal = () => {
     setIsCreate(false)
   }
-  console.log('Events', events)
+
   return (
     <div className={s.eventsPage}>
       <div className="flexBetween headerDiv">

@@ -12,6 +12,8 @@ import { customAlphabet } from 'nanoid'
 export const createTeam = async (teamName, uid) => {
   const shortId = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 16)
   const teamCode = shortId()
+
+  // Refs
   const docRef = doc(db, `teams/${teamCode}`)
   const userRef = doc(db, `users/${uid}`)
 
@@ -32,6 +34,7 @@ export const createTeam = async (teamName, uid) => {
     teams: arrayUnion(teamCode),
   })
 
+  // Commiting Changes
   await batch.commit()
 }
 

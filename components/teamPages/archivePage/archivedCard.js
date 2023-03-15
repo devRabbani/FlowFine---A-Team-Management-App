@@ -4,7 +4,7 @@ import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import { RiEditLine, RiRestartLine } from 'react-icons/ri'
 import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
-import { reOpenTask } from '../../../utils/firebase/archivePage'
+import { deleteTask, reOpenTask } from '../../../utils/firebase/archivePage'
 import { checkAccess } from '../../../utils/firebase/common'
 import s from './archivePage.module.css'
 
@@ -23,6 +23,7 @@ export default function ArchivedCard({ archiveTask }) {
 
   // Callback Function
   const handleLoadingReopen = (value) => setIsReopening(value)
+  const handleLoadingDelete = (value) => setIsDeleting(value)
 
   return (
     <div className={s.taskCard} key={archiveTask?.id}>
@@ -51,7 +52,19 @@ export default function ArchivedCard({ archiveTask }) {
           <RiRestartLine />
           {isReopening ? 'opening' : 'Reopen'}
         </button>
-        <button className={s.dltBtn}>
+        <button
+          disabled={isReopening || isDeleting}
+          onClick={() =>
+            deleteTask(
+              team_data?.teamcode,
+              archiveTask?.taskid,
+              archiveTask?.id,
+              access,
+              handleLoadingDelete
+            )
+          }
+          className={s.dltBtn}
+        >
           <IoMdRemoveCircleOutline />
           {isDeleting ? 'Deleting' : 'Delete'}
         </button>
