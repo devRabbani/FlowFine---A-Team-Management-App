@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { FaSignOutAlt, FaUserEdit } from 'react-icons/fa'
 import useClickOutside from '../../../../hooks/useClickOutside'
 import useLogout from '../../../../hooks/useLogout'
+import Modal from '../../../modal'
+import EditProfile from '../editProfile'
 import s from './profileMenu.module.css'
 
 export default function ProfileMenu({
@@ -10,14 +12,11 @@ export default function ProfileMenu({
   displayName,
   handleCloseMenu,
   avatarRef,
+  handleEditProfile,
 }) {
   const { logout } = useLogout()
   const router = useRouter()
 
-  const handleClick = () => {
-    handleCloseMenu()
-    router.push('/profile')
-  }
   const handleLogout = () => {
     handleCloseMenu()
     logout()
@@ -34,7 +33,7 @@ export default function ProfileMenu({
         <p className={s.userName}>@{username || 'username'}</p>
       </div>
 
-      <button onClick={handleClick} className={s.btn}>
+      <button onClick={() => handleEditProfile(true)} className={s.btn}>
         <FaUserEdit /> Edit Profile
       </button>
 

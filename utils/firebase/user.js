@@ -1,4 +1,10 @@
 // **** USERS ****
+
+import { doc, updateDoc } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { toast } from 'react-hot-toast'
+import { db, storage } from '../../lib/firebase'
+
 // Check Username
 export const checkUsernameExist = async (value) => {
   const snapshot = await getDoc(doc(db, 'usernames', value))
@@ -20,4 +26,41 @@ export const createUser = async (uid, displayName, photoURL, username) => {
   })
   batch.set(usernameRef, { uid })
   await batch.commit()
+}
+
+// Update Profile
+export const updateProfile = async (
+  uid,
+  displayName,
+  file,
+  isImgChanged,
+  handleLoading
+) => {
+  let id
+  try {
+    // Initialization Loading
+    id = toast.loading(<b>Updating Profile...</b>)
+    handleLoading(true)
+
+    // Update Data
+    let data = { displayName }
+    // If Image is changed
+    if (isImgChanged) {
+      const fileRef = ref(storage, `avatars/${uid}`)
+      await uploadBytes(fileRef, file)
+      const url = await getDownloadURL(fileRef)
+
+      data = { ...data, photoURL: url }
+    }
+
+    const profileDoc = doc(db, `users/${uid}`)
+    await updateDoc(profileDoc, data)
+
+    toast.success(<b>Profile updated successfully</b>, { id })
+  } catch (error) {
+    console.log('Changing profile', error)
+    toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    handleLoading(false)
+  }
 }
