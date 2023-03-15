@@ -19,23 +19,32 @@ export const joinTask = async (
 ) => {
   let id
   try {
+    // Initialization Loading
     handleLoading(true)
     id = toast.loading(<b>Joining Task Please Wait..</b>)
+
+    // Refs
     const docRef = doc(db, 'taskinfo', taskDocId)
     const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
 
     const batch = writeBatch(db)
+
+    // update task info
     batch.update(docRef, {
       assignedMembers: arrayUnion(username),
     })
+
+    // Setting Activity
     batch.set(activityRef, {
       message: `Wow @${username} join the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
+
+    // Commiting Changes
     await batch.commit()
     toast.success(<b>Joined Successfully</b>, { id })
   } catch (error) {
-    console.log(error)
+    console.log('Joining Task Error', error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
     handleLoading(false)
@@ -51,23 +60,32 @@ export const leaveTask = async (
 ) => {
   let id
   try {
+    // Initialization Loading
     handleLoading(true)
     id = toast.loading(<b>Leaving Task Please Wait..</b>)
+
+    // Refs
     const docRef = doc(db, 'taskinfo', taskDocId)
     const activityRef = doc(collection(db, 'teams', teamCode, 'activity'))
 
     const batch = writeBatch(db)
+
+    // Updates Task Info
     batch.update(docRef, {
       assignedMembers: arrayRemove(username),
     })
+
+    // Setting Activity
     batch.set(activityRef, {
       message: `Ohh ho! @${username} leave the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
+
+    // Commiting Changes
     await batch.commit()
     toast.success(<b>Leaved Successfully</b>, { id })
   } catch (error) {
-    console.log(error)
+    console.log('Leaving Task Error', error)
     toast.error(<b>{error.message}</b>, { id })
   } finally {
     handleLoading(false)
@@ -83,38 +101,43 @@ export const markTaskStatus = async (
   handleLoading,
   handleModal,
   isJoined,
-  access,
+  access = 0,
   taskShortData
 ) => {
   let id
   try {
+    // Initialization Loading
     handleLoading(true)
     id = toast.loading(<b>Changing Task Status...</b>)
     const isArchive = status === 'archive'
 
-    if (!isJoined) {
-      throw new Error('You need to joined first!')
-    }
-    if (isArchive && access < 1) {
+    // If Not Joined
+    if (!isJoined) throw new Error('You need to joined first!')
+
+    // If Status Archived and User is not an editor
+    if (isArchive && !access)
       throw new Error(
         'You dont have the required permission to archive this task.'
       )
-    }
 
+    // Refs
     const teamRef = doc(db, 'teams', teamcode)
     const taskRef = doc(teamRef, 'tasks', taskDocId)
     const activityRef = doc(collection(teamRef, 'activity'))
-    const archiveRef = doc(collection(db, 'archives'))
+    const archiveRef = doc(teamRef, 'archives', taskDocId)
 
     const batch = writeBatch(db)
 
+    // If Status Archive
     if (isArchive) {
+      // Setting ARchive
       batch.set(archiveRef, {
         ...taskShortData,
         updatedAt: serverTimestamp(),
         status: 'archived',
-        teamcode,
+        archivedBy: username,
       })
+      // Deleting from Tasks List
       batch.delete(taskRef)
     } else {
       // Changing Status
@@ -157,7 +180,10 @@ export const addComment = async (
   handleClearComment
 ) => {
   try {
+    // Initialization Loading
     handleLoading(true)
+
+    // Refs
     const commentref = doc(collection(db, 'taskinfo', taskDocId, 'comments'))
     const teamRef = doc(db, 'teams', teamCode)
     const taskRef = doc(teamRef, 'tasks', taskDocId)

@@ -15,6 +15,7 @@ import {
   createTask,
   handleAttachments,
 } from '../../../utils/firebase/createTasks'
+import { customAlphabet } from 'nanoid'
 
 export default function CreatePage({
   handleClose,
@@ -88,10 +89,19 @@ export default function CreatePage({
     const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
     try {
       setCreateLoading(true)
+
+      // Getting TASK ID 8 Digit
+      const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      const nanoid = customAlphabet(alphabet, 8)
+      const taskid = nanoid()
+
       const attachmentsLists = await handleAttachments(
         attachments,
-        team_data?.teamcode
+        team_data?.teamcode,
+        taskid
       )
+
+      // Getting Tags List
       const tagsList = tags
         .split(',')
         .map((tag) => tag.trim())
@@ -104,13 +114,21 @@ export default function CreatePage({
         assignedGroups,
         status: 'idle',
       }
+
       const taskInfoData = {
         description,
         assignedMembers,
         attachments: attachmentsLists,
         tags: tagsList,
       }
-      await createTask(taskData, taskInfoData, team_data?.teamcode, username)
+
+      await createTask(
+        taskData,
+        taskInfoData,
+        team_data?.teamcode,
+        username,
+        taskid
+      )
       setCreateLoading(false)
       toast.success(<b>{title} created successfully</b>, { id: toastId })
       handleClose()

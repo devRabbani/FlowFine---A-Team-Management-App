@@ -6,7 +6,7 @@ import s from './taskCard.module.css'
 export default function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
   const [viewDetails, setViewDetails] = useState(null)
-
+  console.log(task?.title, task)
   const renderPriority = (priority) => {
     switch (priority) {
       case '0':

@@ -23,7 +23,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
   // Getting username
   const { username } = useUser()
 
-  const isEditor = checkAccess(editors, owners, username)
+  const access = checkAccess(editors, owners, username)
 
   // Partioning Events
   const upcomming = useMemo(
@@ -41,7 +41,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
         {upcomming?.length ? (
           upcomming.map((event) => (
             <EventCard
-              isEditor={isEditor}
+              access={access}
               key={event?.id}
               event={event}
               handleSelect={handleSelect}
@@ -55,14 +55,14 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
           </p>
         )}
       </div>
-      <div className={s.eventHeaderBar}>
+      <div className="flexBetween headerDiv">
         <h3 className="header2">Past Events</h3>
       </div>
       <div className={s.eventsList_wrapper}>
         {past?.length ? (
           past.map((event, i) => (
             <EventCard
-              isEditor={isEditor}
+              access={access}
               key={i}
               event={event}
               handleSelect={handleSelect}
@@ -84,7 +84,7 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
         </button>
       ) : null}
 
-      {selected && isEditor ? (
+      {selected && access ? (
         <Modal title="Update Event" handleClose={handleCloseModal}>
           <CreateEvent handleClose={handleCloseModal} selected={selected} />
         </Modal>

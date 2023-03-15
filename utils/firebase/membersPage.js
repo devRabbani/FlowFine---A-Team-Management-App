@@ -69,44 +69,47 @@ export const createGroup = async (
   teamCode,
   data,
   username,
-  access,
+  access = 0,
   handleLoading,
   handleClose
 ) => {
   let id
   try {
+    // Initialization Loading
     id = toast.loading(<b>Creating Group...</b>)
     handleLoading(true)
-    if (access < 1) {
+
+    // Checking Permission if not an editor
+    if (!access)
       throw new Error('You dont have the required permission to do this!!')
-    } else {
-      const teamRef = doc(db, 'teams', teamCode)
-      const activityRef = doc(collection(teamRef, 'activity'))
 
-      const batch = writeBatch(db)
+    // Refs
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
 
-      // Updating Team
-      batch.update(teamRef, {
-        groups: arrayUnion(data),
-        updatedAt: serverTimestamp(),
-      })
+    const batch = writeBatch(db)
 
-      // Setting Activity
-      batch.set(activityRef, {
-        message: `@${username} created a new Group : ${data?.name}`,
-        timestamp: serverTimestamp(),
-      })
+    // Updating Team
+    batch.update(teamRef, {
+      groups: arrayUnion(data),
+      updatedAt: serverTimestamp(),
+    })
 
-      // Committing Changes
-      await batch.commit()
+    // Setting Activity
+    batch.set(activityRef, {
+      message: `@${username} created a new Group : ${data?.name}`,
+      timestamp: serverTimestamp(),
+    })
 
-      toast.success(<b>Group created successfully</b>, { id })
-      handleClose()
-    }
+    // Committing Changes
+    await batch.commit()
+
+    toast.success(<b>Group created successfully</b>, { id })
+    handleLoading(false)
+    handleClose()
   } catch (error) {
     console.log('Creating Group', error)
     toast.error(<b>{error.message}</b>, { id })
-  } finally {
     handleLoading(false)
   }
 }
@@ -118,50 +121,53 @@ export const updateGroup = async (
   oldGroupName,
   prevGroups,
   username,
-  access,
+  access = 0,
   handleLoading,
   handleClose
 ) => {
   let id
   try {
+    // Initialization Loading
     id = toast.loading(<b>Updating Group...</b>)
     handleLoading(true)
-    if (access < 1) {
+
+    // Checking Permission if not an editor
+    if (!access)
       throw new Error('You dont have the required permission to do this!!')
-    } else {
-      const teamRef = doc(db, 'teams', teamCode)
-      const activityRef = doc(collection(teamRef, 'activity'))
 
-      // Group Maninmuplation
-      const groups = [
-        data,
-        ...prevGroups?.filter((group) => group.name !== oldGroupName),
-      ]
+    // Refs
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
 
-      const batch = writeBatch(db)
+    // Group Maninmuplation
+    const groups = [
+      data,
+      ...prevGroups?.filter((group) => group.name !== oldGroupName),
+    ]
 
-      // Updating Team
-      batch.update(teamRef, {
-        groups,
-        updatedAt: serverTimestamp(),
-      })
+    const batch = writeBatch(db)
 
-      // Setting Activity
-      batch.set(activityRef, {
-        message: `@${username} updated Group : ${oldGroupName}`,
-        timestamp: serverTimestamp(),
-      })
+    // Updating Team
+    batch.update(teamRef, {
+      groups,
+      updatedAt: serverTimestamp(),
+    })
 
-      // Committing Changes
-      await batch.commit()
+    // Setting Activity
+    batch.set(activityRef, {
+      message: `@${username} updated Group : ${oldGroupName}`,
+      timestamp: serverTimestamp(),
+    })
 
-      toast.success(<b>Group updated successfully</b>, { id })
-      handleClose()
-    }
+    // Committing Changes
+    await batch.commit()
+
+    toast.success(<b>Group updated successfully</b>, { id })
+    handleLoading(false)
+    handleClose()
   } catch (error) {
     console.log('Updating Group', error)
     toast.error(<b>{error.message}</b>, { id })
-  } finally {
     handleLoading(false)
   }
 }
@@ -171,41 +177,45 @@ export const deleteGroup = async (
   teamCode,
   data,
   username,
-  access,
+  access = 0,
   handleLoading
 ) => {
   let id
   try {
+    // Initialization loading
+    id = toast.loading(<b>Deleting Group...</b>)
+    handleLoading(true)
+
+    // Checking permission if not owner
+    if (access <= 1) throw new Error('You need to be an owner to do this!!')
+
+    // Confirmation
     const isConfirm = confirm('Are you sure you want to delete this group??')
-    if (isConfirm) {
-      id = toast.loading(<b>Deleting Group...</b>)
-      handleLoading(true)
-      if (access < 1) {
-        throw new Error('You dont have the required permission to do this!!')
-      } else {
-        const teamRef = doc(db, 'teams', teamCode)
-        const activityRef = doc(collection(teamRef, 'activity'))
 
-        const batch = writeBatch(db)
+    if (!isConfirm) throw new Error('User canceled')
 
-        // Updating Team
-        batch.update(teamRef, {
-          groups: arrayRemove(data),
-          updatedAt: serverTimestamp(),
-        })
+    // Refs
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
 
-        // Setting Activity
-        batch.set(activityRef, {
-          message: `@${username} deleted the Group : ${data?.name}`,
-          timestamp: serverTimestamp(),
-        })
+    const batch = writeBatch(db)
 
-        // Committing Changes
-        await batch.commit()
+    // Updating Team
+    batch.update(teamRef, {
+      groups: arrayRemove(data),
+      updatedAt: serverTimestamp(),
+    })
 
-        toast.success(<b>Group deleted successfully</b>, { id })
-      }
-    }
+    // Setting Activity
+    batch.set(activityRef, {
+      message: `@${username} deleted the Group : ${data?.name}`,
+      timestamp: serverTimestamp(),
+    })
+
+    // Committing Changes
+    await batch.commit()
+
+    toast.success(<b>Group deleted successfully</b>, { id })
   } catch (error) {
     console.log('Deleting Group', error)
     toast.error(<b>{error.message}</b>, { id })
