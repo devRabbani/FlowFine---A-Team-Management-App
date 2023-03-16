@@ -6,11 +6,17 @@ import useClickOutside from '../../hooks/useClickOutside'
 import useDataDoc from '../../hooks/useDataDoc'
 import useGetProfiles from '../../hooks/useGetProfiles'
 import usePaginatedData from '../../hooks/usePaginatedData'
+import TabNav from '../tabNav'
 import Comments from './comments/comments'
 import Details from './details/details'
+import Modal from '../modal'
 import s from './taskDetails.module.css'
 
-export default function TaskDetails({ viewDetails, setViewDetails }) {
+export default function TaskDetails({
+  taskData,
+  handleCloseView,
+  handleEditDetails,
+}) {
   const [isCommentMode, setIsCommentMode] = useState(false) //STate for subpage
 
   // Ref for click Outside Funstion
@@ -21,7 +27,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
   } = useRouter()
 
   //  Getting FUll Info of Task
-  const { data, loading } = useDataDoc(`taskinfo/${viewDetails.id}`)
+  const { data, loading } = useDataDoc(`taskinfo/${taskData?.id}`)
 
   //  Getting Profiles of Members
   const { profiles, loading: profilesLoading } = useGetProfiles(
@@ -34,27 +40,22 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
     loadMore,
     hasMore,
     btnLoading,
-  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`, 10)
+  } = usePaginatedData(`taskinfo/${taskData?.id}/comments`, 10)
 
   // Custom Function
-  // Handle Modal : Will set value to null
-  const handleModal = () => {
-    setViewDetails(null)
-  }
-
   // Hook for triggering click outside to close modal
-  useClickOutside(targetRef, handleModal)
+  useClickOutside(targetRef, handleCloseView)
 
   console.count('Task Details')
   return (
     <div ref={targetRef} className={s.viewDetailsBody}>
       <TaskDetailsContextProvider
-        shortInfo={viewDetails}
+        shortInfo={taskData}
         fullInfo={data}
         fullInfoLoading={loading}
         profiles={profiles}
         profilesLoading={profilesLoading}
-        handleModal={handleModal}
+        handleModal={handleCloseView}
         teamCode={id}
         comments={comments}
         commentsLoading={commentsLoading}
@@ -64,32 +65,18 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>
-            <button onClick={() => setViewDetails(null)}>
-              <RiEditLine /> Edit
+            <button onClick={() => handleEditDetails(data)}>
+              <RiEditLine />
             </button>
-            <button onClick={handleModal}>
-              <RiCloseLine /> Close
+            <button onClick={handleCloseView}>
+              <RiCloseLine />
             </button>
           </div>
-
-          <div className={s.viewDetails_nav}>
-            <div
-              className={`${s.viewDetails_nav_menu} ${
-                isCommentMode ? '' : s.active
-              }`}
-              onClick={() => setIsCommentMode(false)}
-            >
-              Details
-            </div>
-            <div
-              className={`${s.viewDetails_nav_menu} ${
-                isCommentMode ? s.active : ''
-              }`}
-              onClick={() => setIsCommentMode(true)}
-            >
-              Comments
-            </div>
-          </div>
+          <TabNav
+            menu={isCommentMode}
+            setMenu={setIsCommentMode}
+            type="details"
+          />
           {isCommentMode ? <Comments /> : <Details />}
         </div>
       </TaskDetailsContextProvider>

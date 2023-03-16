@@ -4,6 +4,11 @@
   margin-block: 1rem 1.6rem;
 }
 
+.uploadedDiv {
+  display: grid;
+  gap: 1.2rem;
+}
+
 .attachment {
   display: flex;
   gap: 0.5rem;
@@ -36,4 +41,18 @@
   right: 0;
   width: 3.4rem;
   border-radius: 0.4rem;
+}
+
+.uploadedHeader {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-block: 1.5rem 0.7rem;
+}
+
+.uploadedDiv .attachment svg {
+  color: var(--color-red);
+}
+
+.uploadedDiv .attachment {
+  border: 0.1rem solid var(--color-secondary);
 }

@@ -100,6 +100,9 @@ export default function CreateGroup({
           isMulti
           isSearchable
           onChange={handleChange}
+          noOptionsMessage={() => (
+            <span className="stateOption">No Members found</span>
+          )}
         />
       </div>
       <div className={s.createGroup_btnDiv}>
