@@ -12,7 +12,7 @@
 .viewDetails_topBar {
   display: flex;
   gap: 1.7rem;
-  padding-block: 0.5rem;
+  padding-block: 0.5rem 0.3rem;
   justify-content: right;
 }
 .viewDetails_topBar button {

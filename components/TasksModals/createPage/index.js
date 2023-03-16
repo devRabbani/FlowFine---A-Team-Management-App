@@ -16,6 +16,7 @@ import {
   handleAttachments,
 } from '../../../utils/firebase/createTasks'
 import { customAlphabet } from 'nanoid'
+import { checkAccess } from '../../../utils/firebase/common'
 
 export default function CreatePage({
   handleClose,
@@ -36,6 +37,12 @@ export default function CreatePage({
 
   // Getting Team Data
   const { team_data } = useTeam()
+
+  // Getting Acces
+  const access = useMemo(
+    () => checkAccess(team_data?.editors, team_data?.owners, username),
+    [team_data?.editors, team_data?.owners, username]
+  )
 
   const groupOptions = useMemo(
     () =>
@@ -83,6 +90,11 @@ export default function CreatePage({
     }
     if (attachments?.length > 8) {
       toast.error(<b>Please remove some attachments, Max limit is 8!</b>)
+      return
+    }
+
+    if (!access) {
+      toast.error(<b>You need to be an editor to create task</b>)
       return
     }
 
@@ -142,21 +154,30 @@ export default function CreatePage({
   return (
     <div className={`${s.createPage} wrapper`}>
       <form className={s.createForm} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter New Task Title"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          maxLength={120}
-        />
-        <textarea
-          rows="4"
-          placeholder="Enter Task Description"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className="formDiv">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            placeholder="Enter New Task Title"
+            name="title"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={120}
+          />
+        </div>
+        <div className="formDiv">
+          <label htmlFor="description">Description</label>
+          <textarea
+            rows="4"
+            placeholder="Enter Task Description"
+            name="description"
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
         <AttachFiles
           isLoading={createLoading}
           setAttachments={setAttachments}
@@ -174,11 +195,12 @@ export default function CreatePage({
             />
           </div>
           <div className={s.formDiv}>
-            <label>Deadline :</label>
+            <label htmlFor="deadline">Deadline :</label>
             <input
               type="date"
               placeholder="Enter Deadline"
               name="deadline"
+              id="deadline"
               value={deadline}
               required
               min={new Date().toISOString().split('T')[0]}
@@ -199,7 +221,7 @@ export default function CreatePage({
               isSearchable
               isLoading={false}
               noOptionsMessage={() => (
-                <span className={s.stateOption}>No Groups found</span>
+                <span className="stateOption">No Groups found</span>
               )}
             />
           </div>
@@ -217,7 +239,7 @@ export default function CreatePage({
               isSearchable
               onChange={(value) => handleChange(value, 'member')}
               noOptionsMessage={() => (
-                <span className={s.stateOption}>No Members found</span>
+                <span className="stateOption">No Members found</span>
               )}
             />
           </div>

@@ -233,3 +233,7 @@ textarea:is(:active, :focus) {
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.stateOption {
+  font-size: 1.7rem;
+}

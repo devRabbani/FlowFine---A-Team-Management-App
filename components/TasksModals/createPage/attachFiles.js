@@ -2,12 +2,21 @@ import { useRef } from 'react'
 import { toast } from 'react-hot-toast'
 import Button from '../../button'
 import s from './attachFiles.module.css'
-import { RiCloseLine, RiAttachment2 } from 'react-icons/ri'
+import { RiCloseLine, RiAttachment2, RiDeleteBin5Line } from 'react-icons/ri'
+import { deleteAttachment } from '../../../utils/firebase/createTasks'
 
 export default function AttachFiles({
   isLoading,
   setAttachments,
   attachments,
+  uploaded,
+  taskDocId,
+  teamCode,
+  taskid,
+  handleLoading,
+  isEditLoading,
+  handleUploaded,
+  access,
 }) {
   // Ref
   const inputRef = useRef()
@@ -89,6 +98,32 @@ export default function AttachFiles({
       >
         <RiAttachment2 /> Attach files
       </Button>
+      {uploaded?.length ? (
+        <>
+          <p className={s.uploadedHeader}>Uploaded</p>
+          <div className={s.uploadedDiv}>
+            {uploaded?.map((item, i) => (
+              <div key={i} className={s.attachment}>
+                <RiDeleteBin5Line
+                  onClick={(e) =>
+                    deleteAttachment(
+                      taskDocId,
+                      taskid,
+                      teamCode,
+                      item,
+                      handleLoading,
+                      isEditLoading,
+                      handleUploaded,
+                      access
+                    )
+                  }
+                />
+                <p>{item.name}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
     </div>
   )
 }

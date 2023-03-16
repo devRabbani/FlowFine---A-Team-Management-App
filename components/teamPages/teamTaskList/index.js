@@ -27,7 +27,7 @@ export default function TeamTaskList() {
   const groupOptions = useMemo(
     () => [
       { value: '', label: 'All Group' },
-      ...team_data?.groups.map((group) => ({
+      ...team_data?.groups?.map((group) => ({
         label: group.name,
         value: group.name,
       })),
@@ -47,6 +47,9 @@ export default function TeamTaskList() {
             isClearable
             placeholder="Select Group : All"
             onChange={(e) => setSelectedGroup(e?.value || '')}
+            noOptionsMessage={() => (
+              <span className="stateOption">No Groups found</span>
+            )}
           />
         </div>
         <TabNav setMenu={setIsList} menu={isList} />
