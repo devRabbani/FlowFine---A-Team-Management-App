@@ -28,6 +28,16 @@ export default function TabNav({ setMenu, menu, type = 'task' }) {
         value: false,
       },
     ],
+    details: [
+      {
+        name: 'Details',
+        value: false,
+      },
+      {
+        name: 'Comments',
+        value: true,
+      },
+    ],
   }
 
   return (

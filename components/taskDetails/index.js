@@ -6,6 +6,7 @@ import useClickOutside from '../../hooks/useClickOutside'
 import useDataDoc from '../../hooks/useDataDoc'
 import useGetProfiles from '../../hooks/useGetProfiles'
 import usePaginatedData from '../../hooks/usePaginatedData'
+import TabNav from '../tabNav'
 import Comments from './comments/comments'
 import Details from './details/details'
 import s from './taskDetails.module.css'
@@ -65,31 +66,17 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>
             <button onClick={() => setViewDetails(null)}>
-              <RiEditLine /> Edit
+              <RiEditLine />
             </button>
             <button onClick={handleModal}>
-              <RiCloseLine /> Close
+              <RiCloseLine />
             </button>
           </div>
-
-          <div className={s.viewDetails_nav}>
-            <div
-              className={`${s.viewDetails_nav_menu} ${
-                isCommentMode ? '' : s.active
-              }`}
-              onClick={() => setIsCommentMode(false)}
-            >
-              Details
-            </div>
-            <div
-              className={`${s.viewDetails_nav_menu} ${
-                isCommentMode ? s.active : ''
-              }`}
-              onClick={() => setIsCommentMode(true)}
-            >
-              Comments
-            </div>
-          </div>
+          <TabNav
+            menu={isCommentMode}
+            setMenu={setIsCommentMode}
+            type="details"
+          />
           {isCommentMode ? <Comments /> : <Details />}
         </div>
       </TaskDetailsContextProvider>

@@ -9,43 +9,31 @@
   border-radius: 0.8rem 0.8rem 0 0;
 }
 
-.viewDetails_nav {
-  display: flex;
-  padding: 0.6rem;
-  background-color: var(--color-primary);
-  margin-bottom: 1.5rem;
-}
-
-.viewDetails_nav_menu {
-  font-size: 2rem;
-  flex-basis: 100%;
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: 0.7rem;
-}
-
-.viewDetails_nav_menu.active {
-  color: white;
-  background-color: var(--color-green-1);
-}
-
 .viewDetails_topBar {
   display: flex;
   gap: 1.7rem;
-  padding: 1rem 1rem 1.5rem;
+  padding-block: 0.5rem;
   justify-content: right;
+}
+.viewDetails_topBar button {
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+}
+
+.viewDetails_topBar button:nth-child(2) {
+  font-size: 3.4rem;
 }
 
 .details,
 .comments {
-  height: 65vh;
-  padding-block: 0.5rem 5rem;
+  height: 67vh;
+  padding-block: 2rem 5rem;
   overflow-y: auto;
 }
 
 .comments {
   height: calc(
-    65vh + 6.18rem
+    67vh + 6.18rem
   ); /* Added because of the bottom bar height 61.8px*/
 }
 
