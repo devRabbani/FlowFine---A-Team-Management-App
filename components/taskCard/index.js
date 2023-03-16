@@ -1,11 +1,14 @@
 import moment from 'moment'
 import { useState } from 'react'
+import Modal from '../modal'
 import TaskDetails from '../taskDetails'
 import s from './taskCard.module.css'
 
 export default function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
   const [viewDetails, setViewDetails] = useState(null)
+  const [editDetails, setEditDetails] = useState(null)
+
   console.log(task?.title, task)
   const renderPriority = (priority) => {
     switch (priority) {
@@ -20,9 +23,10 @@ export default function TaskCard({ task }) {
     }
   }
 
-  const handleTaskView = () => {
-    setViewDetails(task)
-  }
+  // Callback Function
+  const handleTaskView = () => setViewDetails(task)
+
+  const handleEditDetails = (value) => setEditDetails(value)
 
   console.count('Task Card')
 
@@ -47,7 +51,13 @@ export default function TaskCard({ task }) {
         <TaskDetails
           viewDetails={viewDetails}
           setViewDetails={setViewDetails}
+          handleEditDetails={handleEditDetails}
         />
+      ) : null}
+      {editDetails ? (
+        <Modal title="Edit Task" handleClose={() => handleEditDetails(null)}>
+          edit pRfodf
+        </Modal>
       ) : null}
     </>
   )

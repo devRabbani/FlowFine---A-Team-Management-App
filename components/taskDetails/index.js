@@ -9,9 +9,14 @@ import usePaginatedData from '../../hooks/usePaginatedData'
 import TabNav from '../tabNav'
 import Comments from './comments/comments'
 import Details from './details/details'
+import Modal from '../modal'
 import s from './taskDetails.module.css'
 
-export default function TaskDetails({ viewDetails, setViewDetails }) {
+export default function TaskDetails({
+  viewDetails,
+  setViewDetails,
+  handleEditDetails,
+}) {
   const [isCommentMode, setIsCommentMode] = useState(false) //STate for subpage
 
   // Ref for click Outside Funstion
@@ -65,7 +70,7 @@ export default function TaskDetails({ viewDetails, setViewDetails }) {
       >
         <div className={`${s.viewDetails} wrapper`}>
           <div className={s.viewDetails_topBar}>
-            <button onClick={() => setViewDetails(null)}>
+            <button onClick={() => handleEditDetails(data)}>
               <RiEditLine />
             </button>
             <button onClick={handleModal}>
