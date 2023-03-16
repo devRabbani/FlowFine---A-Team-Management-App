@@ -1,4 +1,9 @@
-import { collection } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  serverTimestamp,
+  writeBatch,
+} from 'firebase/firestore'
 import { toast } from 'react-hot-toast'
 import { db } from '../../lib/firebase'
 import { deleteCollection } from './common'
@@ -26,6 +31,99 @@ export const clearActivity = async (teamCode, access = 0, handleLoading) => {
   } catch (error) {
     console.log('Clearing Activitiies error', error)
     toast.error(<b>{error.message}</b>, { id })
+  } finally {
+    handleLoading(false)
+  }
+}
+
+// Change Team Name
+export const changeTeamName = async (
+  teamCode,
+  name,
+  access,
+  username,
+  handleLoading
+) => {
+  try {
+    // Start Loading
+    handleLoading(true)
+    toast.loading(<b>Changing Team Name</b>, { id: 'changeteamname' })
+
+    // Checking Permission
+    if (access <= 1) throw new Error('You need to be an Owner to do this!')
+    // Main Operation
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
+
+    const batch = writeBatch(db)
+
+    // Changin Name
+    batch.update(teamRef, {
+      name,
+      updatedAt: serverTimestamp(),
+    })
+
+    // Setting Activty
+    batch.set(activityRef, {
+      message: `Oooo ${name?.toUpperCase()} is our new team name updated by @${username}`,
+      timestamp: serverTimestamp(),
+    })
+
+    // Commting Changes
+    await batch.commit()
+
+    toast.success(<b>Team Name Changed</b>, { id: 'changeteamname' })
+  } catch (error) {
+    console.log('Changing Team Name', error)
+    toast.error(<b>{error.message}</b>, { id: 'changeteamname' })
+  } finally {
+    handleLoading(false)
+  }
+}
+
+// Change Permission
+export const changePermission = async (
+  teamCode,
+  name,
+  access,
+  username,
+  handleLoading
+) => {
+  try {
+    // Confirmation
+    const isConfirm = confirm(`Are you sure you want to make @${username} to `)
+
+    // Start Loading
+    handleLoading(true)
+    toast.loading(<b>Changing Team Name</b>, { id: 'changeteamname' })
+
+    // Checking Permission
+    if (access <= 1) throw new Error('You need to be an Owner to do this!')
+    // Main Operation
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
+
+    const batch = writeBatch(db)
+
+    // Changin Name
+    batch.update(teamRef, {
+      name,
+      updatedAt: serverTimestamp(),
+    })
+
+    // Setting Activty
+    batch.set(activityRef, {
+      message: `Oooo ${name?.toUpperCase()} is our new team name updated by @${username}`,
+      timestamp: serverTimestamp(),
+    })
+
+    // Commting Changes
+    await batch.commit()
+
+    toast.success(<b>Team Name Changed</b>, { id: 'changeteamname' })
+  } catch (error) {
+    console.log('Changing Team Name', error)
+    toast.error(<b>{error.message}</b>, { id: 'changeteamname' })
   } finally {
     handleLoading(false)
   }

@@ -13,6 +13,9 @@ export default function TeamHeader({
   totalPending,
 }) {
   const [isTeamSetting, setIsTeamSetting] = useState(false)
+  const [settingLoading, setSettingLoading] = useState(false)
+
+  const handleLoading = (value) => setSettingLoading(value)
 
   //  Handle Close Team Setting Modal
   const handleClose = () => setIsTeamSetting(false)
@@ -49,8 +52,12 @@ export default function TeamHeader({
       </div>
 
       {isTeamSetting ? (
-        <Modal title="Team Settings" handleClose={handleClose}>
-          <TeamSetting />
+        <Modal
+          title="Team Settings"
+          handleClose={handleClose}
+          isLoading={settingLoading}
+        >
+          <TeamSetting handleLoading={handleLoading} loading={settingLoading} />
         </Modal>
       ) : null}
     </>
