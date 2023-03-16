@@ -13,8 +13,8 @@ import Modal from '../modal'
 import s from './taskDetails.module.css'
 
 export default function TaskDetails({
-  viewDetails,
-  setViewDetails,
+  taskData,
+  handleCloseView,
   handleEditDetails,
 }) {
   const [isCommentMode, setIsCommentMode] = useState(false) //STate for subpage
@@ -27,7 +27,7 @@ export default function TaskDetails({
   } = useRouter()
 
   //  Getting FUll Info of Task
-  const { data, loading } = useDataDoc(`taskinfo/${viewDetails.id}`)
+  const { data, loading } = useDataDoc(`taskinfo/${taskData?.id}`)
 
   //  Getting Profiles of Members
   const { profiles, loading: profilesLoading } = useGetProfiles(
@@ -40,27 +40,22 @@ export default function TaskDetails({
     loadMore,
     hasMore,
     btnLoading,
-  } = usePaginatedData(`taskinfo/${viewDetails?.id}/comments`, 10)
+  } = usePaginatedData(`taskinfo/${taskData?.id}/comments`, 10)
 
   // Custom Function
-  // Handle Modal : Will set value to null
-  const handleModal = () => {
-    setViewDetails(null)
-  }
-
   // Hook for triggering click outside to close modal
-  useClickOutside(targetRef, handleModal)
+  useClickOutside(targetRef, handleCloseView)
 
   console.count('Task Details')
   return (
     <div ref={targetRef} className={s.viewDetailsBody}>
       <TaskDetailsContextProvider
-        shortInfo={viewDetails}
+        shortInfo={taskData}
         fullInfo={data}
         fullInfoLoading={loading}
         profiles={profiles}
         profilesLoading={profilesLoading}
-        handleModal={handleModal}
+        handleModal={handleCloseView}
         teamCode={id}
         comments={comments}
         commentsLoading={commentsLoading}
@@ -73,7 +68,7 @@ export default function TaskDetails({
             <button onClick={() => handleEditDetails(data)}>
               <RiEditLine />
             </button>
-            <button onClick={handleModal}>
+            <button onClick={handleCloseView}>
               <RiCloseLine />
             </button>
           </div>

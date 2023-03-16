@@ -2,18 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { FaCaretLeft } from 'react-icons/fa'
-
-import { useAuth } from '../../../context/AuthContext'
-import useLogout from '../../../hooks/useLogout'
 import s from './nav.module.css'
-import { useRouter } from 'next/router'
-import placeholder from '../../../public/placeholder.png'
 import ProfileMenu from './profileMenu'
 import { useUser } from '../../../context/UserContext'
 import Modal from '../../modal'
-import CreatePage from '../../teamPages/createPage'
 import { RiAddLine } from 'react-icons/ri'
 import EditProfile from './editProfile'
+import CreatePage from '../../TasksModals/createPage'
 
 export default function Nav({ isBack }) {
   const { photoURL, username, displayName, uid } = useUser()

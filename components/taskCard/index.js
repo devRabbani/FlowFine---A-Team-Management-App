@@ -2,12 +2,14 @@ import moment from 'moment'
 import { useState } from 'react'
 import Modal from '../modal'
 import TaskDetails from '../taskDetails'
+import EditTaskModal from '../TasksModals/editTaskModal'
 import s from './taskCard.module.css'
 
 export default function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
-  const [viewDetails, setViewDetails] = useState(null)
+  const [isView, setIsView] = useState(false)
   const [editDetails, setEditDetails] = useState(null)
+  const [isEditLoading, setEditLoading] = useState(false)
 
   console.log(task?.title, task)
   const renderPriority = (priority) => {
@@ -24,15 +26,21 @@ export default function TaskCard({ task }) {
   }
 
   // Callback Function
-  const handleTaskView = () => setViewDetails(task)
+  const handleTaskView = (value) => setIsView(value)
+  const handleCloseView = () => setIsView(false)
 
   const handleEditDetails = (value) => setEditDetails(value)
+  const handleEditLoading = (value) => setEditLoading(value)
 
   console.count('Task Card')
 
   return (
     <>
-      <div onClick={handleTaskView} className={s.taskCard} key={task.id}>
+      <div
+        onClick={() => handleTaskView(true)}
+        className={s.taskCard}
+        key={task.id}
+      >
         <div className={s.taskCardTopBar}>
           {renderPriority(task.priority)}
           <p className={s.taskUpdates}>
@@ -47,16 +55,26 @@ export default function TaskCard({ task }) {
           <p className={s.taskid}>ID-AGSTEHYX</p>
         </div>
       </div>
-      {viewDetails ? (
+      {isView ? (
         <TaskDetails
-          viewDetails={viewDetails}
-          setViewDetails={setViewDetails}
+          taskData={task}
+          handleCloseView={handleCloseView}
           handleEditDetails={handleEditDetails}
         />
       ) : null}
       {editDetails ? (
-        <Modal title="Edit Task" handleClose={() => handleEditDetails(null)}>
-          edit pRfodf
+        <Modal
+          title="Edit Task"
+          handleClose={() => handleEditDetails(null)}
+          isLoading={isEditLoading}
+        >
+          <EditTaskModal
+            isEditLoading={isEditLoading}
+            handleClose={() => handleEditDetails(null)}
+            shortInfo={task}
+            fullInfo={editDetails}
+            handleLoading={handleEditLoading}
+          />
         </Modal>
       ) : null}
     </>
