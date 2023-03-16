@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { RiSettings3Line } from 'react-icons/ri'
 import Modal from '../../../modal'
 import styles from './teamHeader.module.css'
-import TeamSetting from './teamSetting'
+import TeamSetting from './TeamSetting'
 
 export default function TeamHeader({
   name,
