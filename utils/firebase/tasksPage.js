@@ -2,6 +2,7 @@ import {
   arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   serverTimestamp,
   writeBatch,
@@ -210,6 +211,23 @@ export const addComment = async (
     await batch.commit()
   } catch (error) {
     console.log('Adding Comment error :', error)
+    toast.error(<b>{error.message}</b>)
+  } finally {
+    handleLoading(false)
+  }
+}
+
+// Delete Comment
+export const deleteComment = async (taskDocId, commentId, handleLoading) => {
+  try {
+    // Confirmation
+    const isConfirm = confirm('Are you sure you want to delete this comment?')
+    if (!isConfirm) return
+
+    handleLoading(true)
+    await deleteDoc(doc(db, 'taskinfo', taskDocId, 'comments', commentId))
+  } catch (error) {
+    console.log('Delete comment', error)
     toast.error(<b>{error.message}</b>)
   } finally {
     handleLoading(false)

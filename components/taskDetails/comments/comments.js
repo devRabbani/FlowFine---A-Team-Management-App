@@ -56,17 +56,16 @@ export default function Comments() {
         disabled={isCommenting || comment.length < 1}
         variant="primary md g2"
       >
-        {isCommenting ? (
-          <>
-            <RiMessage2Fill /> Adding
-          </>
-        ) : (
-          <>
-            <RiMessage2Line /> Comment
-          </>
-        )}
+        {' '}
+        <RiMessage2Line />
+        {isCommenting ? 'Adding' : 'Comment'}
       </Button>
-      <CommentsList loading={commentsLoading} comments={comments} />
+      <CommentsList
+        loading={commentsLoading}
+        comments={comments}
+        username={username}
+        taskDocId={shortInfo?.id}
+      />
       {hasMore ? (
         <button disabled={btnLoading} onClick={loadMore}>
           {btnLoading ? 'Loading' : 'Load More'}

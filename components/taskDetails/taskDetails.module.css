@@ -220,6 +220,17 @@
   margin-top: 0.2rem;
 }
 
+.commentsList_card_topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.commentsList_card_topBar button {
+  color: var(--color-red);
+}
+
 .noData {
   margin-top: 5rem;
   text-align: center;
