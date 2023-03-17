@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
 import useGetProfilesObj from '../../../hooks/useGetProfilesObj'
@@ -23,7 +23,10 @@ export default function MembersPage() {
   const { username } = useUser()
 
   // Check Access
-  const access = checkAccess(editors, owners, username)
+  const access = useMemo(
+    () => checkAccess(editors, owners, username),
+    [username, editors, owners]
+  )
 
   console.count('Members Page')
   return (

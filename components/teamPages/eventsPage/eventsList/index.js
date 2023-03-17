@@ -7,7 +7,17 @@ import CreateEvent from '../createEvent'
 import s from '../eventsPage.module.css'
 import EventCard from './eventCard'
 
-export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
+export default function EventsList({
+  events,
+  hasMore,
+  loadMore,
+  btnLoading,
+  access = 0,
+  teamcode,
+  username,
+  handleLoading,
+  isCreateLoading,
+}) {
   // Selected Event
   const [selected, setSelected] = useState(null)
 
@@ -16,14 +26,6 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
 
   // Setting Update Event
   const handleSelect = useCallback((value) => setSelected(value), [])
-
-  // Getting Team Data
-  const { team_data } = useTeam()
-  const { owners, editors, teamcode } = team_data
-  // Getting username
-  const { username } = useUser()
-
-  const access = checkAccess(editors, owners, username)
 
   // Partioning Events
   const upcomming = useMemo(
@@ -85,8 +87,20 @@ export default function EventsList({ events, hasMore, loadMore, btnLoading }) {
       ) : null}
 
       {selected && access ? (
-        <Modal title="Update Event" handleClose={handleCloseModal}>
-          <CreateEvent handleClose={handleCloseModal} selected={selected} />
+        <Modal
+          title="Update Event"
+          handleClose={handleCloseModal}
+          isLoading={isCreateLoading}
+        >
+          <CreateEvent
+            handleClose={handleCloseModal}
+            selected={selected}
+            teamcode={teamcode}
+            username={username}
+            handleLoading={handleLoading}
+            loading={isCreateLoading}
+            access={access}
+          />
         </Modal>
       ) : null}
     </>

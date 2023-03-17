@@ -155,7 +155,7 @@ export const leaveTeam = async (
   try {
     // Confirmation
     const confirm = prompt('Type CONFIRM if you want to leave this team!')
-    if (!(confirm.toLowerCase().trim() === 'confirm')) return
+    if (!(confirm?.toLowerCase().trim() === 'confirm')) return
 
     // Loading Start
     handleLoading(true)

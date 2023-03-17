@@ -1,37 +1,34 @@
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Select from 'react-select'
-import { useUser } from '../../../../context/UserContext'
 import { commonStyles, customTheme } from '../../../../lib/reactSelect'
 import { priorityOptions } from '../../../../lib/reactSelect'
 import { addEvent } from '../../../../utils/firebase/eventsPage'
 import Button from '../../../button'
 import s from './createEvent.module.css'
 
-export default function CreateEvent({ handleClose, selected }) {
+export default function CreateEvent({
+  handleClose,
+  selected,
+  username,
+  teamcode,
+  loading,
+  handleLoading,
+  access,
+}) {
   // Local States
   const [description, setDecription] = useState(selected?.description || '')
   const [priority, setPriority] = useState(selected?.priority || 1)
   const [time, setTime] = useState(selected?.time || '')
-  const [isLoading, setIsLoading] = useState(false)
-
-  // Getting Uername
-  const { username } = useUser()
-  // Getting Team Code
-  const {
-    query: { id },
-  } = useRouter()
 
   // Functions
-  const handleLoading = (value) => setIsLoading(value)
-
   // Submit
   const handleSubmit = (e) => {
     e.preventDefault()
     addEvent(
-      id,
+      teamcode,
       { description, time, priority },
       username,
+      access,
       handleLoading,
       handleClose,
       selected?.id
@@ -77,16 +74,16 @@ export default function CreateEvent({ handleClose, selected }) {
         </div>
       </div>
       <div className={s.btnDiv}>
-        <Button disabled={isLoading} variant="primary" type="submit">
+        <Button disabled={loading} variant="primary" type="submit">
           {selected
-            ? isLoading
+            ? loading
               ? 'Updating'
               : 'Update'
-            : isLoading
+            : loading
             ? 'Creating'
             : 'Create'}
         </Button>
-        <Button disabled={isLoading} onClick={handleClose} variant="grey">
+        <Button disabled={loading} onClick={handleClose} variant="grey">
           Close
         </Button>
       </div>
