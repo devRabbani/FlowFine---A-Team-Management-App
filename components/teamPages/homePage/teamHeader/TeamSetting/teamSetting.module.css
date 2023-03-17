@@ -1,5 +1,5 @@
 .teamSettingBody {
-  margin-top: -6.8rem;
+  padding-bottom: 3rem;
 }
 
 .teamSettingBody input {
@@ -90,4 +90,24 @@
   text-align: center;
   margin-block: 2rem;
   color: var(--color-green-1);
+}
+
+.deleteWrapper {
+  margin-top: 3rem;
+}
+
+.deleteWrapper :global(.headerDiv) {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.deleteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.deleteForm p {
+  color: var(--color-green-border);
 }

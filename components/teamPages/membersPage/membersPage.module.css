@@ -176,12 +176,12 @@
 
 .createGroupForm {
   gap: 1rem;
-  margin-top: -6.8rem;
+  margin-bottom: 6.8rem;
 }
 
 .createGroup_btnDiv {
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.4rem;
 }
 
 .groupsList {

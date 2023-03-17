@@ -195,6 +195,7 @@ export const addComment = async (
       username,
       comment,
       timestamp: serverTimestamp(),
+      teamcode: teamCode,
     })
     handleClearComment()
     // Updating Task time

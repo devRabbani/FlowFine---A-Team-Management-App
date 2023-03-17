@@ -1,8 +1,14 @@
+import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useTeam } from '../../../../../context/TeamContext'
 import { useUser } from '../../../../../context/UserContext'
 import { checkAccess } from '../../../../../utils/firebase/common'
-import { changeTeamName } from '../../../../../utils/firebase/homePage'
+import {
+  changePermission,
+  changeTeamName,
+  deleteTeam,
+  leaveTeam,
+} from '../../../../../utils/firebase/homePage'
 import Button from '../../../../button'
 import s from './teamSetting.module.css'
 
@@ -10,13 +16,14 @@ export default function TeamSetting({ loading, handleLoading }) {
   // Getting Team Data
   const { team_data } = useTeam()
 
-  const { name, owners, editors, members, teamcode } = team_data
+  const { name, owners, groups, editors, members, teamcode } = team_data
 
   // Getting Username
   const { username } = useUser()
 
   // Local States
   const [teamName, setTeamName] = useState(name || '')
+  const [confirmName, setConfirmName] = useState('')
   const [searchString, setSearchString] = useState('')
 
   const searchData = useMemo(
@@ -35,10 +42,50 @@ export default function TeamSetting({ loading, handleLoading }) {
     [username, editors, owners]
   )
 
+  // Handle Route After Deletion
+  const router = useRouter()
+  const handleRoute = () => router.push('/')
+
+  // Handle Reset Confirmation
+  const handleResetConfirm = () => setConfirmName('')
+
+  // Changing Permission
+  const handlePermission = (role, prev, user) => {
+    const roleName = {
+      0: 'member',
+      1: 'editor',
+      2: 'owner',
+    }
+    changePermission(
+      teamcode,
+      roleName[role],
+      user,
+      roleName[prev],
+      ownAccess,
+      owners,
+      handleLoading
+    )
+  }
+
   return (
     <div className={`${s.teamSettingBody} wrapper`}>
       <div className={s.teamLeaveDiv}>
-        <h3>Want to leave this team!</h3> <button>Leave Team</button>
+        <h3>Want to leave this team!</h3>{' '}
+        <button
+          disabled={loading}
+          onClick={() =>
+            leaveTeam(
+              teamcode,
+              username,
+              groups,
+              ownAccess,
+              owners,
+              handleLoading
+            )
+          }
+        >
+          Leave Team
+        </button>
       </div>
 
       <div className="headerDiv">
@@ -93,7 +140,13 @@ export default function TeamSetting({ loading, handleLoading }) {
           searchData?.length ? (
             <div className={s.adminLists}>
               {searchData.map((user) => (
-                <AdminCard username={user} key={user} />
+                <AdminCard
+                  username={user}
+                  key={user}
+                  editors={editors}
+                  owners={owners}
+                  handlePermission={handlePermission}
+                />
               ))}
             </div>
           ) : (
@@ -109,22 +162,57 @@ export default function TeamSetting({ loading, handleLoading }) {
             username={owner}
             editors={editors}
             owners={owners}
+            handlePermission={handlePermission}
           />
         ))}
+
         {editors?.map((editor) => (
           <AdminCard
             key={editor}
             username={editor}
             editors={editors}
             owners={owners}
+            handlePermission={handlePermission}
           />
         ))}
+      </div>
+      <div className={s.deleteWrapper}>
+        <div className="headerDiv">
+          <h3>Delete Team (Danger Zone)</h3>
+        </div>
+        <div className={s.deleteForm}>
+          <p>If you want to delete this team type your TEAM_NAME here</p>
+          <input
+            value={confirmName}
+            onChange={(e) => setConfirmName(e.target.value)}
+            type="text"
+            placeholder="Type Your Team Name"
+          />
+        </div>
+        <Button
+          disabled={
+            loading ||
+            !(confirmName?.toLowerCase().trim() === name?.toLowerCase()?.trim())
+          }
+          onClick={() =>
+            deleteTeam(
+              ownAccess,
+              teamcode,
+              handleLoading,
+              handleRoute,
+              handleResetConfirm
+            )
+          }
+          variant="danger"
+        >
+          Delete
+        </Button>
       </div>
     </div>
   )
 }
 
-const AdminCard = ({ username, editors, owners }) => {
+const AdminCard = ({ username, editors, owners, handlePermission }) => {
   const access = checkAccess(editors, owners, username)
 
   // Local States
@@ -139,7 +227,11 @@ const AdminCard = ({ username, editors, owners }) => {
           <option value="1">Editor</option>
           <option value="2">Owner</option>
         </select>
-        {access !== Number(role) ? <button>Change</button> : null}
+        {access !== Number(role) ? (
+          <button onClick={() => handlePermission(role, access, username)}>
+            Change
+          </button>
+        ) : null}
       </div>
     </div>
   )
