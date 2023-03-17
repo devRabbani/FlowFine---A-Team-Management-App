@@ -6,7 +6,7 @@ import {
 } from 'firebase/firestore'
 import { toast } from 'react-hot-toast'
 import { db } from '../../lib/firebase'
-import { deleteFiles } from './common'
+import { deleteCollection, deleteFiles } from './common'
 
 // **** ARCHIVE ****
 
@@ -98,6 +98,7 @@ export const deleteTask = async (
 
     // DataBase
     const taskInfoRef = doc(db, 'taskinfo', taskDocId)
+    const commentsRef = collection(db, 'taskinfo', taskDocId, 'comments')
     const archiveRef = doc(db, 'teams', teamCode, 'archives', taskDocId)
 
     const batch = writeBatch(db)
@@ -108,9 +109,10 @@ export const deleteTask = async (
     // Delete Archive Task
     batch.delete(archiveRef)
 
+    // Deleting Comments
+    await deleteCollection(commentsRef)
     // Commiting changes
     await batch.commit()
-
     toast.success(<b>Task ID-{taskid} deleted successfully</b>, { id })
   } catch (error) {
     console.log(error)

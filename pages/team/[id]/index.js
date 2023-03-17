@@ -8,6 +8,7 @@ import useFetchTeamData from '../../../hooks/useFetchTeamData'
 import { useTeam } from '../../../context/TeamContext'
 import HomePage from '../../../components/teamPages/homePage'
 import usePaginatedData from '../../../hooks/usePaginatedData'
+import { useUser } from '../../../context/UserContext'
 
 export default function TeamPage() {
   // Router
@@ -25,10 +26,15 @@ export default function TeamPage() {
   )
 
   // Getting Datas from Context
-  const { team_loading } = useTeam()
+  const { team_loading, team_data } = useTeam()
+
+  // Getting Username
+  const { username } = useUser()
 
   if (team_loading) {
     return <p>Loading</p>
+  } else if (!team_data?.members?.includes(username)) {
+    return <p>error hai bhai</p>
   } else if (menu === 'tasks') {
     return <TeamTaskList />
   } else if (menu === 'members') {

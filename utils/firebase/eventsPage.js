@@ -14,6 +14,7 @@ export const addEvent = async (
   teamcode,
   data,
   username,
+  access = 0,
   handleLoading,
   handleClose,
   eventId
@@ -23,6 +24,7 @@ export const addEvent = async (
     // Initialization Loading
     id = toast.loading(<b>Creating event</b>)
     handleLoading(true)
+    if (!access) throw new Error('You need to be an editor for creating event')
 
     // Refs
     const teamRef = doc(db, 'teams', teamcode)

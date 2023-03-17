@@ -132,6 +132,7 @@ export default function CreatePage({
         assignedMembers,
         attachments: attachmentsLists,
         tags: tagsList,
+        teamcode: team_data?.teamcode,
       }
 
       await createTask(

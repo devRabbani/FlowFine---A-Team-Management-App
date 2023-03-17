@@ -7,7 +7,7 @@ import GroupCard from './groupCard'
 
 export default function Groups({
   members,
-  access,
+  access = 0,
   teamCode,
   groups,
   profiles,

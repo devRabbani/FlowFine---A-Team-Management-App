@@ -32,7 +32,7 @@ export default memo(function GroupCard({
           </div>
         ))}
       </div>
-      {access > 1 ? (
+      {access ? (
         <div className={s.groupCard_btnDiv}>
           <button onClick={() => handleSelect(data)} disabled={isDeleting}>
             <RiEditLine />

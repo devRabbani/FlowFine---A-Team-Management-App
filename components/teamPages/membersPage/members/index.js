@@ -11,7 +11,7 @@ export default function Members({
   teamCode,
   profiles = {},
   invites = [],
-  access,
+  access = 0,
 }) {
   const [isInvite, setIsInvite] = useState(false)
 

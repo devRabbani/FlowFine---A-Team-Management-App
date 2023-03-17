@@ -35,6 +35,11 @@
   color: white;
 }
 
+.btn:global(.danger) {
+  background-color: var(--color-red);
+  color: white;
+}
+
 .btn:global(.grey) {
   background-color: var(--color-green-dark);
   color: var(--color-green-2);

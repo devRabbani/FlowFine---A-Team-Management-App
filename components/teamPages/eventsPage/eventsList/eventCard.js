@@ -9,7 +9,7 @@ import { removeEvent } from '../../../../utils/firebase/eventsPage'
 
 export default memo(function EventCard({
   event,
-  access = 0,
+  access,
   handleSelect,
   teamcode,
   username,
