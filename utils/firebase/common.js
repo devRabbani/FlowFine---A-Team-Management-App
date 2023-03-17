@@ -154,7 +154,4 @@ export const deleteFiles = async (foldername) => {
   const filesRefs = await listAll(folderRef)
 
   await Promise.all(filesRefs.items.map((item) => deleteObject(item)))
-
-  // // Now Delete The Folder
-  // await deleteObject(folderRef)
 }
