@@ -40,11 +40,3 @@ export const createTeam = async (teamName, username, uid) => {
   // Commiting Changes
   await batch.commit()
 }
-
-// Give request to join
-export const giveTeamJoinRequest = async (isRequesting, teamcode, uid) => {
-  const docRef = doc(db, 'teams', teamcode)
-  await updateDoc(docRef, {
-    invitation: isRequesting ? arrayUnion(uid) : arrayRemove(uid),
-  })
-}

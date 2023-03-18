@@ -1,8 +1,9 @@
-import { onSnapshot } from 'firebase/firestore'
+import { collection, limit, onSnapshot, query, where } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { getTeamQuery } from '../utils/firebase/common'
+import { db } from '../lib/firebase'
+import { getRandomTeamQuery } from '../utils/firebase/common'
 
-export default function useGetTeams(teams) {
+export default function useGetRandomTeams(teamcodes) {
   const [teamsList, setTeamsList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -10,7 +11,7 @@ export default function useGetTeams(teams) {
     let unsub
     try {
       setIsLoading(true)
-      const q = getTeamQuery(teams)
+      const q = getRandomTeamQuery(teamcodes)
       unsub = onSnapshot(q, (snapshot) => {
         if (!snapshot.empty) {
           setTeamsList(snapshot.docs.map((item) => item.data()))
@@ -23,9 +24,9 @@ export default function useGetTeams(teams) {
       console.log('Getting Teams Error :', error.message)
       setIsLoading(false)
     }
-    console.count('Use GetTeams')
+    console.count('Use Get Random Teams')
     return () => unsub && unsub()
-  }, [teams])
+  }, [teamcodes])
 
   return { teamsList, isLoading }
 }

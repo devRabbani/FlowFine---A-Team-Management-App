@@ -19,6 +19,8 @@ export default function TeamList() {
   const handleClose = () => setIsModal(false)
   const handleLoading = (value) => setIsCreating(value)
 
+  console.log(teamsList, isLoading)
+
   return (
     <div className={styles.body}>
       <div className={styles.headerDiv}>
