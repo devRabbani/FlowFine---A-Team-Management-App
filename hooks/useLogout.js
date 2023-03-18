@@ -11,7 +11,7 @@ export default function useLogout() {
     try {
       await signOut(auth)
       dispatch({ type: LOGOUT })
-      router.push('/welcome')
+      // router.push('/welcome')
     } catch (error) {
       console.log(error.message)
       toast.error(<b>{error.message}</b>)

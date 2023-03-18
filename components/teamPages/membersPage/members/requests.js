@@ -1,10 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { RiArrowRightSFill } from 'react-icons/ri'
-import {
-  acceptRequest,
-  cancelRequest,
-} from '../../../../utils/firebase/membersPage'
+import { acceptRequest, cancelRequest } from '../../../../utils/firebase/common'
 import s from '../membersPage.module.css'
 
 export default function Requests({ invites, access, teamCode }) {
@@ -68,7 +65,7 @@ export default function Requests({ invites, access, teamCode }) {
       {isOpen ? (
         <div className={s.requestsList}>
           {invites
-            ?.sort((a, b) => a.timestamp - b.timestamp)
+            ?.sort((a, b) => b.timestamp - a.timestamp)
             .map((invite, i) => (
               <div key={i} className={`${s.request} flexBetween`}>
                 <p className={s.request_username}>@{invite?.username}</p>

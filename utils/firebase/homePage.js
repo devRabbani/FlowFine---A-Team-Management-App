@@ -49,6 +49,7 @@ export const clearActivity = async (teamCode, access = 0, handleLoading) => {
 export const changeTeamName = async (
   teamCode,
   name,
+  privacy,
   access = 0,
   username,
   handleLoading
@@ -56,7 +57,7 @@ export const changeTeamName = async (
   try {
     // Start Loading
     handleLoading(true)
-    toast.loading(<b>Changing Team Name</b>, { id: 'changeteamname' })
+    toast.loading(<b>Changing Team data</b>, { id: 'changeteamname' })
 
     // Checking Permission
     if (access <= 1) throw new Error('You need to be an Owner to do this!')
@@ -69,19 +70,20 @@ export const changeTeamName = async (
     // Changin Name
     batch.update(teamRef, {
       name,
+      privacy,
       updatedAt: serverTimestamp(),
     })
 
     // Setting Activty
     batch.set(activityRef, {
-      message: `Oooo ${name?.toUpperCase()} is our new team name updated by @${username}`,
+      message: `Oooo ${name?.toUpperCase()} with privacy: ${privacy} is our new team settings updated by @${username}`,
       timestamp: serverTimestamp(),
     })
 
     // Commting Changes
     await batch.commit()
 
-    toast.success(<b>Team Name Changed</b>, { id: 'changeteamname' })
+    toast.success(<b>Team data Changed</b>, { id: 'changeteamname' })
   } catch (error) {
     console.log('Changing Team Name', error)
     toast.error(<b>{error.message}</b>, { id: 'changeteamname' })
@@ -147,6 +149,7 @@ export const changePermission = async (
 export const leaveTeam = async (
   teamCode,
   username,
+  uid,
   groups,
   access = 0,
   owners,
@@ -179,6 +182,7 @@ export const leaveTeam = async (
     // Refs
     const teamRef = doc(db, 'teams', teamCode)
     const activityRef = doc(collection(teamRef, 'activity'))
+    const userRef = doc(db, 'users', uid)
 
     // Batch Init
     const batch = writeBatch(db)
@@ -204,6 +208,11 @@ export const leaveTeam = async (
     batch.set(activityRef, {
       message: `Oh oo @${username} just left the team`,
       timestamp: serverTimestamp(),
+    })
+
+    // Removing User teamlists
+    batch.update(userRef, {
+      teams: arrayRemove(teamCode),
     })
 
     // Commiting Changes

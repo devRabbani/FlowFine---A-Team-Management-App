@@ -1,26 +1,23 @@
-import moment from 'moment/moment'
-import Link from 'next/link'
 import { useState } from 'react'
 import { RiAddCircleFill } from 'react-icons/ri'
 import { useUser } from '../../context/UserContext'
 import useGetTeams from '../../hooks/useGetTeams'
 import CreateTeamModal from '../createTeamModal'
 import Modal from '../modal'
-import TeamCard from '../teamCard'
+import TeamCardNormal from '../teamCard/teamCardNormal'
 import styles from './teamList.module.css'
 
-export default function TeamList({ uid }) {
-  const { teams } = useUser()
+export default function TeamList() {
+  const { username, teams, uid } = useUser()
   const { teamsList, isLoading } = useGetTeams(teams)
-  console.log(teamsList, isLoading, 'useGet Teams')
   // States
   const [isModal, setIsModal] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
 
   // Functions
   // Callback Function
-  const handleClose = () => {
-    setIsModal(false)
-  }
+  const handleClose = () => setIsModal(false)
+  const handleLoading = (value) => setIsCreating(value)
 
   return (
     <div className={styles.body}>
@@ -36,20 +33,33 @@ export default function TeamList({ uid }) {
           <p className={styles.loading}>Getting Teamlist..</p>
         ) : teamsList?.length ? (
           teamsList?.map((item) => (
-            <TeamCard
+            <TeamCardNormal
               key={item?.teamcode}
               teamcode={item?.teamcode}
               updatedAt={item?.updatedAt}
               teamname={item?.name}
+              privacy={item?.privacy}
             />
           ))
         ) : (
-          <p className={styles.loading}>No Team Found</p>
+          <p className="noData low">
+            You have not joined any team yet, Create one or join any team.
+          </p>
         )}
       </div>
       {isModal ? (
-        <Modal title="Create Team" handleClose={handleClose}>
-          <CreateTeamModal handleClose={handleClose} uid={uid} />
+        <Modal
+          title="Create Team"
+          handleClose={handleClose}
+          isLoading={isCreating}
+        >
+          <CreateTeamModal
+            handleClose={handleClose}
+            username={username}
+            uid={uid}
+            handleLoading={handleLoading}
+            loading={isCreating}
+          />
         </Modal>
       ) : null}
     </div>

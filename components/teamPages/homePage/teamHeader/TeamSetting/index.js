@@ -16,13 +16,15 @@ export default function TeamSetting({ loading, handleLoading }) {
   // Getting Team Data
   const { team_data } = useTeam()
 
-  const { name, owners, groups, editors, members, teamcode } = team_data
+  const { name, owners, groups, editors, members, teamcode, privacy } =
+    team_data
 
   // Getting Username
-  const { username } = useUser()
+  const { username, uid } = useUser()
 
   // Local States
   const [teamName, setTeamName] = useState(name || '')
+  const [privacyOption, setPrivacyOption] = useState(privacy || 'private')
   const [confirmName, setConfirmName] = useState('')
   const [searchString, setSearchString] = useState('')
 
@@ -34,7 +36,8 @@ export default function TeamSetting({ loading, handleLoading }) {
     [members, searchString]
   )
   const isNameChange =
-    teamName.toLowerCase().trim() !== name?.toLowerCase()?.trim()
+    teamName.toLowerCase().trim() !== name?.toLowerCase()?.trim() ||
+    privacy !== privacyOption
 
   // Checking Own Acces
   const ownAccess = useMemo(
@@ -66,7 +69,7 @@ export default function TeamSetting({ loading, handleLoading }) {
       handleLoading
     )
   }
-
+  console.log(privacy, privacyOption)
   return (
     <div className={`${s.teamSettingBody} wrapper`}>
       <div className={s.teamLeaveDiv}>
@@ -77,6 +80,7 @@ export default function TeamSetting({ loading, handleLoading }) {
             leaveTeam(
               teamcode,
               username,
+              uid,
               groups,
               ownAccess,
               owners,
@@ -92,18 +96,29 @@ export default function TeamSetting({ loading, handleLoading }) {
         <h3>Change Team Name</h3>
       </div>
       <div className={s.changeNameForm}>
-        <input
-          value={teamName}
-          onChange={(e) => setTeamName(e.target.value)}
-          type="text"
-          placeholder="Change Team Name"
-        />
+        <div className={s.btnDiv}>
+          <input
+            value={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
+            type="text"
+            placeholder="Change Team Name"
+          />{' '}
+          <select
+            value={privacyOption}
+            onChange={(e) => setPrivacyOption(e.target.value)}
+          >
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+        </div>
+
         <div className={s.btnDiv}>
           <Button
             onClick={() =>
               changeTeamName(
                 teamcode,
                 teamName,
+                privacyOption,
                 ownAccess,
                 username,
                 handleLoading
@@ -118,7 +133,10 @@ export default function TeamSetting({ loading, handleLoading }) {
             <Button
               disabled={loading}
               variant="grey"
-              onClick={() => setTeamName(name)}
+              onClick={() => {
+                setTeamName(name)
+                setPrivacyOption(privacy || 'private')
+              }}
             >
               Reset
             </Button>

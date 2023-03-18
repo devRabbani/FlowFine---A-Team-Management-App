@@ -9,7 +9,6 @@ import usePaginatedData from '../../hooks/usePaginatedData'
 import TabNav from '../tabNav'
 import Comments from './comments/comments'
 import Details from './details/details'
-import Modal from '../modal'
 import s from './taskDetails.module.css'
 
 export default function TaskDetails({

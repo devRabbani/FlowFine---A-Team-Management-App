@@ -1,9 +1,15 @@
-// **** USERS ****
-
-import { doc, updateDoc } from 'firebase/firestore'
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+  writeBatch,
+} from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-hot-toast'
 import { db, storage } from '../../lib/firebase'
+
+// **** USERS ****
 
 // Check Username
 export const checkUsernameExist = async (value) => {
