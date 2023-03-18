@@ -1,6 +1,5 @@
 .searchTeamsWrapper {
   padding-top: 2.5rem;
-  padding-bottom: 3.5rem;
   border-top: 0.2rem dashed var(--color-green-1);
   margin-top: 2.5rem;
 }
@@ -51,7 +50,7 @@
 
 .teamWrapper {
   display: grid;
-  gap: 2.5rem;
+  gap: 2rem;
   padding-bottom: 3rem;
 }
 

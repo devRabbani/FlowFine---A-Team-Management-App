@@ -7,21 +7,27 @@ export default function useGetRequests(uid) {
   const [requestLoading, setRequestLoading] = useState(true)
 
   useEffect(() => {
-    setRequestLoading(true)
-    const unsub = onSnapshot(
-      collection(db, 'users', uid, 'requests'),
-      (snapshot) => {
-        if (!snapshot.empty) {
-          setRequests(
-            snapshot.docs.map((item) => ({ ...item.data(), id: item.id }))
-          )
-        } else {
-          setRequests([])
+    let unsub
+    try {
+      setRequestLoading(true)
+      unsub = onSnapshot(
+        collection(db, 'users', uid, 'requests'),
+        (snapshot) => {
+          if (!snapshot.empty) {
+            setRequests(
+              snapshot.docs.map((item) => ({ ...item.data(), id: item.id }))
+            )
+          } else {
+            setRequests([])
+          }
+          setRequestLoading(false)
         }
-        setRequestLoading(false)
-      }
-    )
-    return () => unsub()
+      )
+    } catch (error) {
+      console.log(error)
+    }
+
+    return () => unsub && unsub()
   }, [uid])
 
   return { requests, requestLoading }

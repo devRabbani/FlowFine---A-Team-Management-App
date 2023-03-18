@@ -6,6 +6,7 @@ import {
   endAt,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
   serverTimestamp,
@@ -31,25 +32,6 @@ export const getTeam = async (teamcode) => {
   }
 }
 
-export const addTeamToUser = async (uid, teamcode, teamName, timestamp) => {
-  const docRef = doc(db, `users/${uid}/teams/${teamcode}`)
-  const docSnap = await getDoc(docRef)
-  if (!docSnap.exists()) {
-    await setDoc(docRef, {
-      teamName,
-      timestamp,
-    })
-  }
-}
-export const getMembers = async (teamcode) => {
-  const colRef = collection(db, `teams/${teamcode}/members`)
-  const colSnap = await getDocs(colRef)
-
-  if (!colSnap.empty) {
-    return colSnap.docs.map((item) => ({ ...item.data(), uid: item.id }))
-  }
-}
-
 // get Chunks
 export const getChunks = (lists) => {
   let chunks = []
@@ -70,6 +52,16 @@ export const getTeamQuery = (lists) => {
     q = query(q, where('teamcode', 'in', chunk))
   }
   q = query(q, orderBy('updatedAt', 'desc'))
+  return q
+}
+
+// get query for random team lists
+export const getRandomTeamQuery = (teamcodes) => {
+  let q = query(collection(db, 'teams'), limit(5))
+  const chunks = getChunks(teamcodes)
+  for (const chunk of chunks) {
+    q = query(q, where('teamcode', 'not-in', chunk))
+  }
   return q
 }
 
