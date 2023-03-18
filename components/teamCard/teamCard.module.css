@@ -36,8 +36,6 @@
 }
 
 .teamCardSearch button {
-  color: #115b8f;
-  color: #1647be;
   color: var(--color-blue);
 }
 .teamCardSearch button:disabled {
@@ -50,4 +48,16 @@
 .openLink {
   font-size: 1.9rem;
   color: var(--color-blue);
+}
+
+.codePrivacyDiv {
+  align-items: center;
+}
+
+.privacy {
+  background-color: hsl(165, 22%, 64%);
+  padding-inline: 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }

@@ -4,14 +4,17 @@ import { CgSearchLoading } from 'react-icons/cg'
 import s from '../membersPage.module.css'
 import debounce from 'lodash.debounce'
 import { toast } from 'react-hot-toast'
-import { getSearchResults } from '../../../../utils/firebase/common'
-import { giveRequest } from '../../../../utils/firebase/membersPage'
+import {
+  getSearchResults,
+  giveRequest,
+} from '../../../../utils/firebase/common'
 
 export default function InviteBox({
   checkInvite,
   checkMembers,
   teamCode,
   access,
+  teamname,
 }) {
   const [isSearching, setSearching] = useState(false)
   const [searchStr, setSearchStr] = useState('')
@@ -54,7 +57,13 @@ export default function InviteBox({
     try {
       setInviteLoading(true)
       if (access > 1) {
-        await giveRequest(teamCode, user?.username, user?.uid, 'invite')
+        await giveRequest(
+          teamCode,
+          teamname,
+          user?.username,
+          user?.uid,
+          'invite'
+        )
       } else {
         throw new Error('You dont have the access to do it!')
       }
@@ -65,7 +74,7 @@ export default function InviteBox({
       setInviteLoading(false)
     }
   }
-  console.log(teamCode, access)
+
   // Run every time search string change
   useEffect(() => {
     handleSearch(searchStr)
@@ -85,7 +94,7 @@ export default function InviteBox({
       {searchStr.length >= 3 ? (
         <div className={s.searchResultsWrapper}>
           {isSearching ? (
-            <p>Getting Users</p>
+            <p className="noData low">Getting Users</p>
           ) : results.length ? (
             <div className={s.searchResults}>
               {results?.map((result, i) => (

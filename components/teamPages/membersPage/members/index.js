@@ -12,11 +12,12 @@ export default function Members({
   profiles = {},
   invites = [],
   access = 0,
+  teamname,
 }) {
   const [isInvite, setIsInvite] = useState(false)
 
   // Check Members
-  // Check Already Invited
+  // Check Already a member
   const checkMembers = (username) => {
     return members.includes(username)
   }
@@ -29,7 +30,12 @@ export default function Members({
   return (
     <>
       {invites?.length ? (
-        <Requests teamCode={teamCode} access={access} invites={invites} />
+        <Requests
+          teamCode={teamCode}
+          access={access}
+          invites={invites}
+          teamname={teamname}
+        />
       ) : null}
       <div className={`${s.divHeader} flexBetween headerDiv`}>
         <h3 className="header2">All Members</h3>
@@ -46,6 +52,7 @@ export default function Members({
           checkMembers={checkMembers}
           teamCode={teamCode}
           access={access}
+          teamname={teamname}
         />
       ) : null}
       {loading ? (

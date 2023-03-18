@@ -42,9 +42,31 @@
   position: relative;
 }
 
+.menus_menu_create,
+.menus_menu_requests {
+  height: 4.5rem;
+  width: 4.5rem;
+  background-color: #96bab2;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
 .menus_menu_create {
   font-size: 4.5rem;
-  padding: 0.2rem;
-  background-color: #96bab2;
+}
+
+.menus_menu_requests {
+  font-size: 3.4rem;
+  position: relative;
+}
+
+.requestBall {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: var(--color-blue);
+  position: absolute;
+  right: 0;
+  top: 0;
   border-radius: 50%;
 }

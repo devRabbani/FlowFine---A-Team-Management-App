@@ -1,4 +1,6 @@
 import {
+  arrayRemove,
+  arrayUnion,
   collection,
   doc,
   endAt,
@@ -9,6 +11,7 @@ import {
   serverTimestamp,
   setDoc,
   startAt,
+  updateDoc,
   where,
   writeBatch,
 } from 'firebase/firestore'
@@ -154,4 +157,114 @@ export const deleteFiles = async (foldername) => {
   const filesRefs = await listAll(folderRef)
 
   await Promise.all(filesRefs.items.map((item) => deleteObject(item)))
+}
+
+// Giving Request to team or user
+export const giveRequest = async (teamcode, teamname, username, uid, type) => {
+  const teamRef = doc(db, 'teams', teamcode)
+  const userRef = doc(db, 'users', uid, 'requests', teamcode)
+
+  const batch = writeBatch(db)
+  const timestamp = Date.now()
+
+  // Updating Team
+  batch.update(teamRef, {
+    invites: arrayUnion({
+      type,
+      username,
+      uid,
+      timestamp,
+    }),
+  })
+
+  // Setting In User Requests
+  batch.set(userRef, {
+    type,
+    teamname,
+    timestamp,
+  })
+
+  // Commiting changes
+  await batch.commit()
+}
+
+// Canceling Request
+export const cancelRequest = async (teamCode, data) => {
+  const teamRef = doc(db, 'teams', teamCode)
+  const userRef = doc(db, 'users', data?.uid, 'requests', teamCode)
+
+  const batch = writeBatch(db)
+
+  // Updating Team
+  batch.update(teamRef, { invites: arrayRemove(data) })
+
+  // Deleting Request
+  batch.delete(userRef)
+
+  // Commit Changes
+  await batch.commit()
+}
+
+// Accepting Request
+export const acceptRequest = async (teamCode, data) => {
+  const { username, uid } = data
+  const teamRef = doc(db, 'teams', teamCode)
+  const activityRef = doc(collection(teamRef, 'activity'))
+  const userRef = doc(db, 'users', uid)
+  const requestRef = doc(userRef, 'requests', teamCode)
+
+  // Batch Initi
+  const batch = writeBatch(db)
+
+  // Updating Team Data
+  batch.update(teamRef, {
+    members: arrayUnion(username),
+    invites: arrayRemove(data),
+  })
+
+  // Updating User Info
+  batch.update(userRef, {
+    teams: arrayUnion(teamCode),
+  })
+
+  // Deleting Request
+  batch.delete(requestRef)
+
+  // Setting Activity
+  batch.set(activityRef, {
+    message: `Yo @${username} just joined with our team`,
+    timestamp: serverTimestamp(),
+  })
+
+  // Committing Changes
+  await batch.commit()
+}
+
+// Join Public Team
+export const joinPublicTeam = async (teamCode, username, uid) => {
+  const teamRef = doc(db, 'teams', teamCode)
+  const activityRef = doc(collection(teamRef, 'activity'))
+  const userRef = doc(db, 'users', uid)
+
+  const batch = writeBatch(db)
+
+  // Updating Team Info
+  batch.update(teamRef, {
+    members: arrayUnion(username),
+    updatedAt: serverTimestamp(),
+  })
+
+  // Setting Up The Activity
+  batch.set(activityRef, {
+    message: `Yo @${username} just joined with our team`,
+    timestamp: serverTimestamp(),
+  })
+
+  // Updating User Data
+  batch.update(userRef, {
+    teams: arrayUnion(teamCode),
+  })
+
+  // Commiting Changes
+  await batch.commit()
 }

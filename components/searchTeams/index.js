@@ -2,13 +2,17 @@ import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useState } from 'react'
 import { RiLoaderFill, RiSearch2Line } from 'react-icons/ri'
 import { getSearchResults } from '../../utils/firebase/common'
-import TeamCard from '../teamCard'
+import TeamCardSearch from '../teamCard/teamCardSearch'
 import s from './searchTeams.module.css'
 
-export default function SearchTeams({ uid }) {
+export default function SearchTeams() {
+  // Local States
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [teamsList, setTeamsList] = useState([])
+
+  // Clear Saerch
+  const handleClearSearch = () => setSearchTerm('')
 
   const handleChange = (e) => {
     const value = e.target.value
@@ -64,14 +68,11 @@ export default function SearchTeams({ uid }) {
             {isLoading ? (
               <p className={s.loading}>Getting Teamlist..</p>
             ) : teamsList?.length ? (
-              teamsList?.map((item) => (
-                <TeamCard
-                  key={item?.teamcode}
-                  teamcode={item?.teamcode}
-                  isSearch={true}
-                  teamname={item?.name}
-                  joined={item?.members?.includes(uid)}
-                  request={item?.invitation?.includes(uid)}
+              teamsList?.map((team) => (
+                <TeamCardSearch
+                  key={team?.teamcode}
+                  teamData={team}
+                  handleClearSearch={handleClearSearch}
                 />
               ))
             ) : (
