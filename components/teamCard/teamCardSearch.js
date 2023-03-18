@@ -40,7 +40,7 @@ export default function TeamCardSearch({ teamData, handleClearSearch }) {
       setIsloading(true)
       await joinPublicTeam(teamcode, username, uid)
       setIsloading(false)
-      handleClearSearch()
+      handleClearSearch && handleClearSearch()
       router.push('/team/' + teamcode)
     } catch (error) {
       console.log('Joining team public ', error)
