@@ -1,7 +1,9 @@
 .menu {
   background-color: var(--color-input);
   padding: 1rem 1.8rem 2rem;
-  width: 19rem;
+  width: fit-content;
+  min-width: 18rem;
+  overflow: hidden;
   position: absolute;
   top: 5.3rem;
   right: 0;
@@ -48,4 +50,5 @@
   border-bottom: 1px solid var(--color-grey);
   padding-bottom: 1rem;
   margin-bottom: 0.7rem;
+  white-space: nowrap;
 }

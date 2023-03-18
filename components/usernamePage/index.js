@@ -44,6 +44,7 @@ export default function UsernamePage({ user }) {
       if (value?.length >= 3) {
         try {
           const res = await checkUsernameExist(value)
+          console.log(res)
           setIsValid(!res) // If there is no username
           setIsLoading(false)
         } catch (error) {

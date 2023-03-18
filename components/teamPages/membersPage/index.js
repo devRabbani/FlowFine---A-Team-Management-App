@@ -15,7 +15,8 @@ export default function MembersPage() {
 
   //  Getting Team Data
   const { team_data } = useTeam()
-  const { members, teamcode, groups, owners, editors, invites } = team_data
+  const { members, teamcode, groups, owners, editors, invites, name } =
+    team_data
   // Getting Profiles
   const { profiles, loading } = useGetProfilesObj(members)
 
@@ -40,6 +41,7 @@ export default function MembersPage() {
           invites={invites}
           teamCode={teamcode}
           access={access}
+          teamname={name}
         />
       ) : (
         <Groups

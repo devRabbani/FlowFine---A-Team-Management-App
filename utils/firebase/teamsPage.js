@@ -5,11 +5,12 @@ import {
   writeBatch,
 } from 'firebase/firestore'
 import { customAlphabet } from 'nanoid'
+import { db } from '../../lib/firebase'
 
 // **** TEAMS PAGE ****
 
 // Create New Team
-export const createTeam = async (teamName, uid) => {
+export const createTeam = async (teamName, username, uid) => {
   const shortId = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 16)
   const teamCode = shortId()
 
@@ -21,12 +22,14 @@ export const createTeam = async (teamName, uid) => {
   // Creating new Team Doc
   batch.set(docRef, {
     name: teamName.toLowerCase().trim(),
-    createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
-    owners: [uid],
+    owners: [username],
     editors: [],
-    members: [uid],
+    groups: [],
+    invites: [],
+    members: [username],
     teamcode: teamCode,
+    privacy: 'private',
   })
 
   // Updating User Doc
