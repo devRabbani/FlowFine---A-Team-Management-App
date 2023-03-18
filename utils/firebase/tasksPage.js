@@ -105,11 +105,10 @@ export const markTaskStatus = async (
   access = 0,
   taskShortData
 ) => {
-  let id
   try {
     // Initialization Loading
     handleLoading(true)
-    id = toast.loading(<b>Changing Task Status...</b>)
+    toast.loading(<b>Changing Task Status...</b>, { id: 'marktask' })
     const isArchive = status === 'archive'
 
     // If Not Joined
@@ -162,10 +161,10 @@ export const markTaskStatus = async (
     // Commiting Changes
     await batch.commit()
     handleModal()
-    toast.success(<b>Changed to {status} Successfully</b>, { id })
+    toast.success(<b>Changed to {status} Successfully</b>, { id: 'marktask' })
   } catch (error) {
     console.log('Changing Task Status Error :', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'marktask' })
   } finally {
     handleLoading(false)
   }

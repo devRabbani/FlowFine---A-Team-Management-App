@@ -85,20 +85,26 @@ export default function CreatePage({
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (title.trim().length < 6) {
-      toast.error(<b>Please enter valid Title!</b>)
+      toast.error(<b>Please enter valid Title!</b>, { id: 'taskcreate' })
       return
     }
     if (attachments?.length > 8) {
-      toast.error(<b>Please remove some attachments, Max limit is 8!</b>)
+      toast.error(<b>Please remove some attachments, Max limit is 8!</b>, {
+        id: 'taskcreate',
+      })
       return
     }
 
     if (!access) {
-      toast.error(<b>You need to be an editor to create task</b>)
+      toast.error(<b>You need to be an editor to create task</b>, {
+        id: 'taskcreate',
+      })
       return
     }
 
-    const toastId = toast.loading(<b>Do not cancel!, Task is creating...</b>)
+    toast.loading(<b>Do not cancel!, Task is creating...</b>, {
+      id: 'taskcreate',
+    })
     try {
       setCreateLoading(true)
 
@@ -143,12 +149,12 @@ export default function CreatePage({
         taskid
       )
       setCreateLoading(false)
-      toast.success(<b>{title} created successfully</b>, { id: toastId })
+      toast.success(<b>{title} created successfully</b>, { id: 'taskcreate' })
       handleClose()
     } catch (error) {
       console.log('Task Creating Error', error)
       setCreateLoading(false)
-      toast.error(<b>{error?.message}</b>, { id: toastId })
+      toast.error(<b>{error?.message}</b>, { id: 'taskcreate' })
     }
   }
 

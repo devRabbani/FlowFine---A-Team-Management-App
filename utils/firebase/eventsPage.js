@@ -19,10 +19,9 @@ export const addEvent = async (
   handleClose,
   eventId
 ) => {
-  let id
   try {
     // Initialization Loading
-    id = toast.loading(<b>Creating event</b>)
+    toast.loading(<b>Creating event..</b>, { id: 'createevent' })
     handleLoading(true)
     if (!access) throw new Error('You need to be an editor for creating event')
 
@@ -52,13 +51,13 @@ export const addEvent = async (
     // commit all changes
     await batch.commit()
     toast.success(<b>Event {eventId ? 'updated' : 'created'} successfully</b>, {
-      id,
+      id: 'createevent',
     })
     handleLoading(false)
     handleClose()
   } catch (error) {
     console.log('Creating event error:', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'createevent' })
     handleLoading(false)
   }
 }
@@ -74,10 +73,9 @@ export const removeEvent = async (
   const isConfirm = confirm('Are you sure to delete this event?')
   if (!isConfirm) return
 
-  let toastId
   try {
     // Initialization Loading
-    toastId = toast.loading(<b>Deleting please wait!</b>)
+    toast.loading(<b>Deleting please wait!</b>, { id: 'removeevent' })
     handleLoading(true)
 
     // Reference
@@ -103,10 +101,10 @@ export const removeEvent = async (
 
     // Commiting Changes
     await batch.commit()
-    toast.success(<b>Deleted Successfully</b>, { id: toastId })
+    toast.success(<b>Deleted Successfully</b>, { id: 'removeevent' })
   } catch (error) {
     console.log('Deleting Event error', error)
-    toast.error(<b>{error.message}</b>, { id: toastId })
+    toast.error(<b>{error.message}</b>, { id: 'removeevent' })
   } finally {
     handleLoading(false)
   }

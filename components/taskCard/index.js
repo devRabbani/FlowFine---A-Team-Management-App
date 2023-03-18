@@ -1,11 +1,11 @@
 import moment from 'moment'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import Modal from '../modal'
 import TaskDetails from '../taskDetails'
 import EditTaskModal from '../TasksModals/editTaskModal'
 import s from './taskCard.module.css'
 
-export default function TaskCard({ task }) {
+export default memo(function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
   const [isView, setIsView] = useState(false)
   const [editDetails, setEditDetails] = useState(null)
@@ -79,4 +79,4 @@ export default function TaskCard({ task }) {
       ) : null}
     </>
   )
-}
+})

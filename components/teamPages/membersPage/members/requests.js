@@ -33,19 +33,18 @@ export default function Requests({ invites, access, teamCode }) {
 
   // Accepting Request
   const handleAccept = async (user) => {
-    let id
     try {
       setIsLoading(true)
-      id = toast.loading(<b>Accepting please wait!</b>)
+      toast.loading(<b>Accepting please wait!</b>, { id: 'acceptrequest' })
       if (access < 1) {
         throw new Error('You dont have the required permission to do this!')
       } else {
         await acceptRequest(teamCode, user)
-        toast.success(<b>Accepted successfully</b>, { id })
+        toast.success(<b>Accepted successfully</b>, { id: 'acceptrequest' })
       }
     } catch (error) {
       console.log(error)
-      toast.error(<b>{error?.message}</b>, { id })
+      toast.error(<b>{error?.message}</b>, { id: 'acceptrequest' })
     } finally {
       setIsLoading(false)
     }

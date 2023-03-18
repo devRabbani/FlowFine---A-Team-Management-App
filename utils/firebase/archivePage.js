@@ -19,11 +19,10 @@ export const reOpenTask = async (
   username,
   handleLoading
 ) => {
-  let id
   try {
     // Initialization Loading
     handleLoading(true)
-    id = toast.loading(<b>Reopening task please wait!!</b>)
+    toast.loading(<b>Reopening task please wait!!</b>, { id: 'reopentask' })
 
     // Checking Permission if not an editor
     if (!access) throw new Error('You need to be an editor for this operation')
@@ -62,10 +61,12 @@ export const reOpenTask = async (
 
     // Commiting Changes
     await batch.commit()
-    toast.success(<b>Task: ID-{data?.taskid} reopened successfully</b>, { id })
+    toast.success(<b>Task: ID-{data?.taskid} reopened successfully</b>, {
+      id: 'reopentask',
+    })
   } catch (error) {
     console.log('Reopening error', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'reopentask' })
   } finally {
     handleLoading(false)
   }
@@ -79,11 +80,10 @@ export const deleteTask = async (
   access = 0,
   handleLoading
 ) => {
-  let id
   try {
     // initialization loading
     handleLoading(true)
-    id = toast.loading(<b>Hang on Deleting task...</b>)
+    toast.loading(<b>Hang on Deleting task...</b>, { id: 'deletetask' })
 
     // Chceking permission if not an owner
     if (access <= 1)
@@ -113,10 +113,12 @@ export const deleteTask = async (
     await deleteCollection(commentsRef)
     // Commiting changes
     await batch.commit()
-    toast.success(<b>Task ID-{taskid} deleted successfully</b>, { id })
+    toast.success(<b>Task ID-{taskid} deleted successfully</b>, {
+      id: 'deletetask',
+    })
   } catch (error) {
     console.log(error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'deletetask' })
   } finally {
     handleLoading(false)
   }

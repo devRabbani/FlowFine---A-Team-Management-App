@@ -19,10 +19,9 @@ export const createGroup = async (
   handleLoading,
   handleClose
 ) => {
-  let id
   try {
     // Initialization Loading
-    id = toast.loading(<b>Creating Group...</b>)
+    toast.loading(<b>Creating Group...</b>, { id: 'creategroup' })
     handleLoading(true)
 
     // Checking Permission if not an editor
@@ -50,12 +49,12 @@ export const createGroup = async (
     // Committing Changes
     await batch.commit()
 
-    toast.success(<b>Group created successfully</b>, { id })
+    toast.success(<b>Group created successfully</b>, { id: 'creategroup' })
     handleLoading(false)
     handleClose()
   } catch (error) {
     console.log('Creating Group', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'creategroup' })
     handleLoading(false)
   }
 }
@@ -71,10 +70,9 @@ export const updateGroup = async (
   handleLoading,
   handleClose
 ) => {
-  let id
   try {
     // Initialization Loading
-    id = toast.loading(<b>Updating Group...</b>)
+    toast.loading(<b>Updating Group...</b>, { id: 'updategroup' })
     handleLoading(true)
 
     // Checking Permission if not an editor
@@ -108,12 +106,12 @@ export const updateGroup = async (
     // Committing Changes
     await batch.commit()
 
-    toast.success(<b>Group updated successfully</b>, { id })
+    toast.success(<b>Group updated successfully</b>, { id: 'updategroup' })
     handleLoading(false)
     handleClose()
   } catch (error) {
     console.log('Updating Group', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'updategroup' })
     handleLoading(false)
   }
 }
@@ -126,10 +124,9 @@ export const deleteGroup = async (
   access = 0,
   handleLoading
 ) => {
-  let id
   try {
     // Initialization loading
-    id = toast.loading(<b>Deleting Group...</b>)
+    toast.loading(<b>Deleting Group...</b>, { id: 'deletegroup' })
     handleLoading(true)
 
     // Checking permission if not owner
@@ -161,10 +158,10 @@ export const deleteGroup = async (
     // Committing Changes
     await batch.commit()
 
-    toast.success(<b>Group deleted successfully</b>, { id })
+    toast.success(<b>Group deleted successfully</b>, { id: 'deletegroup' })
   } catch (error) {
     console.log('Deleting Group', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'deletegroup' })
   } finally {
     handleLoading(false)
   }

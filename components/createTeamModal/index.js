@@ -17,7 +17,9 @@ export default function CreateTeamModal({
   const handleCreate = async () => {
     try {
       if (name.trim()?.length < 4) {
-        toast.error(<b>Team name must be more than 4 character</b>)
+        toast.error(<b>Team name must be more than 4 character</b>, {
+          id: 'teamcreate',
+        })
         return
       }
 
