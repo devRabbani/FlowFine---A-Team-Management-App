@@ -10,9 +10,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
-  setDoc,
   startAt,
-  updateDoc,
   where,
   writeBatch,
 } from 'firebase/firestore'
@@ -57,7 +55,7 @@ export const getTeamQuery = (lists) => {
 
 // get query for random team lists
 export const getRandomTeamQuery = (teamcodes) => {
-  let q = query(collection(db, 'teams'), limit(5))
+  let q = query(collection(db, 'teams'), limit(3))
   const chunks = getChunks(teamcodes)
   for (const chunk of chunks) {
     q = query(q, where('teamcode', 'not-in', chunk))

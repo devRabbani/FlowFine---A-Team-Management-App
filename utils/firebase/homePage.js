@@ -21,9 +21,8 @@ import { deleteCollection, deleteFiles } from './common'
 
 // Clear All Activity
 export const clearActivity = async (teamCode, access = 0, handleLoading) => {
-  let id
   try {
-    id = toast.loading(<b>Clearing all activity...</b>)
+    toast.loading(<b>Clearing all activity...</b>, { id: 'clearactivity' })
     handleLoading(true)
 
     // If user is not owner
@@ -36,10 +35,10 @@ export const clearActivity = async (teamCode, access = 0, handleLoading) => {
 
     const q = collection(db, 'teams', teamCode, 'activity')
     await deleteCollection(q)
-    toast.success(<b>All activities cleared</b>, { id })
+    toast.success(<b>All activities cleared</b>, { id: 'clearactivity' })
   } catch (error) {
     console.log('Clearing Activitiies error', error)
-    toast.error(<b>{error.message}</b>, { id })
+    toast.error(<b>{error.message}</b>, { id: 'clearactivity' })
   } finally {
     handleLoading(false)
   }
@@ -158,7 +157,8 @@ export const leaveTeam = async (
   try {
     // Confirmation
     const confirm = prompt('Type CONFIRM if you want to leave this team!')
-    if (!(confirm?.toLowerCase().trim() === 'confirm')) return
+    if (!(confirm?.toLowerCase().trim() === 'confirm'))
+      throw new Error('Canceled, Type CONFIRM correctly')
 
     // Loading Start
     handleLoading(true)
