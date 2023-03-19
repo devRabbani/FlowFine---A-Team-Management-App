@@ -212,58 +212,59 @@ export default function EditTaskModal({
               onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
-          <div className={s.formDiv}>
-            <label>
-              Select Groups : <span className={s.optional}>(optional)</span>
-            </label>
-            <Select
-              styles={commonStyles}
-              options={groupOptions}
-              defaultValue={groupOptionsDefault}
-              theme={customTheme}
-              placeholder="Default Group: All"
-              onChange={(value) => handleChange(value, 'group')}
-              isMulti
-              isSearchable
-              isLoading={false}
-              noOptionsMessage={() => (
-                <span className="stateOption">No Groups found</span>
-              )}
-            />
-          </div>
-
-          <div className={s.formDiv}>
-            <label>
-              Assign members : <span className={s.optional}>(optional)</span>
-            </label>
-            <Select
-              styles={commonStyles}
-              options={memberOptions}
-              defaultValue={memberOptionsDefault}
-              theme={customTheme}
-              placeholder="Choose members"
-              isMulti
-              isSearchable
-              onChange={(value) => handleChange(value, 'member')}
-              noOptionsMessage={() => (
-                <span className="stateOption">No Members found</span>
-              )}
-            />
-          </div>
-          <div className={s.formDiv}>
-            <label>
-              Tags : <span className={s.optional}>(optional)</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Eg: design, docs, html"
-              name="tags"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              maxLength={180}
-            />
-          </div>
         </div>
+        <div className={s.formDiv}>
+          <label>
+            Select Groups : <span className={s.optional}>(optional)</span>
+          </label>
+          <Select
+            styles={commonStyles}
+            options={groupOptions}
+            defaultValue={groupOptionsDefault}
+            theme={customTheme}
+            placeholder="Default Group: All"
+            onChange={(value) => handleChange(value, 'group')}
+            isMulti
+            isSearchable
+            isLoading={false}
+            noOptionsMessage={() => (
+              <span className="stateOption">No Groups found</span>
+            )}
+          />
+        </div>
+
+        <div className={s.formDiv}>
+          <label>
+            Assign members : <span className={s.optional}>(optional)</span>
+          </label>
+          <Select
+            styles={commonStyles}
+            options={memberOptions}
+            defaultValue={memberOptionsDefault}
+            theme={customTheme}
+            placeholder="Choose members"
+            isMulti
+            isSearchable
+            onChange={(value) => handleChange(value, 'member')}
+            noOptionsMessage={() => (
+              <span className="stateOption">No Members found</span>
+            )}
+          />
+        </div>
+        <div className={s.formDiv}>
+          <label>
+            Tags : <span className={s.optional}>(optional)</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Eg: design, docs, html"
+            name="tags"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            maxLength={180}
+          />
+        </div>
+
         <div className={s.btnDiv}>
           <Button
             disabled={isEditLoading}

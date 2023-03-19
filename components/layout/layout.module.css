@@ -10,3 +10,13 @@
   padding: 20px 0;
   flex-direction: column;
 } */
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .contentDiv {
+    position: relative;
+    max-width: 1440px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}

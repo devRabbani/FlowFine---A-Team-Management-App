@@ -15,7 +15,7 @@ export default function ArchivePage({ teamCode }) {
   )
 
   return (
-    <div>
+    <div className={s.archivePage}>
       <div className="headerDiv flexBetween">
         <h3 className="header2">Archives</h3>
       </div>

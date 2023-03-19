@@ -5,7 +5,11 @@
 }
 
 .body.teamPage {
-  min-height: calc(100vh - 5.8rem - 6.52rem);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .body p {
@@ -19,4 +23,5 @@
   gap: 0.6rem;
   justify-content: center;
   align-items: center;
+  margin-top: -5.8rem;
 }

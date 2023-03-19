@@ -230,3 +230,48 @@
 .commentsList_card_topBar button {
   color: var(--color-red);
 }
+
+/* media q */
+@media screen and (min-width: 750px) {
+  .tabTopBarWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .viewDetailsBody {
+    width: 70%;
+    max-width: 80rem;
+    top: 0;
+    height: 100%;
+    left: unset;
+    right: 0;
+    box-shadow: -1px 0 7px rgba(80, 122, 112, 0.312),
+      -5px 0 18px rgba(0, 0, 0, 0.2);
+    border-radius: 0.8rem 0 0 0.8rem;
+  }
+  .viewDetails {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .details,
+  .comments {
+    height: 100%;
+  }
+
+  .detailsBottomBar {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-block: 1rem;
+    gap: 1rem;
+  }
+
+  .detailsBottomBar > * {
+    max-width: 18rem;
+    flex-shrink: 0;
+  }
+}

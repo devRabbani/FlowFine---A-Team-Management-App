@@ -77,3 +77,15 @@
 .searchDiv:focus-within {
   border-color: var(--color-green-border);
 }
+
+/* Media Q */
+@media screen and (min-width: 980px) {
+  .tasksListWrapper {
+    display: grid;
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+    padding-bottom: 1.6rem;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
