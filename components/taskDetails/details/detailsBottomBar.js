@@ -37,7 +37,6 @@ export default function DetailsBottomBar() {
     () => fullInfo?.assignedMembers?.includes(username),
     [username, fullInfo?.assignedMembers]
   )
-  console.log(isJoined, 'iSJoined')
   // Callback Functions
   const handleLoading = (value) => setIsMarking(value)
 

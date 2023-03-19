@@ -9,6 +9,7 @@ import { useTeam } from '../../../context/TeamContext'
 import HomePage from '../../../components/teamPages/homePage'
 import usePaginatedData from '../../../hooks/usePaginatedData'
 import { useUser } from '../../../context/UserContext'
+import FullLoading from '../../../components/fullLoading'
 
 export default function TeamPage() {
   // Router
@@ -30,11 +31,12 @@ export default function TeamPage() {
 
   // Getting Username
   const { username } = useUser()
-
+  console.log('Team Data', team_data, team_loading)
   if (team_loading) {
-    return <p>Loading</p>
+    return <FullLoading isTeamPage={true} />
   } else if (!team_data?.members?.includes(username)) {
-    return <p>error hai bhai</p>
+    router.push('/')
+    return
   } else if (menu === 'tasks') {
     return <TeamTaskList />
   } else if (menu === 'members') {

@@ -1,5 +1,6 @@
 import moment from 'moment/moment'
 import usePaginatedData from '../../../../hooks/usePaginatedData'
+import Loading from '../../../loading'
 import s from './activity.module.css'
 
 export default function ActivityLists({
@@ -11,7 +12,7 @@ export default function ActivityLists({
 }) {
   console.count('Activity')
   if (isLoading) {
-    return <p>Loading....</p>
+    return <Loading high="high" />
   }
 
   if (!data?.length) {

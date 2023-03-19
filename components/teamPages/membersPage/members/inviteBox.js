@@ -68,7 +68,7 @@ export default function InviteBox({
         throw new Error('You dont have the access to do it!')
       }
     } catch (error) {
-      console.log(error)
+      console.log('Invite error ', error)
       toast.error(<b>{error.message}</b>)
     } finally {
       setInviteLoading(false)

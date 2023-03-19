@@ -6,6 +6,7 @@ import DescriptionAttachments from './detailsAttachments'
 import DetailsGroups from './detailsGroups'
 import DetailsMembers from './detailsMembers'
 import { useTaskDetails } from '../../../context/TaskDetailsContext'
+import Loading from '../../loading'
 
 export default function Details() {
   const { fullInfoLoading } = useTaskDetails()
@@ -13,7 +14,7 @@ export default function Details() {
     <>
       <div className={s.details}>
         {fullInfoLoading ? (
-          <p>Loading please wait</p>
+          <Loading high="memberhigh" />
         ) : (
           <>
             <DetailsTopInfo />

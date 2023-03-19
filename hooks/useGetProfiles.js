@@ -13,7 +13,6 @@ export default function useGetProfiles(usernames) {
         const q = getProfilesQuery(usernames)
 
         unsub = onSnapshot(q, (snapshot) => {
-          console.log(q, snapshot, 'query snapshot')
           console.count('UseEffect useProfiles')
           if (!snapshot.empty) {
             setProfiles(snapshot.docs.map((item) => item.data()))
@@ -24,7 +23,7 @@ export default function useGetProfiles(usernames) {
         })
       }
     } catch (error) {
-      console.log(error)
+      console.log('Get Profiles', error)
       setLoading(false)
     }
 

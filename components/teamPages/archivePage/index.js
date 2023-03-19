@@ -1,4 +1,5 @@
 import usePaginatedData from '../../../hooks/usePaginatedData'
+import Loading from '../../loading'
 import ArchivedCard from './archivedCard'
 import s from './archivePage.module.css'
 
@@ -13,7 +14,6 @@ export default function ArchivePage({ teamCode }) {
     'desc'
   )
 
-  console.log(data, 'Archives')
   return (
     <div>
       <div className="headerDiv flexBetween">
@@ -21,7 +21,7 @@ export default function ArchivePage({ teamCode }) {
       </div>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading high="extrahigh" />
       ) : data?.length ? (
         <div className={s.archivesList}>
           {data.map((archiveTask) => (

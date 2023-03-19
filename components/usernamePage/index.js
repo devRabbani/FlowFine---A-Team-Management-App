@@ -44,11 +44,10 @@ export default function UsernamePage({ user }) {
       if (value?.length >= 3) {
         try {
           const res = await checkUsernameExist(value)
-          console.log(res)
           setIsValid(!res) // If there is no username
           setIsLoading(false)
         } catch (error) {
-          console.log(error.message)
+          console.log('Checking username ', error.message)
           setIsLoading(false)
         }
       }
@@ -67,7 +66,7 @@ export default function UsernamePage({ user }) {
       toast.success(<b>Data added to db</b>, { id })
       router.push('/')
     } catch (error) {
-      console.log(error.message)
+      console.log('Creating user ', error.message)
       setIsFormLoading(false)
       toast.error(<b>{error.message}</b>, { id })
     }

@@ -19,7 +19,7 @@ export default function useDataDoc(loc) {
         setLoading(false)
       })
     } catch (error) {
-      console.log(error)
+      console.log('Use data Doc', error)
     }
 
     return () => unsub && unsub()

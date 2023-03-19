@@ -31,7 +31,7 @@ export default function ListTasks({ tasks, loading }) {
       </div>
       <div className={s.tasksListWrapper}>
         {loading ? (
-          <p>Loading...</p>
+          <p className="noData">Getting Tasks...</p>
         ) : tasks?.length > 0 ? (
           tasks
             .sort((a, b) => {

@@ -11,7 +11,6 @@ export default memo(function TaskCard({ task }) {
   const [editDetails, setEditDetails] = useState(null)
   const [isEditLoading, setEditLoading] = useState(false)
 
-  console.log(task?.title, task)
   const renderPriority = (priority) => {
     switch (priority) {
       case '0':

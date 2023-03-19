@@ -8,6 +8,7 @@ import {
   cancelRequest,
   test,
 } from '../../../../utils/firebase/common'
+import Loading from '../../../loading'
 import s from './requestsMenu.module.css'
 export default function RequestMenu({ handleCloseMenu, uid, username }) {
   // Local STates
@@ -24,7 +25,7 @@ export default function RequestMenu({ handleCloseMenu, uid, username }) {
         <h4>Requests</h4>
       </div>
       {requestLoading ? (
-        <p>Getting requests list</p>
+        <Loading high="high" />
       ) : requests?.length ? (
         <div className={s.requestsList}>
           {requests.map((request) => (
@@ -41,7 +42,7 @@ export default function RequestMenu({ handleCloseMenu, uid, username }) {
           ))}
         </div>
       ) : (
-        <p className="noData low">No requests data available</p>
+        <p className="noData">No requests data available</p>
       )}
     </div>
   )
