@@ -54,9 +54,19 @@
   padding-bottom: 3rem;
 }
 
-.loading {
-  text-align: center;
-  font-size: 1.4rem;
-  color: #45645b;
-  margin: 20px 0;
+@media screen and (min-width: 900px) {
+  .teamWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .teamWrapper {
+    grid-template-columns: 1fr;
+  }
+  .searchTeamsWrapper {
+    padding-top: 0;
+    border: none;
+    margin-top: 0;
+  }
 }

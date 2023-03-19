@@ -63,19 +63,22 @@ export default function TaskDetails({
         btnLoading={btnLoading}
       >
         <div className={`${s.viewDetails} wrapper`}>
-          <div className={s.viewDetails_topBar}>
-            <button onClick={() => handleEditDetails(data)}>
-              <RiEditLine />
-            </button>
-            <button onClick={handleCloseView}>
-              <RiCloseLine />
-            </button>
+          <div className={s.tabTopBarWrapper}>
+            <div className={s.viewDetails_topBar}>
+              <button onClick={() => handleEditDetails(data)}>
+                <RiEditLine />
+              </button>
+              <button onClick={handleCloseView}>
+                <RiCloseLine />
+              </button>
+            </div>
+            <TabNav
+              menu={isCommentMode}
+              setMenu={setIsCommentMode}
+              type="details"
+            />
           </div>
-          <TabNav
-            menu={isCommentMode}
-            setMenu={setIsCommentMode}
-            type="details"
-          />
+
           {isCommentMode ? <Comments /> : <Details />}
         </div>
       </TaskDetailsContextProvider>

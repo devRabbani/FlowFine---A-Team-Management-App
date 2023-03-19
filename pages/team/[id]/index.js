@@ -31,7 +31,7 @@ export default function TeamPage() {
 
   // Getting Username
   const { username } = useUser()
-  console.log('Team Data', team_data, team_loading)
+
   if (team_loading) {
     return <FullLoading isTeamPage={true} />
   } else if (!team_data?.members?.includes(username)) {

@@ -1,5 +1,6 @@
 .teamSettingBody {
   padding-bottom: 3rem;
+  max-width: 65rem;
 }
 
 .teamSettingBody input {

@@ -1,5 +1,6 @@
 .createPage {
   padding-block: 1rem 4rem;
+  max-width: 65rem;
 }
 
 .createForm {
@@ -21,7 +22,6 @@
   display: flex;
   gap: 1.5rem 0.9rem;
   flex-wrap: wrap;
-  align-items: stretch;
   margin-top: 2rem;
 }
 

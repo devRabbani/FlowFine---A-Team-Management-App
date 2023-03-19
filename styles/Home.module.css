@@ -3,3 +3,20 @@
   flex: 1;
   flex-direction: column;
 }
+
+@media screen and (min-width: 1200px) {
+  .body {
+    flex-direction: row;
+    gap: 2rem;
+    margin-block: 2rem;
+  }
+
+  .body > div {
+    flex-basis: 100%;
+  }
+
+  .rightDiv {
+    padding-left: 2rem;
+    border-left: 0.2rem dashed var(--color-green-1);
+  }
+}

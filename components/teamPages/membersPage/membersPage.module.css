@@ -177,6 +177,7 @@
 .createGroupForm {
   gap: 1rem;
   margin-bottom: 6.8rem;
+  max-width: 65rem;
 }
 
 .createGroup_btnDiv {
@@ -232,4 +233,36 @@
 
 .groupCard_btnDiv button:nth-child(2) {
   color: var(--color-red);
+}
+.desktop {
+  display: none;
+}
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .membersPage {
+    padding-left: 10rem;
+    padding-bottom: 7rem;
+    display: grid;
+    gap: 2rem;
+  }
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .membersPage {
+    padding-left: 18rem;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .membersPage {
+    grid-template-columns: 4fr 5fr;
+    gap: 4rem;
+  }
 }
