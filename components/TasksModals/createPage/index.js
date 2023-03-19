@@ -210,7 +210,7 @@ export default function CreatePage({
               id="deadline"
               value={deadline}
               required
-              min={new Date().toISOString().split('T')[0]}
+              min={new Date().toISOString().slice(0, 10)}
               onChange={(e) => setDeadline(e.target.value)}
             />
           </div>

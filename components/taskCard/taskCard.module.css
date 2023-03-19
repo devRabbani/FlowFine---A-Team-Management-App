@@ -25,20 +25,20 @@
 .normal,
 .high {
   font-size: 1.25rem;
-  background-color: hsl(208, 49%, 61%);
-  color: hsl(208, 79%, 21%);
+  background-color: hsl(208deg 46.02% 45.51%);
+  color: rgb(229 226 226);
   width: 4.5em;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 0.4rem;
 }
 
 .low {
   background-color: #ceedce;
+  color: var(--color-green-1);
 }
 
 .high {
-  background-color: rgb(225, 143, 125);
-  color: rgb(182, 3, 3);
+  background-color: rgb(208 58 24);
 }
 
 .title {
@@ -73,4 +73,8 @@
 
 .taskCardBottomBar {
   gap: 1rem;
+}
+
+.delayed {
+  color: var(--color-red);
 }

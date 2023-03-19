@@ -68,7 +68,7 @@ export default function CreateEvent({
             id="time"
             value={time}
             required
-            min={new Date().toISOString()}
+            min={new Date().toISOString().slice(0, -8)}
             onChange={(e) => setTime(e.target.value)}
           />
         </div>

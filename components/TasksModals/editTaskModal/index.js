@@ -126,7 +126,7 @@ export default function EditTaskModal({
       priority,
       deadline,
       assignedGroups,
-      status,
+      status: shortInfo?.status,
     }
     const taskInfo_additonal = {
       description,

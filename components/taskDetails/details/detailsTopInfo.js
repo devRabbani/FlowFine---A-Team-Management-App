@@ -4,7 +4,7 @@ import s from '../taskDetails.module.css'
 
 export default function DetailsTopInfo() {
   // Priority list because it give 0 1 & 2
-  const priorityList = ['Low', 'Noraml', 'High']
+  const priorityList = ['Low', 'Normal', 'High']
 
   const { shortInfo } = useTaskDetails()
 
