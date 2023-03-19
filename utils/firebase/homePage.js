@@ -5,6 +5,7 @@ import {
   collectionGroup,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -312,4 +313,107 @@ const deleteTeamFiles = async (teamCode) => {
   await Promise.all(
     teamFilesList?.prefixes?.map((folder) => deleteFiles(folder?.fullPath))
   )
+}
+
+// Remove Members
+export const removeUser = async (
+  ownAccess,
+  ownUsername,
+  access,
+  username,
+  groups,
+  owners,
+  teamCode,
+  handleLoading
+) => {
+  try {
+    console.log(
+      ownAccess,
+      ownUsername,
+      access,
+      username,
+      groups,
+      owners,
+      teamCode,
+      handleLoading,
+      'ownAccess,ownUsername,access,username,groups,owners,teamCode,handleLoading'
+    )
+    // Checking Access
+    if (ownAccess <= 1)
+      throw new Error('You dont have the permission to do it!')
+
+    // Confirmation
+    const confirm = prompt(`Type his username '${username}' to confirm!`)
+    if (!(confirm === username))
+      throw new Error('Canceled, Type his username correctly')
+
+    // Loading Start
+    handleLoading(true)
+    toast.loading(<b>Removing user...</b>, { id: 'removeuser' })
+
+    // Checking If one Owner
+    if (access === 2 && owners?.length === 1)
+      throw new Error('First assign one owner to do this process')
+
+    // Main Process
+    const filterGroups = groups?.map((group) => {
+      if (group?.members?.includes(username)) {
+        return {
+          ...group,
+          members: group?.members?.filter((item) => item !== username),
+        }
+      }
+      return group
+    })
+
+    // Refs
+    const teamRef = doc(db, 'teams', teamCode)
+    const activityRef = doc(collection(teamRef, 'activity'))
+
+    const uidSnapshot = await getDoc(doc(db, 'usernames', username))
+
+    const uid = uidSnapshot?.data()?.uid
+    const userRef = doc(db, 'users', uid)
+
+    // Batch Init
+    const batch = writeBatch(db)
+
+    // Updating Team
+    let teamUpdateInfo = {
+      members: arrayRemove(username),
+      groups: filterGroups,
+      updatedAt: serverTimestamp(),
+    }
+
+    // If user is owner
+    if (access === 2)
+      teamUpdateInfo = { ...teamUpdateInfo, owners: arrayRemove(username) }
+
+    // If user is Editor
+    if (access === 1)
+      teamUpdateInfo = { ...teamUpdateInfo, editors: arrayRemove(username) }
+
+    batch.update(teamRef, teamUpdateInfo)
+
+    // Set Activity
+    batch.set(activityRef, {
+      message: `@${ownUsername} removed @${username} from the team`,
+      timestamp: serverTimestamp(),
+    })
+
+    // Removing User teamlists
+    batch.update(userRef, {
+      teams: arrayRemove(teamCode),
+    })
+
+    // Commiting Changes
+    await batch.commit()
+
+    handleLoading(false)
+    toast.success(<b>Removed successfully</b>, { id: 'removeuser' })
+  } catch (error) {
+    console.log('Remove User', error)
+    toast.error(<b>{error?.message}</b>, { id: 'removeuser' })
+    handleLoading(false)
+  }
 }

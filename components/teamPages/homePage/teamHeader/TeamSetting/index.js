@@ -8,6 +8,7 @@ import {
   changeTeamName,
   deleteTeam,
   leaveTeam,
+  removeUser,
 } from '../../../../../utils/firebase/homePage'
 import Button from '../../../../button'
 import s from './teamSetting.module.css'
@@ -51,24 +52,6 @@ export default function TeamSetting({ loading, handleLoading }) {
 
   // Handle Reset Confirmation
   const handleResetConfirm = () => setConfirmName('')
-
-  // Changing Permission
-  const handlePermission = (role, prev, user) => {
-    const roleName = {
-      0: 'member',
-      1: 'editor',
-      2: 'owner',
-    }
-    changePermission(
-      teamcode,
-      roleName[role],
-      user,
-      roleName[prev],
-      ownAccess,
-      owners,
-      handleLoading
-    )
-  }
 
   return (
     <div className={`${s.teamSettingBody} wrapper`}>
@@ -163,7 +146,12 @@ export default function TeamSetting({ loading, handleLoading }) {
                   key={user}
                   editors={editors}
                   owners={owners}
-                  handlePermission={handlePermission}
+                  ownUsername={username}
+                  ownAccess={ownAccess}
+                  groups={groups}
+                  loading={loading}
+                  handleLoading={handleLoading}
+                  teamCode={teamcode}
                 />
               ))}
             </div>
@@ -180,7 +168,12 @@ export default function TeamSetting({ loading, handleLoading }) {
             username={owner}
             editors={editors}
             owners={owners}
-            handlePermission={handlePermission}
+            ownUsername={username}
+            ownAccess={ownAccess}
+            groups={groups}
+            loading={loading}
+            handleLoading={handleLoading}
+            teamCode={teamcode}
           />
         ))}
 
@@ -190,7 +183,12 @@ export default function TeamSetting({ loading, handleLoading }) {
             username={editor}
             editors={editors}
             owners={owners}
-            handlePermission={handlePermission}
+            ownUsername={username}
+            ownAccess={ownAccess}
+            groups={groups}
+            loading={loading}
+            handleLoading={handleLoading}
+            teamCode={teamcode}
           />
         ))}
       </div>
@@ -233,11 +231,52 @@ export default function TeamSetting({ loading, handleLoading }) {
   )
 }
 
-const AdminCard = ({ username, editors, owners, handlePermission }) => {
+const AdminCard = ({
+  username,
+  editors,
+  owners,
+  ownAccess,
+  ownUsername,
+  groups,
+  loading,
+  handleLoading,
+  teamCode,
+}) => {
   const access = checkAccess(editors, owners, username)
 
   // Local States
   const [role, setRole] = useState(access || '0')
+
+  // Changing Permission
+  const handlePermission = () => {
+    const roleName = {
+      0: 'member',
+      1: 'editor',
+      2: 'owner',
+    }
+    changePermission(
+      teamCode,
+      roleName[role],
+      username,
+      roleName[access],
+      ownAccess,
+      owners,
+      handleLoading
+    )
+  }
+
+  // Remove User
+  const handleRemove = () =>
+    removeUser(
+      ownAccess,
+      ownUsername,
+      Number(access),
+      username,
+      groups,
+      owners,
+      teamCode,
+      handleLoading
+    )
 
   return (
     <div className={s.adminCard}>
@@ -247,9 +286,14 @@ const AdminCard = ({ username, editors, owners, handlePermission }) => {
           <option value="0">Member</option>
           <option value="1">Editor</option>
           <option value="2">Owner</option>
+          {username !== ownUsername ? <option value="3">Remove</option> : null}
         </select>
-        {access !== Number(role) ? (
-          <button onClick={() => handlePermission(role, access, username)}>
+        {role === '3' ? (
+          <button disabled={loading} onClick={handleRemove}>
+            Remove
+          </button>
+        ) : access !== Number(role) ? (
+          <button disabled={loading} onClick={handlePermission}>
             Change
           </button>
         ) : null}
