@@ -51,7 +51,7 @@ export default memo(function TaskCard({ task }) {
         <div className={s.taskCardBottomBar}>
           <p>Due {moment(task?.deadline).format('DD MMM')}</p>
           <p className={s.status}>{task?.status}</p>
-          <p className={s.taskid}>ID-AGSTEHYX</p>
+          <p className={s.taskid}>ID-{task?.taskid}</p>
         </div>
       </div>
       {isView ? (

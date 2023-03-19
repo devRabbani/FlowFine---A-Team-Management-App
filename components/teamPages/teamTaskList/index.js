@@ -35,7 +35,7 @@ export default function TeamTaskList() {
 
     [team_data?.groups]
   )
-
+  console.log(tasks)
   return (
     <div className={styles.tasksPage}>
       <div className={styles.stickyTop}>

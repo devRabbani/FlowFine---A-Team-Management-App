@@ -4,7 +4,6 @@ import {
   collection,
   doc,
   serverTimestamp,
-  updateDoc,
   writeBatch,
 } from 'firebase/firestore'
 import { toast } from 'react-hot-toast'
@@ -42,7 +41,7 @@ export const createGroup = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `@${username} created a new Group : ${data?.name}`,
+      message: `Great!! @${username} created a new group : ${data?.name}`,
       timestamp: serverTimestamp(),
     })
 
@@ -99,7 +98,7 @@ export const updateGroup = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `@${username} updated Group : ${oldGroupName}`,
+      message: `@${username} updated the group : ${oldGroupName}`,
       timestamp: serverTimestamp(),
     })
 
@@ -151,7 +150,7 @@ export const deleteGroup = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `@${username} deleted the Group : ${data?.name}`,
+      message: `@${username} deleted the group : ${data?.name}`,
       timestamp: serverTimestamp(),
     })
 
