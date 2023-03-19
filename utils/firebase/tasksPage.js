@@ -37,7 +37,7 @@ export const joinTask = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `Wow @${username} join the task : ID-${taskid}`,
+      message: `Wow @${username} joined the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
 
@@ -78,7 +78,7 @@ export const leaveTask = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `Ohh ho! @${username} leave the task : ID-${taskid}`,
+      message: `Ohh ho! @${username} left the task : ID-${taskid}`,
       timestamp: serverTimestamp(),
     })
 
@@ -151,7 +151,7 @@ export const markTaskStatus = async (
     batch.set(activityRef, {
       message: isArchive
         ? `@${username} archived the task ID-${taskid}`
-        : `@${username} just set the task ID-${taskid} status to : ${status?.toUpperCase()}`,
+        : `@${username} set the task ID-${taskid} status to : ${status?.toUpperCase()}`,
       timestamp: serverTimestamp(),
     })
     // Updating Team Last Updates

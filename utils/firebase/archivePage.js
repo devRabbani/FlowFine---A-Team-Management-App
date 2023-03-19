@@ -55,7 +55,7 @@ export const reOpenTask = async (
 
     // Setting Activity
     batch.set(activityRef, {
-      message: `Task : ID-${data?.taskid} is re opened by @${username}`,
+      message: `Task : ID-${data?.taskid} is re-opened by @${username}`,
       timestamp: serverTimestamp(),
     })
 

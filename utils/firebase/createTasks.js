@@ -69,7 +69,7 @@ export const createTask = async (
 
   // Setting Activity
   batch.set(activityRef, {
-    message: `@${username} created the task : ID-${taskid}`,
+    message: `Attention members! @${username} created the task : ID-${taskid}`,
     timestamp: serverTimestamp(),
   })
 
