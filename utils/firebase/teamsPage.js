@@ -1,7 +1,13 @@
+import { async } from '@firebase/util'
 import {
   arrayUnion,
+  collection,
   doc,
+  getDocs,
+  limit,
+  query,
   serverTimestamp,
+  where,
   writeBatch,
 } from 'firebase/firestore'
 import { customAlphabet } from 'nanoid'
@@ -39,4 +45,15 @@ export const createTeam = async (teamName, username, uid) => {
 
   // Commiting Changes
   await batch.commit()
+}
+
+export const checkUniqueTeam = async (name) => {
+  const teamRef = query(
+    collection(db, 'teams'),
+    where('name', '==', name?.toLowerCase()?.trim()),
+    limit(1)
+  )
+
+  const teamSnap = await getDocs(teamRef)
+  return teamSnap.empty
 }

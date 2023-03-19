@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { createTeam } from '../../utils/firebase/teamsPage'
+import { checkUniqueTeam, createTeam } from '../../utils/firebase/teamsPage'
 import Button from '../button'
 import s from './createTeamModal.module.css'
 
@@ -26,7 +26,8 @@ export default function CreateTeamModal({
       // Loading Start
       handleLoading(true)
       toast.loading(<b>Creating Team Please Wait..</b>, { id: 'teamcreate' })
-
+      const isDuplicate = await checkUniqueTeam(name)
+      if (isDuplicate) throw new Error('Team Name Already Exist!')
       await createTeam(name.trim(), username, uid)
 
       handleLoading(false)

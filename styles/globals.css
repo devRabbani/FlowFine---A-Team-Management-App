@@ -91,13 +91,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*
-  9. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
-}
 
 /* Default font size for REM */
 h1 {
