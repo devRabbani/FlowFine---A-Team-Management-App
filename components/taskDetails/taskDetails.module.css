@@ -230,9 +230,3 @@
 .commentsList_card_topBar button {
   color: var(--color-red);
 }
-
-.noData {
-  margin-top: 5rem;
-  text-align: center;
-  opacity: 0.7;
-}

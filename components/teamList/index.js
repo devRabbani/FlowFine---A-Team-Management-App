@@ -18,9 +18,7 @@ export default function TeamList() {
   // Callback Function
   const handleClose = () => setIsModal(false)
   const handleLoading = (value) => setIsCreating(value)
-
-  console.log(teamsList, isLoading)
-
+  console.log(isLoading, 'teamlits')
   return (
     <div className={styles.body}>
       <div className={styles.headerDiv}>
@@ -32,7 +30,7 @@ export default function TeamList() {
       </div>
       <div className={styles.teamWrapper}>
         {isLoading ? (
-          <p className={styles.loading}>Getting Teamlist..</p>
+          <p className="noData low">Getting Teams...</p>
         ) : teamsList?.length ? (
           teamsList?.map((item) => (
             <TeamCardNormal

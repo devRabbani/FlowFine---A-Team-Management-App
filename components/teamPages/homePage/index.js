@@ -21,7 +21,6 @@ export default function HomePage({
   // Getting Username
   const { username } = useUser()
 
-  console.log(tasks_data)
   // Calculate
   const totalWorking = useMemo(
     () => tasks_data?.filter((task) => task?.status === 'working')?.length,
@@ -36,7 +35,6 @@ export default function HomePage({
   // Check Editor
   const access = checkAccess(editors, owners, username)
 
-  console.log(team_data)
   console.count('Home Page')
   return (
     <div className={s.homePage}>

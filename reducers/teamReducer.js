@@ -5,6 +5,7 @@ export const TEAM_LOADING_FINISH = 'TEAM_LOADING_FINISH'
 export const ADD_TASKS_DATA = 'ADD_TASKS_DATA'
 export const NO_TASKS_DATA = 'NO_TASKS_DATA'
 export const TASKS_LOADING_FINISH = 'TASKS_LOADING_FINISH'
+export const RESET_DATA = 'RESET_DATA'
 
 // Reducer
 export default function TeamDataReducer(state, action) {
@@ -21,6 +22,13 @@ export default function TeamDataReducer(state, action) {
       return { ...state, tasks_data: [], tasks_loading: false }
     case TASKS_LOADING_FINISH:
       return { ...state, tasks_loading: false }
+    case RESET_DATA:
+      return {
+        team_data: {},
+        team_loading: true,
+        tasks_data: [],
+        tasks_loading: true,
+      }
     default:
       return state
   }

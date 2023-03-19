@@ -43,7 +43,7 @@ export default function Requests({ invites, access, teamCode }) {
         toast.success(<b>Accepted successfully</b>, { id: 'acceptrequest' })
       }
     } catch (error) {
-      console.log(error)
+      console.log('Accept error ', error)
       toast.error(<b>{error?.message}</b>, { id: 'acceptrequest' })
     } finally {
       setIsLoading(false)

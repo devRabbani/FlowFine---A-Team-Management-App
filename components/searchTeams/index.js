@@ -66,7 +66,7 @@ export default function SearchTeams() {
           </div>
           <div className={s.teamWrapper}>
             {isLoading ? (
-              <p className={s.loading}>Getting Teamlist..</p>
+              <p className="noData low">Getting Teams...</p>
             ) : teamsList?.length ? (
               teamsList?.map((team) => (
                 <TeamCardSearch
@@ -76,7 +76,7 @@ export default function SearchTeams() {
                 />
               ))
             ) : (
-              <p className={s.loading}>No Team Found</p>
+              <p className="noData low">No Team Found</p>
             )}
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { RiUserAddFill } from 'react-icons/ri'
+import Loading from '../../../loading'
 import s from '../membersPage.module.css'
 import InviteBox from './inviteBox'
 import MemberCard from './memberCard'
@@ -56,7 +57,7 @@ export default function Members({
         />
       ) : null}
       {loading ? (
-        <p>Loading</p>
+        <Loading high="high" />
       ) : members?.length ? (
         <div className={s.membersList}>
           {members.map((member) => (

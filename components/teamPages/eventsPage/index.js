@@ -8,6 +8,7 @@ import EventsList from './eventsList'
 import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
 import { checkAccess } from '../../../utils/firebase/common'
+import Loading from '../../loading'
 
 export default function EventsPage() {
   // Local States
@@ -48,7 +49,7 @@ export default function EventsPage() {
         </button>
       </div>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading high="extrahigh" />
       ) : (
         <EventsList
           events={events}

@@ -44,7 +44,7 @@ export default function TasksKanban({ tasks, loading }) {
       <div className={s.tasksKanbanBody}>
         <div className={s.tasksListWrapper}>
           {loading ? (
-            <p>Loading...</p>
+            <p className="noData">Getting Tasks...</p>
           ) : tasksList?.length > 0 ? (
             tasksList.map((task) => <TaskCard task={task} key={task.id} />)
           ) : (

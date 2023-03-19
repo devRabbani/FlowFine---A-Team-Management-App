@@ -1,0 +1,18 @@
+.loadingDiv {
+  margin-block: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingDiv:global(.high) {
+  margin-block: 10vh;
+}
+
+.loadingDiv:global(.extrahigh) {
+  margin-top: 36vh;
+}
+
+.loadingDiv:global(.memberhigh) {
+  margin-top: 30vh;
+}

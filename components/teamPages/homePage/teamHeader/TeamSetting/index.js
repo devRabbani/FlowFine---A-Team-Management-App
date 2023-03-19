@@ -69,7 +69,7 @@ export default function TeamSetting({ loading, handleLoading }) {
       handleLoading
     )
   }
-  console.log(privacy, privacyOption)
+
   return (
     <div className={`${s.teamSettingBody} wrapper`}>
       <div className={s.teamLeaveDiv}>
@@ -199,7 +199,10 @@ export default function TeamSetting({ loading, handleLoading }) {
           <h3>Delete Team (Danger Zone)</h3>
         </div>
         <div className={s.deleteForm}>
-          <p>If you want to delete this team type your TEAM_NAME here</p>
+          <p>
+            If you want to delete this team type {teamName?.toUpperCase()}{' '}
+            bellow
+          </p>
           <input
             value={confirmName}
             onChange={(e) => setConfirmName(e.target.value)}
