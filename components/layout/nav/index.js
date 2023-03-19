@@ -6,16 +6,15 @@ import s from './nav.module.css'
 import ProfileMenu from './profileMenu'
 import { useUser } from '../../../context/UserContext'
 import Modal from '../../modal'
-import { RiAddLine, RiUserAddFill, RiUserAddLine } from 'react-icons/ri'
+import { RiAddLine } from 'react-icons/ri'
 import EditProfile from './editProfile'
 import CreatePage from '../../TasksModals/createPage'
-import RequestMenu from './requestMenu'
+import RequestBtn from './requestBtn'
 
 export default function Nav({ isBack }) {
   const { photoURL, username, displayName, uid } = useUser()
   // Local States
   const [isProfile, setIsProfile] = useState(false)
-  const [isRequest, setIsRequest] = useState(false)
   const [isCreate, setIsCreate] = useState(false)
   const [isEditProfile, setIsEditProfile] = useState(false)
   const [createLoading, setCreateLoading] = useState(false)
@@ -26,8 +25,9 @@ export default function Nav({ isBack }) {
   // Custom Functions
   const handleProfileMenu = () => setIsProfile((prev) => !prev)
   const handleCloseProfileMenu = () => setIsProfile(false)
-  const handleCloseRequestMenu = () => setIsRequest(false)
+
   const handleCloseEditProfile = () => setIsEditProfile(false)
+
   const handleEditProfile = (value) => setIsEditProfile(value)
 
   const handleProfileLoading = (value) => setProfileLoading(value)
@@ -58,12 +58,7 @@ export default function Nav({ isBack }) {
                 <RiAddLine />
               </div>
             ) : (
-              <div
-                className={s.menus_menu_requests}
-                onClick={() => setIsRequest((prev) => !prev)}
-              >
-                {isRequest ? <RiUserAddFill /> : <RiUserAddLine />}
-              </div>
+              <RequestBtn username={username} uid={uid} />
             )}
             <div
               ref={avatarRef}
@@ -81,13 +76,6 @@ export default function Nav({ isBack }) {
                 avatarRef={avatarRef}
                 handleEditProfile={handleEditProfile}
                 handleCloseMenu={handleCloseProfileMenu}
-              />
-            )}
-            {isRequest && (
-              <RequestMenu
-                uid={uid}
-                username={username}
-                handleCloseMenu={handleCloseRequestMenu}
               />
             )}
           </div>

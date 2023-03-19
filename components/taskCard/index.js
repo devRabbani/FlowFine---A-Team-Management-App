@@ -32,6 +32,19 @@ export default memo(function TaskCard({ task }) {
   const handleEditLoading = (value) => setEditLoading(value)
 
   console.count('Task Card')
+  const deadline = moment(task?.deadline)
+  const currentTime = moment()
+  const isDelayed = deadline.isBefore(currentTime)
+  let delayMessage = ''
+
+  if (isDelayed) {
+    const days = currentTime.diff(deadline, 'days')
+    if (days === 1) {
+      delayMessage = 'Delayed by 1 day'
+    } else {
+      delayMessage = `Delayed by ${days} days`
+    }
+  }
 
   return (
     <>
@@ -49,7 +62,12 @@ export default memo(function TaskCard({ task }) {
 
         <p className={s.title}>{task?.title}</p>
         <div className={s.taskCardBottomBar}>
-          <p>Due {moment(task?.deadline).format('DD MMM')}</p>
+          {isDelayed ? (
+            <p className={s.delayed}>{delayMessage}</p>
+          ) : (
+            <p>Due {deadline.format('DD MMM')}</p>
+          )}
+
           <p className={s.status}>{task?.status}</p>
           <p className={s.taskid}>ID-{task?.taskid}</p>
         </div>

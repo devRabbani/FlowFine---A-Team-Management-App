@@ -6,9 +6,10 @@
 
 @media screen and (min-width: 1200px) {
   .body {
-    flex-direction: row;
     gap: 2rem;
     margin-block: 2rem;
+    display: grid;
+    grid-template-columns: 5fr 3fr;
   }
 
   .body > div {

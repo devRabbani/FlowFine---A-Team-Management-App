@@ -17,7 +17,7 @@ export default memo(function EventCard({
   // Local STates
   const [isDeleting, setIsDeleting] = useState(false)
 
-  const priority = ['Low', 'Normal', 'High']
+  const priority = ['low', 'normal', 'high']
 
   // Callback Functions
   const handleLoading = (value) => setIsDeleting(value)

@@ -91,13 +91,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*
-  9. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
-}
 
 /* Default font size for REM */
 h1 {
@@ -201,12 +194,12 @@ textarea:is(:active, :focus) {
 
 /* Priority Colors */
 .Low {
-  background-color: #eefcfa;
+  background-color: #c2e2dd;
   color: rgb(3, 106, 84);
 }
 
 .Normal {
-  background-color: hsl(240, 87%, 85%);
+  background-color: hsl(224.76deg 87% 85%);
   color: hsl(240, 87%, 33%);
 }
 

@@ -50,6 +50,18 @@
   font-size: 1.4rem;
   padding-inline: 0.5em;
   border-radius: 0.4rem;
+  text-transform: capitalize;
+  background-color: hsl(208deg 46.02% 45.51%);
+  color: rgb(229 226 226);
+}
+
+.eventCard_priority:global(.low) {
+  background-color: #ceedce;
+  color: var(--color-green-1);
+}
+
+.eventCard_priority:global(.high) {
+  background-color: rgb(208 58 24);
 }
 
 .btnDiv {

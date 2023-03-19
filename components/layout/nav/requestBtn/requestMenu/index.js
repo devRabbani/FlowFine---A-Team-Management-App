@@ -1,20 +1,20 @@
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import useClickOutside from '../../../../hooks/useClickOutside'
-import useGetRequests from '../../../../hooks/useGetRequests'
+import useClickOutside from '../../../../../hooks/useClickOutside'
 import {
   acceptRequest,
   cancelRequest,
-  test,
-} from '../../../../utils/firebase/common'
-import Loading from '../../../loading'
+} from '../../../../../utils/firebase/common'
+import Loading from '../../../../loading'
 import s from './requestsMenu.module.css'
-export default function RequestMenu({ handleCloseMenu, uid, username }) {
-  // Local STates
-  const [isLoading, setIsloading] = useState()
-
-  const { requests, requestLoading } = useGetRequests(uid)
+export default function RequestMenu({
+  handleCloseMenu,
+  uid,
+  username,
+  requests,
+  requestLoading,
+}) {
   // Click Outside Handle
   const targetRef = useRef()
   useClickOutside(targetRef, handleCloseMenu)
