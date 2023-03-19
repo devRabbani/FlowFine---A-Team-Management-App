@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 0.8rem;
   margin-top: -6.6rem;
+  max-width: 65rem;
 }
 
 .btnDiv {

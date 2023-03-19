@@ -6,9 +6,13 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     <div className={styles.body}>
-      <TeamList />
-      <SearchTeams />
-      <RandomTeam />
+      <div>
+        <TeamList />
+      </div>
+      <div className={styles.rightDiv}>
+        <SearchTeams />
+        <RandomTeam />
+      </div>
     </div>
   )
 }

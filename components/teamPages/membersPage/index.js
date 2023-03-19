@@ -32,7 +32,9 @@ export default function MembersPage() {
   console.count('Members Page')
   return (
     <div className={s.membersPage}>
-      <TabNav setMenu={setIsMembers} menu={isMembers} type="members" />
+      <div className={s.mobile}>
+        <TabNav setMenu={setIsMembers} menu={isMembers} type="members" />
+      </div>
       {isMembers ? (
         <Members
           members={members}
@@ -52,6 +54,15 @@ export default function MembersPage() {
           profiles={profiles}
         />
       )}
+      <div className={s.desktop}>
+        <Groups
+          members={members}
+          access={access}
+          teamCode={teamcode}
+          groups={groups}
+          profiles={profiles}
+        />
+      </div>
     </div>
   )
 }

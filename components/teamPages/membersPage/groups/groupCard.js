@@ -26,7 +26,7 @@ export default memo(function GroupCard({
         {data?.members?.map((username) => (
           <div className={s.groupCard_profileCard} key={username}>
             <p className={s.profileCard_name}>
-              {profiles[username]?.displayName}
+              {profiles[username]?.displayName || username}
             </p>
             <p className={s.profileCard_username}>@{username}</p>
           </div>

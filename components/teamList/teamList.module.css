@@ -1,8 +1,8 @@
 .body {
   background-color: var(--color-green-dark);
   padding: 1.5rem;
-  border-radius: 7px;
-  margin-top: 20px;
+  border-radius: 0.7rem;
+  margin-top: 2rem;
 }
 
 .headerDiv {
@@ -37,13 +37,29 @@
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
-  /* padding: 1rem 1.5rem; */
   border-radius: 0.7rem;
-  /* color: #115b8f; */
   color: var(--color-secondary-dark);
   font-weight: 500;
   width: fit-content;
 }
 .createTeam svg {
   font-size: 2.5rem;
+}
+
+@media screen and (min-width: 900px) {
+  .teamWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .teamWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .body {
+    margin-top: 0;
+    position: sticky;
+    top: calc(5.8rem + 2rem);
+  }
 }

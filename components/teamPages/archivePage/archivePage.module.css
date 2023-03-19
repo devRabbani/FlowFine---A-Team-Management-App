@@ -1,6 +1,9 @@
+.archivePage {
+  padding-block: 1rem 10rem;
+}
+
 .archivesList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.6rem;
   padding-top: 1.6rem;
 }
@@ -34,4 +37,24 @@
 .btnDiv button {
   font-size: 1.6rem;
   gap: 0.4rem;
+}
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .archivePage {
+    padding-left: 10rem;
+    padding-bottom: 7rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .archivesList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .archivePage {
+    padding-left: 18rem;
+  }
 }

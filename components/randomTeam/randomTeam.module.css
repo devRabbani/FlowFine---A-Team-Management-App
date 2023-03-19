@@ -11,3 +11,15 @@
   padding-bottom: 3rem;
   margin-top: 1.6rem;
 }
+
+@media screen and (min-width: 900px) {
+  .randomList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .randomList {
+    grid-template-columns: 1fr;
+  }
+}
