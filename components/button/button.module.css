@@ -54,3 +54,8 @@
   border-color: var(--color-red);
   color: var(--color-red);
 }
+
+.btn:global(.danger):disabled {
+  opacity: 0.5;
+  filter: grayscale(0.4);
+}

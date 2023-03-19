@@ -2,6 +2,7 @@ import moment from 'moment/moment'
 import { useState } from 'react'
 import { RiChatDeleteLine } from 'react-icons/ri'
 import { deleteComment } from '../../../utils/firebase/tasksPage'
+import Loading from '../../loading'
 import s from '../taskDetails.module.css'
 
 export default function CommentsList({
@@ -15,10 +16,10 @@ export default function CommentsList({
   const handleLoading = (value) => setIsDeleting(value)
 
   if (loading) {
-    return <p>Loading...</p>
+    return <Loading high="high" />
   }
   if (comments?.length === 0) {
-    return <p className={s.noData}>No comments found Add some comments</p>
+    return <p className="noData">No comments found Add some comments</p>
   }
   return (
     <div className={s.commentsList}>

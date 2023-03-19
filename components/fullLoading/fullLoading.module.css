@@ -4,7 +4,19 @@
   place-items: center;
 }
 
+.body.teamPage {
+  min-height: calc(100vh - 5.8rem - 6.52rem);
+}
+
 .body p {
-  font-size: 2rem;
-  color: var(--color-green-2);
+  font-size: 2.2rem;
+  color: var(--color-green-dark);
+}
+
+.loadingDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
 }

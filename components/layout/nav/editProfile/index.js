@@ -63,7 +63,6 @@ export default function EditProfile({
     fileRef.current.value = ''
   }
 
-  console.log(isChanged, isImgChanged, !isChanged || !isImgChanged)
   return (
     <div className={`${s.editProfileWrapper} wrapper`}>
       {img ? (

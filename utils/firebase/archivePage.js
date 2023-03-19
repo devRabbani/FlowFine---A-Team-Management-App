@@ -117,7 +117,7 @@ export const deleteTask = async (
       id: 'deletetask',
     })
   } catch (error) {
-    console.log(error)
+    console.log('Task Delete Error ', error)
     toast.error(<b>{error.message}</b>, { id: 'deletetask' })
   } finally {
     handleLoading(false)
