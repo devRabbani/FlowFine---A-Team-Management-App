@@ -56,7 +56,7 @@ export default function InviteBox({
   const giveInvite = async (user) => {
     try {
       setInviteLoading(true)
-      if (access > 1) {
+      if (access) {
         await giveRequest(
           teamCode,
           teamname,

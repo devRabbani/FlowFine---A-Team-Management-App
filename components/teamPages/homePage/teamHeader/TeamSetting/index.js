@@ -198,8 +198,8 @@ export default function TeamSetting({ loading, handleLoading }) {
         </div>
         <div className={s.deleteForm}>
           <p>
-            If you want to delete this team type {teamName?.toUpperCase()}{' '}
-            bellow
+            If you want to delete this team type{' '}
+            <span>{teamName?.toUpperCase()}</span> bellow
           </p>
           <input
             value={confirmName}
@@ -208,6 +208,7 @@ export default function TeamSetting({ loading, handleLoading }) {
             placeholder="Type Your Team Name"
           />
         </div>
+
         <Button
           disabled={
             loading ||

@@ -13,17 +13,18 @@ export default function RandomTeam() {
       <div className="headerDiv">
         <h3 className="header2">Random Teams</h3>
       </div>
-      <div className={s.randomList}>
-        {isLoading ? (
-          <p className="noData low">Getting Random Teams..</p>
-        ) : teamsList?.length ? (
-          teamsList?.map((team) => (
+
+      {isLoading ? (
+        <p className="noData low pb2">Getting Random Teams..</p>
+      ) : teamsList?.length ? (
+        <div className={s.randomList}>
+          {teamsList?.map((team) => (
             <TeamCardSearch key={team?.teamcode} teamData={team} />
-          ))
-        ) : (
-          <p className="noData low">No more Teams Data Found</p>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="noData low pb2">No more Teams Data Found</p>
+      )}
     </div>
   )
 }

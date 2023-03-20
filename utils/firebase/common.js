@@ -172,6 +172,7 @@ export const giveRequest = async (teamcode, teamname, username, uid, type) => {
     type,
     teamname,
     timestamp,
+    teamcode,
   })
 
   // Commiting changes

@@ -64,21 +64,22 @@ export default function SearchTeams() {
           <div className={s.headerDiv}>
             <h3 className="header2">Results for : {searchTerm}</h3>
           </div>
-          <div className={s.teamWrapper}>
-            {isLoading ? (
-              <p className="noData low">Getting Teams...</p>
-            ) : teamsList?.length ? (
-              teamsList?.map((team) => (
+
+          {isLoading ? (
+            <p className="noData low pb2">Getting Teams...</p>
+          ) : teamsList?.length ? (
+            <div className={s.teamWrapper}>
+              {teamsList?.map((team) => (
                 <TeamCardSearch
                   key={team?.teamcode}
                   teamData={team}
                   handleClearSearch={handleClearSearch}
                 />
-              ))
-            ) : (
-              <p className="noData low">No Team Found</p>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="noData low pb2">No Team Found</p>
+          )}
         </div>
       ) : null}
     </div>

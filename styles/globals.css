@@ -219,6 +219,10 @@ textarea:is(:active, :focus) {
   margin-block: 6vh;
 }
 
+.noData.pb2 {
+  padding-bottom: 2rem;
+}
+
 .flexBetween {
   display: flex;
   align-items: center;

@@ -28,11 +28,11 @@ export default function TeamList() {
           Create Team
         </div>
       </div>
-      <div className={styles.teamWrapper}>
-        {isLoading ? (
-          <p className="noData low">Getting Teams...</p>
-        ) : teamsList?.length ? (
-          teamsList?.map((item) => (
+      {isLoading ? (
+        <p className="noData low pb2">Getting Teams...</p>
+      ) : teamsList?.length ? (
+        <div className={styles.teamWrapper}>
+          {teamsList?.map((item) => (
             <TeamCardNormal
               key={item?.teamcode}
               teamcode={item?.teamcode}
@@ -40,13 +40,14 @@ export default function TeamList() {
               teamname={item?.name}
               privacy={item?.privacy}
             />
-          ))
-        ) : (
-          <p className="noData low">
-            You have not joined any team yet, Create one or join any team.
-          </p>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="noData low pb2">
+          You have not joined any team yet, Create one or join any team.
+        </p>
+      )}
+
       {isModal ? (
         <Modal
           title="Create Team"

@@ -5,6 +5,7 @@ import {
   collectionGroup,
   deleteDoc,
   doc,
+  documentId,
   getDoc,
   getDocs,
   query,
@@ -278,6 +279,7 @@ export const deleteTeam = async (
     await deleteDoc(teamRef) // Removing Team
     await removeMembersTeam(teamCode) // Removing Team from members list
     await deleteTeamFiles(teamCode) // Deleting Team Files
+    await removeRequestToTeam(teamCode) // Remove Requests
 
     handleLoading(false)
     toast.success(<b>Team Deleted Successfully</b>, { id: 'deleteteam' })
@@ -291,6 +293,17 @@ export const deleteTeam = async (
   }
 }
 
+const removeRequestToTeam = async (teamcode) => {
+  const q = query(
+    collectionGroup(db, 'requests'),
+    where('teamcode', '==', teamcode)
+  )
+
+  const requestsRef = await getDocs(q)
+  if (!requestsRef.empty) {
+    await Promise.all(requestsRef.docs.map((item) => deleteDoc(item?.ref)))
+  }
+}
 const removeMembersTeam = async (teamCode) => {
   const membersRef = query(
     collection(db, 'users'),
