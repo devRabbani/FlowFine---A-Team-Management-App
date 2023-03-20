@@ -22,7 +22,7 @@ export default function RequestBtn({ username, uid }) {
         className={s.menus_menu_requests}
         onClick={() => setIsRequest((prev) => !prev)}
       >
-        {isAlert ? <div className={s.requestAlert} /> : null}
+        {isAlert ? <div className={s.requestAlert}>{isAlert}</div> : null}
         {isRequest ? <RiUserAddFill /> : <RiUserAddLine />}
       </div>
       {isRequest && (

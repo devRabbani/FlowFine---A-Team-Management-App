@@ -13,7 +13,6 @@ export default function Modal({ children, title, handleClose, isLoading }) {
         <h3 className="header2">{title || ''}</h3>
         <RiCloseLine onClick={handleClick} className={styles.cross} />
       </div>
-
       {children}
     </div>,
     document.body
