@@ -13,8 +13,8 @@ export default function Requests({ invites, access, teamCode }) {
   const handleCancel = async (data) => {
     try {
       setIsLoading(true)
-      if (access < 1) {
-        throw new Error('You dont have permission to do this')
+      if (!access) {
+        throw new Error('You dont have the permission to do this')
       } else {
         const isConfirm = confirm(
           'Are you sure yow want to cancel this request?'
@@ -36,7 +36,7 @@ export default function Requests({ invites, access, teamCode }) {
     try {
       setIsLoading(true)
       toast.loading(<b>Accepting please wait!</b>, { id: 'acceptrequest' })
-      if (access < 1) {
+      if (!access) {
         throw new Error('You dont have the required permission to do this!')
       } else {
         await acceptRequest(teamCode, user)
