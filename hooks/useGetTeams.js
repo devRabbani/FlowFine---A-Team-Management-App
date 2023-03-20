@@ -9,6 +9,10 @@ export default function useGetTeams(teams) {
   useEffect(() => {
     let unsub
     try {
+      if (!teams?.length) {
+        setTeamsList([])
+        return
+      }
       setIsLoading(true)
       const q = getTeamQuery(teams)
       unsub = onSnapshot(q, (snapshot) => {
