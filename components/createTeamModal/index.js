@@ -26,8 +26,8 @@ export default function CreateTeamModal({
       // Loading Start
       handleLoading(true)
       toast.loading(<b>Creating Team Please Wait..</b>, { id: 'teamcreate' })
-      const isDuplicate = await checkUniqueTeam(name)
-      if (isDuplicate) throw new Error('Team Name Already Exist!')
+      const isUnique = await checkUniqueTeam(name)
+      if (!isUnique) throw new Error('Team Name Already Exist!')
       await createTeam(name.trim(), username, uid)
 
       handleLoading(false)
