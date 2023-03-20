@@ -6,6 +6,7 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   box-shadow: var(--card-shadow);
   transition: all 0.3s ease-in-out;
+  overflow-x: hidden;
 }
 
 .card:active {

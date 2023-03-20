@@ -48,6 +48,7 @@ export default function CreateTeamModal({
         value={name}
         type="text"
         placeholder="Enter Team Name"
+        maxLength={80}
       />
       <div className={s.btnDiv}>
         <Button onClick={handleCreate} variant="primary" disabled={loading}>
