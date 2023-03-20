@@ -40,6 +40,10 @@
 
 .changeNameForm input {
   text-transform: capitalize;
+  flex-basis: 70%;
+}
+.changeNameForm select {
+  flex-basis: 30%;
 }
 
 .adminLists {
@@ -111,4 +115,9 @@
 
 .deleteForm p {
   color: var(--color-green-border);
+  word-break: break-all;
+}
+.deleteForm p span {
+  font-weight: 500;
+  user-select: text;
 }

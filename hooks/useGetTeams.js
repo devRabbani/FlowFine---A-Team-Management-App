@@ -11,6 +11,7 @@ export default function useGetTeams(teams) {
     try {
       if (!teams?.length) {
         setTeamsList([])
+        setIsLoading(false)
         return
       }
       setIsLoading(true)
