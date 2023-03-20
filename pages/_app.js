@@ -64,6 +64,7 @@ function MyApp({ Component, pageProps }) {
         toastOptions={{
           style: {
             fontSize: '1.7rem',
+            overflowX: 'hidden',
           },
         }}
       />
