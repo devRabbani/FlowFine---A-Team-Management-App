@@ -260,6 +260,7 @@ export const deleteTeam = async (
     const tasksRef = collection(teamRef, 'tasks')
     const eventsRef = collection(teamRef, 'events')
     const activityRef = collection(teamRef, 'activity')
+    const archivesRef = collection(teamRef, 'archives')
     const taskinfoRef = query(
       collection(db, 'taskinfo'),
       where('teamcode', '==', teamCode)
@@ -274,12 +275,13 @@ export const deleteTeam = async (
     await deleteCollection(tasksRef) // Removing Tasks
     await deleteCollection(eventsRef) // Removing Events
     await deleteCollection(activityRef) // Removing Activity
+    await deleteCollection(archivesRef) // Removing Archives
     await deleteCollection(taskinfoRef) // Removing Taskinfo
     await deleteCollection(commentsRef) // Removing Comments
-    await deleteDoc(teamRef) // Removing Team
     await removeMembersTeam(teamCode) // Removing Team from members list
     await deleteTeamFiles(teamCode) // Deleting Team Files
     await removeRequestToTeam(teamCode) // Remove Requests
+    await deleteDoc(teamRef) // Removing Team
 
     handleLoading(false)
     toast.success(<b>Team Deleted Successfully</b>, { id: 'deleteteam' })
