@@ -4,7 +4,6 @@ import KanbanDnD from './kanbanDnD'
 import KanbanNoraml from './kanbanNoraml'
 
 export default function TasksKanban({ tasks, loading, teamCode }) {
-  console.count('Task Kanban')
   const isDnd = useCheckWidth()
 
   let columns = useMemo(

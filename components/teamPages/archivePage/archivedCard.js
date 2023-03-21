@@ -25,7 +25,6 @@ export default function ArchivedCard({ archiveTask }) {
   const handleLoadingReopen = (value) => setIsReopening(value)
   const handleLoadingDelete = (value) => setIsDeleting(value)
 
-  console.log('Archie Task', archiveTask)
   return (
     <div className={s.taskCard} key={archiveTask?.id}>
       <p className={s.taskCard_title}>{archiveTask?.title}</p>

@@ -8,7 +8,6 @@ export default function DescriptionAttachments() {
   if (!fullInfo?.attachments?.length) {
     return null
   }
-  console.count('Description')
 
   return (
     <div>

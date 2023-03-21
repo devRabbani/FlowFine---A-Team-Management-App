@@ -45,7 +45,6 @@ export default function TaskDetails({
   // Hook for triggering click outside to close modal
   useClickOutside(targetRef, handleCloseView)
 
-  console.count('Task Details')
   return (
     <div ref={targetRef} className={s.viewDetailsBody}>
       <TaskDetailsContextProvider

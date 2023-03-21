@@ -61,7 +61,6 @@ export default function usePaginatedData(
           } else {
             setData([])
           }
-          console.count('Paginated DB Run')
           setLast(snapshot.docs[snapshot.docs.length - 1])
           setHasMore(snapshot.docs.length === LIMIT)
           setIsLoading(false)

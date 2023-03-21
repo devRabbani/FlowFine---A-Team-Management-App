@@ -30,7 +30,6 @@ export default function MembersPage() {
     [username, editors, owners]
   )
 
-  console.count('Members Page')
   return (
     <div className={s.membersPage}>
       <Head>

@@ -36,7 +36,6 @@ export default function HomePage({
   // Check Editor
   const access = checkAccess(editors, owners, username)
 
-  console.count('Home Page')
   return (
     <div className={s.homePage}>
       <Head>

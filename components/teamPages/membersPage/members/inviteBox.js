@@ -47,7 +47,6 @@ export default function InviteBox({
           setSearching(false)
         }
       }
-      console.count('Search fxn')
     }, 700),
     []
   )

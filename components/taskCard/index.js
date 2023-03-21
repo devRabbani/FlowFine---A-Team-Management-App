@@ -31,7 +31,6 @@ export default memo(function TaskCard({ task }) {
   const handleEditDetails = (value) => setEditDetails(value)
   const handleEditLoading = (value) => setEditLoading(value)
 
-  console.count('Task Card')
   const deadline = moment(task?.deadline)
   const currentTime = moment()
   const isDelayed = deadline.isBefore(currentTime)

@@ -3,13 +3,15 @@ import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { FaCaretLeft } from 'react-icons/fa'
 import s from './nav.module.css'
-import ProfileMenu from './profileMenu'
+
 import { useUser } from '../../../context/UserContext'
-import Modal from '../../modal'
 import { RiAddLine } from 'react-icons/ri'
+import Modal from '../../modal'
+import RequestBtn from './requestBtn'
+
 import EditProfile from './editProfile'
 import CreatePage from '../../TasksModals/createPage'
-import RequestBtn from './requestBtn'
+import ProfileMenu from './profileMenu'
 
 export default function Nav({ isBack }) {
   const { photoURL, username, displayName, uid } = useUser()
@@ -34,7 +36,6 @@ export default function Nav({ isBack }) {
 
   const handleCloseCreate = () => setIsCreate(false)
 
-  console.count('Nav')
   return (
     <>
       <nav className={s.navWrapper}>

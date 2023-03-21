@@ -16,7 +16,6 @@ export default function SearchTasks({ handleSetSearch, tasks, loading }) {
     }
   }, [searchStr])
 
-  console.count('Search')
   return (
     <>
       <div className={s.searchDiv}>
