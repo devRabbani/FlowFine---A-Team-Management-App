@@ -85,6 +85,7 @@
   width: 8rem;
   background-color: hsl(166, 36%, 70%);
   border-radius: 0.4rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .searchDiv {
@@ -120,4 +121,17 @@
 .deleteForm p span {
   font-weight: 500;
   user-select: text;
+}
+
+.adminCard button:active {
+  background-color: hsl(166, 36%, 63%);
+}
+
+@media (hover: hover) {
+  .adminCard button:hover {
+    background-color: hsl(166, 36%, 67%);
+  }
+  .adminCard button:active {
+    background-color: hsl(166, 36%, 63%);
+  }
 }

@@ -31,7 +31,6 @@
 /* Create Team */
 
 .createTeam {
-  /* background-color: var(--color-green-4); */
   font-size: 1.9rem;
   display: flex;
   gap: 0.6rem;
@@ -41,7 +40,9 @@
   color: var(--color-secondary-dark);
   font-weight: 500;
   width: fit-content;
+  cursor: pointer;
 }
+
 .createTeam svg {
   font-size: 2.5rem;
 }
