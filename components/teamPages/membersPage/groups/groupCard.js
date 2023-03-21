@@ -18,7 +18,7 @@ export default memo(function GroupCard({
   const { username } = useUser()
   // Handle Loading
   const handleLoading = (value) => setIsDeleting(value)
-  console.count('Group Card')
+
   return (
     <div className={s.groupCard}>
       <h4 className={s.groupCard_name}>{data.name}</h4>
