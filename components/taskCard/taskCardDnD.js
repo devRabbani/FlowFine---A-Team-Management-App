@@ -39,7 +39,9 @@ export default memo(function TaskCardDnd({ task, index, loading }) {
 
   if (isDelayed) {
     const days = currentTime.diff(deadline, 'days')
-    if (days === 1) {
+    if (days === 0) {
+      delayMessage = 'Due Today'
+    } else if (days === 1) {
       delayMessage = 'Delayed by 1 day'
     } else {
       delayMessage = `Delayed by ${days} days`
