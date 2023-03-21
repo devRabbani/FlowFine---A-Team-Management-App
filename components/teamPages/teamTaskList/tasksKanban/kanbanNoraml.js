@@ -6,7 +6,6 @@ export default function KanbanNoraml({ columns, loading }) {
   // Local States
   const [statusMenu, setStatusMenu] = useState('idle')
 
-  console.count('Kanban Noraml')
   return (
     <div>
       <div className={s.kanbanNav}>

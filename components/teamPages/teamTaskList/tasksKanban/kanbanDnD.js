@@ -51,7 +51,6 @@ export default function KanbanDnD({ columns, teamCode }) {
       setLoading(false)
     }
   }
-  console.count('KanbanDND')
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

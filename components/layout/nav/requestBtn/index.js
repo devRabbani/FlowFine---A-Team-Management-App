@@ -15,7 +15,6 @@ export default function RequestBtn({ username, uid }) {
 
   const isAlert = requests?.length
 
-  console.count('Request')
   return (
     <>
       <div

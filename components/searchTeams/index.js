@@ -2,8 +2,8 @@ import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useState } from 'react'
 import { RiLoaderFill, RiSearch2Line } from 'react-icons/ri'
 import { getSearchResults } from '../../utils/firebase/common'
-import TeamCardSearch from '../teamCard/teamCardSearch'
 import s from './searchTeams.module.css'
+import TeamCardSearch from '../teamCard/teamCardSearch'
 
 export default function SearchTeams() {
   // Local States
@@ -38,7 +38,6 @@ export default function SearchTeams() {
           setIsLoading(false)
         }
       }
-      console.count('Search fxn')
     }, 700),
     []
   )

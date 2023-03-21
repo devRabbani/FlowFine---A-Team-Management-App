@@ -28,7 +28,7 @@ export default function useGetTeams(teams) {
       console.log('Getting Teams Error :', error.message)
       setIsLoading(false)
     }
-    console.count('Use GetTeams')
+
     return () => unsub && unsub()
   }, [teams])
 

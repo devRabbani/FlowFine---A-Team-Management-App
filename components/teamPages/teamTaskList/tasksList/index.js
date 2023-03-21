@@ -8,7 +8,6 @@ export default function TasksList({ tasks, loading }) {
   // Callback Functions
   const handleSetSearch = (value) => setIsSearch(value)
 
-  console.count('Tasks List')
   return (
     <>
       <SearchTasks

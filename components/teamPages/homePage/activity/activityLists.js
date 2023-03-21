@@ -10,7 +10,6 @@ export default function ActivityLists({
   loadMore,
   btnLoading,
 }) {
-  console.count('Activity')
   if (isLoading) {
     return <Loading high="high" />
   }

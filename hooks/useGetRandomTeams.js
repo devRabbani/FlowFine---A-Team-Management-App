@@ -24,7 +24,6 @@ export default function useGetRandomTeams(teamcodes) {
       console.log('Getting Teams Error :', error.message)
       setIsLoading(false)
     }
-    console.count('Use Get Random Teams')
     return () => unsub && unsub()
   }, [teamcodes])
 

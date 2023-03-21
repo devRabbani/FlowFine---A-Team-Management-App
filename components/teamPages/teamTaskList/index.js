@@ -38,7 +38,7 @@ export default function TeamTaskList() {
 
     [groups]
   )
-  console.log(tasks)
+
   return (
     <>
       <Head>
