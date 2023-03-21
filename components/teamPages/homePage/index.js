@@ -5,6 +5,7 @@ import s from './homwPage.module.css'
 import { useMemo } from 'react'
 import { useUser } from '../../../context/UserContext'
 import { checkAccess } from '../../../utils/firebase/common'
+import Head from 'next/head'
 
 export default function HomePage({
   data,
@@ -38,6 +39,9 @@ export default function HomePage({
   console.count('Home Page')
   return (
     <div className={s.homePage}>
+      <Head>
+        <title>FlowFine | Team</title>
+      </Head>
       <TeamHeader
         name={name}
         updatedAt={updatedAt}

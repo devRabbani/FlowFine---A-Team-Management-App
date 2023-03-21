@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import usePaginatedData from '../../../hooks/usePaginatedData'
 import Loading from '../../loading'
 import ArchivedCard from './archivedCard'
@@ -16,6 +17,9 @@ export default function ArchivePage({ teamCode }) {
 
   return (
     <div className={s.archivePage}>
+      <Head>
+        <title>FlowFine | Archives</title>
+      </Head>
       <div className="headerDiv flexBetween">
         <h3 className="header2">Archives</h3>
       </div>
