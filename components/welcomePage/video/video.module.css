@@ -1,0 +1,66 @@
+.video {
+  display: flex;
+  padding-top: 30px;
+  background-color: var(--color-white-light);
+  position: relative;
+}
+.videoLeft,
+.videoRight {
+  width: 50%;
+}
+
+.videoLeft iframe {
+  min-width: 553px;
+  min-height: 311px;
+  border: none;
+  border-radius: 1.4rem;
+  overflow: hidden;
+}
+
+.videoLeft {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--color-black-1);
+}
+
+.point1,
+.point2,
+.point3 {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pointsPara {
+  font-size: 1.9rem;
+  max-width: 40rem;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.pointsH4 {
+  margin-block: 1rem;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--color-accent-1);
+}
+
+.searchSvg {
+  height: 14rem;
+  width: 14rem;
+}
+
+.points2H4 {
+  font-size: 4rem;
+  font-weight: 600;
+}

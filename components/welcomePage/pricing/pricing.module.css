@@ -1,0 +1,45 @@
+.wholePricing {
+  padding-block: 6rem;
+  color: var(--color-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pricing {
+  background-color: var(--color-white-light);
+  text-align: center;
+  width: 80%;
+  /* height: 30rem; */
+  padding-block: 4rem 6.5rem;
+  border-radius: 1rem;
+}
+
+.pricing h3 {
+  font-size: 3.6rem;
+  margin-bottom: 2rem;
+}
+
+.pricingP {
+  padding-inline: 7rem;
+  margin-inline: auto;
+}
+
+.btnContainner {
+  text-align: center;
+  margin-top: -2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  width: 16rem;
+  background-color: white;
+  font-size: 2rem;
+  text-align: center;
+
+  color: var(--color-secondary-dark);
+}

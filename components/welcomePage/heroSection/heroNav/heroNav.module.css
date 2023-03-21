@@ -1,0 +1,86 @@
+/* Nav */
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 66px;
+  align-items: center;
+  padding-inline: 5rem;
+}
+.navLeft {
+  display: flex;
+}
+
+.logo {
+  width: 3.3rem;
+  height: 3.3rem;
+  margin-block: auto;
+}
+
+.logoText {
+  font-size: 3.2rem;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.navElement {
+  display: flex;
+  margin-right: 6rem;
+  font-size: 1.7rem;
+}
+.navElement a {
+  margin: 0 3rem;
+  font-weight: 500;
+}
+.menuButton {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 1.5rem;
+  font-size: 2.4rem;
+}
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50%;
+  justify-content: center;
+}
+.sideNav a {
+  padding: 10px 5px;
+}
+
+.loginBtn {
+  font-size: 16px;
+  border: none;
+  transition: all 0.1s linear;
+  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  color: rgb(231, 238, 240);
+  background-color: var(--color-secondary);
+  width: 12rem;
+  padding: 0.6em 0;
+  border-radius: 5rem;
+}
+
+@media screen and (max-width: 800px) {
+  .navElement {
+    display: none;
+  }
+  .navBtn {
+    display: none;
+  }
+}
+@media screen and (min-width: 800px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    height: 66px;
+    align-items: center;
+    padding-inline: 1rem;
+  }
+}
