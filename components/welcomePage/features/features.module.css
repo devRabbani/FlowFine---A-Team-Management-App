@@ -7,7 +7,15 @@
 
 .features h2 {
   font-size: 3.6rem;
-  margin-block: 3rem 1.2rem;
+  margin-block: 2rem 0.5rem;
+}
+
+.features hr {
+  margin-inline: auto;
+  width: 15rem;
+  margin-bottom: 5rem;
+  border: none;
+  border-top: 0.4rem solid var(--color-green-1);
 }
 
 .features > p {

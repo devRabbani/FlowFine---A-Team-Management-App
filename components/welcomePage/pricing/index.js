@@ -1,29 +1,45 @@
 import s from "./pricing.module.css"
 import Link from "next/link"
 
-export default function Pricing() {
+export default function Pricing({
+  user,
+  username,
+  loading,
+  isLoading,
+  signin,
+}) {
   return (
     <div className={s.wholePricing}>
       <div>
         <div className={`${s.pricing} wrapper`}>
-          <h3>For Now Completly Free</h3>
+          <h3>Now it's Completly Free</h3>
           <p className={s.pricingP}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates
-            aliquam deserunt ipsum dolore veniam, eius iure vel consequuntur
-            fugit! Harum repellat sunt eos eveniet quaerat optio possimus
-            officiis aspernatur facilis illo. Vitae ut quia hic, molestias
-            deleniti saepe laborum distinctio!
+            Our project management app is currently free for all users, but as
+            we grow, we may introduce paid plans. We'll always prioritize
+            providing value to our users and any pricing changes will be
+            transparent and fair. In the meantime, enjoy seamless task
+            management, team collaboration, progress tracking, and more,
+            completely free of charge. We appreciate your support and look
+            forward to continuing to provide the best project management
+            solution for you and your team.
           </p>
         </div>
         <div className={s.btnContainner}>
-          <Link
-            className={s.btn}
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.canwebe.tech/"
-          >
-            Get Started
-          </Link>
+          <div>
+            {user && username ? (
+              <Link className={s.btn} href="/">
+                Go to Dashboard
+              </Link>
+            ) : (
+              <button
+                className={s.btn}
+                disabled={isLoading || loading}
+                onClick={signin}
+              >
+                {isLoading ? "Signing In" : "Log In"}
+              </button>
+            )}
+          </div>
           <Link
             className={s.btn}
             target="_blank"

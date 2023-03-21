@@ -10,8 +10,8 @@
   background-color: var(--color-white-light);
   text-align: center;
   width: 80%;
-  height: 30rem;
-  padding-block: 5rem;
+  /* height: 30rem; */
+  padding-block: 4rem 6.5rem;
   border-radius: 1rem;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .pricingP {
-  width: 70%;
+  padding-inline: 7rem;
   margin-inline: auto;
 }
 
@@ -40,6 +40,6 @@
   background-color: white;
   font-size: 2rem;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.13);
+
   color: var(--color-secondary-dark);
 }

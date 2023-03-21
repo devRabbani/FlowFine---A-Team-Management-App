@@ -1,43 +1,49 @@
 import s from "./video.module.css"
+import Image from "next/image"
+import search from "../../../assets/searching.png"
 
 export default function Video() {
   return (
     <div className={s.video}>
       <div className={s.videoLeft}>
         <iframe
-          src="https://www.youtube.com/embed/VoCNMBo0kZ8"
+          // width="560"
+          // height="315"
+          src="https://www.youtube.com/embed/0MNqEywCxp0"
           title="YouTube video player"
+          // frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+          allowfullscreen
+        ></iframe>
       </div>
       <div className={s.videoRight}>
         <div className={s.point1}>
-          <h4 className={s.pointsH4}>This is the Title1</h4>
+          <Image className={s.searchSvg} src={search} alt="search" />
+          <h4 className={s.pointsH4}>Search Sort Filter</h4>
           <p className={s.pointsPara}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-            ipsam eum pariatur vitae aspernatur ipsum fugit ad eveniet obcaecati
-            odio vero, qui ut dolorum quae aperiam, modi atque sit repellat.
+            "Effortlessly sort, search, and filter through data with our
+            advanced features. Customizable search criteria and intuitive
+            sorting options streamline your workflow for increased
+            productivity."
           </p>
         </div>
         <div className={s.point2}>
-          <h4 className={s.pointsH4}>This is the Title2</h4>
+          <h4 className={s.points2H4}>Team Management Made Easy</h4>
           <p className={s.pointsPara}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ullam
-            pariatur hic libero quo. Molestiae quisquam recusandae sed
-            repellendus tenetur excepturi eveniet nisi fugiat id eos. Voluptas,
-            deleniti excepturi beatae, natus ullam at reprehenderit
-            exercitationem saepe voluptatem numquam molestiae velit?
+            Our platform allows you to create teams with specific member roles
+            and permissions. Assign team owners, editors, and members to
+            streamline collaboration and maintain control over your projects.
+            Work together seamlessly with the power to manage and share
+            resources.
           </p>
         </div>
         <div className={s.point3}>
-          <h4 className={s.pointsH4}>This is the Title3</h4>
+          <h4 className={s.pointsH4}>Flexible Team Collab</h4>
           <p className={s.pointsPara}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa eius
-            eaque nesciunt, velit maxime reprehenderit perspiciatis. Dolor
-            blanditiis aspernatur assumenda suscipit, eaque magni aliquam
-            quisquam quibusdam iste voluptates iure tempore odit libero repellat
-            voluptate provident.
+            Our platform offers flexible team options, allowing you to create
+            public or private teams based on your needs. Public teams provide
+            open-source collaboration, while private teams ensure privacy by
+            requiring a join request.
           </p>
         </div>
       </div>

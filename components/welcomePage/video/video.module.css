@@ -13,7 +13,7 @@
   min-width: 553px;
   min-height: 311px;
   border: none;
-  border-radius: 1.7rem;
+  border-radius: 1.4rem;
   overflow: hidden;
 }
 
@@ -42,14 +42,25 @@
 }
 
 .pointsPara {
-  font-size: 1.6rem;
-  max-width: 400px;
+  font-size: 1.9rem;
+  max-width: 40rem;
   text-align: center;
-  line-height: 25px;
+  line-height: 2.5rem;
 }
 
 .pointsH4 {
-  margin-block: 2rem;
-  font-size: 2.5rem;
+  margin-block: 1rem;
+  font-size: 3.5rem;
   font-weight: 500;
+  color: var(--color-accent-1);
+}
+
+.searchSvg {
+  height: 14rem;
+  width: 14rem;
+}
+
+.points2H4 {
+  font-size: 4rem;
+  font-weight: 600;
 }

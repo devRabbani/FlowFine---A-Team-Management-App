@@ -13,8 +13,9 @@
 }
 
 .logo {
-  width: 3.9rem;
-  height: 3.9rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  margin-block: auto;
 }
 
 .logoText {
@@ -47,6 +48,19 @@
 .sideNav a {
   padding: 10px 5px;
 }
+
+.loginBtn {
+  font-size: 16px;
+  border: none;
+  transition: all 0.1s linear;
+  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  color: rgb(231, 238, 240);
+  background-color: var(--color-secondary);
+  width: 12rem;
+  padding: 0.6em 0;
+  border-radius: 5rem;
+}
+
 @media screen and (max-width: 800px) {
   .navElement {
     display: none;

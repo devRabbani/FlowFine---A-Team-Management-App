@@ -4,7 +4,7 @@ import mockup1 from "../../../assets/mockup1.jpg"
 import mockup2 from "../../../assets/mockup2.jpg"
 import Image from "next/image"
 import HeroNav from "./heroNav"
-import heroBlobSvg from "../../../assets/t2.svg"
+import heroBlobSvg from "../../../assets/blob.svg"
 import { FaGoogle } from "react-icons/fa"
 
 export default function HeroSection({
@@ -26,12 +26,13 @@ export default function HeroSection({
       />
       <div className={`${s.heroSection} wrapper`}>
         <div className={s.leftContainner}>
-          <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h4>
-          <h1>Welcome to FlowFine Manage your work</h1>
+          <h4>Efficient collab with seamless tasks & progress tracking</h4>
+          <h1>Seamless Task Management Empower Your Team on the Go!</h1>
           <p className={s.heroPara}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-            deleniti facilis, esse consequatur porro asperiores neque. Autem
-            enim esse minima eum rem dicta, explicabo reiciendis porro.
+            Effortlessly manage tasks on-the-go with our user-friendly mobile
+            app! With its lightweight and PWA features, it ensures seamless team
+            collaboration without any lag. Best of all, it's completely free to
+            use!
           </p>
 
           {user && username ? (

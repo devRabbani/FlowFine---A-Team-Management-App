@@ -41,7 +41,13 @@ export default function Welcome() {
       />
       <Features id="features" />
       <Video id="video" />
-      <Pricing />
+      <Pricing
+        user={user}
+        userName={username}
+        loading={loading}
+        isLoading={isLoading}
+        signin={signin}
+      />
       <Footer />
     </>
   )

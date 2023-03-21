@@ -31,22 +31,20 @@ export default function HeroNav({
           <Link href="#video">Video</Link>
           <Link href="#pricing">Pricing</Link>
         </div>
-        <div className={s.navBtn}>
+        <div className={s.navLogin}>
           {user && username ? (
-            <Link className={s.heroBtn} href="/">
+            <Link className={s.loginBtn} href="/">
               Go to Dashboard
             </Link>
           ) : (
-            <div className={s.heroBtn}>
-              <button
-                className={s.heroPrimaryBtn}
-                disabled={isLoading || loading}
-                onClick={signin}
-              >
-                {isLoading ? "Signing In" : "Log In"}
-                <FaGoogle />
-              </button>
-            </div>
+            <button
+              className={s.loginBtn}
+              disabled={isLoading || loading}
+              onClick={signin}
+            >
+              {isLoading ? "Signing In" : "Log In"}
+              <FaGoogle />
+            </button>
           )}
         </div>
         <div onClick={handleButton} className={s.menuButton}>
