@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useMemo, useState } from 'react'
 import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
@@ -32,6 +33,9 @@ export default function MembersPage() {
   console.count('Members Page')
   return (
     <div className={s.membersPage}>
+      <Head>
+        <title>FlowFine | Members</title>
+      </Head>
       <div className={s.mobile}>
         <TabNav setMenu={setIsMembers} menu={isMembers} type="members" />
       </div>

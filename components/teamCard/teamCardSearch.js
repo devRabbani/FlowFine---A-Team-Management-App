@@ -71,7 +71,7 @@ export default function TeamCardSearch({ teamData, handleClearSearch }) {
         )
       ) : (
         <button disabled={isLoading} onClick={handleJoinPublic}>
-          {isLoading ? 'Joining' : 'Join Team'}
+          {isLoading ? 'joining' : 'join team'}
         </button>
       )}
     </div>

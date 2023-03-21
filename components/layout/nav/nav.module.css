@@ -50,8 +50,13 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+
+.menus_menu_profile,
+.menus_menu_create,
+.menus_menu_requests {
+  cursor: pointer;
 }
 
 .menus_menu_create {

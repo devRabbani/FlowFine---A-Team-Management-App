@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useMemo, useState } from 'react'
 import Select from 'react-select'
 import { useTeam } from '../../../context/TeamContext'
@@ -39,32 +40,37 @@ export default function TeamTaskList() {
   )
   console.log(tasks)
   return (
-    <div className={styles.tasksPage}>
-      <div className={styles.stickyTop}>
-        <div className={styles.selectGroup}>
-          <Select
-            styles={groupSelectStyle}
-            options={groupOptions}
-            theme={customTheme}
-            isClearable
-            placeholder="Select Group : All"
-            onChange={(e) => setSelectedGroup(e?.value || '')}
-            noOptionsMessage={() => (
-              <span className="stateOption">No Groups found</span>
-            )}
-          />
+    <>
+      <Head>
+        <title>FlowFine | Tasks</title>
+      </Head>
+      <div className={styles.tasksPage}>
+        <div className={styles.stickyTop}>
+          <div className={styles.selectGroup}>
+            <Select
+              styles={groupSelectStyle}
+              options={groupOptions}
+              theme={customTheme}
+              isClearable
+              placeholder="Select Group : All"
+              onChange={(e) => setSelectedGroup(e?.value || '')}
+              noOptionsMessage={() => (
+                <span className="stateOption">No Groups found</span>
+              )}
+            />
+          </div>
+          <TabNav setMenu={setIsList} menu={isList} />
         </div>
-        <TabNav setMenu={setIsList} menu={isList} />
+        {isList ? (
+          <TasksList tasks={tasks} loading={tasks_loading} />
+        ) : (
+          <TasksKanban
+            tasks={tasks}
+            teamCode={teamcode}
+            loading={tasks_loading}
+          />
+        )}
       </div>
-      {isList ? (
-        <TasksList tasks={tasks} loading={tasks_loading} />
-      ) : (
-        <TasksKanban
-          tasks={tasks}
-          teamCode={teamcode}
-          loading={tasks_loading}
-        />
-      )}
-    </div>
+    </>
   )
 }

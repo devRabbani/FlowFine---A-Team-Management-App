@@ -9,6 +9,7 @@ import { useTeam } from '../../../context/TeamContext'
 import { useUser } from '../../../context/UserContext'
 import { checkAccess } from '../../../utils/firebase/common'
 import Loading from '../../loading'
+import Head from 'next/head'
 
 export default function EventsPage() {
   // Local States
@@ -42,6 +43,9 @@ export default function EventsPage() {
 
   return (
     <div className={s.eventsPage}>
+      <Head>
+        <title>FlowFine | Events</title>
+      </Head>
       <div className="flexBetween headerDiv">
         <h3 className="header2">Upcomming Events</h3>
         <button className="headerBtn" onClick={() => setIsCreate(true)}>
