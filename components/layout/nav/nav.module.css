@@ -50,6 +50,8 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .menus_menu_create {
@@ -73,6 +75,22 @@
   color: rgb(235, 243, 255);
   display: grid;
   place-items: center;
+}
+
+.menus_menu_create:active,
+.menus_menu_requests:active {
+  background-color: hsl(167, 21%, 59%);
+}
+
+@media (hover: hover) {
+  .menus_menu_create:hover,
+  .menus_menu_requests:hover {
+    background-color: hsl(167, 21%, 63%);
+  }
+  .menus_menu_create:active,
+  .menus_menu_requests:active {
+    background-color: hsl(167, 21%, 59%);
+  }
 }
 
 @media screen and (min-width: 770px) {

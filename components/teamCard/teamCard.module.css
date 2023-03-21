@@ -62,3 +62,22 @@
   font-size: 1.5rem;
   text-transform: uppercase;
 }
+
+.teamCard:active,
+.teamCardSearch:active {
+  background-color: hsl(165, 20%, 64%);
+  transform: translateY(3px);
+}
+
+/* Media Hove */
+@media (hover: hover) {
+  .teamCard:hover,
+  .teamCardSearch:hover {
+    background-color: hsl(165, 22%, 67%);
+  }
+  .teamCard:active,
+  .teamCardSearch:active {
+    background-color: hsl(165, 20%, 64%);
+    transform: translateY(3px);
+  }
+}
