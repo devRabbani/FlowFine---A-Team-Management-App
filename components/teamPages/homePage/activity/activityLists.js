@@ -1,5 +1,6 @@
 import moment from 'moment/moment'
 import usePaginatedData from '../../../../hooks/usePaginatedData'
+import Loading from '../../../loading'
 import s from './activity.module.css'
 
 export default function ActivityLists({
@@ -9,13 +10,12 @@ export default function ActivityLists({
   loadMore,
   btnLoading,
 }) {
-  console.count('Activity')
   if (isLoading) {
-    return <p>Loading....</p>
+    return <Loading high="high" />
   }
 
   if (!data?.length) {
-    return <p>No Activity Records Found</p>
+    return <p className="noData">No Activity Records Found</p>
   }
 
   return (

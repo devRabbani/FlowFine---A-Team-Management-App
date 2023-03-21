@@ -11,6 +11,7 @@ import nProgress from 'nprogress'
 import { useEffect } from 'react'
 import UserContextProvider from '../context/UserContext'
 import TeamContextProvider from '../context/TeamContext'
+import Script from 'next/script'
 
 const finlandica = Finlandica({ subsets: ['latin'] })
 
@@ -35,10 +36,41 @@ function MyApp({ Component, pageProps }) {
     }
   }, [])
 
+    useEffect(() => {
+      console.log(
+        '%cCan%cWeBe!',
+        'color: #e47e24; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;',
+        'color: #fff; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;'
+      )
+      console.log(
+        '%cHey explorer!, Are you lost?? Because this is not the right place for you. If you want to work with us at CanWeBe contact us now.',
+        'color: #e1e1e1; font-size: 1.5em;'
+      )
+    }, [])
+
+
   return (
     <>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-X6EE2YSEHB"
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-X6EE2YSEHB', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
       <Head>
-        <title>FlowFine - Perfect Ways to Manage Team</title>
+        <title>FlowFine | Home</title>
       </Head>
       <style jsx global>{`
         html {
@@ -60,7 +92,14 @@ function MyApp({ Component, pageProps }) {
           )}
         </UserContextProvider>
       </AuthContextProvider>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            fontSize: '1.7rem',
+            overflowX: 'hidden',
+          },
+        }}
+      />
     </>
   )
 }

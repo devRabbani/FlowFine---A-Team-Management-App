@@ -3,6 +3,7 @@
   width: 6.316em; /* 120px */
   border-radius: 0.7rem;
   white-space: nowrap;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Medium In SIze width */
@@ -35,6 +36,11 @@
   color: white;
 }
 
+.btn:global(.danger) {
+  background-color: var(--color-red);
+  color: white;
+}
+
 .btn:global(.grey) {
   background-color: var(--color-green-dark);
   color: var(--color-green-2);
@@ -48,4 +54,87 @@
 .btn:global(.border.red) {
   border-color: var(--color-red);
   color: var(--color-red);
+}
+
+.btn:global(.danger):disabled {
+  opacity: 0.5;
+  filter: grayscale(0.4);
+}
+
+.btn:not(:disabled):global(.primary):active {
+  background-color: hsl(209, 36%, 20%);
+  transform: translateY(2px);
+  gap: 0.8rem !important;
+}
+.btn:not(:disabled):global(.grey):active {
+  background-color: hsl(166, 15%, 48%);
+  transform: translateY(2px);
+  gap: 0.8rem !important;
+}
+
+.btn:not(:disabled):global(.danger):active {
+  background-color: hsl(335, 79%, 35%);
+  transform: translateY(2px);
+  gap: 0.8rem !important;
+}
+
+.btn:global(.border):active {
+  background-color: hsl(167, 100%, 93%);
+}
+
+.btn:not(:disabled):global(.border):active,
+.btn:not(:disabled):global(.border.red):active {
+  gap: 0.7rem;
+}
+.btn:not(:disabled):global(.border):active {
+  background-color: hsl(167, 100%, 93%);
+}
+
+.btn:not(:disabled):global(.border.red):active {
+  background-color: hsl(335, 55%, 96%);
+}
+
+@media (hover: hover) {
+  .btn:not(:disabled):global(.primary):hover {
+    background-color: hsl(209, 36%, 25%);
+    gap: 0.8rem !important;
+  }
+  .btn:not(:disabled):global(.primary):active {
+    background-color: hsl(209, 36%, 20%);
+    transform: translateY(2px);
+    gap: 0.8rem !important;
+  }
+
+  .btn:not(:disabled):global(.grey):hover {
+    background-color: hsl(166, 15%, 53%);
+    gap: 0.8rem !important;
+  }
+  .btn:not(:disabled):global(.grey):active {
+    background-color: hsl(166, 15%, 48%);
+    transform: translateY(2px);
+    gap: 0.8rem !important;
+  }
+
+  .btn:not(:disabled):global(.danger):hover {
+    background-color: hsl(335, 79%, 39%);
+    gap: 0.8rem !important;
+  }
+  .btn:not(:disabled):global(.danger):active {
+    background-color: hsl(335, 79%, 35%);
+    transform: translateY(2px);
+    gap: 0.8rem !important;
+  }
+
+  .btn:not(:disabled):global(.border):hover,
+  .btn:not(:disabled):global(.border.red):hover {
+    gap: 0.7rem;
+  }
+
+  .btn:not(:disabled):global(.border):active {
+    background-color: hsl(167, 100%, 93%);
+  }
+
+  .btn:not(:disabled):global(.border.red):active {
+    background-color: hsl(335, 55%, 96%);
+  }
 }

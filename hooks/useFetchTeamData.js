@@ -5,6 +5,7 @@ import { db } from '../lib/firebase'
 import {
   ADD_TEAM_DATA,
   NO_TEAM_DATA,
+  RESET_DATA,
   TEAM_LOADING_FINISH,
 } from '../reducers/teamReducer'
 
@@ -16,7 +17,6 @@ export default function useFetchTeamData(teamCode) {
     try {
       unsub = onSnapshot(doc(db, 'teams', teamCode), (snapshot) => {
         if (snapshot.exists()) {
-          console.count('Run DB')
           dispatch({
             type: ADD_TEAM_DATA,
             payload: { ...snapshot.data(), id: snapshot.id },
@@ -30,6 +30,9 @@ export default function useFetchTeamData(teamCode) {
       dispatch({ type: TEAM_LOADING_FINISH })
     }
 
-    return () => unsub && unsub()
+    return () => {
+      unsub && unsub()
+      dispatch({ type: RESET_DATA })
+    }
   }, [teamCode])
 }

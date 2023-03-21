@@ -1,8 +1,8 @@
-import moment from 'moment/moment'
-import { useRef } from 'react'
+import { useState } from 'react'
 import { RiDeleteBin5Fill } from 'react-icons/ri'
 import ActivityLists from './activityLists'
 import s from './activity.module.css'
+import { clearActivity } from '../../../../utils/firebase/homePage'
 
 export default function Activity({
   data,
@@ -10,13 +10,23 @@ export default function Activity({
   hasMore,
   loadMore,
   btnLoading,
+  access,
+  teamCode,
 }) {
+  const [isClearing, setIsClearing] = useState(false)
+
+  // Callback Funtion
+  const handleLoading = (value) => setIsClearing(value)
+
   return (
     <div className={s.activity}>
-      <div className={s.activity_topbar}>
+      <div className={`${s.activity_topbar} flexBetween headerDiv`}>
         <h3 className="header2">Activities</h3>
-        <button>
-          <RiDeleteBin5Fill /> Clear All
+        <button
+          disabled={isClearing || isLoading}
+          onClick={() => clearActivity(teamCode, access, handleLoading)}
+        >
+          <RiDeleteBin5Fill /> {isClearing ? 'Clearing' : 'Clear All'}
         </button>
       </div>
       <div className={s.activity_wrapper}>

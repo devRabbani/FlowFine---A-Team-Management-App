@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Select from 'react-select'
-import { useTeam } from '../../../../context/TeamContext'
 import {
   customTheme,
   sortOptions,
@@ -9,19 +8,16 @@ import {
 import TaskCard from '../../../taskCard'
 import s from './tasksList.module.css'
 
-export default function ListTasks() {
+export default function ListTasks({ tasks, loading }) {
   // Local States
   const [sort, setSort] = useState('updates')
-
-  // Getting Tasks and Loading State
-  const { tasks_data, tasks_loading } = useTeam()
 
   return (
     <div className={s.tasksListBody}>
       <div className={s.headerDiv}>
         <h3 className="header2">Tasks List</h3>
         <div className={s.sortDiv}>
-          <label>Filter :</label>
+          <label>Sort :</label>
           <Select
             styles={sortSelectStyle}
             options={sortOptions}
@@ -34,10 +30,10 @@ export default function ListTasks() {
         </div>
       </div>
       <div className={s.tasksListWrapper}>
-        {tasks_loading ? (
-          <p>Loading...</p>
-        ) : tasks_data?.length > 0 ? (
-          tasks_data
+        {loading ? (
+          <p className="noData">Getting Tasks...</p>
+        ) : tasks?.length > 0 ? (
+          tasks
             .sort((a, b) => {
               if (sort === 'deadline') {
                 return new Date(a?.deadline) - new Date(b?.deadline)
@@ -49,7 +45,9 @@ export default function ListTasks() {
             })
             .map((task) => <TaskCard task={task} key={task.id} />)
         ) : (
-          <p>No Tasks Found</p>
+          <p className="noData">
+            No Tasks Found, Add one by clicking the add icon
+          </p>
         )}
       </div>
     </div>

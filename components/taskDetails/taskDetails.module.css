@@ -9,43 +9,31 @@
   border-radius: 0.8rem 0.8rem 0 0;
 }
 
-.viewDetails_nav {
-  display: flex;
-  padding: 0.6rem;
-  background-color: var(--color-primary);
-  margin-bottom: 1.5rem;
-}
-
-.viewDetails_nav_menu {
-  font-size: 2rem;
-  flex-basis: 100%;
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: 0.7rem;
-}
-
-.viewDetails_nav_menu.active {
-  color: white;
-  background-color: var(--color-green-1);
-}
-
 .viewDetails_topBar {
   display: flex;
   gap: 1.7rem;
-  padding: 1rem 1rem 1.5rem;
+  padding-block: 0.5rem 0.3rem;
   justify-content: right;
+}
+.viewDetails_topBar button {
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+}
+
+.viewDetails_topBar button:nth-child(2) {
+  font-size: 3.4rem;
 }
 
 .details,
 .comments {
-  height: 65vh;
-  padding-block: 0.5rem 5rem;
+  height: 67vh;
+  padding-block: 2rem 5rem;
   overflow-y: auto;
 }
 
 .comments {
   height: calc(
-    65vh + 6.18rem
+    67vh + 6.18rem
   ); /* Added because of the bottom bar height 61.8px*/
 }
 
@@ -232,8 +220,58 @@
   margin-top: 0.2rem;
 }
 
-.noData {
-  margin-top: 5rem;
-  text-align: center;
-  opacity: 0.7;
+.commentsList_card_topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.commentsList_card_topBar button {
+  color: var(--color-red);
+}
+
+/* media q */
+@media screen and (min-width: 750px) {
+  .tabTopBarWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .viewDetailsBody {
+    width: 70%;
+    max-width: 80rem;
+    top: 0;
+    height: 100%;
+    left: unset;
+    right: 0;
+    box-shadow: -1px 0 7px rgba(80, 122, 112, 0.312),
+      -5px 0 18px rgba(0, 0, 0, 0.2);
+    border-radius: 0.8rem 0 0 0.8rem;
+  }
+  .viewDetails {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .details,
+  .comments {
+    height: 100%;
+  }
+
+  .detailsBottomBar {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-block: 1rem;
+    gap: 1rem;
+  }
+
+  .detailsBottomBar > * {
+    max-width: 18rem;
+    flex-shrink: 0;
+  }
 }

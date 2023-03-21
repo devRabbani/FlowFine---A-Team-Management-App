@@ -22,3 +22,12 @@
   border-color: var(--color-secondary-dark);
   border-width: 0.2rem;
 }
+
+/* Media Q */
+@media screen and (min-width: 750px) {
+  .tabNav {
+    max-width: 35rem;
+    width: 100%;
+    flex-shrink: 0;
+  }
+}

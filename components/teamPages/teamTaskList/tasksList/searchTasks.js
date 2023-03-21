@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
 import { AiOutlineFileSearch } from 'react-icons/ai'
-import { useTeam } from '../../../../context/TeamContext'
 import TaskCard from '../../../taskCard'
 import s from './tasksList.module.css'
 
-export default function SearchTasks({ handleSetSearch }) {
+export default function SearchTasks({ handleSetSearch, tasks, loading }) {
   // Local States
   const [searchStr, setSearchStr] = useState('')
-  // Getting Tasks and Loading
-  const { tasks_data, tasks_loading } = useTeam()
 
   //  For checking IsSearch
   useEffect(() => {
@@ -19,7 +16,6 @@ export default function SearchTasks({ handleSetSearch }) {
     }
   }, [searchStr])
 
-  console.count('Search')
   return (
     <>
       <div className={s.searchDiv}>
@@ -29,17 +25,19 @@ export default function SearchTasks({ handleSetSearch }) {
           type="search"
           onChange={(e) => setSearchStr(e.target.value)}
           value={searchStr}
-          disabled={tasks_loading}
+          disabled={loading}
         />
       </div>
       {searchStr.length > 3 ? (
         <div className={s.tasksListBody}>
           <div className={s.headerDiv}>
-            <h3 className="header2">Search : {searchStr}</h3>
+            <h3 className="header2">
+              Search : <span>{searchStr}</span>
+            </h3>
           </div>
           <div className={s.tasksListWrapper}>
-            {tasks_data?.length > 0 ? (
-              tasks_data
+            {tasks?.length > 0 ? (
+              tasks
                 .filter(
                   (task) =>
                     task?.title
@@ -51,7 +49,7 @@ export default function SearchTasks({ handleSetSearch }) {
                 )
                 .map((task) => <TaskCard task={task} key={task.id} />)
             ) : (
-              <p>No Tasks Found</p>
+              <p className="noData">No Tasks Found</p>
             )}
           </div>
         </div>

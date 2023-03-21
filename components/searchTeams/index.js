@@ -1,20 +1,25 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useState } from 'react'
 import { RiLoaderFill, RiSearch2Line } from 'react-icons/ri'
-import { getSearchTeams } from '../../utils/firebase'
-import TeamCard from '../teamCard'
+import { getSearchResults } from '../../utils/firebase/common'
 import s from './searchTeams.module.css'
+import TeamCardSearch from '../teamCard/teamCardSearch'
 
-export default function SearchTeams({ uid }) {
+export default function SearchTeams() {
+  // Local States
   const [isLoading, setIsLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [teamsList, setTeamsList] = useState([])
+
+  // Clear Saerch
+  const handleClearSearch = () => setSearchTerm('')
 
   const handleChange = (e) => {
     const value = e.target.value
     if (value.length < 3) {
       setIsLoading(false)
       setSearchTerm(value)
+      setTeamsList([])
     } else {
       setIsLoading(true)
       setSearchTerm(value)
@@ -25,7 +30,7 @@ export default function SearchTeams({ uid }) {
     debounce(async (value) => {
       if (value.length >= 3) {
         try {
-          const res = await getSearchTeams(value)
+          const res = await getSearchResults(value, 'name', 'teams')
           setTeamsList(res)
           setIsLoading(false)
         } catch (error) {
@@ -33,7 +38,6 @@ export default function SearchTeams({ uid }) {
           setIsLoading(false)
         }
       }
-      console.count('Search fxn')
     }, 700),
     []
   )
@@ -59,24 +63,22 @@ export default function SearchTeams({ uid }) {
           <div className={s.headerDiv}>
             <h3 className="header2">Results for : {searchTerm}</h3>
           </div>
-          <div className={s.teamWrapper}>
-            {isLoading ? (
-              <p className={s.loading}>Getting Teamlist..</p>
-            ) : teamsList?.length ? (
-              teamsList?.map((item) => (
-                <TeamCard
-                  key={item?.teamcode}
-                  teamcode={item?.teamcode}
-                  isSearch={true}
-                  teamname={item?.name}
-                  joined={item?.members?.includes(uid)}
-                  request={item?.invitation?.includes(uid)}
+
+          {isLoading ? (
+            <p className="noData low pb2">Getting Teams...</p>
+          ) : teamsList?.length ? (
+            <div className={s.teamWrapper}>
+              {teamsList?.map((team) => (
+                <TeamCardSearch
+                  key={team?.teamcode}
+                  teamData={team}
+                  handleClearSearch={handleClearSearch}
                 />
-              ))
-            ) : (
-              <p className={s.loading}>No Team Found</p>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="noData low pb2">No Team Found</p>
+          )}
         </div>
       ) : null}
     </div>

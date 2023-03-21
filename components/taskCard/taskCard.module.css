@@ -1,8 +1,31 @@
-.taskCard {
+.taskCard,
+.taskCardDnd {
   background-color: var(--color-primary);
-  padding: 0.7rem 1rem 1rem;
+  padding: 0.6rem 0.9rem 0.9rem;
   border-radius: 0.7rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  border: 0.1rem solid var(--color-primary);
+  box-shadow: var(--card-shadow);
+}
+
+.taskCard {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.taskCardDnd {
+  height: fit-content;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* If Dragging */
+.dragging {
+  border-color: var(--color-secondary-dark);
+}
+/* If Undrag state */
+.taskCard.unDrag {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .taskCardTopBar,
@@ -23,29 +46,30 @@
 .low,
 .normal,
 .high {
-  font-size: 1.3rem;
-  background-color: hsl(208, 49%, 61%);
-  color: hsl(208, 79%, 21%);
+  font-size: 1.25rem;
+  background-color: hsl(208deg 46.02% 45.51%);
+  color: rgb(229 226 226);
   width: 4.5em;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 0.4rem;
 }
 
 .low {
   background-color: #ceedce;
+  color: var(--color-green-1);
 }
 
 .high {
-  background-color: rgb(225, 143, 125);
-  color: rgb(182, 3, 3);
+  background-color: rgb(208 58 24);
 }
 
 .title {
-  font-size: 2.1rem;
-  line-height: 1.27;
-  margin-top: 1rem;
+  font-size: 2rem;
+  line-height: 1.24;
+  margin-block: 1rem;
   text-transform: capitalize;
   color: var(--color-secondary-dark);
+  word-break: break-all;
 }
 
 .taskUpdates,
@@ -58,7 +82,7 @@
 }
 
 .taskCardBottomBar p {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .status {
@@ -72,5 +96,32 @@
 
 .taskCardBottomBar {
   gap: 1rem;
-  margin-top: 1rem;
+}
+
+.delayed {
+  color: var(--color-red);
+}
+
+.taskCard:active {
+  background-color: hsl(165, 20%, 64%);
+  transform: translateY(3px);
+}
+
+.taskCardDnd:active {
+  background-color: hsl(165, 20%, 62%);
+}
+
+/* Media Hove */
+@media (hover: hover) {
+  .taskCard:hover,
+  .taskCardDnd:hover {
+    background-color: hsl(165, 22%, 67%);
+  }
+  .taskCard:active {
+    background-color: hsl(165, 20%, 64%);
+    transform: translateY(3px);
+  }
+  .taskCardDnd:active {
+    background-color: hsl(165, 20%, 62%);
+  }
 }

@@ -1,0 +1,25 @@
+.randomTeamWrapper {
+  background-color: var(--color-green-dark);
+  padding: 1.5rem;
+  border-radius: 0.7rem;
+  margin-block: 2.7rem 3.5rem;
+}
+
+.randomList {
+  display: grid;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  margin-top: 1.6rem;
+}
+
+@media screen and (min-width: 900px) {
+  .randomList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .randomList {
+    grid-template-columns: 1fr;
+  }
+}

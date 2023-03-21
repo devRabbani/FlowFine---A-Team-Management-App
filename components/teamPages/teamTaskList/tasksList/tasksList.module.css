@@ -16,6 +16,9 @@
   align-items: center;
 }
 
+.headerDiv h3 span {
+  text-transform: uppercase;
+}
 .sortDiv {
   display: flex;
   align-items: center;
@@ -29,9 +32,9 @@
 }
 .tasksListWrapper {
   display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+  padding-bottom: 1.6rem;
 }
 
 .searchDiv {
@@ -57,9 +60,14 @@
   width: 100%;
   background-color: transparent;
   text-transform: uppercase;
+  border: none;
+  padding: 0;
 }
 .searchDiv input::placeholder {
   text-transform: none;
+}
+.searchDiv input:is(:focus, :active) {
+  border-color: transparent;
 }
 
 .searchDiv:focus-within svg {
@@ -68,4 +76,21 @@
 
 .searchDiv:focus-within {
   border-color: var(--color-green-border);
+}
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .tasksListBody {
+    margin-bottom: 7rem;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .tasksListWrapper {
+    display: grid;
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -8,7 +8,7 @@
   left: 0;
   display: grid;
   place-items: center;
-  z-index: 10000;
+  z-index: 1000;
   padding-top: 6.8rem;
   overflow-y: auto;
 }
@@ -18,12 +18,9 @@
 }
 
 .modal_header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: var(--color-primary);
   position: fixed;
   top: 0;
-  padding-block: 1.2rem 0.5rem;
-  border-bottom: 1px solid var(--color-green-1);
+  padding-top: 1.2rem;
+  /* max-width: 65rem; */
 }

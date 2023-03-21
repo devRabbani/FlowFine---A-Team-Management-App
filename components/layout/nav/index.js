@@ -2,33 +2,40 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { FaCaretLeft } from 'react-icons/fa'
-
-import { useAuth } from '../../../context/AuthContext'
-import useLogout from '../../../hooks/useLogout'
 import s from './nav.module.css'
-import { useRouter } from 'next/router'
-import placeholder from '../../../public/placeholder.png'
-import ProfileMenu from './profileMenu'
+
 import { useUser } from '../../../context/UserContext'
+import { RiAddLine } from 'react-icons/ri'
 import Modal from '../../modal'
-import CreatePage from '../../teamPages/createPage'
-import { RiAddCircleLine, RiAddLine } from 'react-icons/ri'
+import RequestBtn from './requestBtn'
+
+import EditProfile from './editProfile'
+import CreatePage from '../../TasksModals/createPage'
+import ProfileMenu from './profileMenu'
 
 export default function Nav({ isBack }) {
-  const { photoURL, username, displayName } = useUser()
-
+  const { photoURL, username, displayName, uid } = useUser()
+  // Local States
   const [isProfile, setIsProfile] = useState(false)
   const [isCreate, setIsCreate] = useState(false)
+  const [isEditProfile, setIsEditProfile] = useState(false)
   const [createLoading, setCreateLoading] = useState(false)
+  const [profileLoading, setProfileLoading] = useState(false)
+
   const avatarRef = useRef()
 
   // Custom Functions
   const handleProfileMenu = () => setIsProfile((prev) => !prev)
   const handleCloseProfileMenu = () => setIsProfile(false)
 
+  const handleCloseEditProfile = () => setIsEditProfile(false)
+
+  const handleEditProfile = (value) => setIsEditProfile(value)
+
+  const handleProfileLoading = (value) => setProfileLoading(value)
+
   const handleCloseCreate = () => setIsCreate(false)
 
-  console.count('Nav')
   return (
     <>
       <nav className={s.navWrapper}>
@@ -51,7 +58,9 @@ export default function Nav({ isBack }) {
               >
                 <RiAddLine />
               </div>
-            ) : null}
+            ) : (
+              <RequestBtn username={username} uid={uid} />
+            )}
             <div
               ref={avatarRef}
               className={s.menus_menu_profile}
@@ -66,12 +75,28 @@ export default function Nav({ isBack }) {
                 username={username}
                 displayName={displayName}
                 avatarRef={avatarRef}
+                handleEditProfile={handleEditProfile}
                 handleCloseMenu={handleCloseProfileMenu}
               />
             )}
           </div>
         </div>
       </nav>
+      {isEditProfile ? (
+        <Modal
+          title="Edit Profile"
+          handleClose={handleCloseEditProfile}
+          isLoading={profileLoading}
+        >
+          <EditProfile
+            photoURL={photoURL}
+            uid={uid}
+            displayName={displayName}
+            handleLoading={handleProfileLoading}
+            loading={profileLoading}
+          />
+        </Modal>
+      ) : null}
       {isCreate ? (
         <Modal
           title="Create Task"
@@ -82,6 +107,7 @@ export default function Nav({ isBack }) {
             handleClose={handleCloseCreate}
             createLoading={createLoading}
             setCreateLoading={setCreateLoading}
+            username={username}
           />
         </Modal>
       ) : null}

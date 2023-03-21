@@ -1,7 +1,7 @@
 :root {
   --color-primary: #a3c4bc;
   --color-green-dark: #7c9e96;
-  /* --color-secondary: #294f5e; */
+  --color-green-light: #bde0d8;
   --color-secondary: #2e4861;
   --color-secondary-dark: #140f2d;
   --color-accent-1: hsl(12, 46%, 53%);
@@ -15,14 +15,8 @@
   --color-white-light: #e1edf2;
   --color-green-border: #617772;
   --color-canwebe-deep: #c45c20;
-
-  /* --color-green-1: #a3c4bc;
-  --color-green-2: #3c6e71;
-  --color-green-3: #7c9e96;
-  --color-green-4: #a3ccc2;
-  --color-green-5: #bcebea;
-  --color-green-6: #c9e3e2;
-  --color-green-7: #617772; */
+  --card-shadow: 4px 4px 5px -5px rgba(0, 0, 0, 0.3),
+    0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 /*
@@ -98,13 +92,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*
-  9. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
-}
 
 /* Default font size for REM */
 h1 {
@@ -144,24 +131,15 @@ main {
   color: var(--color-secondary-dark);
 }
 
-.pageHeader {
-  padding-bottom: 0.7rem;
-  margin-bottom: 1.7rem;
-  border-bottom: 1px solid var(--color-green-1);
+.headerDiv {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--color-green-1);
 }
 
-/* .header2 {
-  text-align: center;
+.headerBtn {
+  font-weight: 500;
+  color: var(--color-secondary-dark);
 }
-
-.header2::after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 100px;
-  background-color: var(--color-black-1);
-  margin: 5px auto 20px;
-} */
 
 /* Styles */
 .wrapper {
@@ -180,6 +158,10 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;
+}
+button > * {
+  flex-shrink: 0;
 }
 
 a {
@@ -189,30 +171,71 @@ a {
 }
 
 input,
-select {
+select,
+textarea {
   outline: none;
   border: none;
   background-color: none;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: var(--color-secondary-dark);
+  background-color: var(--color-input);
+  padding: 0.44em 0.56em;
+  border-radius: 0.4rem;
+  border: 0.2rem solid var(--color-input);
 }
 
 textarea {
   resize: vertical;
 }
 
+input:is(:active, :focus),
+textarea:is(:active, :focus) {
+  border-color: var(--color-green-border);
+}
+
 /* Priority Colors */
 .Low {
-  background-color: rgb(199, 223, 219);
-  color: rgb(3, 106, 104);
+  background-color: #c2e2dd;
+  color: rgb(3, 106, 84);
 }
 
 .Normal {
-  background-color: rgb(194 194 236);
-  color: #0b0b9b;
+  background-color: hsl(224.76deg 87% 85%);
+  color: hsl(240, 87%, 33%);
 }
 
 .High {
-  background-color: #edcbc6;
+  background-color: hsl(8, 72%, 90%);
   color: #9b0606;
+}
+
+.noData {
+  text-align: center;
+  color: var(--color-green-1);
+  max-width: 90%;
+  margin: 10vh auto;
+}
+
+.noData.low {
+  margin-block: 6vh;
+}
+
+.noData.pb2 {
+  padding-bottom: 2rem;
+}
+
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stateOption {
+  font-size: 1.7rem;
 }

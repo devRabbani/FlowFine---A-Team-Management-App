@@ -1,11 +1,15 @@
 import moment from 'moment'
-import { useState } from 'react'
+import { memo, useState } from 'react'
+import Modal from '../modal'
 import TaskDetails from '../taskDetails'
+import EditTaskModal from '../TasksModals/editTaskModal'
 import s from './taskCard.module.css'
 
-export default function TaskCard({ task }) {
+export default memo(function TaskCard({ task }) {
   // const priority = ['low', 'normal', 'high']
-  const [viewDetails, setViewDetails] = useState(null)
+  const [isView, setIsView] = useState(false)
+  const [editDetails, setEditDetails] = useState(null)
+  const [isEditLoading, setEditLoading] = useState(false)
 
   const renderPriority = (priority) => {
     switch (priority) {
@@ -20,15 +24,32 @@ export default function TaskCard({ task }) {
     }
   }
 
-  const handleTaskView = () => {
-    setViewDetails(task)
-  }
+  // Callback Function
+  const handleTaskView = (value) => setIsView(value)
+  const handleCloseView = () => setIsView(false)
 
-  console.count('Task Card')
+  const handleEditDetails = (value) => setEditDetails(value)
+  const handleEditLoading = (value) => setEditLoading(value)
+
+  const deadline = moment(task?.deadline)
+  const currentTime = moment()
+  const isDelayed = deadline.isBefore(currentTime)
+  let delayMessage = ''
+
+  if (isDelayed) {
+    const days = currentTime.diff(deadline, 'days')
+    if (days === 0) {
+      delayMessage = 'Due Today'
+    } else if (days === 1) {
+      delayMessage = 'Delayed by 1 day'
+    } else {
+      delayMessage = `Delayed by ${days} days`
+    }
+  }
 
   return (
     <>
-      <div onClick={handleTaskView} className={s.taskCard} key={task.id}>
+      <div onClick={() => handleTaskView(true)} className={s.taskCard}>
         <div className={s.taskCardTopBar}>
           {renderPriority(task.priority)}
           <p className={s.taskUpdates}>
@@ -38,17 +59,38 @@ export default function TaskCard({ task }) {
 
         <p className={s.title}>{task?.title}</p>
         <div className={s.taskCardBottomBar}>
-          <p>Due {moment(task?.deadline).format('DD MMM')}</p>
+          {isDelayed ? (
+            <p className={s.delayed}>{delayMessage}</p>
+          ) : (
+            <p>Due {deadline.format('DD MMM')}</p>
+          )}
+
           <p className={s.status}>{task?.status}</p>
-          <p className={s.taskid}>ID-AGSTEHYX</p>
+          <p className={s.taskid}>ID-{task?.taskid}</p>
         </div>
       </div>
-      {viewDetails ? (
+      {isView ? (
         <TaskDetails
-          viewDetails={viewDetails}
-          setViewDetails={setViewDetails}
+          taskData={task}
+          handleCloseView={handleCloseView}
+          handleEditDetails={handleEditDetails}
         />
+      ) : null}
+      {editDetails ? (
+        <Modal
+          title="Edit Task"
+          handleClose={() => handleEditDetails(null)}
+          isLoading={isEditLoading}
+        >
+          <EditTaskModal
+            isEditLoading={isEditLoading}
+            handleClose={() => handleEditDetails(null)}
+            shortInfo={task}
+            fullInfo={editDetails}
+            handleLoading={handleEditLoading}
+          />
+        </Modal>
       ) : null}
     </>
   )
-}
+})

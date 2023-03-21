@@ -2,13 +2,6 @@
   padding-bottom: 15rem;
 }
 
-.loading {
-  margin: 40px auto;
-  text-align: center;
-  font-size: 1.5rem;
-  color: rgb(75, 113, 90);
-}
-
 /* Task Top Bar */
 .stickyTop {
   position: sticky;
@@ -20,8 +13,36 @@
 
 /* Select Group */
 .selectGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
   margin-bottom: 1rem;
+}
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .tasksPage {
+    padding-left: 10rem;
+    padding-bottom: 0;
+  }
+
+  .stickyTop {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .stickyTop > * {
+    flex-basis: 100%;
+  }
+
+  .selectGroup {
+    margin-bottom: 0;
+    max-width: 36rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .tasksPage {
+    padding-left: 18rem;
+  }
 }

@@ -4,7 +4,36 @@
   place-items: center;
 }
 
+.body.teamPage {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .body p {
-  font-size: 2rem;
-  color: var(--color-green-2);
+  font-size: 2.2rem;
+  color: var(--color-green-dark);
+}
+
+.loadingDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5.8rem;
+}
+
+@media screen and (min-width: 770px) {
+  .body.teamPage {
+    padding-left: 10rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .body.teamPage {
+    padding-left: 18rem;
+  }
 }

@@ -1,30 +1,42 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { createTeam } from '../../utils/firebase'
+import { checkUniqueTeam, createTeam } from '../../utils/firebase/teamsPage'
 import Button from '../button'
 import s from './createTeamModal.module.css'
 
-export default function CreateTeamModal({ handleClose, uid }) {
+export default function CreateTeamModal({
+  handleClose,
+  username,
+  handleLoading,
+  loading,
+  uid,
+}) {
   const [name, setName] = useState('') // input state for team name
-  const [isLoading, setIsLoading] = useState(false) //Loading state for creating team
 
   // Create the Team
   const handleCreate = async () => {
-    if (name.trim().length < 4) {
-      toast.error(<b>Team name must be more than 4 character</b>)
-      return
-    }
-    setIsLoading(true)
-    const id = toast.loading(<b>Creating Team Please Wait..</b>)
     try {
-      await createTeam(name.trim(), uid)
-      setIsLoading(false)
-      toast.success(<b>{name} created successfully</b>, { id })
+      if (name.trim()?.length < 4) {
+        toast.error(<b>Team name must be more than 4 character</b>, {
+          id: 'teamcreate',
+        })
+        return
+      }
+
+      // Loading Start
+      handleLoading(true)
+      toast.loading(<b>Creating Team Please Wait..</b>, { id: 'teamcreate' })
+      const isUnique = await checkUniqueTeam(name)
+      if (!isUnique) throw new Error('Team Name Already Exist!')
+      await createTeam(name.trim(), username, uid)
+
+      handleLoading(false)
+      toast.success(<b>{name} created successfully</b>, { id: 'teamcreate' })
       handleClose()
     } catch (error) {
-      console.error(error.message)
-      toast.error(<b>{error.message}</b>, { id })
-      setIsLoading(false)
+      console.error('Team Creating ', error)
+      toast.error(<b>{error.message}</b>, { id: 'teamcreate' })
+      handleLoading(false)
     }
   }
 
@@ -36,12 +48,13 @@ export default function CreateTeamModal({ handleClose, uid }) {
         value={name}
         type="text"
         placeholder="Enter Team Name"
+        maxLength={80}
       />
       <div className={s.btnDiv}>
-        <Button onClick={handleCreate} variant="primary" disabled={isLoading}>
-          {isLoading ? 'Creating' : 'Create'}
+        <Button onClick={handleCreate} variant="primary" disabled={loading}>
+          {loading ? 'Creating' : 'Create'}
         </Button>
-        <Button onClick={handleClose} variant="grey" disabled={isLoading}>
+        <Button onClick={handleClose} variant="grey" disabled={loading}>
           Close
         </Button>
       </div>

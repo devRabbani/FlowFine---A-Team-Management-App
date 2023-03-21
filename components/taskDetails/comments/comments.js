@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { RiMessage2Fill, RiMessage2Line } from 'react-icons/ri'
 import { useTaskDetails } from '../../../context/TaskDetailsContext'
 import { useUser } from '../../../context/UserContext'
-import { addComment } from '../../../utils/firebase'
+import { addComment } from '../../../utils/firebase/tasksPage'
 import Button from '../../button'
 import s from '../taskDetails.module.css'
 import CommentsList from './commentsList'
@@ -56,17 +56,16 @@ export default function Comments() {
         disabled={isCommenting || comment.length < 1}
         variant="primary md g2"
       >
-        {isCommenting ? (
-          <>
-            <RiMessage2Fill /> Adding
-          </>
-        ) : (
-          <>
-            <RiMessage2Line /> Comment
-          </>
-        )}
+        {' '}
+        <RiMessage2Line />
+        {isCommenting ? 'Adding' : 'Comment'}
       </Button>
-      <CommentsList loading={commentsLoading} comments={comments} />
+      <CommentsList
+        loading={commentsLoading}
+        comments={comments}
+        username={username}
+        taskDocId={shortInfo?.id}
+      />
       {hasMore ? (
         <button disabled={btnLoading} onClick={loadMore}>
           {btnLoading ? 'Loading' : 'Load More'}

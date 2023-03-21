@@ -7,16 +7,22 @@ export default function useDataDoc(loc) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
-    const unsub = onSnapshot(doc(db, loc), (snapshot) => {
-      if (snapshot.exists()) {
-        setData({ ...snapshot.data(), id: snapshot.id })
-      } else {
-        setData({})
-      }
-      setLoading(false)
-    })
-    return () => unsub()
+    let unsub
+    try {
+      setLoading(true)
+      unsub = onSnapshot(doc(db, loc), (snapshot) => {
+        if (snapshot.exists()) {
+          setData({ ...snapshot.data(), id: snapshot.id })
+        } else {
+          setData({})
+        }
+        setLoading(false)
+      })
+    } catch (error) {
+      console.log('Use data Doc', error)
+    }
+
+    return () => unsub && unsub()
   }, [loc])
 
   return { data, loading }

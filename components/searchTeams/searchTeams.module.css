@@ -1,6 +1,5 @@
 .searchTeamsWrapper {
   padding-top: 2.5rem;
-  padding-bottom: 3.5rem;
   border-top: 0.2rem dashed var(--color-green-1);
   margin-top: 2.5rem;
 }
@@ -16,11 +15,17 @@
 
 .searchBox input {
   font-size: 1.9rem;
+  border: none;
+  padding: 0;
   width: 100%;
   background-color: inherit;
 }
 .searchBox:focus-within {
   border-color: var(--color-green-border);
+}
+
+.searchBox input:is(:active, :focus) {
+  border: none;
 }
 
 .searchBox svg {
@@ -45,13 +50,23 @@
 
 .teamWrapper {
   display: grid;
-  gap: 2.5rem;
+  gap: 2rem;
   padding-bottom: 3rem;
 }
 
-.loading {
-  text-align: center;
-  font-size: 1.4rem;
-  color: #45645b;
-  margin: 20px 0;
+@media screen and (min-width: 900px) {
+  .teamWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .teamWrapper {
+    grid-template-columns: 1fr;
+  }
+  .searchTeamsWrapper {
+    padding-top: 0;
+    border: none;
+    margin-top: 0;
+  }
 }

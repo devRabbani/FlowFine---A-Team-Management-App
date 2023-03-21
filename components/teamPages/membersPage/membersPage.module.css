@@ -1,0 +1,268 @@
+.membersPage {
+  padding-bottom: 10rem;
+}
+
+/* Div Header */
+.divHeader {
+  padding-top: 1.5rem;
+}
+
+/* Members Page */
+.membersList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.membersList_memberCard {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color-green-dark);
+}
+
+.memberCard_info {
+  display: flex;
+  gap: 1rem;
+}
+
+.memberCard_info img {
+  border-radius: 1rem;
+}
+
+.memberCard_name {
+  text-transform: capitalize;
+  font-size: 2.1rem;
+  line-height: 1.25;
+}
+.memberCard_username {
+  opacity: 0.8;
+  font-size: 1.6rem;
+}
+
+.owner {
+  color: var(--color-red);
+}
+
+.editor {
+  color: var(--color-blue);
+}
+
+/* Invite Box */
+.inviteBox {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.7em 0.6em 0.7em 3.3em;
+  border: 0.1rem solid var(--color-input);
+  display: flex;
+  position: relative;
+  background-color: var(--color-input);
+  border-radius: 0.4rem;
+}
+
+.inviteBox:focus-within {
+  border-color: var(--color-green-border);
+}
+
+.inviteBox:focus-within svg {
+  opacity: 1;
+}
+
+.inviteBox input {
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.inviteBox input:is(:active, :focus) {
+  border: none;
+}
+
+.inviteBox svg {
+  position: absolute;
+  left: 0.4rem;
+  top: 0.8rem;
+  font-size: 2.2rem;
+  opacity: 0.7;
+}
+
+/* Search Results */
+.searchResultsWrapper {
+  margin-block: 1.5rem 4rem;
+  border-top: 1px solid var(--color-green-1);
+}
+
+/* Requests */
+/* .requestsWrapper {
+  margin-bottom: 1rem;
+} */
+.requestsHeaderDiv {
+  color: var(--color-secondary-dark);
+  border-bottom: 1px solid var(--color-green-1);
+  padding-block: 1.5rem 0.5rem;
+}
+
+.requestsHeader {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 2.24rem;
+  font-weight: 500;
+}
+
+.requestsHeader svg {
+  flex-shrink: 0;
+  margin-left: -0.8rem;
+  transition: all 0.23s ease-in-out;
+}
+
+.requestsHeader svg.open {
+  transform: rotateZ(90deg);
+}
+
+.requestsHeader span {
+  margin-left: 0.7rem;
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.request {
+  padding-block: 1rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--color-green-dark);
+}
+.request_username {
+  font-weight: 500;
+  font-size: 1.9rem;
+  word-break: break-word;
+}
+
+.createGroup_btnDiv,
+.request_btnDiv,
+.groupCard_btnDiv {
+  display: flex;
+}
+
+.request_btnDiv {
+  gap: 1.1rem;
+}
+
+.request button {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.request_cancelBtn {
+  color: var(--color-red) !important;
+}
+
+.request_loading {
+  opacity: 0.7;
+  font-size: 1.6rem;
+}
+
+/* Groups */
+.createGroupForm,
+.groupsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.createGroupForm {
+  gap: 1rem;
+  margin-bottom: 6.8rem;
+  max-width: 65rem;
+}
+
+.createGroup_btnDiv {
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.groupsList {
+  gap: 2rem;
+  margin-block: 2rem;
+}
+
+.groupCard {
+  background-color: var(--color-green-light);
+  padding: 1rem;
+  border-radius: 0.7rem;
+}
+.groupCard_name {
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-bottom: 1px solid var(--color-green-border);
+  padding-bottom: 0.7rem;
+}
+
+.groupCard_profiles {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.groupCard_profileCard {
+  padding: 0.7rem;
+}
+
+.profileCard_name {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.profileCard_username {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.groupCard_btnDiv {
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.groupCard_btnDiv button {
+  font-size: 1.6rem;
+}
+
+.groupCard_btnDiv button:nth-child(2) {
+  color: var(--color-red);
+}
+.desktop {
+  display: none;
+}
+
+/* Media QUery */
+@media screen and (min-width: 750px) {
+  .membersPage {
+    padding-left: 10rem;
+    padding-bottom: 7rem;
+    display: grid;
+    gap: 2rem;
+  }
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .membersPage {
+    padding-left: 18rem;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .membersPage {
+    grid-template-columns: 4fr 5fr;
+    gap: 4rem;
+  }
+}

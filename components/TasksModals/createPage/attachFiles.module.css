@@ -1,0 +1,58 @@
+.attachmentsDiv {
+  display: grid;
+  gap: 1.2rem;
+  margin-block: 1rem 1.6rem;
+}
+
+.uploadedDiv {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.attachment {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: hidden;
+  align-items: center;
+  position: relative;
+  background-color: var(--color-input);
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+}
+
+.attachment svg {
+  font-size: 2rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  color: var(--color-secondary-dark);
+  cursor: pointer;
+}
+.attachment p {
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+
+.attachment::after {
+  content: '';
+  background: linear-gradient(to left, #c9e3e2, #c9e3e257);
+  display: block;
+  position: absolute;
+  height: 100%;
+  right: 0;
+  width: 3.4rem;
+  border-radius: 0.4rem;
+}
+
+.uploadedHeader {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-block: 1.5rem 0.7rem;
+}
+
+.uploadedDiv .attachment svg {
+  color: var(--color-red);
+}
+
+.uploadedDiv .attachment {
+  border: 0.1rem solid var(--color-secondary);
+}

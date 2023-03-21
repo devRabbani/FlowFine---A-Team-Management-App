@@ -1,0 +1,44 @@
+.kanbanBoard {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 1.6rem;
+}
+
+.kanbanColumn {
+  background-color: var(--color-green-dark);
+  overflow-y: auto;
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+}
+
+.kanbanColumn h3 {
+  text-transform: capitalize;
+  font-size: 2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--color-green-2);
+  color: var(--color-secondary-dark);
+  padding-bottom: 0.3rem;
+  margin-inline: 0.5rem;
+}
+
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  height: calc(95vh - 5.8rem - 5.88rem - 4.8rem);
+  overflow-y: auto;
+  border-radius: 0.7rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dragOver {
+  background-color: #5a9293;
+}
+
+.task {
+  padding: 1rem;
+  background-color: aliceblue;
+}

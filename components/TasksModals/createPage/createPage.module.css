@@ -1,0 +1,44 @@
+.createPage {
+  padding-block: 1rem 4rem;
+  max-width: 65rem;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex-grow: 1;
+  flex-basis: 33.33%;
+  min-width: fit-content;
+}
+
+.twoDiv {
+  display: flex;
+  gap: 1.5rem 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.createForm input[type='date'] {
+  height: 100%;
+  padding-block: 0.37em;
+}
+
+.optional {
+  opacity: 0.5;
+}
+
+.createForm input[type='file'] {
+  display: none;
+}
+
+.btnDiv {
+  display: flex;
+  gap: 1rem;
+}

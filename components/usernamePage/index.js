@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import useLogout from '../../hooks/useLogout'
-import { checkUsernameExist, createUser } from '../../utils/firebase'
+import { checkUsernameExist, createUser } from '../../utils/firebase/user'
 import Button from '../button'
 import s from './usernamePage.module.css'
 
@@ -47,7 +47,7 @@ export default function UsernamePage({ user }) {
           setIsValid(!res) // If there is no username
           setIsLoading(false)
         } catch (error) {
-          console.log(error.message)
+          console.log('Checking username ', error.message)
           setIsLoading(false)
         }
       }
@@ -66,7 +66,7 @@ export default function UsernamePage({ user }) {
       toast.success(<b>Data added to db</b>, { id })
       router.push('/')
     } catch (error) {
-      console.log(error.message)
+      console.log('Creating user ', error.message)
       setIsFormLoading(false)
       toast.error(<b>{error.message}</b>, { id })
     }
