@@ -1,10 +1,31 @@
-.taskCard {
+.taskCard,
+.taskCardDnd {
   background-color: var(--color-primary);
   padding: 0.7rem 1rem 1rem;
   border-radius: 0.7rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  border: 0.1rem solid var(--color-primary);
   box-shadow: var(--card-shadow);
-  overflow-x: hidden;
+}
+
+.taskCard {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.taskCardDnd {
+  height: fit-content;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* If Dragging */
+.dragging {
+  border-color: var(--color-secondary-dark);
+}
+/* If Undrag state */
+.taskCard.unDrag {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .taskCardTopBar,
@@ -48,6 +69,7 @@
   margin-block: 1rem;
   text-transform: capitalize;
   color: var(--color-secondary-dark);
+  word-break: break-all;
 }
 
 .taskUpdates,
@@ -78,4 +100,28 @@
 
 .delayed {
   color: var(--color-red);
+}
+
+.taskCard:active {
+  background-color: hsl(165, 20%, 64%);
+  transform: translateY(3px);
+}
+
+.taskCardDnd:active {
+  background-color: hsl(165, 20%, 62%);
+}
+
+/* Media Hove */
+@media (hover: hover) {
+  .taskCard:hover,
+  .taskCardDnd:hover {
+    background-color: hsl(165, 22%, 67%);
+  }
+  .taskCard:active {
+    background-color: hsl(165, 20%, 64%);
+    transform: translateY(3px);
+  }
+  .taskCardDnd:active {
+    background-color: hsl(165, 20%, 62%);
+  }
 }

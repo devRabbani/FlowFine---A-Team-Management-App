@@ -304,6 +304,7 @@ const removeRequestToTeam = async (teamcode) => {
     await Promise.all(requestsRef.docs.map((item) => deleteDoc(item?.ref)))
   }
 }
+
 const removeMembersTeam = async (teamCode) => {
   const membersRef = query(
     collection(db, 'users'),
@@ -385,7 +386,8 @@ export const removeUser = async (
 
     const uidSnapshot = await getDoc(doc(db, 'usernames', username))
 
-    const uid = uidSnapshot?.data()?.uid
+    const uid = uidSnapshot.data()?.uid
+
     const userRef = doc(db, 'users', uid)
 
     // Batch Init

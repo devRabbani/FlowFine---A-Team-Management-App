@@ -14,6 +14,8 @@ export default function TeamTaskList() {
   // Getting Team Data
   const { team_data, tasks_data, tasks_loading } = useTeam()
 
+  const { teamcode, groups } = team_data
+
   // Tasks With Filter Data
   const tasks = useMemo(
     () =>
@@ -27,13 +29,13 @@ export default function TeamTaskList() {
   const groupOptions = useMemo(
     () => [
       { value: '', label: 'All Group' },
-      ...team_data?.groups?.map((group) => ({
+      ...groups?.map((group) => ({
         label: group.name,
         value: group.name,
       })),
     ],
 
-    [team_data?.groups]
+    [groups]
   )
   console.log(tasks)
   return (
@@ -57,7 +59,11 @@ export default function TeamTaskList() {
       {isList ? (
         <TasksList tasks={tasks} loading={tasks_loading} />
       ) : (
-        <TasksKanban tasks={tasks} loading={tasks_loading} />
+        <TasksKanban
+          tasks={tasks}
+          teamCode={teamcode}
+          loading={tasks_loading}
+        />
       )}
     </div>
   )

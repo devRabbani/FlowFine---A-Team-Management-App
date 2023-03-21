@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   serverTimestamp,
   writeBatch,
 } from 'firebase/firestore'
@@ -231,4 +232,49 @@ export const deleteComment = async (taskDocId, commentId, handleLoading) => {
   } finally {
     handleLoading(false)
   }
+}
+
+// Kanban Task Change
+export const changeStatusKanban = async (
+  taskDocId,
+  username,
+  status,
+  taskid,
+  teamcode
+) => {
+  const taskinfoRef = doc(db, 'taskinfo', taskDocId)
+  const taskinfoData = await getDoc(taskinfoRef)
+  const isJoined = taskinfoData.data()?.assignedMembers?.includes(username)
+
+  if (!isJoined) {
+    throw new Error('You need to join first')
+  }
+
+  // Main Process
+  // Refs
+  const teamRef = doc(db, 'teams', teamcode)
+  const taskRef = doc(teamRef, 'tasks', taskDocId)
+  const activityRef = doc(collection(teamRef, 'activity'))
+
+  const batch = writeBatch(db)
+
+  // Updating The Task
+  batch.update(taskRef, {
+    status,
+    updatedAt: serverTimestamp(),
+  })
+
+  // Updating Team
+  batch.update(teamRef, {
+    updatedAt: serverTimestamp(),
+  })
+
+  // Setting Activity
+  batch.set(activityRef, {
+    message: `@${username} set the Task ID-${taskid} status to ${status?.toUpperCase()}`,
+    timestamp: serverTimestamp(),
+  })
+
+  // Committing the changes
+  await batch.commit()
 }
