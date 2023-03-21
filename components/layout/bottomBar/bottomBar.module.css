@@ -5,6 +5,7 @@
   width: 100%;
   padding-inline: 0.5rem;
   display: grid;
+  z-index: 99;
   grid-template-columns: repeat(5, 1fr);
   box-shadow: 0 -7px 25px rgba(0, 0, 0, 0.13), 0 -1px 4px #a3c4bcc6;
 }

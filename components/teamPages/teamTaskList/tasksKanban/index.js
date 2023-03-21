@@ -1,57 +1,23 @@
-import { useMemo, useState } from 'react'
-import TaskCard from '../../../taskCard'
-import s from './tasksKanban.module.css'
+import { useMemo } from 'react'
+import useCheckWidth from '../../../../hooks/useCheckWidth'
+import KanbanDnD from './kanbanDnD'
+import KanbanNoraml from './kanbanNoraml'
 
-export default function TasksKanban({ tasks, loading }) {
-  // Local States
-  const [statusMenu, setStatusMenu] = useState('idle')
-
-  //  SOrt Options
-  const menuLists = ['idle', 'working', 'complete']
-
-  const tasksList = useMemo(
-    () =>
-      tasks?.filter((item) => {
-        if (statusMenu === 'idle') {
-          return item?.status === 'idle'
-        } else if (statusMenu === 'working') {
-          return item?.status === 'working'
-        } else if (statusMenu === 'complete') {
-          return item?.status === 'complete'
-        }
-        return 0
-      }),
-    [tasks, statusMenu]
-  )
-
+export default function TasksKanban({ tasks, loading, teamCode }) {
   console.count('Task Kanban')
+  const isDnd = useCheckWidth()
 
-  return (
-    <>
-      <div className={s.kanbanNav}>
-        {menuLists.map((menu, i) => (
-          <div
-            key={i}
-            onClick={() => setStatusMenu(menu)}
-            className={`${s.kanbanNav_menu} ${
-              statusMenu === menu ? s.active : ''
-            }`}
-          >
-            {menu}
-          </div>
-        ))}
-      </div>
-      <div className={s.tasksKanbanBody}>
-        <div className={s.tasksListWrapper}>
-          {loading ? (
-            <p className="noData">Getting Tasks...</p>
-          ) : tasksList?.length > 0 ? (
-            tasksList.map((task) => <TaskCard task={task} key={task.id} />)
-          ) : (
-            <p className="noData">No Tasks Found</p>
-          )}
-        </div>
-      </div>
-    </>
+  let columns = useMemo(
+    () => ({
+      idle: tasks.filter((item) => item.status === 'idle'),
+      working: tasks.filter((item) => item.status === 'working'),
+      complete: tasks.filter((item) => item.status === 'complete'),
+    }),
+    [tasks]
   )
+
+  if (isDnd) {
+    return <KanbanDnD columns={columns} teamCode={teamCode} />
+  }
+  return <KanbanNoraml columns={columns} loading={loading} />
 }

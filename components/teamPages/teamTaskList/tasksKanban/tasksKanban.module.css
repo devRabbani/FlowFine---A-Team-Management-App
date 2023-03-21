@@ -45,3 +45,10 @@
   margin-top: 2rem;
   padding-bottom: 2rem;
 }
+
+/* Media Query */
+@media screen and (min-width: 750px) {
+  .tasksKanbanBody {
+    margin-bottom: 7rem;
+  }
+}

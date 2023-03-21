@@ -20,7 +20,7 @@
 @media screen and (min-width: 750px) {
   .tasksPage {
     padding-left: 10rem;
-    padding-bottom: 7rem;
+    padding-bottom: 0;
   }
 
   .stickyTop {
