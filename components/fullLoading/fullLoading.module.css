@@ -25,3 +25,15 @@
   align-items: center;
   margin-top: -5.8rem;
 }
+
+@media screen and (min-width: 770px) {
+  .body.teamPage {
+    padding-left: 10rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .body.teamPage {
+    padding-left: 18rem;
+  }
+}
