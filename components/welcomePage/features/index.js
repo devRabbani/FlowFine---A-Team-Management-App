@@ -1,20 +1,16 @@
-import FeatureCard from "./featureCard"
-import s from "./features.module.css"
-import { MdMobileFriendly } from "react-icons/md"
-import { SiPwa } from "react-icons/si"
-import { FaFeather } from "react-icons/fa"
+import FeatureCard from './featureCard'
+import s from './features.module.css'
+import { MdMobileFriendly } from 'react-icons/md'
+import { SiPwa } from 'react-icons/si'
+import { FaFeather } from 'react-icons/fa'
+import { forwardRef } from 'react'
 
-export default function Features() {
+export default forwardRef(function Features(_, targetRef) {
   return (
     <div className={`${s.features} wrapper`}>
-      <h2>What we Offer</h2>
-      <hr />
-      {/* <p>
-        Effortlessly manage your tasks on-the-go with our mobile-friendly app!
-        Streamline your workflow and empower your team with its user-friendly
-        interface and hassle-free task management. Best of all, it's completely
-        free to use. Revolutionize your productivity today!
-      </p> */}
+      <h2 ref={targetRef} className={s.featureTitle}>
+        What make us different!
+      </h2>
       <div className={s.featureContainner}>
         <FeatureCard
           cardTitle="Mobile friendly & easy to use"
@@ -35,4 +31,4 @@ export default function Features() {
       </div>
     </div>
   )
-}
+})

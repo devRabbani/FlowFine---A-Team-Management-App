@@ -1,65 +1,63 @@
 .footer {
-  text-align: center;
-  font-size: 1.7rem;
-  /* margin-top: 10rem; */
   color: var(--color-grey);
+}
+
+.topFooterWrapper {
+  background-color: rgb(12, 12, 12);
+  padding-block: 5rem;
 }
 
 .topFooter {
   display: flex;
   flex-wrap: wrap;
-  padding: 5rem;
-  background-color: rgb(12, 12, 12);
+  align-items: center;
+  justify-content: space-between;
 }
-.topLeft {
+
+.topLeft,
+.topRight {
   flex-basis: 50%;
   text-align: left;
 }
 
 .canwebe {
   font-size: 5.2rem;
-  margin-left: 4rem;
 }
-
 .can {
   color: var(--color-canwebe-deep);
   font-weight: 500;
 }
 
 .topPara {
-  padding-top: 1.3rem;
+  margin-top: 1rem;
   word-spacing: 2px;
   max-width: 55rem;
-  margin-inline: auto;
-  opacity: 0.7;
-  line-height: 2.5rem;
-  text-align: left;
+  opacity: 0.5;
+  line-height: 1.4;
 }
 
 .topRight {
-  flex-basis: 45%;
   display: flex;
-  text-align: left;
-  padding-left: 10rem;
+  justify-content: flex-end;
+  gap: 10rem;
 }
+
 .h4 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
 }
 
-.rightLeft {
-  flex-basis: 50%;
-}
-
-.footerLink {
+.linksList {
   display: flex;
   flex-direction: column;
-  padding-block: 0.3rem;
-  opacity: 0.7;
+  gap: 1rem;
 }
 
-.rightRight {
-  flex-basis: 50%;
+.linksList a {
+  font-size: 1.7rem;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
 }
 
 .bottomFooter {
@@ -83,6 +81,7 @@
 .youtube,
 .footerLink {
   transition: all 0.3s ease-in-out;
+  flex-shrink: 0;
 }
 
 .facebook:active {
@@ -101,6 +100,11 @@
 
 .youtube:active {
   color: #ff0000;
+}
+
+.linksList a:active {
+  color: var(--color-canwebe-deep);
+  opacity: 1;
 }
 
 @media (hover: hover) {
@@ -124,5 +128,53 @@
 
   .youtube:hover {
     color: #ff0000;
+  }
+
+  .linksList a:is(:hover, :active) {
+    color: var(--color-canwebe-deep);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .topFooter {
+    gap: 3rem;
+  }
+  .topFooterWrapper {
+    padding-block: 3rem 5rem;
+  }
+  .topLeft,
+  .topRight {
+    flex-basis: 100%;
+  }
+
+  .topRight {
+    justify-content: flex-start;
+    gap: 5rem;
+  }
+  .topPara {
+    max-width: 100%;
+    margin-top: 0;
+  }
+  .h4 {
+    margin-bottom: 0.8rem;
+  }
+
+  .bottomFooter {
+    padding: 2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .bottomFooter {
+    padding: 2rem 1rem;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.3rem;
+  }
+
+  .h4 {
+    margin-bottom: 0.3rem;
   }
 }

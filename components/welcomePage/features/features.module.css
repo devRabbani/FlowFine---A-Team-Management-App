@@ -1,31 +1,37 @@
 .features {
-  padding-block: 3rem 5rem;
+  padding-bottom: 5rem;
   text-align: center;
   margin-block: auto;
-  margin-top: 5rem;
 }
 
-.features h2 {
+.featureTitle {
   font-size: 3.6rem;
-  margin-block: 2rem 0.5rem;
+  margin-bottom: 10rem;
 }
 
-.features hr {
+.featureTitle::after {
+  content: '';
+  width: 16rem;
+  height: 0.4rem;
+  background-color: var(--color-secondary);
+  display: block;
   margin-inline: auto;
-  width: 15rem;
-  margin-bottom: 5rem;
-  border: none;
-  border-top: 0.4rem solid var(--color-green-1);
-}
-
-.features > p {
-  max-width: 600px;
-  margin-inline: auto;
-  margin-bottom: 5rem;
 }
 
 .featureContainner {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  gap: 9rem 3rem;
+  justify-content: center;
+}
+
+@media screen and (max-width: 880px) {
+  .featureContainner {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .featureTitle {
+    font-size: 2.8rem;
+  }
 }

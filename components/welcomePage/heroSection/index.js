@@ -1,11 +1,11 @@
-import Link from "next/link"
-import s from "./heroSection.module.css"
-import mockup1 from "../../../assets/mockup1.jpg"
-import mockup2 from "../../../assets/mockup2.jpg"
-import Image from "next/image"
-import HeroNav from "./heroNav"
-import heroBlobSvg from "../../../assets/blob.svg"
-import { FaGoogle } from "react-icons/fa"
+import Link from 'next/link'
+import s from './heroSection.module.css'
+import mockup1 from '../../../assets/mockup1.jpg'
+import mockup2 from '../../../assets/mockup2.jpg'
+import Image from 'next/image'
+import HeroNav from './heroNav'
+import heroBlobSvg from '../../../assets/blob.svg'
+import { FaGoogle } from 'react-icons/fa'
 
 export default function HeroSection({
   user,
@@ -13,10 +13,10 @@ export default function HeroSection({
   loading,
   isLoading,
   signin,
+  targetRef,
 }) {
   return (
     <div className={s.mainHeroSectionWrapper}>
-      <Image className={s.heroBlobSvg} src={heroBlobSvg} alt="hero blob svg" />
       <HeroNav
         user={user}
         userName={username}
@@ -31,31 +31,40 @@ export default function HeroSection({
           <p className={s.heroPara}>
             Effortlessly manage tasks on-the-go with our user-friendly mobile
             app! With its lightweight and PWA features, it ensures seamless team
-            collaboration without any lag. Best of all, it's completely free to
-            use!
+            collaboration without any lag. Best of all, it&apos;s completely
+            free to use!
           </p>
-
-          {user && username ? (
-            <Link className={s.heroBtn} href="/">
-              Go to Dashboard
-            </Link>
-          ) : (
-            <div className={s.heroBtn}>
+          <div className={s.btnDiv}>
+            {user && username ? (
+              <Link className={s.heroPrimaryBtn} href="/">
+                Go to Dashboard
+              </Link>
+            ) : (
               <button
                 className={s.heroPrimaryBtn}
                 disabled={isLoading || loading}
                 onClick={signin}
               >
-                {isLoading ? "Signing In" : "Get Started"}
+                {isLoading ? 'Signing In' : 'Get Started'}
                 <FaGoogle />
               </button>
-              <button className={s.heroSecondaryBtn}>See features</button>
-            </div>
-          )}
+            )}
+            <button
+              onClick={() => targetRef.current.scrollIntoView()}
+              className={s.heroSecondaryBtn}
+            >
+              See features
+            </button>
+          </div>
         </div>
         <div className={s.rightContainner}>
-          <Image className={s.leftMockup} src={mockup1} alt="Mockup" />
-          <Image className={s.rightMockup} src={mockup2} alt="Mockup" />
+          <Image className={s.leftMockup} src={mockup1} alt="Mockup Phone 1" />
+          <Image className={s.rightMockup} src={mockup2} alt="Mockup phone 2" />
+          <Image
+            className={s.heroBlobSvg}
+            src={heroBlobSvg}
+            alt="hero blob svg"
+          />
         </div>
       </div>
     </div>
