@@ -4,7 +4,5 @@ Effortlessly manage tasks on-the-go with our user-friendly mobile app! With its 
 
 Powered by [CanWeBe](https://canwebe.tech) , Made with mainly NextJs and Firebase
 
-##### Currently Under Development
 
-<!--
-[View Live : FlowFine](https://keepkaro.vercel.app) -->
+[View Live : FlowFine](https://flowfine.canwebe.tech/)
