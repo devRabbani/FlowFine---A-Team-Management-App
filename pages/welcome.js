@@ -1,20 +1,23 @@
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import Modal from "../components/modal"
-import UsernamePage from "../components/usernamePage"
-import Features from "../components/welcomePage/features"
-import Footer from "../components/welcomePage/footer"
-import HeroSection from "../components/welcomePage/heroSection"
-import Video from "../components/welcomePage/video"
-import { useAuth } from "../context/AuthContext"
-import { useUser } from "../context/UserContext"
-import useLogin from "../hooks/useLogin"
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import UsernamePage from '../components/usernamePage'
+import Features from '../components/welcomePage/features'
+import Footer from '../components/welcomePage/footer'
+import HeroSection from '../components/welcomePage/heroSection'
+import Video from '../components/welcomePage/video'
+import { useAuth } from '../context/AuthContext'
+import { useUser } from '../context/UserContext'
+import useLogin from '../hooks/useLogin'
 
-import Pricing from "../components/welcomePage/Pricing"
+import Pricing from '../components/welcomePage/Pricing'
+import { useRef } from 'react'
 
 export default function Welcome() {
   const { user } = useAuth()
   const { signin, isLoading } = useLogin()
+
+  // Ref
+  const targetRef = useRef()
 
   const router = useRouter()
 
@@ -22,9 +25,9 @@ export default function Welcome() {
 
   useEffect(() => {
     if (!isLoading && user && username && !loading) {
-      router.push("/")
+      router.push('/')
     }
-  }, [user, isLoading, username, loading])
+  }, [user, isLoading, username, loading, router])
 
   if (user && !username && !loading) {
     return <UsernamePage user={user} />
@@ -38,9 +41,10 @@ export default function Welcome() {
         loading={loading}
         isLoading={isLoading}
         signin={signin}
+        targetRef={targetRef}
       />
-      <Features id="features" />
-      <Video id="video" />
+      <Features ref={targetRef} />
+      <Video />
       <Pricing
         user={user}
         userName={username}

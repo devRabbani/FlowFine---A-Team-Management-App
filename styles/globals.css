@@ -239,3 +239,7 @@ textarea:is(:active, :focus) {
 .stateOption {
   font-size: 1.7rem;
 }
+
+iframe {
+  border: none;
+}

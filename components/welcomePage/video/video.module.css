@@ -1,66 +1,152 @@
+.videoWrapper {
+  background-color: var(--color-white-light);
+}
+
 .video {
   display: flex;
-  padding-top: 30px;
-  background-color: var(--color-white-light);
-  position: relative;
+  gap: 2rem;
+  justify-content: space-between;
 }
+
 .videoLeft,
 .videoRight {
   width: 50%;
 }
 
 .videoLeft iframe {
-  min-width: 553px;
-  min-height: 311px;
-  border: none;
-  border-radius: 1.4rem;
-  overflow: hidden;
+  max-width: 70rem;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 0.7rem;
+  border-top: 1rem solid #a0c3c9;
+  box-shadow: 7px 7px 18px rgba(0, 0, 0, 0.3);
 }
 
 .videoLeft {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   position: sticky;
   top: 0;
-  z-index: 1;
-  background-color: var(--color-black-1);
 }
 
 .point1,
-.point2,
-.point3 {
-  height: 100vh;
-  padding: 20px;
+.point3,
+.point2 {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .pointsPara {
-  font-size: 1.9rem;
   max-width: 40rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 1.35;
 }
 
 .pointsH4 {
-  margin-block: 1rem;
   font-size: 3.5rem;
   font-weight: 500;
   color: var(--color-accent-1);
 }
 
+.point1 .pointsH4 {
+  margin-top: -2rem;
+}
+
 .searchSvg {
-  height: 14rem;
-  width: 14rem;
+  width: 20rem;
+  height: fit-content;
 }
 
 .points2H4 {
   font-size: 4rem;
   font-weight: 600;
+  line-height: 1.2;
+}
+
+.borderPoint {
+  text-align: left;
+  padding-left: 2rem;
+  margin-left: 2rem;
+  border-left: 4px solid var(--color-secondary);
+}
+
+.borderPoint p {
+  line-height: 1.35;
+  max-width: 50rem;
+  margin-top: 1rem;
+}
+
+/* Media Query */
+@media screen and (max-width: 920px) {
+  .video {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .videoLeft,
+  .videoRight {
+    width: 100%;
+  }
+
+  .videoLeft {
+    height: 45vh;
+    padding-block: 2rem;
+    background-color: var(--color-white-light);
+  }
+
+  .video iframe {
+    width: auto;
+    height: 100%;
+  }
+
+  .point1,
+  .point2,
+  .point3 {
+    min-height: 55vh;
+    height: 100%;
+    padding-block: 6rem;
+  }
+  .searchSvg {
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .video iframe {
+    height: auto;
+    width: 100%;
+  }
+  .videoLeft {
+    height: fit-content;
+  }
+
+  .point1,
+  .point2,
+  .point3 {
+    min-height: 65vh;
+  }
+
+  .points2H4,
+  .pointsH4 {
+    font-size: 2.8rem;
+  }
+
+  .pointsPara {
+    width: 95%;
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .point1 .searchSvg {
+    width: 18rem;
+  }
+
+  .borderPoint {
+    margin-left: 0.5rem;
+    padding-left: 1.5rem;
+  }
 }
