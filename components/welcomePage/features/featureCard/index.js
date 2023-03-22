@@ -1,5 +1,4 @@
-import s from "./featurecard.module.css"
-import Image from "next/image"
+import s from './featurecard.module.css'
 
 export default function FeatureCard({ cardTitle, cardPara, cardIcon }) {
   return (
