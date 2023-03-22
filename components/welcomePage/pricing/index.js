@@ -32,7 +32,7 @@ export default function Pricing({
             disabled={isLoading || loading}
             onClick={signin}
           >
-            {isLoading ? 'Signing In' : 'Log In'}
+            {isLoading || loading ? 'Logging In' : 'Log In'}
           </button>
         )}
         <Link

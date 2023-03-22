@@ -31,8 +31,8 @@ export default function HeroNav({
               disabled={isLoading || loading}
               onClick={signin}
             >
-              {isLoading ? (
-                'Logging In'
+              {isLoading || loading ? (
+                'Loading...'
               ) : (
                 <>
                   Log In <FaGoogle />

@@ -45,7 +45,7 @@ export default function HeroSection({
                 disabled={isLoading || loading}
                 onClick={signin}
               >
-                {isLoading ? 'Signing In' : 'Get Started'}
+                {isLoading || loading ? 'Loading..' : 'Get Started'}
                 <FaGoogle />
               </button>
             )}

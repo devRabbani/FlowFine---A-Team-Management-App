@@ -9,11 +9,11 @@ import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
 import useLogin from '../hooks/useLogin'
 
-import Pricing from '../components/welcomePage/Pricing'
+import Pricing from '../components/welcomePage/pricing'
 import { useRef } from 'react'
 
 export default function Welcome() {
-  const { user } = useAuth()
+  const { user, authReady } = useAuth()
   const { signin, isLoading } = useLogin()
 
   // Ref

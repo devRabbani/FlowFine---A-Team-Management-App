@@ -63,6 +63,7 @@ body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
   /* overflow-y: auto; */
+  overflow-x: hidden;
 }
 
 html:focus-within {
