@@ -87,7 +87,6 @@
   aspect-ratio: 9/20;
   height: auto;
   border: 0.35rem solid black;
-
   border-radius: 2rem;
   overflow: hidden;
 }
@@ -183,6 +182,7 @@
   .leftMockup,
   .rightMockup {
     max-width: 14rem;
+    border-radius: 1.5rem;
   }
 
   .leftMockup {

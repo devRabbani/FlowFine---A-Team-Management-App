@@ -58,8 +58,18 @@ export default function HeroSection({
           </div>
         </div>
         <div className={s.rightContainner}>
-          <Image className={s.leftMockup} src={mockup1} alt="Mockup Phone 1" />
-          <Image className={s.rightMockup} src={mockup2} alt="Mockup phone 2" />
+          <Image
+            className={s.leftMockup}
+            src={mockup1}
+            placeholder="blur"
+            alt="Mockup Phone 1"
+          />
+          <Image
+            className={s.rightMockup}
+            src={mockup2}
+            placeholder="blur"
+            alt="Mockup phone 2"
+          />
           <Image
             className={s.heroBlobSvg}
             src={heroBlobSvg}
