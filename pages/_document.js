@@ -55,6 +55,10 @@ class MyDocument extends Document {
             property="og:description"
             content="Effortlessly manage tasks on-the-go with our user-friendly mobile app! With its lightweight and PWA features, it ensures seamless team collaboration without any lag. Best of all, it's completely free to use!"
           />
+          <meta
+            name="google-site-verification"
+            content="76C2hWhD9MhyJAHhDRqU-1zoKf3sK3pSFZxhqnXmRo4"
+          />
           <meta property="og:site_name" content="FlowFine" />
           <meta property="og:url" content="https://flowfine.vercel.app" />
           <meta
