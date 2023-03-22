@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import s from './heroNav.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '../../../../assets/logo192.png'
-import { MdMenu, MdClose } from 'react-icons/md'
 import { FaGoogle } from 'react-icons/fa'
 
 export default function HeroNav({
@@ -33,8 +31,8 @@ export default function HeroNav({
               disabled={isLoading || loading}
               onClick={signin}
             >
-              {isLoading ? (
-                'Logging In'
+              {isLoading || loading ? (
+                'Loading...'
               ) : (
                 <>
                   Log In <FaGoogle />

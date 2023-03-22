@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import s from './heroSection.module.css'
-import mockup1 from '../../../assets/mockup1.jpg'
-import mockup2 from '../../../assets/mockup2.jpg'
+import mockup1 from '../../../assets/mockup1.jpeg'
+import mockup2 from '../../../assets/mockup2.jpeg'
 import Image from 'next/image'
 import HeroNav from './heroNav'
 import heroBlobSvg from '../../../assets/blob.svg'
@@ -45,7 +45,7 @@ export default function HeroSection({
                 disabled={isLoading || loading}
                 onClick={signin}
               >
-                {isLoading ? 'Signing In' : 'Get Started'}
+                {isLoading || loading ? 'Loading..' : 'Get Started'}
                 <FaGoogle />
               </button>
             )}

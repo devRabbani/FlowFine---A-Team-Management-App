@@ -10,9 +10,9 @@ export default function Video() {
         <div className={s.videoLeft}>
           <iframe
             src="https://www.youtube.com/embed/0MNqEywCxp0"
-            title="YouTube video player"
+            title="FlowFine Demo Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           />
         </div>
         <div className={s.videoRight}>
