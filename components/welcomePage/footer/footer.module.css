@@ -1,0 +1,180 @@
+.footer {
+  color: var(--color-grey);
+}
+
+.topFooterWrapper {
+  background-color: rgb(12, 12, 12);
+  padding-block: 5rem;
+}
+
+.topFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLeft,
+.topRight {
+  flex-basis: 50%;
+  text-align: left;
+}
+
+.canwebe {
+  font-size: 5.2rem;
+}
+.can {
+  color: var(--color-canwebe-deep);
+  font-weight: 500;
+}
+
+.topPara {
+  margin-top: 1rem;
+  word-spacing: 2px;
+  max-width: 55rem;
+  opacity: 0.5;
+  line-height: 1.4;
+}
+
+.topRight {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10rem;
+}
+
+.h4 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.linksList a {
+  font-size: 1.7rem;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.bottomFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5rem;
+  background-color: black;
+  color: #4b4b4b;
+}
+
+.bottomRight {
+  display: flex;
+  gap: 2rem;
+  font-size: 2.2rem;
+}
+
+.facebook,
+.twitter,
+.instagram,
+.linkedin,
+.youtube,
+.footerLink {
+  transition: all 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+
+.facebook:active {
+  color: #1877f2;
+}
+
+.instagram:active {
+  color: #e1306c;
+}
+.twitter:active {
+  color: #1da1f2;
+}
+.linkedin:active {
+  color: #0077b5;
+}
+
+.youtube:active {
+  color: #ff0000;
+}
+
+.linksList a:active {
+  color: var(--color-canwebe-deep);
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .footerLink:hover {
+    color: var(--color-canwebe-deep);
+  }
+
+  .facebook:hover {
+    color: #1877f2;
+  }
+
+  .instagram:hover {
+    color: #e1306c;
+  }
+  .twitter:hover {
+    color: #1da1f2;
+  }
+  .linkedin:hover {
+    color: #0077b5;
+  }
+
+  .youtube:hover {
+    color: #ff0000;
+  }
+
+  .linksList a:is(:hover, :active) {
+    color: var(--color-canwebe-deep);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .topFooter {
+    gap: 3rem;
+  }
+  .topFooterWrapper {
+    padding-block: 3rem 5rem;
+  }
+  .topLeft,
+  .topRight {
+    flex-basis: 100%;
+  }
+
+  .topRight {
+    justify-content: flex-start;
+    gap: 5rem;
+  }
+  .topPara {
+    max-width: 100%;
+    margin-top: 0;
+  }
+  .h4 {
+    margin-bottom: 0.8rem;
+  }
+
+  .bottomFooter {
+    padding: 2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .bottomFooter {
+    padding: 2rem 1rem;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.3rem;
+  }
+
+  .h4 {
+    margin-bottom: 0.3rem;
+  }
+}

@@ -1,0 +1,226 @@
+.mainHeroSectionWrapper {
+  height: 100%;
+  position: relative;
+}
+
+.heroBlobSvg {
+  position: absolute;
+  top: -17rem;
+  right: -20rem;
+  width: 98rem;
+  object-fit: cover;
+  height: auto;
+  z-index: -1;
+}
+
+.heroSection {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  min-height: calc(100% - 6.6rem);
+}
+
+.leftContainner,
+.rightContainner {
+  flex-basis: 100%;
+}
+
+.leftContainner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* min-width: 40rem; */
+}
+
+.leftContainner h1 {
+  font-size: 3.9rem;
+  line-height: 1.2;
+}
+
+.heroPara {
+  margin-block: 1rem 1.8rem;
+  max-width: 55rem;
+  font-size: 1.8rem;
+}
+
+.leftContainner h4 {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.heroPrimaryBtn,
+.heroSecondaryBtn {
+  font-size: 2rem;
+  padding: 0.45em 1.2em;
+  border-radius: 0.7rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.heroPrimaryBtn {
+  color: rgb(231, 238, 240);
+  background-color: var(--color-secondary);
+  gap: 1rem;
+}
+
+.heroSecondaryBtn {
+  color: var(--color-secondary);
+  background-color: hsl(165, 22%, 64%);
+}
+
+.rightContainner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.leftMockup,
+.rightMockup {
+  max-width: 20rem;
+  width: 100%;
+  aspect-ratio: 9/20;
+  height: auto;
+  border: 0.35rem solid black;
+
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.leftMockup {
+  margin-bottom: 4rem;
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+.rightMockup {
+  margin-top: 4rem;
+  box-shadow: 0.7rem 0.7rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+.heroPrimaryBtn:not(:disabled):active {
+  background-color: hsl(209, 36%, 20%);
+  transform: translateY(2px);
+}
+.heroSecondaryBtn:active {
+  background-color: hsl(165, 22%, 57%);
+  transform: translateY(2px);
+}
+
+@media (hover: hover) {
+  .heroPrimaryBtn:not(:disabled):hover {
+    background-color: hsl(209, 36%, 25%);
+  }
+  .heroPrimaryBtn:not(:disabled):active {
+    background-color: hsl(209, 36%, 20%);
+    transform: translateY(2px);
+  }
+  .heroSecondaryBtn:hover {
+    background-color: hsl(165, 22%, 61%);
+  }
+  .heroSecondaryBtn:active {
+    background-color: hsl(165, 22%, 57%);
+    transform: translateY(2px);
+  }
+}
+
+/* Media Query */
+
+@media screen and (max-width: 1200px) {
+  .heroBlobSvg {
+    top: -13rem;
+    right: -17rem;
+    width: 80rem;
+  }
+}
+
+@media screen and (max-width: 985px) {
+  .heroBlobSvg {
+    top: -12rem;
+    right: -14rem;
+    width: 70rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .heroBlobSvg {
+    top: auto;
+    right: auto;
+    width: 60rem;
+  }
+
+  .rightContainner {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .heroSection {
+    flex-direction: column-reverse;
+    padding-block: 3rem 8rem;
+    gap: 7rem;
+  }
+  .mainHeroSectionWrapper {
+    height: auto;
+  }
+
+  .heroBlobSvg {
+    top: -2rem;
+    right: auto;
+    width: 67rem;
+  }
+
+  .leftContainner {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .leftMockup,
+  .rightMockup {
+    max-width: 14rem;
+  }
+
+  .leftMockup {
+    margin-bottom: 2.5rem;
+  }
+
+  .rightMockup {
+    margin-top: 2.5rem;
+  }
+  .heroBlobSvg {
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 45%;
+  }
+
+  .heroSection {
+    gap: 4rem;
+  }
+
+  .heroSection h1 {
+    font-size: 3.5rem;
+    line-height: 1.16;
+  }
+
+  .heroSection h4 {
+    line-height: 1.2;
+  }
+
+  .leftContainner {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .leftContainner h4 {
+    display: none;
+  }
+  .heroPara {
+    font-size: 1.7rem;
+  }
+}

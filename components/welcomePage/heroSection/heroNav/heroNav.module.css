@@ -1,0 +1,71 @@
+/* Nav */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  height: 6.6rem;
+  align-items: center;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo {
+  width: 3.7rem;
+  height: 3.7rem;
+}
+
+.logoText {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+.loginBtn {
+  font-size: 1.7rem;
+  color: rgb(231, 238, 240);
+  background-color: var(--color-secondary);
+  padding: 0.6em 1.7em;
+  border-radius: 50vw;
+  gap: 0.8rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.loginBtn:not(:disabled):active {
+  background-color: hsl(209, 36%, 20%);
+}
+
+@media (hover: hover) {
+  .loginBtn:not(:disabled):hover {
+    background-color: hsl(209, 36%, 25%);
+  }
+  .loginBtn:not(:disabled):active {
+    background-color: hsl(209, 36%, 20%);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .loginBtn {
+    font-size: 1.6rem;
+    padding: 0.6em 1.5em;
+  }
+
+  .nav {
+    height: fit-content;
+    padding-top: 1rem;
+  }
+  .logoText {
+    font-size: 2.9rem;
+  }
+
+  .logo {
+    width: 3.3rem;
+    height: 3.3rem;
+  }
+
+  .navLeft {
+    gap: 0.5rem;
+  }
+}

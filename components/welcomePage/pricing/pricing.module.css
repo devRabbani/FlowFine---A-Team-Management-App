@@ -1,0 +1,113 @@
+.pricing {
+  background-color: var(--color-white-light);
+  text-align: center;
+  width: 87%;
+  max-width: 100rem;
+  padding: 3rem 7rem 0;
+  border-radius: 0.7rem;
+  margin: 10rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pricing h3 {
+  font-size: 3.6rem;
+}
+
+.btnContainner {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: -2rem;
+  margin-top: 1rem;
+}
+
+.btn,
+.btn2 {
+  font-size: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0.45em 0;
+  border-radius: 0.7rem;
+  width: 18rem;
+  color: rgb(231, 238, 240);
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn {
+  background-color: var(--color-secondary);
+}
+
+.btn2 {
+  background-color: var(--color-canwebe-deep);
+}
+
+.btn:not(:disabled):active {
+  background-color: hsl(209, 36%, 20%);
+  transform: translateY(2px);
+}
+
+.btn2:active {
+  background-color: hsl(22, 72%, 37%);
+  transform: translateY(2px);
+}
+
+@media (hover: hover) {
+  .btn:not(:disabled):hover {
+    background-color: hsl(209, 36%, 25%);
+  }
+  .btn:not(:disabled):active {
+    background-color: hsl(209, 36%, 20%);
+    transform: translateY(2px);
+  }
+
+  .btn2:hover {
+    background-color: hsl(22, 72%, 41%);
+  }
+
+  .btn2:active {
+    background-color: hsl(22, 72%, 37%);
+    transform: translateY(2px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .pricing {
+    padding-inline: 3rem;
+    margin: 7rem auto;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .pricing {
+    padding: 2rem 1rem 0;
+    width: 90%;
+    gap: 1.2rem;
+  }
+  .pricing p {
+    padding-inline: 2rem;
+  }
+  .pricing h3 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .btnContainner {
+    gap: 1.1rem;
+  }
+
+  .btn,
+  .btn2 {
+    font-size: 1.9rem;
+    width: auto;
+    padding-inline: 1em;
+  }
+
+  .btn {
+    min-width: 13rem;
+  }
+}
