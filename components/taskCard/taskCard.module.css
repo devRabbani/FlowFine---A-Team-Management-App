@@ -125,3 +125,13 @@
     background-color: hsl(165, 20%, 62%);
   }
 }
+
+@media screen and (min-width: 980px) {
+  .taskCard {
+    display: flex;
+    flex-direction: column;
+  }
+  .taskCardBottomBar {
+    margin-top: auto;
+  }
+}

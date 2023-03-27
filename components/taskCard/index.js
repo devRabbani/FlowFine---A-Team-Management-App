@@ -59,15 +59,14 @@ export default memo(function TaskCard({ task }) {
 
         <p className={s.title}>{task?.title}</p>
         <div className={s.taskCardBottomBar}>
-          {isDelayed ? (
-            <p className={s.delayed}>
-              {task.status === 'complete' ? 'Late Completed' : delayMessage}
-            </p>
-          ) : task.status === 'complete' ? null : (
+          {task?.status === 'complete' ? null : isDelayed ? (
+            <p className={s.delayed}>{delayMessage}</p>
+          ) : (
             <p>Due {deadline.format('DD MMM')} </p>
           )}
-
-          <p className={s.status}>{task?.status}</p>
+          <p className={s.status}>
+            {task?.status === 'complete' ? 'completed' : task?.status}
+          </p>
           <p className={s.taskid}>ID-{task?.taskid}</p>
         </div>
       </div>

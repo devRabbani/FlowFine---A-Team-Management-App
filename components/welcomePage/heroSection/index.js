@@ -50,7 +50,9 @@ export default function HeroSection({
               </button>
             )}
             <button
-              onClick={() => targetRef.current.scrollIntoView()}
+              onClick={() =>
+                targetRef.current.scrollIntoView({ behavior: 'smooth' })
+              }
               className={s.heroSecondaryBtn}
             >
               See features
