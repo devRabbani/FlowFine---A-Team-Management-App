@@ -15,7 +15,7 @@ export default function Footer() {
         <div className={`${s.topFooter} wrapper`}>
           <div className={s.topLeft}>
             <Link
-              href="https://canwebe.tech"
+              href="https://canwebe.in"
               target="_blank"
               className={s.canwebe}
             >
@@ -43,7 +43,7 @@ export default function Footer() {
             <div className={s.linksList}>
               <h4 className={s.h4}>ContactUs</h4>
               <Link
-                href="https://www.canwebe.tech/form/contact/"
+                href="https://www.canwebe.in/form/contact/"
                 target="_blank"
               >
                 Contact
@@ -54,7 +54,7 @@ export default function Footer() {
               >
                 Gmail
               </Link>
-              <Link href="https://www.canwebe.tech/form/review" target="_blank">
+              <Link href="https://www.canwebe.in/form/review" target="_blank">
                 Review
               </Link>
             </div>

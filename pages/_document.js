@@ -32,7 +32,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" />
 
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:url" content="https://flowfine.canwebe.tech/"/>
+          <meta name="twitter:url" content="https://flowfine.canwebe.in/"/>
           <meta
             name="twitter:title"
             content="FlowFine - Your All-in-One Project Management Solution!"
@@ -43,7 +43,7 @@ class MyDocument extends Document {
           />
           <meta
             name="twitter:image"
-            content="https://flowfine.canwebe.tech/ogimage.png"
+            content="https://flowfine.canwebe.in/ogimage.png"
           />
           <meta name="twitter:creator" content="@iamrrk_" />
           <meta property="og:type" content="website" />
@@ -60,10 +60,10 @@ class MyDocument extends Document {
             content="76C2hWhD9MhyJAHhDRqU-1zoKf3sK3pSFZxhqnXmRo4"
           />
           <meta property="og:site_name" content="FlowFine" />
-          <meta property="og:url" content="https://flowfine.canwebe.tech/" />
+          <meta property="og:url" content="https://flowfine.canwebe.in/" />
           <meta
             property="og:image"
-            content="https://flowfine.canwebe.tech/ogimage.png"
+            content="https://flowfine.canwebe.in/ogimage.png"
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>

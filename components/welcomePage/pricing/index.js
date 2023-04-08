@@ -39,9 +39,9 @@ export default function Pricing({
           className={s.btn2}
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.canwebe.tech/"
+          href="https://www.canwebe.in/"
         >
-          ContactUs
+          Contact Us
         </Link>
       </div>
     </div>
