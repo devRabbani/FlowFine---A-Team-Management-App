@@ -17,7 +17,7 @@ const finlandica = Finlandica({ subsets: ['latin'] })
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const publicRoutes = ['/welcome']
+  const publicRoutes = ['/welcome','/sitemap.xml','/robots.txt']
 
   // Loading Animation
   nProgress.configure({ showSpinner: false })
